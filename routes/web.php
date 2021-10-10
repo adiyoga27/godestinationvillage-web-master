@@ -19,6 +19,7 @@ use App\Http\Controllers\Backend\VillagesController;
 use App\Http\Controllers\Front\InvoiceController;
 use App\Http\Controllers\Front\OrderController;
 use App\Http\Controllers\Front\PageController;
+use App\Http\Controllers\MidtransController;
 use App\Http\Controllers\OrderEventsController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -49,16 +50,8 @@ Route::get('locale/{locale}', function ($locale) {
 });
 
 Route::get('/', [PageController::class, 'index']);
-
 Route::get('/administrator/login',  [LoginController::class, 'authenticated']);
-
 Route::get('/user/login', [LoginController::class, 'authenticated']);
-
-
-
-
-
-
 
 //Customer Page
 
@@ -75,10 +68,10 @@ Route::prefix('tour-packages')->group(function () {
 
 Route::prefix('reservation')->group(function () {
     Route::get('/{email}',[PageController::class, 'reservation']);
-    Route::get('/paid/{email}',[PageController::class, 'reservationPaid']);
-    Route::get('/paypal/{email}',[PageController::class, 'reservationPaypal']);
-    Route::get('/bank/{email}',[PageController::class, 'reservationBank']);
-    Route::get('/cancel/{email}',[PageController::class, 'reservationCancel']);
+    Route::get('/paid/{email}',[OrderController::class, 'reservationPaid']);
+    Route::get('/paypal/{email}',[OrderController::class, 'reservationPaypal']);
+    Route::get('/bank/{email}',[OrderController::class, 'reservationBank']);
+    Route::get('/cancel/{email}',[OrderController::class, 'reservationCancel']);
 });
 
 Route::prefix('booking')->group(function () {
@@ -86,21 +79,32 @@ Route::prefix('booking')->group(function () {
     Route::post('/booking/send',[OrderController::class, 'send']);
     Route::post('/booking/sendEvent',[OrderController::class, 'sendEvent']);
 });
+Route::prefix('bookingEvents')->group(function () {
+    Route::get('/{id}', [PageController::class, 'bookingEvents']);
+    Route::post('/sendEvent',[OrderEventsController::class, 'sendEvent']);
+});
 
+Route::prefix('midtrans')->group(function(){
+    Route::post('/callbackPayment', [MidtransController::class, 'callbackPayment']);
+});
 
 
 
 Route::get('/services', [PageController::class, 'services']);
 Route::get('/faq', [PageController::class, 'faq']);
 Route::get('/contact', [PageController::class, 'contact']);
-Route::get('/homestay', 'Front\PageController@homeStay');
-Route::get('/events', 'Front\PageController@eventsGodevi');
-Route::get('/category-package/{id}', 'Front\PageController@categorypackage');
+Route::get('/homestay', [PageController::class, 'homeStay']);
+Route::prefix('events')->group(function () {
+    Route::get('/', [PageController::class,'eventsGodevi']);
+    Route::get('/{id}', [PageController::class,'detailEvent']);
+
+});
+Route::get('/category-package/{id}', [PageController::class,'categorypackage']);
 
 
 
 
-
+Route::get('test', [OrderEventsController::class, 'showMidtrans']);
 
 
 
@@ -153,20 +157,19 @@ Route::post('payment/pay/bank-payment', 'Front\OrderController@bankPayment');
 Route::post('payment/pay/confirm-payment', 'Front\OrderController@confirmPayment');
 
 
-Route::get('/bookingEvents/{id}', 'Front\PageController@bookingEvents');
 
 
 
 
-Route::get('/reservation/{email}', 'Front\PageController@reservation');
+// Route::get('/reservation/{email}', 'Front\PageController@reservation');
 
-Route::get('/reservation/paid/{email}', 'Front\OrderController@reservationPaid');
+// Route::get('/reservation/paid/{email}', 'Front\OrderController@reservationPaid');
 
-Route::get('/reservation/paypal/{email}', 'Front\OrderController@reservationPaypal');
+// Route::get('/reservation/paypal/{email}', 'Front\OrderController@reservationPaypal');
 
-Route::get('/reservation/bank/{email}', 'Front\OrderController@reservationBank');
+// Route::get('/reservation/bank/{email}', 'Front\OrderController@reservationBank');
 
-Route::get('/reservation/cancel/{email}', 'Front\OrderController@reservationCancel');
+// Route::get('/reservation/cancel/{email}', 'Front\OrderController@reservationCancel');
 
 
 

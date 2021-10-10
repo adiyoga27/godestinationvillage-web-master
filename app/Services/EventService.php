@@ -21,6 +21,14 @@ class EventService
 
     }
 
+    public static function active()
+    {
+        return Event::where('is_active', 1)->paginate(5);
+    }
+    public static function recent()
+    {
+        return Event::with(['category', 'translate'])->where('is_active', 1)->paginate(5);
+    }
     public static function find($id)
     {
         return Event::find($id);

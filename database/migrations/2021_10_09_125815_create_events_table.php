@@ -28,6 +28,9 @@ class CreateEventsTable extends Migration
             $table->text('inclusion')->nullable();
             $table->text('additional')->nullable();
             $table->string('default_img', 225)->nullable();
+            $table->boolean('is_paywish');
+
+            $table->boolean('is_free');
             $table->boolean('is_active');
 
             $table->timestamps();

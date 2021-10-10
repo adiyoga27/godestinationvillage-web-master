@@ -2,8 +2,11 @@
 
 namespace App\Services;
 
+use App\Mail\SendEmail;
+use App\Models\Event;
 use App\Models\OrderEvent;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class OrderEventService
 {
@@ -107,5 +110,73 @@ class OrderEventService
 
         return $order->where('order_events.deleted_at', NULL);
     }
+
+    public static function sendEvent($payload)
+    {
+        $event = Event::where('id', $payload['idevent'])->first();
+        $status = 'pending';
+        $price = $payload['price'];
+        $disc = $event->disc;
+        $total_payment = $price * $payload['pax'];
+        if($disc > 0){
+            $total_payment = $disc * $payload['pax'];
+        }
+  
+        if($event->is_free){
+            $status = 'success';
+            $price = '0';
+            $total_payment = '0';
+            $disc = '0';
+        }
+        if($event->is_paywish){
+            $price = '0';
+            $total_payment = '0';
+            $disc = '0';
+        }
+
+        $datenow = date('Y-m-d');
+
+        $count =  OrderEvent::count();
+        if ($count > 0) {
+            $code = OrderEvent::latest()->first()->id + 1;
+        } else {
+            $code = 1;
+        }
+
+       $data = array(
+        'event_id' => $payload['idevent'],
+        'user_id' => $payload['iduser'] ?? null,
+        'code' => 'INV' . $code,
+        'event_name' => $payload['eventname'],
+        'customer_name' => $payload['customername'],
+        'customer_address' => $payload['address'],
+        'customer_phone' => $payload['phone'],
+        'customer_email' => $payload['email'],
+        'event_price' => $price,
+        'event_discount' => $disc,
+        'total_payment' => $total_payment,
+        'payment_type' => 'bank_transfer',
+        'payment_status' => $status,
+        'bank_account_id' => 7,
+        'payment_date' => $datenow,
+        'pax' => $payload['pax'],
+        'special_note' => $payload['special_note'],
+       );
+      
+        $proses = OrderEvent::create($data);
+        if ($proses) {
+            $order =  OrderEvent::latest()->first();
+            $subject = 'Godevi - Order ' . $order->id . ' - Confirmation';
+            $message = "This is your booking confirmation. Thank you for joining our event. <br><br>Note: The information regarding of the event will be sent through email / phone number registered on this booking. For further information do not hesitate to contact us via <br>Whatsapp : 081933158949 <br>Instagram : <a href='https://www.instagram.com/godestinationvillage/'> @godestinationvillage</a>";
+
+
+            $email = new SendEmail($subject, $message);
+            Mail::to([$order->customer_email, 'hello@godestinationvillage.com'])->send($email);
+            return redirect('reservation/paid/' . $payload['email']);
+        }
+    }
+
+    
+    
 
 }

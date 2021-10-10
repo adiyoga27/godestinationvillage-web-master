@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Mail\OrderEmail;
 use App\Mail\OrderEventEmail;
+use App\Mail\SendEmail;
+use App\Models\OrderEvent;
+use App\Services\Midtrans\CreateSnapTokenService;
 use App\Services\OrderEventService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -165,5 +168,28 @@ class OrderEventsController extends Controller
         {
             return redirect(route('order-event.show', $id))->with('error','Failed to updated');
         }
+    }
+    
+    public function sendEvent(Request $request)
+    {
+     
+        OrderEventService::sendEvent($request->except('_token'));
+        return redirect('reservation/paid/' . $request->email);
+    }
+
+    public function showMidtrans()
+    {
+
+      
+            // Jika snap token masih NULL, buat token snap dan simpan ke database
+            $order = OrderEvent::where('id',1)->get();
+            $midtrans = new CreateSnapTokenService($order);
+
+            $snapToken = $midtrans->getSnapToken();
+
+ 
+        
+ 
+        return view('customer.midtrans', compact('order', 'snapToken'));
     }
 }

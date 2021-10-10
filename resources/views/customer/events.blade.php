@@ -32,16 +32,16 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="item-single mb-50">
                             <div class="image">
-                                <img src="{{ url('storage/packages/' . $pack->default_img) }}" alt="{{ $pack->name }}">
+                                <img src="{{ url('storage/events/' . $pack->default_img) }}" alt="{{ $pack->name }}">
                             </div>
                             <div class="content">
-                                <span class="location"><i class='bx bx-map'></i>{{ $pack->vil_name }}</span>
+                                <span class="location"><i class='bx bx-map'></i>{{ $pack->location }}</span>
                                 <h3>
-                                    <a href="{{ url('tour-packages/' . $pack->id) }}">{{ $pack->name }}</a>
+                                    <a href="{{ url('events/' . $pack->id) }}">{{ $pack->name }}</a>
                                 </h3>
 
                                 <p>
-                                    {{ strip_tags(substr($pack->desc, 0, 100)) }}.
+                                    {{ strip_tags(substr($pack->description, 0, 100)) }}.
                                 </p>
                                 <hr>
                                 <ul class="list">

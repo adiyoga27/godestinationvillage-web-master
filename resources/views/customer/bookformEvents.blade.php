@@ -23,7 +23,7 @@
     </div>
     <!-- end page title area -->
     <section class="booking-section ptb-100 bg-light">
-        <form action="{{ url('booking/sendEvent') }}" method="post">
+        <form action="{{ url('bookingEvents/sendEvent') }}" method="post">
             <section class="ftco-section ftco-degree-bg">
                 <div class="container">
                     <div class="row">
@@ -35,13 +35,11 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Event Name</label>
                                 @csrf
-                                <input type="text" name="tourname" class="form-control" id="exampleInputEmail1"
+                                <input type="text" name="eventname" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp" placeholder="" value="{{ $packages->name }}" readonly>
-                                <input type="hidden" name="idtour" class="form-control" id="exampleInputEmail1"
+                                <input type="hidden" name="idevent" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp" placeholder="" value="{{ $packages->id }}" readonly>
-                                <input type="hidden" name="village_id" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="" value="{{ $packages->user->id }}" 
-                                    readonly>
+
                             </div>
                         </div>
                         <div class="col-md-6  ftco-animate">
@@ -54,10 +52,10 @@
                         </div>
                         <div class="col-md-6  ftco-animate" style="display: none !important;">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Village</label>
-                                <input type="text" name="village" class="form-control" id="exampleInputEmail1"
+                                <label for="exampleInputEmail1">Event</label>
+                                <input type="text" name="eventname" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp" placeholder=""
-                                    value="{{ $packages->user->village_detail->village_name }}"  readonly>
+                                    value="{{ $packages->name }}"  readonly>
                             </div>
                         </div>
                         <div style="margin-top: 120px"></div>
@@ -215,7 +213,7 @@
                                             @endif
 
                                                 <p>*Please check your form, because the order cannot be changed</p>
-                                                <button class="btn btn-lg btn-warning btn-block">BOOK NOW</button>
+                                                <button class="btn btn-lg btn-warning btn-block" id="pay-button">BOOK NOW</button>
                                             </div>
 
 
@@ -248,4 +246,5 @@
                             })
 
                         </script>
+
                     @endsection

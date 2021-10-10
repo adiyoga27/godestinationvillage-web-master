@@ -19,17 +19,21 @@ class Event extends Model
     protected static $logName = 'events';
     protected static $logOnlyDirty = true;
     public $fillable = [
-        'id', 'category_id', 'name', 'description', 'price', 'disc', 'location', 'date_event', 'duration', 'interary', 'inclusion', 'additional','default_img','is_active'
+        'id', 'category_id', 'name', 'description', 'price', 'disc', 'location', 'date_event', 'duration', 'interary', 'inclusion', 'additional','default_img','is_active', 'is_paywish', 'is_free'
     ];
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->logOnly(['id', 'category_id', 'name', 'description', 'price', 'disc', 'location', 'date_event', 'duration', 'interary', 'inclusion', 'additional','default_img','is_active']);
+        ->logOnly(['id', 'category_id', 'name', 'description', 'price', 'disc', 'location', 'date_event', 'duration', 'interary', 'inclusion', 'additional','default_img','is_active', 'is_paywish', 'is_free']);
         // Chain fluent methods for configuration options
     }
 
     public function category()
     {
         return $this->belongsTo(CategoryEvent::class);
+    }
+    public function translate()
+    {
+        return $this->hasMany(EventTranslations::class, 'events_id', 'id');
     }
 }

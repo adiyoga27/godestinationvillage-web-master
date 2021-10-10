@@ -17,8 +17,11 @@ use App\Models\BankAccount;
 use App\Helpers\CustomImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Event;
+use App\Models\OrderEvent;
 use App\PackageTranslations;
 use App\Models\Tag;
+use App\Services\EventService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -193,9 +196,8 @@ class PageController extends Controller
     public function eventsGodevi()
 
     {
-        $data['packages'] = Package::select('packages.name', 'categories.name as cat_name', 'village_details.village_name as vil_name', 'price', 'packages.desc', 'packages.id', 'default_img', 'paywish')->join('users', 'users.id', 'user_id')->join('village_details', 'users.id', 'village_details.user_id')->join('categories', 'categories.id', 'category_id')->where('users.is_active', '1')->where('packages.is_active', '1')->where('packages.category_id', '5')->paginate(10);
- 
-        // dd($data);
+        // $data['packages'] = Package::select('packages.name', 'categories.name as cat_name', 'village_details.village_name as vil_name', 'price', 'packages.desc', 'packages.id', 'default_img', 'paywish')->join('users', 'users.id', 'user_id')->join('village_details', 'users.id', 'village_details.user_id')->join('categories', 'categories.id', 'category_id')->where('users.is_active', '1')->where('packages.is_active', '1')->where('packages.category_id', '5')->paginate(10);
+        $data['packages'] = EventService::active();
         return view('customer/events', $data);
     }
 
@@ -251,6 +253,28 @@ class PageController extends Controller
         // var_dump($data['packages']);
 
         return view('customer/detailtour', $data);
+    }
+
+    public function detailEvent($id)
+
+    {
+
+        $data['images'] = Storage::files('events/' . $id);
+      
+            $data['packages'] = Event::with(['category','translate'])->where('id', $id)
+            ->first();
+        
+        if (!$data['packages']) {
+            return abort(404);
+        }
+
+$data['recent'] = EventService::recent();
+        // $data['recent'] = Package::select('packages.id', 'packages.name', 'categories.name as cat_name', 'village_details.village_name as vil_name', 'default_img')
+        //                             ->join('users', 'users.id', 'user_id')
+        //                             ->join('village_details', 'users.id', 'village_details.user_id')
+        //                             ->join('categories', 'categories.id', 'category_id')->where('users.is_active', '1')->where('packages.is_active', '1')->orderBy('packages.id', 'desc')->limit(5)->get();
+
+        return view('customer/detailevent', $data);
     }
 
 
@@ -402,7 +426,7 @@ class PageController extends Controller
 
     {
 
-        $data['packages'] = Package::where('id', $id)
+        $data['packages'] = Event::where('id', $id)
 
             ->first();
 
