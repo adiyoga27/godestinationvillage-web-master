@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Midtraans\MidtransCallbackServices;
+use App\Services\Midtrans\MidtransCallbackServices;
 use Illuminate\Http\Request;
 
 class MidtransController extends Controller
