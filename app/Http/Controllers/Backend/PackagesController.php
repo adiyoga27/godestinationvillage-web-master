@@ -11,15 +11,13 @@ use App\Services\PackageService;
 use App\Services\OrderService;
 use App\Http\Requests\Package\PackageCreateRequest;
 use App\Http\Requests\Package\PackageUpdateRequest;
-use App\PackageTranslations;
+use App\Models\PackageTranslations;
 use App\Services\TagServices as ServicesTagServices;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Html\Builder;
-use DataTables;
 
-use Session;
-use Auth;
 use Illuminate\Support\Facades\Storage;
-use TagServices;
+use Yajra\DataTables\Facades\DataTables;
 
 class PackagesController extends Controller
 {
@@ -131,9 +129,6 @@ class PackagesController extends Controller
 
     public function store(PackageCreateRequest $request)
     {
-
-
-
         $primaryTable =  $request->except(['_token']);
         $result = PackageService::create($primaryTable);
 

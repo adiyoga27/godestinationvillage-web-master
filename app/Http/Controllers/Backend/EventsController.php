@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Events\EventCreateRequest;
 use App\Http\Requests\Events\EventUpdateRequest;
-use App\Models\CategoryEvent;
+use App\Models\EventTranslations;
+use App\Models\PackageTranslations;
 use App\Services\CategoryEventService;
 use App\Services\EventService;
 use Illuminate\Http\Request;
@@ -51,7 +52,7 @@ class EventsController extends Controller
         $html = $htmlBuilder
               ->addColumn(['data' => 'action', 'name'=>'action', 'title'=>'', 'orderable'=>false, 'searchable'=>false])
               ->addColumn(['data' => 'rownum', 'name'=>'rownum', 'title'=>'No','searchable'=>false])
-              ->addColumn(['data' => 'name', 'name' => 'name', 'title' => 'Nama Package' ])
+              ->addColumn(['data' => 'name', 'name' => 'name', 'title' => 'Nama Event' ])
               ->addColumn(['data' => 'description', 'name' => 'created_at', 'title' => 'desc' ])
               ->addColumn(['data' => 'price', 'name' => 'created_at', 'title' => 'price' ])
               ->addColumn(['data' => 'date_event', 'name' => 'created_at', 'title' => 'date_event' ])
@@ -87,9 +88,13 @@ class EventsController extends Controller
     public function edit($id)
     {
         $package = EventService::find($id);
+        $packageTranslate = EventTranslations::where('events_id', $id)->first();
 
+        $categories = CategoryEventService::pluck();
         return view('backend.events.package.edit')->with(compact(
-            'category'
+            'categories',
+            'package',
+            'packageTranslate'
         ));
     }
 

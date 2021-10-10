@@ -308,7 +308,7 @@
                             </div>
                             <div class="content">
                                 <ul class="info-list">
-                                    <li><i class='bx bx-calendar'></i> {{ $rec->created_date }}
+                                    <li><i class='bx bx-calendar'></i> {{ $rec->created_at }}
                                     </li>
                                     <li><i class='bx bx-tag'></i>{{ $rec->post_tags }}</li>
                                 </ul>
@@ -354,7 +354,7 @@
                                     </div>
                                     <div class="content">
                                         <ul class="info-list">
-                                            <li><i class='bx bx-calendar'></i> {{ $rec->created_date }}</li>
+                                            <li><i class='bx bx-calendar'></i> {{ $rec->created_at }}</li>
                                             <li><i class='bx bx-tag'></i>{{ $rec->post_tags }}</li>
                                         </ul>
                                         <h3>

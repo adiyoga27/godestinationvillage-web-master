@@ -35,7 +35,7 @@ class PageController extends Controller
 
         $data['village'] = User::where('role_id', '2')->where('is_active', '1')->limit(8)->get();
         $data['packages'] = Package::orderBy('desc')->limit(8)->get();
-        $data['recent_blog'] = Blog::where('isPublished', '1')->latest('created_date')->limit(5)->get();
+        $data['recent_blog'] = Blog::where('isPublished', '1')->latest('created_at')->limit(5)->get();
         $data['category'] = Category::All();
         $data['users'] = Storage::files('reviews');
         $data['reviews'] = Review::with('users')->get();
@@ -53,7 +53,7 @@ class PageController extends Controller
 
         $data['packages'] = Package::orderBy('desc')->limit(8)->get();
 
-        $data['recent_blog'] = Blog::where('isPublished', '1')->latest('created_date')->limit(5)->get();
+        $data['recent_blog'] = Blog::where('isPublished', '1')->latest('created_at')->limit(5)->get();
 
         $data['category'] = Category::All();
 
@@ -65,9 +65,9 @@ class PageController extends Controller
     public function blog()
     {
 
-        $data['blog'] = Blog::where('isPublished', '1')->latest('created_date')->paginate(5);
+        $data['blog'] = Blog::where('isPublished', '1')->latest('created_at')->paginate(5);
 
-        $data['recent'] = Blog::where('isPublished', '1')->latest('created_date')->limit(4)->get();
+        $data['recent'] = Blog::where('isPublished', '1')->latest('created_at')->limit(4)->get();
 
         return view('customer/blog', $data);
     }
@@ -86,7 +86,7 @@ class PageController extends Controller
             return abort(404);
         }
 
-        $data['recent'] = Blog::where('isPublished', '1')->latest('created_date')->limit(5)->get();
+        $data['recent'] = Blog::where('isPublished', '1')->latest('created_at')->limit(5)->get();
 
         return view('customer/detail-blog', $data);
     }
@@ -94,9 +94,9 @@ class PageController extends Controller
     public function blog_mobile()
     {
 
-        $data['blog'] = Blog::where('isPublished', '1')->latest('created_date')->paginate(5);
+        $data['blog'] = Blog::where('isPublished', '1')->latest('created_at')->paginate(5);
 
-        $data['recent'] = Blog::where('isPublished', '1')->latest('created_date')->limit(4)->get();
+        $data['recent'] = Blog::where('isPublished', '1')->latest('created_at')->limit(4)->get();
 
         return view('customer/blog-mobile', $data);
     }
@@ -115,7 +115,7 @@ class PageController extends Controller
             return abort(404);
         }
 
-        $data['recent'] = Blog::where('isPublished', '1')->latest('created_date')->limit(5)->get();
+        $data['recent'] = Blog::where('isPublished', '1')->latest('created_at')->limit(5)->get();
 
         return view('customer/detail-blog-mobile', $data);
     }

@@ -24,7 +24,7 @@ class BlogResource extends JsonResource
             "isPublished"=>$this->isPublished,
             "last_updated"=>$this->last_updated,
             "updated_by"=>$this->updated_by,
-            "created_date"=>$this->created_date
+            "created_at"=>$this->created_at
         ];
     }
 }

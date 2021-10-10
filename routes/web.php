@@ -16,8 +16,10 @@ use App\Http\Controllers\Backend\PackagesController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\ReportVillageController;
 use App\Http\Controllers\Backend\VillagesController;
+use App\Http\Controllers\Front\InvoiceController;
 use App\Http\Controllers\Front\OrderController;
 use App\Http\Controllers\Front\PageController;
+use App\Http\Controllers\OrderEventsController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +37,8 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 |
 */
 Auth::routes();
+Route::get('/invoice/{id}', [InvoiceController::class , 'index']);
+Route::get('/invoice-event/{id}', [InvoiceController::class , 'event']);
 
 
 Route::get('locale/{locale}', function ($locale) {
@@ -135,7 +139,6 @@ Route::get('/search', 'Front\SearchController@searchHome');
 
 
 
-Route::get('/invoice/{id}', 'Front\InvoiceController@index');
 
 
 
@@ -206,6 +209,16 @@ Route::group(['prefix' => 'administrator', 'middleware' => ['auth', 'role:admin|
         'uses' => 'OrdersController@change_status'
     ]);
 
+    Route::resource('order-event', OrderEventsController::class, ['names' => 'order-event']);
+    // Route::get('order-event/{id}/change-status/{status}', [
+    //     'as' => 'order-event.change_status',
+    //     'uses' => 'OrderEventsController@change_status'
+    // ]);
+
+    Route::get('order-event/{id}/change-status/{status}', [OrderEventsController::class, 'change_status']);
+
+
+
     Route::resource('category-events', CategoryEventsController::class);
     Route::resource('events', EventsController::class);
 
@@ -235,14 +248,17 @@ Route::group(['prefix' => 'administrator', 'middleware' => ['auth', 'role:admin|
 
    
 
-    Route::prefix('report/villages')->group(function () {
-        Route::get('/', [ReportVillageController::class, 'index'])->name('report.village');
-        Route::get('/order', [ReportVillageController::class, 'get_order'])->name('report_village.get_order');
-        Route::get('/order/export', [
+    Route::prefix('report')->group(function () {
+        Route::get('/villages', [ReportVillageController::class, 'index'])->name('report.village');
+        Route::get('/villages/order', [ReportVillageController::class, 'get_order'])->name('report_village.get_order');
+        Route::get('/villages/order/export', [
             'as'   => 'report_village.export_xls',
             'uses' => 'ReportVillageController@export_xls'
         ]);
-        Route::get('/packages', [ReportVillageController::class, 'get_package'])->name('report_village.get_package');
+        Route::get('/villages/packages', [ReportVillageController::class, 'get_package'])->name('report_village.get_package');
+
+        Route::get('/event', [ReportVillageController::class, 'index'])->name('report.village');
+
     });
 
 

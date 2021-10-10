@@ -7,25 +7,24 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class Event extends Model
+class EventTranslations extends Model
 {
     use HasFactory;
     use LogsActivity;
-    public $table = "events";
+    public $table = "event_translations";
     public $primaryKey = "id";
     public $timestamps = false;
     protected static $logFillable = true;
     protected static $ignoreChangedAttributes = ['update_at', 'created_at'];
-    protected static $logName = 'events';
+    protected static $logName = 'event_translations';
     protected static $logOnlyDirty = true;
     public $fillable = [
-        'id', 'category_id', 'name', 'description', 'price', 'disc', 'location', 'date_event', 'duration', 'interary', 'inclusion', 'additional','default_img','is_active'
+        'events_id', 'lang', 'name', 'description', 'interary', 'inclusion', 'additional',
     ];
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->logOnly(['id', 'category_id', 'name', 'description', 'price', 'disc', 'location', 'date_event', 'duration', 'interary', 'inclusion', 'additional','default_img','is_active']);
-        // Chain fluent methods for configuration options
+        ->logOnly(['events_id', 'lang', 'name', 'description', 'interary', 'inclusion', 'additional',]);
     }
 
     public function category()

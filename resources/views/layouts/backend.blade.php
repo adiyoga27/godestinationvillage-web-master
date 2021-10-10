@@ -176,7 +176,7 @@
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/category-events') }}">Kategori </a></li>
                     <li class="nav-item">  <a class="nav-link" href="{{ url('administrator/events') }}">Paket Events </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/transaction-events') }}">Pemesanan</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/order-event') }}">Pemesanan</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/report-events') }}">Laporan Events</a></li>
 
 

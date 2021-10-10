@@ -2,8 +2,12 @@
 
 namespace App\Services;
 
+use App\Helpers\CustomImage;
 use App\Models\Event;
+use App\Models\EventTranslations;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class EventService  
 {
@@ -24,14 +28,92 @@ class EventService
 
     public static function create($payload)
     {
-        $model = Event::create($payload);
-        return $model;
+        try {
+            DB::beginTransaction();
+            if (!empty($payload['default_img'])) {
+                $upload = CustomImage::storeImage($payload['default_img'], 'events');
+                $payload['default_img'] = $upload['name'];
+            }
+            $dataPackage = Arr::except($payload, ['name_id', 'description_id', 'interary_id', 'inclusion_id', 'additional_id']);
+            $model = Event::create($dataPackage);
+
+        
+            $dataTranslate = array(
+                'events_id' => $model['id'],
+                    'lang' => 'id',
+                    'name' => $payload['name_id'],
+                    'description' => $payload['description_id'],
+                    'interary' => $payload['interary_id'],
+                    'inclusion' => $payload['inclusion_id'],
+                    'additional' => $payload['additional_id'],
+            );
+
+
+            $result = EventTranslations::create($dataTranslate);
+            DB::commit();
+            return $result;
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return $th;
+        }
     }
 
     public static function update($id, $payload)
     {
-        $model = Event::find($id);
-        return $model->update($payload);
+        DB::beginTransaction();
+        try {
+            $model = Event::find($id);
+
+            if (!empty($payload['default_img'])) {
+                if (!empty($model->default_img)) {
+                    Storage::delete('events/' . $model->default_img);
+                };
+                $upload = CustomImage::storeImage($payload['default_img'], 'events');
+                $payload['default_img'] = $upload['name'];
+            }
+
+        
+            $dataPackage = Arr::except($payload, ['name_id', 'description_id', 'interary_id', 'inclusion_id', 'additional_id']);
+
+            $model->update($dataPackage);
+
+
+            $packageTransData = EventTranslations::where('events_id', $id)
+                ->where('lang', 'id');
+            if ($packageTransData->count() > 0) {
+                //Kalau ISI di Update
+                $dataTranslate = array(
+                    'name' => $payload['name_id'],
+                    'description' => $payload['description_id'],
+                    'interary' => $payload['interary_id'],
+                    'inclusion' => $payload['inclusion_id'],
+                    'additional' => $payload['additional_id'],
+                );
+
+                $result = $packageTransData->update($dataTranslate);
+            } else {
+
+                //Kalau Kosong Di Insert
+                $dataTranslate = array(
+                    'events_id' => $id,
+                    'lang' => 'id',
+                    'name' => $payload['name_id'],
+                    'description' => $payload['description_id'],
+                    'interary' => $payload['interary_id'],
+                    'inclusion' => $payload['inclusion_id'],
+                    'additional' => $payload['additional_id'],
+                  
+                );
+
+                $result = EventTranslations::create($dataTranslate);
+
+            }
+            DB::commit();
+            return $result;
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return $th;
+        }
     }
 
     public static function destroy($id)

@@ -20,7 +20,7 @@
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                {!! Form::open(['url' => route('package.store'),
+                {!! Form::open(['url' => route('events.store'),
                   'method' => 'post', 'files'=>true, 'class'=>'form-sample']) !!}
                     @include('backend.events.package.form._form')
                 {!! Form::close() !!}

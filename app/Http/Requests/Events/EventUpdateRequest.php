@@ -13,6 +13,10 @@ class EventUpdateRequest extends FormRequest
      */
     public function authorize()
     {
+        if (auth()->user()) {
+            return true;
+        }
+
         return false;
     }
 

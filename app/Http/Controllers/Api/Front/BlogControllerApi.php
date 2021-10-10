@@ -12,12 +12,12 @@ class BlogControllerApi extends Controller
     use JsonResponseTrait;
 
     public function blogs(){
-        $data = Blog::where('isPublished','1')->latest('created_date')->paginate(5);
+        $data = Blog::where('isPublished','1')->latest('created_at')->paginate(5);
         return $this->responseCollection(new BlogCollection($data));
     }
 
     public function recentBlogs(){
-        $data = Blog::where('isPublished','1')->latest('created_date')->paginate(4);
+        $data = Blog::where('isPublished','1')->latest('created_at')->paginate(4);
         return $this->responseCollection(new BlogCollection($data));
     }
 

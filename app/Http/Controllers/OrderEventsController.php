@@ -1,46 +1,38 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
-use App\Http\Controllers\Controller;
+namespace App\Http\Controllers;
+
+use App\Mail\OrderEmail;
+use App\Mail\OrderEventEmail;
+use App\Services\OrderEventService;
 use Illuminate\Http\Request;
-
-use App\Services\OrderService;
-
-use Yajra\DataTables\Html\Builder;
-
-
-use App\Mail\OrderEmail as OrderEmail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Yajra\DataTables\Facades\DataTables;
+use Yajra\DataTables\Html\Builder;
 
-class OrdersController extends Controller
+class OrderEventsController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
     /**
-     * Show the application dashboard.
+     * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Http\Response
      */
     public function index(Request $request, Builder $htmlBuilder)
     {
         if (request()->ajax()) {
-            $query = OrderService::all();
-            if(Auth::user()->role_id == 2){
-                $query->where('orders.village_id', Auth::user()->id);
-            }
+            $query = OrderEventService::all();
+            // if(Auth::user()->role_id == 2){
+            //     $query->where('orders_events.village_id', Auth::user()->id);
+            // }
             return DataTables::of($query)
             ->addColumn('action', function($order){
-                return "<a href='". route('order.show', $order->id) ."' class='btn btn-sm btn-outline-primary'>Show</a>";
+                return "<a href='". route('order-event.show', $order->id) ."' class='btn btn-sm btn-outline-primary'>Show</a>";
             })->editColumn('package_price', function($order){
                 return number_format($order->package_price);
             })->editColumn('total_payment', function($order){
@@ -64,14 +56,13 @@ class OrdersController extends Controller
               ->addColumn(['data' => 'rownum', 'name'=>'rownum', 'title'=>'No','searchable'=>false])
               ->addColumn(['data' => 'code', 'name' => 'code', 'title' => 'No. Order' ])
               ->addColumn(['data' => 'created_at', 'name' => 'created_at', 'title' => 'Tanggal Pemesanan' ])
-              ->addColumn(['data' => 'village_name', 'name' => 'village_name', 'title' => 'Nama Desa' ])
               ->addColumn(['data' => 'customer_name', 'name' => 'customer_name', 'title' => 'Nama Customer' ])
               ->addColumn(['data' => 'customer_phone', 'name' => 'customer_phone', 'title' => 'No. Telp' ])
               ->addColumn(['data' => 'customer_email', 'name' => 'customer_email', 'title' => 'Email' ])
-              ->addColumn(['data' => 'package_name', 'name' => 'package_name', 'title' => 'Nama Paket' ])
-              ->addColumn(['data' => 'package_price', 'name' => 'package_price', 'title' => 'Harga Paket' ])
-              ->addColumn(['data' => 'pax', 'name' => 'pax', 'title' => 'Pax' ])
-              // ->addColumn(['data' => 'package_discount', 'name' => 'package_discount', 'title' => 'Discount' ])
+              ->addColumn(['data' => 'event_name', 'name' => 'package_name', 'title' => 'Nama Paket' ])
+              ->addColumn(['data' => 'qty', 'name' => 'package_price', 'title' => 'Harga Paket' ])
+              ->addColumn(['data' => 'event_price', 'name' => 'package_price', 'title' => 'Harga Paket' ])
+              ->addColumn(['data' => 'event_discount', 'name' => 'pax', 'title' => 'Pax' ])
               ->addColumn(['data' => 'total_payment', 'name' => 'total_payment', 'title' => 'Total' ])
               ->addColumn(['data' => 'payment_type', 'name' => 'payment_type', 'title' => 'Metode Pembayaran' ])
               ->addColumn(['data' => 'payment_status', 'name' => 'payment_status', 'title' => 'Status Pembayaran' ])
@@ -80,20 +71,81 @@ class OrdersController extends Controller
                 'order' => [3, 'desc']
               ]);
 
-        return view('backend.order.index')->with(compact('html'));
+        return view('backend.events.order.index')->with(compact('html'));
     }
 
-    public function show($id)
-    {   
-        $order = OrderService::find($id);
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
 
-        return view('backend.order.show')->with(compact('order'));
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $order = OrderEventService::find($id);
+
+        return view('backend.events.order.show')->with(compact('order'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 
     public function change_status($id, $status)
     {
-        $result = OrderService::change_status($id, $status);
-        $order =  OrderService::find($id); 
+        $result = OrderEventService::change_status($id, $status);
+        $order =  OrderEventService::find($id); 
 
         if($status == 'success'){
             $subject = 'Godevi - Order '. $order->code .' - Success';
@@ -105,24 +157,13 @@ class OrdersController extends Controller
 
         if ($result)
         {
-            $email = new OrderEmail($subject, $order, $message);
-            Mail::to([$order->customer_email, $order->village->email])->send($email);
-            return redirect(route('order.show', $id))->with('status', 'Successfully updated');
+            $email = new OrderEventEmail($subject, $order, $message);
+            Mail::to([$order->customer_email])->send($email);
+            return redirect(route('order-event.show', $id))->with('status', 'Successfully updated');
         }
         else
         {
-            return redirect(route('order.show', $id))->with('error','Failed to updated');
+            return redirect(route('order-event.show', $id))->with('error','Failed to updated');
         }
     }
-
-    public function destroy($id)
-    {  
-        $result = OrderService::destroy($id);
-
-        if ($result)
-            return redirect(route('order.show', $id))->with('status', 'Successfully deleted');
-        else
-            return redirect(route('order.show', $id))->with('error','Failed to delete');
-    }
-
 }

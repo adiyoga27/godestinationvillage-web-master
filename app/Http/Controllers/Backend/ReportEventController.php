@@ -1,22 +1,19 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
-use App\Services\OrderService;
-use App\Services\VillageService;
-use App\Services\PackageService;
-use Excel;
 use App\Exports\ReportOrderExport;
-
-use Yajra\DataTables\Html\Builder;
+use App\Http\Controllers\Controller;
+use App\Services\EventService;
+use App\Services\OrderEventService;
+use App\Services\PackageService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
-class ReportVillageController extends Controller
+class ReportEventController extends Controller
 {
-    /**
+   /**
      * Create a new controller instance.
      *
      * @return void
@@ -34,13 +31,10 @@ class ReportVillageController extends Controller
 
     public function index()
     {
-    	$villages = VillageService::pluck()->prepend('Semua Desa', 'All');
+    	$event = EventService::pluck()->prepend('Semua Event', 'All');
         $packages = [];
-        if(Auth::user()->role_id == 2)
-        {
-            $packages = PackageService::pluck(Auth::user()->id)->prepend('Semua Paket', 'All');
-        }
-    	return view('backend.village_report.index')->with(compact('villages', 'packages'));
+      
+    	return view('backend.events.report.index')->with(compact('event'));
     }
 
     public function get_package(Request $request)
@@ -57,7 +51,7 @@ class ReportVillageController extends Controller
 
     public function get_order(Request $request)
     {
-        return DataTables::of(OrderService::search_order($request->village_id, $request->package_id, $request->start_date, $request->end_date))
+        return DataTables::of(OrderEventService::search_order($request->village_id, $request->package_id, $request->start_date, $request->end_date))
         ->editColumn('package_price', function($order){
             return number_format($order->package_price);
         })->editColumn('total_payment', function($order){
@@ -80,5 +74,4 @@ class ReportVillageController extends Controller
     {
     	return (new ReportOrderExport($request->village_id, $request->package_id, $request->start_date, $request->end_date))->download('report.xlsx');
     }
-
 }

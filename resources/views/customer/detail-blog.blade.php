@@ -34,7 +34,7 @@
                             <img src="{{ url('storage/blogs/' . $blog->post_thumbnail) }}" alt="image" />
                         </div>
                         <ul class="info-list mb-20">
-                            <li><i class='bx bx-calendar'></i> {{ $blog->created_date }}</li>
+                            <li><i class='bx bx-calendar'></i> {{ $blog->created_at }}</li>
                             <li><i class='bx bx-tag'></i>Tour, Tourism, Travel</li>
                         </ul>
                         <div class="content mb-20">

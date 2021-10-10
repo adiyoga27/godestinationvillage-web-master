@@ -2,12 +2,11 @@
 
 namespace App\Services;
 
-use DB;
-use Auth;
 use App\Models\Package;
 use Illuminate\Support\Arr;
 use App\Helpers\CustomImage;
-use App\PackageTranslations;
+use App\Models\PackageTranslations;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class PackageService

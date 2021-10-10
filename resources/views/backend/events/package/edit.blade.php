@@ -3,14 +3,14 @@
 @section('content-header')
     <div class="page-header">
         <h3 class="page-title">
-          Edit Paket Wisata
+          Edit Events
         </h3>
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item">Administrator</li>
-            <li class="breadcrumb-item" aria-current="page"><a href="{{ url('administrator/package') }}">Paket Wisata</a></li>
+            <li class="breadcrumb-item" aria-current="page"><a href="{{ url('administrator/events') }}">Events</a></li>
             {{-- <li class="breadcrumb-item" aria-current="page"><a href="{{ route('user.show', $user->id) }}">{{ $user->name }}</a></li> --}}
-            <li class="breadcrumb-item active" aria-current="page">Edit Paket Wisata</li>
+            <li class="breadcrumb-item active" aria-current="page">Edit Events</li>
           </ol>
         </nav>
     </div>
@@ -21,9 +21,9 @@
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                {!! Form::model($package, ['url' => route('package.update', $package->id),
+                {!! Form::model($package, ['url' => route('events.update', $package->id),
                   'method'=>'put', 'files'=>true, 'class'=>'form-sample']) !!}
-                  @include('backend.package.form._form')
+                  @include('backend.events.package.form._form')
                 {!! Form::close() !!}
             </div>
         </div>
