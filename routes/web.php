@@ -19,6 +19,7 @@ use App\Http\Controllers\Backend\VillagesController;
 use App\Http\Controllers\Front\InvoiceController;
 use App\Http\Controllers\Front\OrderController;
 use App\Http\Controllers\Front\PageController;
+use App\Http\Controllers\Front\SearchController;
 use App\Http\Controllers\MidtransController;
 use App\Http\Controllers\OrderEventsController;
 use Illuminate\Support\Facades\App;
@@ -88,8 +89,6 @@ Route::prefix('midtrans')->group(function(){
     Route::post('/callbackPayment', [MidtransController::class, 'callbackPayment']);
 });
 
-
-
 Route::get('/services', [PageController::class, 'services']);
 Route::get('/faq', [PageController::class, 'faq']);
 Route::get('/contact', [PageController::class, 'contact']);
@@ -101,64 +100,34 @@ Route::prefix('events')->group(function () {
 });
 Route::get('/category-package/{id}', [PageController::class,'categorypackage']);
 
-
-
-
 Route::get('test', [OrderEventsController::class, 'showMidtrans']);
 
 
+//check update
+Route::get('/payment/{id}', [PageController::class,'payment']);
+Route::get('/payment-detail/{id}', [PageController::class,'detailPayment']);
+Route::get('/payment-confirm/{id}', [PageController::class,'confirmPayment']);
+Route::get('/do_cancel/{id}', [PageController::class,'cancel']);
 
-
-Route::get('/payment/{id}', 'Front\PageController@payment');
-Route::get('/payment-detail/{id}', 'Front\PageController@detailPayment');
-Route::get('/payment-confirm/{id}', 'Front\PageController@confirmPayment');
-
-
-Route::get('/do_cancel/{id}', 'Front\PageController@cancel');
-
-
-
-
-Route::get('user/register', 'Front\PageController@register');
-
-
-
-Route::get('/term', 'Front\PageController@term');
-
-Route::get('/our-team', 'Front\PageController@ourteam');
-
-Route::get('/our-partner', 'Front\PageController@ourpartner');
-
-Route::get('/blog', 'Front\PageController@blog');
-
-Route::get('/blog/{id}', 'Front\PageController@detailpost');
-
-Route::get('/blog-mobile', 'Front\PageController@blog_mobile');
-
-Route::get('/blog-mobile/{id}', 'Front\PageController@detailpost_mobile');
+Route::get('user/register', [PageController::class, 'register']);
+Route::get('/term', [PageController::class,'term']);
+Route::get('/our-team', [PageController::class,'ourteam']);
+Route::get('/our-partner', [PageController::class,'ourpartner']);
+Route::get('/blog', [PageController::class,'blog']);
+Route::get('/blog/{id}', [PageController::class,'detailpost']);
+Route::get('/blog-mobile', [PageController::class,'blog_mobile']);
+Route::get('/blog-mobile/{id}', [PageController::class,'detailpost_mobile']);
 
 //search
 
-Route::get('/search', 'Front\SearchController@searchHome');
-
-
-
-
-
-
-
-
+Route::get('/search', [SearchController::class,'searchHome']);
 
 
 //paypal payment
 
-Route::get('payment/pay/paypal-payment', 'Front\OrderController@paypalPayment');
-Route::post('payment/pay/bank-payment', 'Front\OrderController@bankPayment');
-Route::post('payment/pay/confirm-payment', 'Front\OrderController@confirmPayment');
-
-
-
-
+Route::get('payment/pay/paypal-payment', [OrderController::class, 'paypalPayment']);
+Route::post('payment/pay/bank-payment', [OrderController::class, 'bankPayment']);
+Route::post('payment/pay/confirm-payment', [OrderController::class, 'confirmPayment']);
 
 
 // Route::get('/reservation/{email}', 'Front\PageController@reservation');
