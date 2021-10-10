@@ -2,47 +2,46 @@
 
 namespace App\Services;
 
-use App\Models\Category;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Event;
 use Illuminate\Support\Facades\DB;
-class CategoryService
-{
 
-	public static function all()
+class EventService  
+{
+    public static function all()
     {
         DB::statement(DB::raw('set @rownum=0'));
-        return Category::query()->select([
+        return Event::query()->select([
             DB::raw('@rownum  := @rownum  + 1 AS rownum'),
-            DB::raw('categories.*')
-        ])->where('categories.deleted_at', NULL);
+            DB::raw('events.*')
+        ]);
+
     }
 
     public static function find($id)
     {
-        return Category::find($id);
+        return Event::find($id);
     }
 
     public static function create($payload)
     {
-        $model = Category::create($payload);
+        $model = Event::create($payload);
         return $model;
     }
 
     public static function update($id, $payload)
     {
-        $model = Category::find($id);
+        $model = Event::find($id);
         return $model->update($payload);
     }
 
     public static function destroy($id)
     {
-        $model = Category::find($id);
+        $model = Event::find($id);
         return $model->destroy($id);
     }
 
     public static function pluck()
     {
-        return Category::where('is_active', 1)->pluck('name', 'id');
+        return Event::where('is_active', 1)->pluck('name', 'id');
     }
-
 }

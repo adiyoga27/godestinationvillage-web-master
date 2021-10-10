@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources\Packages;
 
-use App\CategoryPackage;
+use App\Models\CategoryPackage;
 use App\Http\Resources\Category\CategoryResource;
 use App\Http\Resources\Tag\CategoryPackageResource;
 use App\Http\Resources\Village\VillageResource;

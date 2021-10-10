@@ -21,9 +21,7 @@ class CreatePostTable extends Migration
             $table->integer('post_author');
             $table->text('post_tags');
             $table->boolean('isPublished');
-            $table->dateTime('last_updated');
             $table->integer('updated_by');
-            $table->dateTime('created_date');
             $table->timestamps();
         });
     }

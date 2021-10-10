@@ -1,46 +1,36 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
+
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
-use App\Services\CategoryService;
-use App\Http\Requests\Category\CategoryCreateRequest;
 use App\Http\Requests\Category\CategoryUpdateRequest;
-
+use App\Http\Requests\CategoryEvent\CategoryEventCreateRequest;
+use App\Services\CategoryEventService;
+use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 use Yajra\DataTables\Html\Builder;
 
-use Session;
-use Auth;
-use Yajra\DataTables\Facades\DataTables;
-
-class CategoriesController extends Controller
+class CategoryEventsController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
     }
-
     /**
-     * Show the application dashboard.
+     * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Http\Response
      */
     public function index(Request $request, Builder $htmlBuilder)
     {
         if (request()->ajax()) {
-            return DataTables::of(CategoryService::all())
+            return DataTables::of(CategoryEventService::all())
             ->addColumn('action', function($category){
                 return view('datatable._action_dinamyc', [
                     'model'           => $category,
-                    'delete'          => route('category.destroy', $category->id),
+                    'delete'          => route('category-events.destroy', $category->id),
                     'url'             => [
-                        'Edit'            => route('category.edit', $category->id),
+                        'Edit'            => route('category-events.edit', $category->id),
                     ],
                     'confirm_message' =>  'Anda yakin untuk menghapus data "' . $category->name . '" ?',
                     'padding'         => '85px',
@@ -67,51 +57,50 @@ class CategoriesController extends Controller
                 'order' => [3, 'desc']
               ]);
 
-        return view('backend.category.index')->with(compact('html'));
+        return view('backend.events.category.index')->with(compact('html'));
     }
 
     public function create()
     {
-        return view('backend.category.create');
+        return view('backend.events.category.create');
     }
 
-    public function store(CategoryCreateRequest $request)
+    public function store(CategoryEventCreateRequest $request)
     {
-        $result = CategoryService::create($request->except('_token'));
+        $result = CategoryEventService::create($request->except('_token'));
 
         if ($result) 
-            return redirect(route('category.index'))->with('status', 'Successfully created');
+            return redirect(route('category-events.index'))->with('status', 'Successfully created');
         else
-            return redirect(route('category.create'))->with('error', 'Failed to create');
+            return redirect(route('category-events.create'))->with('error', 'Failed to create');
     }
 
     public function edit($id)
     {
-        $category = CategoryService::find($id);
+        $category = CategoryEventService::find($id);
 
-        return view('backend.category.edit')->with(compact(
+        return view('backend.events.category.edit')->with(compact(
             'category'
         ));
     }
 
     public function update($id, CategoryUpdateRequest $request)
     {
-        $result = CategoryService::update($id, $request->except('_token'));
+        $result = CategoryEventService::update($id, $request->except('_token'));
         
         if ($result) 
-            return redirect(route('category.index'))->with('status', 'Successfully updated');
+            return redirect(route('category-events.index'))->with('status', 'Successfully updated');
         else
             return back()->with('error','Failed to update');
     }
 
     public function destroy($id)
     {  
-        $result = CategoryService::destroy($id);
+        $result = CategoryEventService::destroy($id);
 
         if ($result)
-            return redirect(route('category.index'))->with('status', 'Successfully deleted');
+            return redirect(route('category-events.index'))->with('status', 'Successfully deleted');
         else
-            return redirect(route('category.index'))->with('error','Failed to delete');
+            return redirect(route('category-events.index'))->with('error','Failed to delete');
     }
-
 }

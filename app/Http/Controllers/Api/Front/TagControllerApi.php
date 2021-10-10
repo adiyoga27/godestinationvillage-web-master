@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Api\Front;
 
-use App\CategoryPackage;
+use App\Models\CategoryPackage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Packages\PackageCollection;
 use App\Http\Resources\Tag\TagCategoryCollection;
 use App\Http\Resources\Tag\TagCollection;
-use App\Package;
-use App\Tag;
+use App\Models\Package;
+use App\Models\Tag;
 use App\Traits\JsonResponseTrait;
 
 class TagControllerApi extends Controller

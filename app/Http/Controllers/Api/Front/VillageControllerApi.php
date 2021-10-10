@@ -10,7 +10,7 @@ use App\Http\Resources\Village\VillageDetailResource;
 use App\Http\Resources\Village\VillageResource;
 use App\Traits\JsonResponseTrait;
 use App\Models\User;
-use App\VillageDetail;
+use App\Models\VillageDetail;
 
 class VillageControllerApi extends Controller
 {

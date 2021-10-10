@@ -148,31 +148,75 @@
             </div>
           </li>
           @endif
+
           <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-wisata" aria-expanded="false" aria-controls="ui-wisata">
+              <span class="menu-title">Paket Wisata</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-account-box menu-icon"></i>
+            </a>
+            <div class="collapse" id="ui-wisata">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/category') }}">Kategori </a></li>
+                    <li class="nav-item">  <a class="nav-link" href="{{ url('administrator/package') }}">Paket Wisata</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/order') }}">Pemesanan</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/order') }}">Laporan Desa Wisata</a></li>
+
+
+                </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-events" aria-expanded="false" aria-controls="ui-events">
+              <span class="menu-title">Events</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-account-box menu-icon"></i>
+            </a>
+            <div class="collapse" id="ui-events">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/category-events') }}">Kategori </a></li>
+                    <li class="nav-item">  <a class="nav-link" href="{{ url('administrator/events') }}">Paket Events </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/transaction-events') }}">Pemesanan</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/report-events') }}">Laporan Events</a></li>
+
+
+
+                </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-homestay" aria-expanded="false" aria-controls="ui-homestay">
+              <span class="menu-title">Home Stay</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-account-box menu-icon"></i>
+            </a>
+            <div class="collapse" id="ui-homestay">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/category') }}">Kategori </a></li>
+                    <li class="nav-item">  <a class="nav-link" href="{{ url('administrator/package') }}">Paket Home Stay </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/report/villages') }}">Pemesanan</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/order') }}">Laporan Home Stay</a></li>
+
+
+                </ul>
+            </div>
+          </li>
+
+
+          {{-- <li class="nav-item">
             <a class="nav-link" href="{{ url('administrator/category') }}">
               <span class="menu-title">Kategori Paket Wisata</span>
               <i class="mdi mdi-tag menu-icon"></i>
             </a>
-          </li>
+          </li> --}}
 
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a class="nav-link" href="{{ url('administrator/package') }}">
               <span class="menu-title">Paket Wisata</span>
               <i class="mdi mdi-animation menu-icon"></i>
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('administrator/order') }}">
-              <span class="menu-title">Pemesanan</span>
-              <i class="mdi mdi-cart menu-icon"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('administrator/report/villages') }}">
-              <span class="menu-title">Laporan Desa Wisata</span>
-              <i class="mdi mdi-chart-areaspline menu-icon"></i>
-            </a>
-          </li>
+          </li> --}}
+   
           <li class="nav-item">
             <a class="nav-link" href="{{ url('administrator/blog') }}">
               <span class="menu-title">Blog</span>

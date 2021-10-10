@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api\Front;
 
-use App\CategoryPackage;
+use App\Models\CategoryPackage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Tag;
+use App\Models\Tag;
 use App\Traits\JsonResponseTrait;
 
 class CategoryPackageControllerApi extends Controller

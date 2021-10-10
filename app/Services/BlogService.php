@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Blog;
+use App\Models\Blog;
 use App\Helpers\CustomImage;
 
 use Illuminate\Support\Facades\Storage;
@@ -31,6 +31,8 @@ class BlogService
         if (!empty($payload['post_thumbnail'])){
             $upload = CustomImage::storeImage($payload['post_thumbnail'], 'blogs');
             $payload['post_thumbnail'] = $upload['name'];
+            $payload['updated_by'] = Auth::user()->id;
+
         }
 
        
@@ -49,6 +51,8 @@ class BlogService
         };
             $upload = CustomImage::storeImage($payload['post_thumbnail'], 'blogs');
             $payload['post_thumbnail'] = $upload['name'];
+            $payload['updated_by'] = Auth::user()->id;
+
         }
 
         $model = Blog::find($id);

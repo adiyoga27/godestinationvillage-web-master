@@ -1,6 +1,6 @@
 <?php
 namespace App\Http\Controllers\Api\Front;
-use App\Blog;
+use App\Models\Blog;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Blog\BlogCollection;
 use App\Http\Resources\Blog\BlogResource;

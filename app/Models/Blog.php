@@ -15,7 +15,6 @@ class Blog extends Model
     public $primaryKey = "id";
     public $timestamps = false;
     protected static $logFillable = true;
-    protected static $ignoreChangedAttributes = ['last_update', 'created_date'];
     protected static $logName = 'post';
     protected static $logOnlyDirty = true;
     public $fillable = [
@@ -25,7 +24,6 @@ class Blog extends Model
         'post_thumbnail',
         'post_author',
         'isPublished',
-        'last_updated',
         'updated_by'
     ];
 
@@ -44,7 +42,6 @@ class Blog extends Model
         'post_thumbnail',
         'post_author',
         'isPublished',
-        'last_updated',
         'updated_by']);
         // Chain fluent methods for configuration options
     }

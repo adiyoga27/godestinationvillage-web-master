@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 
 
-use App\Blog;
+use App\Models\Blog;
 
 use App\Http\Controllers\Controller;
 
@@ -20,11 +20,11 @@ use App\Services\BlogService;
 
 use Yajra\DataTables\Html\Builder;
 
-use DataTables;
 
 use Session;
 
 use Auth;
+use Yajra\DataTables\Facades\DataTables;
 
 class BlogController extends Controller
 

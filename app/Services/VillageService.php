@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\User;
-use App\VillageDetail;
+use App\Models\VillageDetail;
 use App\Helpers\CustomImage;
 
 use Illuminate\Support\Facades\Storage;

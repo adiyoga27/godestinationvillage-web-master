@@ -6,9 +6,12 @@ use App\Http\Controllers\Backend\AdminsController;
 use App\Http\Controllers\Backend\BankAccountsController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CategoriesController;
+use App\Http\Controllers\Backend\CategoryEventsController;
 use App\Http\Controllers\Backend\DiscountMembersController;
+use App\Http\Controllers\Backend\EventsController;
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\MembersController;
+use App\Http\Controllers\Backend\OrdersController;
 use App\Http\Controllers\Backend\PackagesController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\ReportVillageController;
@@ -194,12 +197,18 @@ Route::group(['prefix' => 'administrator', 'middleware' => ['auth', 'role:admin|
     Route::resource('bank-account', BankAccountsController::class, ['names' => 'bank_account']);
     Route::resource('blog', BlogController::class);
     Route::resource('category', CategoriesController::class);
+    Route::resource('category-event', CategoryEventsController::class);
+
     Route::resource('discount-member', DiscountMembersController::class, ['names' => 'discount_member']);
-    Route::resource('order', OrderController::class, ['names' => 'order']);
+    Route::resource('order', OrdersController::class, ['names' => 'order']);
     Route::get('order/{id}/change-status/{status}', [
         'as' => 'order.change_status',
         'uses' => 'OrdersController@change_status'
     ]);
+
+    Route::resource('category-events', CategoryEventsController::class);
+    Route::resource('events', EventsController::class);
+
 
     Route::resource('package', PackagesController::class);
     Route::prefix('package')->group(function () {
