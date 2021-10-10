@@ -1,7 +1,7 @@
 <?php
 
  
-namespace App\Services\Midtrans;
+namespace App\Services\Midtraans;
 
 use App\Models\Transaction;
 use Midtrans\Config;
