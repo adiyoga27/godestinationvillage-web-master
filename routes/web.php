@@ -117,9 +117,6 @@ Route::get('/blog', [PageController::class,'blog']);
 Route::get('/blog/{id}', [PageController::class,'detailpost']);
 Route::get('/blog-mobile', [PageController::class,'blog_mobile']);
 Route::get('/blog-mobile/{id}', [PageController::class,'detailpost_mobile']);
-
-//search
-
 Route::get('/search', [SearchController::class,'searchHome']);
 
 
@@ -130,35 +127,15 @@ Route::post('payment/pay/bank-payment', [OrderController::class, 'bankPayment'])
 Route::post('payment/pay/confirm-payment', [OrderController::class, 'confirmPayment']);
 
 
-// Route::get('/reservation/{email}', 'Front\PageController@reservation');
-
-// Route::get('/reservation/paid/{email}', 'Front\OrderController@reservationPaid');
-
-// Route::get('/reservation/paypal/{email}', 'Front\OrderController@reservationPaypal');
-
-// Route::get('/reservation/bank/{email}', 'Front\OrderController@reservationBank');
-
-// Route::get('/reservation/cancel/{email}', 'Front\OrderController@reservationCancel');
-
-
-
 Route::get('/pay/{id}', [PaymentController::class, 'vtweb']);
 Route::post('/vt-notif', [PaymentController::class, 'notification']);
 
 
 Route::group(['middleware' => ['auth']], function () {
 
-    //reservation
 
-    // Route::get('/reservation', 'Front\PageController@reservation');
 
-    // Route::get('/reservation/paid', 'Front\OrderController@reservationPaid');
 
-    // Route::get('/reservation/paypal', 'Front\OrderController@reservationPaypal');
-
-    // Route::get('/reservation/bank', 'Front\OrderController@reservationBank');
-
-    // Route::get('/reservation/cancel', 'Front\OrderController@reservationCancel');
     
     Route::prefix('account')->group(function () {
         Route::get('/',[PageController::class, 'account']);
