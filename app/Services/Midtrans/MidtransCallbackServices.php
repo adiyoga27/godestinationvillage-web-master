@@ -11,6 +11,7 @@ class MidtransCallbackServices
 {
     public static function payment($payload)
     {
+        $status = 'pending';
         $invoice = $payload['order_id'];
         $payment_type = $payload['payment_type'];
         $transaction_time = $payload['transaction_time'];
