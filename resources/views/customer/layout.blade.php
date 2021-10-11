@@ -431,6 +431,12 @@
                                                         href="{{ url('reservation/' . Auth::user()->email) }}"><i
                                                             class="bx bx-calendar-edit"></i>&nbsp &nbsp Reservation</a>
                                                 </div>
+                                                <div class="col-md-12">
+
+                                                    <a class="dropdown-item"
+                                                        href="{{ url('reservation-events/' . Auth::user()->email) }}"><i
+                                                            class="bx bx-calendar-edit"></i>&nbsp &nbsp Events</a>
+                                                </div>
                                                 <hr>
                                                 <div class="col-md-12">
 

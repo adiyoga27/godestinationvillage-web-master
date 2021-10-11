@@ -51,6 +51,7 @@ class OrderEvent extends Model
         'pax',
         'special_note',
         'event_name',
+        'snap_token'
     ];
 
     public function user()

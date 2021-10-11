@@ -36,6 +36,8 @@ class CreateOrderEventsTable extends Migration
             $table->text('payment_img')->nullable();
             $table->integer('pax')->nullable();
             $table->text('special_note')->nullable();
+            $table->text('snap_token')->nullable();
+
             $table->timestamps();
             $table->softDeletes();
         });

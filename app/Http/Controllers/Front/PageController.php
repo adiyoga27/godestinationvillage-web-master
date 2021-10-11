@@ -335,24 +335,7 @@ $data['recent'] = EventService::recent();
         
         return view('customer/reservation/reservation', $data);
     }
-    public function reservationEvents(Request $request)
-
-    {
-
-        $data['order'] = OrderEvent::where('payment_status', 'pending')
-        ->with('package')
-
-            ->where('customer_email', $request->email)
-
-            ->orderBy('id', 'desc')
-
-            ->paginate(10);
-
-        $data['isiemail'] = $request->email;
-
-        // dd($data);
-        return view('customer/events/reservation/reservation', $data);
-    }
+  
 
 
 
@@ -401,12 +384,20 @@ $data['recent'] = EventService::recent();
         ];
 
             // Jika snap token masih NULL, buat token snap dan simpan ke database
-            $midtrans = new CreateSnapTokenService($order);
+            $snapToken = $order['snap_token'];
+            if($snapToken == null){
+                $midtrans = new CreateSnapTokenService($order);
+                $snapToken = $midtrans->getSnapToken($request);
 
-            $data['snapToken'] = $midtrans->getSnapToken($request);
+                OrderEvent::where('id', $id)->update([
+                    'snap_token' => $snapToken
+                ]);
+            }
+            
+            $data['snapToken'] = $snapToken;
             $data['order'] =  $order;
-            $data['redirectURI'] =  url("reservation-events/paid/".$order['customer_email']);
-
+            $data['redirectURISuccess'] =  url("reservation-events/paid/".$order['customer_email']);
+            $data['redirectURIError'] = url("reservation-events/".$order['customer_email']);
 
             
         // dd($data);
@@ -440,17 +431,8 @@ $data['recent'] = EventService::recent();
     public function cancel($id)
 
     {
-
         $proses = Order::find($id);
-
-
-
         $proses->payment_status = 'cancel';
-
-
-
-
-
         $proses->save();
 
         if ($proses) {
@@ -459,6 +441,18 @@ $data['recent'] = EventService::recent();
         }
     }
 
+    public function cancelEvent($id)
+
+    {
+        $proses = OrderEvent::find($id);
+        $proses->payment_status = 'cancel';
+        $proses->save();
+
+        if ($proses) {
+
+            return redirect('reservation-events/cancel/' . $proses->customer_email);
+        }
+    }
 
 
     public function booking($id)

@@ -19,6 +19,7 @@ use App\Http\Controllers\Backend\VillagesController;
 use App\Http\Controllers\Front\InvoiceController;
 use App\Http\Controllers\Front\OrderController;
 use App\Http\Controllers\Front\PageController;
+use App\Http\Controllers\Front\ReservationEventController;
 use App\Http\Controllers\Front\SearchController;
 use App\Http\Controllers\MidtransController;
 use App\Http\Controllers\OrderEventsController;
@@ -75,12 +76,10 @@ Route::prefix('reservation')->group(function () {
     Route::get('/cancel/{email}',[OrderController::class, 'reservationCancel']);
 });
 
-Route::prefix('reservation-event')->group(function () {
-    Route::get('/{email}',[PageController::class, 'reservationEvents']);
-    Route::get('/paid/{email}',[OrderController::class, 'reservationPaid']);
-    Route::get('/paypal/{email}',[OrderController::class, 'reservationPaypal']);
-    Route::get('/bank/{email}',[OrderController::class, 'reservationBank']);
-    Route::get('/cancel/{email}',[OrderController::class, 'reservationCancel']);
+Route::prefix('reservation-events')->group(function () {
+    Route::get('/{email}',[ReservationEventController::class, 'reservation']);
+    Route::get('/paid/{email}',[ReservationEventController::class, 'paid']);
+    Route::get('/cancel/{email}',[ReservationEventController::class, 'cancel']);
 });
 
 Route::prefix('booking')->group(function () {
@@ -111,6 +110,8 @@ Route::get('test/{inv}', [OrderEventsController::class, 'showMidtrans']);
 //check update
 
 Route::get('/payment/event/{id}', [PageController::class,'paymentEvent']);
+Route::get('/payment/event/do_cancel/{id}', [PageController::class,'cancelEvent']);
+
 Route::get('/payment/homestay/{id}', [PageController::class,'paymentHomestay']);
 
 
@@ -153,7 +154,7 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::prefix('account')->group(function () {
         Route::get('/',[PageController::class, 'account']);
-        Route::get('/{id}',[PageController::class, 'accountUpdate']);
+        Route::post('/{id}',[PageController::class, 'accountUpdate']);
     });
 
 });
