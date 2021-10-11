@@ -404,6 +404,9 @@ $data['recent'] = EventService::recent();
             $midtrans = new CreateSnapTokenService($order);
 
             $data['snapToken'] = $midtrans->getSnapToken($request);
+            $data['order'] =  $order;
+            $data['redirectURI'] =  url("reservation-events/paid/".$order['customer_email']);
+
 
             
         // dd($data);
