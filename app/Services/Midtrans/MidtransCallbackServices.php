@@ -11,6 +11,7 @@ class MidtransCallbackServices
 {
     public static function payment($payload)
     {
+       $dataTransaction =  Transaction::create($payload);
         $status = 'pending';
         $invoice = $payload['order_id'];
         $payment_type = $payload['payment_type'];
@@ -41,6 +42,6 @@ class MidtransCallbackServices
                 );
             }
         }
-        return Transaction::create($payload);
+        return $dataTransaction;
     }
 }

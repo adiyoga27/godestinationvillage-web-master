@@ -17,7 +17,7 @@ class CreateCategoryEventsTable extends Migration
             $table->id();
             $table->string('name', 50);
             $table->string('description', 50);
-            $table->boolean('isActive')->default(0);
+            $table->boolean('is_active')->default(0);
             $table->timestamps();
         });
     }

@@ -195,6 +195,96 @@
             </div>
         </div>
         <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Status Pay Wish(*)</label>
+            <div class="col-sm-4">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="is_paywish" value="1" @if (empty($package)) checked=""
+                    @else
+                        @if ($package->is_paywish == 1)
+                            checked="" @endif
+                        @endif
+                        >
+                        Aktif
+                        <i class="input-helper"></i>
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="is_paywish" value="0" @if (!empty($package))
+                        @if ($package->is_paywish == 0)
+                            checked="" @endif
+                        @endif
+                        >
+                        Tidak Aktif
+                        <i class="input-helper"></i>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Status Free(*)</label>
+            <div class="col-sm-4">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="is_free" value="1" @if (empty($package)) checked=""
+                    @else
+                        @if ($package->is_free == 1)
+                            checked="" @endif
+                        @endif
+                        >
+                        Aktif
+                        <i class="input-helper"></i>
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="is_free" value="0" @if (!empty($package))
+                        @if ($package->is_free == 0)
+                            checked="" @endif
+                        @endif
+                        >
+                        Tidak Aktif
+                        <i class="input-helper"></i>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Status (*)</label>
+            <div class="col-sm-4">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="is_active" value="1" @if (empty($package)) checked=""
+                    @else
+                        @if ($package->is_active == 1)
+                            checked="" @endif
+                        @endif
+                        >
+                        Aktif
+                        <i class="input-helper"></i>
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="is_active" value="0" @if (!empty($package))
+                        @if ($package->is_active == 0)
+                            checked="" @endif
+                        @endif
+                        >
+                        Tidak Aktif
+                        <i class="input-helper"></i>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
             <label class="col-sm-3 col-form-label"></label>
             <div class="col-sm-9">
                 <button type="submit" class="btn btn-lg btn-gradient-danger mb-2">Save</button>

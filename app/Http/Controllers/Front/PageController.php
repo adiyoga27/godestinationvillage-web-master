@@ -22,6 +22,7 @@ use App\Models\OrderEvent;
 use App\PackageTranslations;
 use App\Models\Tag;
 use App\Services\EventService;
+use App\Services\Midtrans\CreateSnapTokenService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -331,7 +332,26 @@ $data['recent'] = EventService::recent();
 
         $data['isiemail'] = $request->email;
 
+        
         return view('customer/reservation/reservation', $data);
+    }
+    public function reservationEvents(Request $request)
+
+    {
+
+        $data['order'] = OrderEvent::where('payment_status', 'pending')
+        ->with('package')
+
+            ->where('customer_email', $request->email)
+
+            ->orderBy('id', 'desc')
+
+            ->paginate(10);
+
+        $data['isiemail'] = $request->email;
+
+        // dd($data);
+        return view('customer/events/reservation/reservation', $data);
     }
 
 
@@ -354,6 +374,42 @@ $data['recent'] = EventService::recent();
         $data['bank'] =  BankAccount::all();
         return view('customer/payment/payment', $data);
     }
+
+    public function paymentEvent($id)
+
+    {
+        $order = OrderEvent::where('id',$id)->first()->toArray();
+        $request = [
+            'transaction_details' => [
+                'order_id' => $order['code'],
+                'gross_amount' => $order['total_payment'],
+            ],
+            'item_details' => [
+                [
+                    'id' => $order['event_id'],
+                    'price' => $order['event_price'],
+                    'quantity' => $order['pax'],
+                    'name' => $order['event_name'],
+                ],
+               
+            ],
+            'customer_details' => [
+                'first_name' => $order['customer_name'],
+                'email' => $order['customer_email'],
+                'phone' => $order['customer_phone'],
+            ]
+        ];
+
+            // Jika snap token masih NULL, buat token snap dan simpan ke database
+            $midtrans = new CreateSnapTokenService($order);
+
+            $data['snapToken'] = $midtrans->getSnapToken($request);
+
+            
+        // dd($data);
+        return view('customer/payment/midtrans', $data);
+    }
+
 
 
     public function detailPayment($id)

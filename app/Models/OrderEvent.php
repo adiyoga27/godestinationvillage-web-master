@@ -50,6 +50,7 @@ class OrderEvent extends Model
         'payment_img',
         'pax',
         'special_note',
+        'event_name',
     ];
 
     public function user()
@@ -59,7 +60,7 @@ class OrderEvent extends Model
 
     public function package()
     {
-        return $this->belongsTo(Event::class);
+        return $this->belongsTo(Event::class, 'event_id', 'id');
     }
 
     public function bank_account()
@@ -91,6 +92,7 @@ class OrderEvent extends Model
         'bank_acc_no',
         'payment_img',
         'pax',
+        'event_name',
         'special_note',]);
         // Chain fluent methods for configuration options
     }

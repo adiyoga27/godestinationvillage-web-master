@@ -36,16 +36,18 @@ class EventService
 
     public static function create($payload)
     {
+       
         try {
             DB::beginTransaction();
             if (!empty($payload['default_img'])) {
                 $upload = CustomImage::storeImage($payload['default_img'], 'events');
                 $payload['default_img'] = $upload['name'];
             }
+
             $dataPackage = Arr::except($payload, ['name_id', 'description_id', 'interary_id', 'inclusion_id', 'additional_id']);
+           
             $model = Event::create($dataPackage);
 
-        
             $dataTranslate = array(
                 'events_id' => $model['id'],
                     'lang' => 'id',

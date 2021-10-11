@@ -23,7 +23,7 @@ class CreateOrderEventsTable extends Migration
             $table->text('customer_address')->nullable();
             $table->string('customer_phone')->nullable();
             $table->string('customer_email')->nullable();
-            $table->double('event_name');
+            $table->string('event_name');
             $table->double('event_price');
             $table->double('event_discount')->nullable();
             $table->double('total_payment');

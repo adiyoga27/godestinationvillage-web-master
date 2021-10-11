@@ -21,11 +21,11 @@
     <!-- start top destination section -->
     <section id="top-destination" class="top-destination-section pt-100 pb-70 bg-light">
         <div class="container">
-            {{-- <div class="section-title">
+            <!-- {{-- <div class="section-title">
                 <h2>Top Destinations</h2>
                 <p>Travel has helped us to understand the meaning of life and it has helped us become better people. Each
                     time we travel, we see the world with new eyes.</p>
-            </div> --}}
+            </div> --}} -->
             <div class="row">
                 @foreach ($packages as $pack)
 
@@ -45,11 +45,11 @@
                                 </p>
                                 <hr>
                                 <ul class="list">
-                                    <li><i class='bx bx-time'></i>{{ $pack->cat_name }}</li>
-                                    <li><i class='bx bx-group'></i>10+</li>
+                                    <li><i class='bx bx-time'></i>{{ date('d M Y', strtotime($pack->date_event)) }}</li>
+                                    <li><i class='bx bx-group'></i>1 People</li>
 
                                     @if(!$pack->paywish)
-                                    <li>{{ $pack->price>0 ?'Rp '.$pack->price : 'Gratis' }}</li>
+                                    <li>{{ $pack->price>0 ? 'Rp '. number_format($pack->price,0) : 'Gratis' }}</li>
                                     @else
 
                                     <li>Pay as you wish
@@ -60,14 +60,10 @@
                     </div>
 
                 @endforeach
-
-
                 <div class="item col-md-12">
                     <div class="row">
                         <div class="col-lg-12 col-md-12">
                             <div class="pagination text-center">
-
-
                                 @for ($i = 1; $i <= $packages->lastPage(); $i++)
                                     <a href="{{ $packages->url($i) }}" class="page-numbers @if ($packages->currentPage() == $i) current @endif">
 

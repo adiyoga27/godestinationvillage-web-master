@@ -148,31 +148,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            @if ($packages->category->name != 'Virtual Tour')
-                                            <div class="col-md-12  ftco-animate">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Date</label>
-                                                    <input type="datetime-local" name="checkin_date" class="form-control"
-                                                        aria-describedby="emailHelp" value="2021-08-01T00:00" placeholder="" >
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6  ftco-animate">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Pick up location</label>
-                                                    <input type="datetime-local" value="2021-08-01T00:00" name="pickup" class="form-control" aria-describedby="emailHelp"
-                                                        placeholder="" >
-                                                </div>
-                                                <hr>
-                                            </div>
-                                            <div class="col-md-6  ftco-animate">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Hotel/Villa/Guest House Name</label>
-                                                    <input type="text" name="pickupname" class="form-control" id="exampleInputEmail1"
-                                                        aria-describedby="emailHelp" value="-" placeholder="" >
-                                                </div>
-                                                <hr>
-                                            </div>
-                                            @endif
+                                        
                                     </div>
                                            
                                             <div class="col-md-12  ftco-animate">

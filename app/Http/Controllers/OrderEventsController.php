@@ -173,8 +173,8 @@ class OrderEventsController extends Controller
     public function sendEvent(Request $request)
     {
      
-        OrderEventService::sendEvent($request->except('_token'));
-        return redirect('reservation/paid/' . $request->email);
+        $data = OrderEventService::sendEvent($request->except('_token'));
+        return redirect('payment/event/' . $data->id);
     }
 
     public function showMidtrans($inv)
@@ -206,9 +206,6 @@ class OrderEventsController extends Controller
 
             $snapToken = $midtrans->getSnapToken($request);
 
- 
-        
- 
         return view('customer.midtrans', compact('order', 'snapToken'));
     }
 }

@@ -27,7 +27,6 @@ class CreatePackagesTable extends Migration
             $table->text('term')->nullable();
             $table->text('duration')->nullable();
             $table->text('preparation')->nullable();
-
             $table->double('price', 11, 2)->nullable();
             $table->text('default_img')->nullable();
             $table->tinyInteger('is_active')->nullable();

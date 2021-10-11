@@ -75,15 +75,20 @@ Route::prefix('reservation')->group(function () {
     Route::get('/cancel/{email}',[OrderController::class, 'reservationCancel']);
 });
 
+Route::prefix('reservation-event')->group(function () {
+    Route::get('/{email}',[PageController::class, 'reservationEvents']);
+    Route::get('/paid/{email}',[OrderController::class, 'reservationPaid']);
+    Route::get('/paypal/{email}',[OrderController::class, 'reservationPaypal']);
+    Route::get('/bank/{email}',[OrderController::class, 'reservationBank']);
+    Route::get('/cancel/{email}',[OrderController::class, 'reservationCancel']);
+});
+
 Route::prefix('booking')->group(function () {
     Route::get('/booking/{id}', [OrderController::class, 'booking']);
     Route::post('/booking/send',[OrderController::class, 'send']);
     Route::post('/booking/sendEvent',[OrderController::class, 'sendEvent']);
 });
-Route::prefix('bookingEvents')->group(function () {
-    Route::get('/{id}', [PageController::class, 'bookingEvents']);
-    Route::post('/sendEvent',[OrderEventsController::class, 'sendEvent']);
-});
+
 
 Route::prefix('midtrans')->group(function(){
     Route::post('/callbackPayment', [MidtransController::class, 'callbackPayment']);
@@ -104,6 +109,11 @@ Route::get('test/{inv}', [OrderEventsController::class, 'showMidtrans']);
 
 
 //check update
+
+Route::get('/payment/event/{id}', [PageController::class,'paymentEvent']);
+Route::get('/payment/homestay/{id}', [PageController::class,'paymentHomestay']);
+
+
 Route::get('/payment/{id}', [PageController::class,'payment']);
 Route::get('/payment-detail/{id}', [PageController::class,'detailPayment']);
 Route::get('/payment-confirm/{id}', [PageController::class,'confirmPayment']);
@@ -136,6 +146,10 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 
+    Route::prefix('bookingEvents')->group(function () {
+        Route::get('/{id}', [PageController::class, 'bookingEvents']);
+        Route::post('/sendEvent',[OrderEventsController::class, 'sendEvent']);
+    });
     
     Route::prefix('account')->group(function () {
         Route::get('/',[PageController::class, 'account']);
