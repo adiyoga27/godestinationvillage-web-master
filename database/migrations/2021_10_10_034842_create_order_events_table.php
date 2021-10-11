@@ -27,7 +27,7 @@ class CreateOrderEventsTable extends Migration
             $table->double('event_price');
             $table->double('event_discount')->nullable();
             $table->double('total_payment');
-            $table->enum('payment_type', ['bank_transfer', 'paypal'])->nullable();
+            $table->string('payment_type',100)->nullable();
             $table->date('payment_date')->nullable();
             $table->enum('payment_status', ['pending', 'success', 'cancel'])->nullable();
             $table->string('bank_name')->nullable();

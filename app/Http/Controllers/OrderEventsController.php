@@ -177,15 +177,34 @@ class OrderEventsController extends Controller
         return redirect('reservation/paid/' . $request->email);
     }
 
-    public function showMidtrans()
+    public function showMidtrans($inv)
     {
+        $order = OrderEvent::where('code',$inv)->first()->toArray();
+        $request = [
+            'transaction_details' => [
+                'order_id' => $order['code'],
+                'gross_amount' => $order['total_payment'],
+            ],
+            'item_details' => [
+                [
+                    'id' => $order['event_id'],
+                    'price' => $order['event_price'],
+                    'quantity' => $order['pax'],
+                    'name' => $order['event_name'],
+                ],
+               
+            ],
+            'customer_details' => [
+                'first_name' => $order['customer_name'],
+                'email' => $order['customer_email'],
+                'phone' => $order['customer_phone'],
+            ]
+        ];
 
-      
             // Jika snap token masih NULL, buat token snap dan simpan ke database
-            $order = OrderEvent::where('id',1)->get();
             $midtrans = new CreateSnapTokenService($order);
 
-            $snapToken = $midtrans->getSnapToken();
+            $snapToken = $midtrans->getSnapToken($request);
 
  
         

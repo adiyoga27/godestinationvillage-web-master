@@ -146,7 +146,7 @@ class OrderEventService
        $data = array(
         'event_id' => $payload['idevent'],
         'user_id' => $payload['iduser'] ?? null,
-        'code' => 'INV' . $code,
+        'code' => 'EVT' . $code,
         'event_name' => $payload['eventname'],
         'customer_name' => $payload['customername'],
         'customer_address' => $payload['address'],

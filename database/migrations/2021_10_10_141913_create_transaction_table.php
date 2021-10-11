@@ -15,7 +15,6 @@ class CreateTransactionTable extends Migration
     {
         Schema::create('transaction', function (Blueprint $table) {
             $table->id();
-            $table->enum('category', ['tours','events', 'homestay']);
             $table->dateTime('transaction_time');
             $table->string('transaction_status',100);
             $table->string('transaction_id',225);

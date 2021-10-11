@@ -100,7 +100,7 @@ Route::prefix('events')->group(function () {
 });
 Route::get('/category-package/{id}', [PageController::class,'categorypackage']);
 
-Route::get('test', [OrderEventsController::class, 'showMidtrans']);
+Route::get('test/{inv}', [OrderEventsController::class, 'showMidtrans']);
 
 
 //check update
