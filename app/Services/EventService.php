@@ -85,7 +85,7 @@ class EventService
         
             $dataPackage = Arr::except($payload, ['name_id', 'description_id', 'interary_id', 'inclusion_id', 'additional_id']);
 
-            $model->update($dataPackage);
+            $result = $model->update($dataPackage);
 
 
             $packageTransData = EventTranslations::where('events_id', $id)
@@ -98,6 +98,7 @@ class EventService
                     'interary' => $payload['interary_id'],
                     'inclusion' => $payload['inclusion_id'],
                     'additional' => $payload['additional_id'],
+                    
                 );
 
                 $result = $packageTransData->update($dataTranslate);

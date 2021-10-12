@@ -10,10 +10,10 @@
     <div class="page-title-area ptb-100">
         <div class="container">
             <div class="page-title-content">
-                <h1>Reservation Form</h1>
+                <h1>Book Form</h1>
                 <ul>
                     <li class="item"><a href="index.html">Home</a></li>
-                    <li class="item"><a href="#"><i class='bx bx-chevrons-right'></i>Reservation Form</a></li>
+                    <li class="item"><a href="#"><i class='bx bx-chevrons-right'></i>Book Form</a></li>
                 </ul>
             </div>
         </div>
@@ -23,21 +23,21 @@
     </div>
     <!-- end page title area -->
     <section class="booking-section ptb-100 bg-light">
-        <form action="{{ url('bookingEvents/sendEvent') }}" method="post">
+        <form action="{{ url('bookingHomeStay/sendHomeStay') }}" method="post">
             <section class="ftco-section ftco-degree-bg">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12  ftco-animate">
-                            <h3>Event Information</h3>
-                            <hr>
+                            <h3>Homestay Information</h3>
+                        <hr>
                         </div>
                         <div class="col-md-6  ftco-animate">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Event Name</label>
+                                <label for="exampleInputEmail1">Homestay Name</label>
                                 @csrf
-                                <input type="text" name="eventname" class="form-control" id="exampleInputEmail1"
+                                <input type="text" name="homestayname" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp" placeholder="" value="{{ $packages->name }}" readonly>
-                                <input type="hidden" name="idevent" class="form-control" id="exampleInputEmail1"
+                                <input type="hidden" name="idhomestay" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp" placeholder="" value="{{ $packages->id }}" readonly>
 
                             </div>
@@ -52,8 +52,8 @@
                         </div>
                         <div class="col-md-6  ftco-animate" style="display: none !important;">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Event</label>
-                                <input type="text" name="eventname" class="form-control" id="exampleInputEmail1"
+                                <label for="exampleInputEmail1">Homestay</label>
+                                <input type="text" name="homestayname" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp" placeholder=""
                                     value="{{ $packages->name }}"  readonly>
                             </div>

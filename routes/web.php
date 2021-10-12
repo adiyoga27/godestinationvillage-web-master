@@ -7,9 +7,11 @@ use App\Http\Controllers\Backend\BankAccountsController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CategoriesController;
 use App\Http\Controllers\Backend\CategoryEventsController;
+use App\Http\Controllers\Backend\CategoryHomeStayController;
 use App\Http\Controllers\Backend\DiscountMembersController;
 use App\Http\Controllers\Backend\EventsController;
 use App\Http\Controllers\Backend\HomeController;
+use App\Http\Controllers\Backend\HomeStayController;
 use App\Http\Controllers\Backend\MembersController;
 use App\Http\Controllers\Backend\OrdersController;
 use App\Http\Controllers\Backend\PackagesController;
@@ -23,6 +25,8 @@ use App\Http\Controllers\Front\ReservationEventController;
 use App\Http\Controllers\Front\SearchController;
 use App\Http\Controllers\MidtransController;
 use App\Http\Controllers\OrderEventsController;
+use App\Http\Controllers\OrderHomeStayController;
+use App\Models\CategoryHomestay;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -82,6 +86,12 @@ Route::prefix('reservation-events')->group(function () {
     Route::get('/cancel/{email}',[ReservationEventController::class, 'cancel']);
 });
 
+Route::prefix('reservation-homestay')->group(function () {
+    Route::get('/{email}',[ReservationEventController::class, 'reservation']);
+    Route::get('/paid/{email}',[ReservationEventController::class, 'paid']);
+    Route::get('/cancel/{email}',[ReservationEventController::class, 'cancel']);
+});
+
 Route::prefix('booking')->group(function () {
     Route::get('/booking/{id}', [OrderController::class, 'booking']);
     Route::post('/booking/send',[OrderController::class, 'send']);
@@ -96,10 +106,16 @@ Route::prefix('midtrans')->group(function(){
 Route::get('/services', [PageController::class, 'services']);
 Route::get('/faq', [PageController::class, 'faq']);
 Route::get('/contact', [PageController::class, 'contact']);
-Route::get('/homestay', [PageController::class, 'homeStay']);
+// Route::get('/homestay', [PageController::class, 'homeStay']);
 Route::prefix('events')->group(function () {
     Route::get('/', [PageController::class,'eventsGodevi']);
     Route::get('/{id}', [PageController::class,'detailEvent']);
+
+});
+
+Route::prefix('homestay')->group(function () {
+    Route::get('/', [PageController::class,'homeStay']);
+    Route::get('/{id}', [PageController::class,'detailHomestay']);
 
 });
 Route::get('/category-package/{id}', [PageController::class,'categorypackage']);
@@ -151,6 +167,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/{id}', [PageController::class, 'bookingEvents']);
         Route::post('/sendEvent',[OrderEventsController::class, 'sendEvent']);
     });
+    Route::prefix('bookingHomeStay')->group(function () {
+        Route::get('/{id}', [PageController::class, 'bookingHomeStay']);
+        Route::post('/sendHomeStay',[OrderHomeStayController::class, 'sendHomeStay']);
+    });
     
     Route::prefix('account')->group(function () {
         Route::get('/',[PageController::class, 'account']);
@@ -183,8 +203,10 @@ Route::group(['prefix' => 'administrator', 'middleware' => ['auth', 'role:admin|
 
 
 
-    Route::resource('category-events', CategoryEventsController::class);
+    // Route::resource('category-events', CategoryEventsController::class);
     Route::resource('events', EventsController::class);
+    Route::resource('homestay', HomeStayController::class);
+    Route::resource('category-homestay', CategoryHomeStayController::class);
 
 
     Route::resource('package', PackagesController::class);

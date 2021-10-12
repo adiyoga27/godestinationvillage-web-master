@@ -372,19 +372,10 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ url('events') }}" class="nav-link toggle">Events</a>
-                                    <!-- <div class="dropdown-menu dropdown-menu-right">
-
-                                        <a class="dropdown-item" href="#">&nbsp Previous
-                                            Events</span></a>
-
-
-                                        <a class="dropdown-item" href="#">&nbsp Next
-                                            Events</span></a>
-
-                                    </div> -->
+                          
                                 </li>
                                 {{-- <li class="nav-item"><a href="{{ url('tour-packages') }}"
-                                        class="nav-link toggle">@lang('Events')</a>
+                                        class="nav-link toggle">@lang('homestay')</a>
 
                                 </li> --}}
                                 <li class="nav-item"><a href="{{ url('homestay') }}"
@@ -436,6 +427,13 @@
                                                     <a class="dropdown-item"
                                                         href="{{ url('reservation-events/' . Auth::user()->email) }}"><i
                                                             class="bx bx-calendar-edit"></i>&nbsp &nbsp Events</a>
+                                                </div>
+
+                                                <div class="col-md-12">
+
+                                                    <a class="dropdown-item"
+                                                        href="{{ url('reservation-homestay/' . Auth::user()->email) }}"><i
+                                                            class="bx bx-calendar-edit"></i>&nbsp &nbsp Homestay</a>
                                                 </div>
                                                 <hr>
                                                 <div class="col-md-12">

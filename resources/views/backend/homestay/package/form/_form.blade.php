@@ -3,7 +3,7 @@
 
 
         <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Kategori Event (*)</label>
+            <label class="col-sm-3 col-form-label">Kategori Homestay (*)</label>
             <div class="col-sm-9">
                 {!! Form::select('category_id', $categories, null, ['class' => 'selectpicker', 'required' => 'required', 'data-live-search' => 'true']) !!}
                 {!! $errors->first('category_id', '<p class="text-danger">:message</p>') !!}
@@ -13,7 +13,7 @@
 
 
         <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Nama Event (*)</label>
+            <label class="col-sm-3 col-form-label">Nama Homestay (*)</label>
             <div class="col-sm-9">
                 <label>English : </label>
                 {!! Form::text('name', null, ['class' => 'form-control', 'required' => 'required']) !!}
@@ -47,7 +47,22 @@
                 {!! $errors->first('description_id', '<p class="text-danger">:message</p>') !!}
             </div>
         </div>
-
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Location (*)</label>
+            <div class="col-sm-9">
+                <label>English : </label>
+                {!! Form::text('location', null, ['class' => 'form-control']) !!}
+                {!! $errors->first('location', '<p class="text-danger">:message</p>') !!}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label"></label>
+            <div class="col-sm-9">
+                <label>Indonesia : </label>
+                {!! Form::text('location_id', $packageTranslate->location ?? null, ['class' => 'form-control']) !!}
+                {!! $errors->first('location_id', '<p class="text-danger">:message</p>') !!}
+            </div>
+        </div>
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Harga Paket (*)</label>
             <div class="col-sm-9">
@@ -72,86 +87,76 @@
                 {!! $errors->first('disc', '<p class="text-danger">:message</p>') !!}
             </div>
         </div>
-
-
         <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Location (*)</label>
-            <div class="col-sm-9">
-                {!! Form::text('location', null, ['class' => 'form-control']) !!}
-                {!! $errors->first('location', '<p class="text-danger">:message</p>') !!}
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Tanggal (*)</label>
-            <div class="col-sm-9">
-                {!! Form::datetime('date_event', null, ['class' => 'form-control']) !!}
-                {!! $errors->first('date_event', '<p class="text-danger">:message</p>') !!}
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Durasi (*)</label>
-            <div class="col-sm-9">
-                {!! Form::text('duration', null, ['class' => 'form-control']) !!}
-                {!! $errors->first('duration', '<p class="text-danger">:message</p>') !!}
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Itenaries</label>
+            <label class="col-sm-3 col-form-label">Facilities</label>
             <div class="col-sm-9">
                 <label>English : </label>
-                {!! Form::textarea('interary', null, ['class' => 'form-control']) !!}
-                {!! $errors->first('interary', '<p class="text-danger">:message</p>') !!}
+                {!! Form::textarea('facilities', null, ['class' => 'form-control']) !!}
+                {!! $errors->first('facilities', '<p class="text-danger">:message</p>') !!}
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-3 col-form-label"></label>
             <div class="col-sm-9">
                 <label>Indonesia : </label>
-                {!! Form::textarea('interary_id', $packageTranslate->itenaries ?? null, ['class' => 'form-control']) !!}
-                {!! $errors->first('interary_id', '<p class="text-danger">:message</p>') !!}
+                {!! Form::textarea('facilities_id', $packageTranslate->facilities ?? null, ['class' => 'form-control']) !!}
+                {!! $errors->first('facilities_id', '<p class="text-danger">:message</p>') !!}
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Inclusion</label>
+            <label class="col-sm-3 col-form-label">Additional Activities</label>
             <div class="col-sm-9">
                 <label>English : </label>
-                {!! Form::textarea('inclusion', null, ['class' => 'form-control']) !!}
-                {!! $errors->first('inclusion', '<p class="text-danger">:message</p>') !!}
+                {!! Form::textarea('additional_activities', null, ['class' => 'form-control']) !!}
+                {!! $errors->first('additional_activities', '<p class="text-danger">:message</p>') !!}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Additional Activities</label>
+            <div class="col-sm-9">
+                <label>Indonesia : </label>
+                {!! Form::textarea('additional_activities_id', $packageTranslate->additional_activities ?? null, ['class' => 'form-control']) !!}
+                {!! $errors->first('additional_activities_id', '<p class="text-danger">:message</p>') !!}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Owner Name (*)</label>
+            <div class="col-sm-9">
+                {!! Form::text('owner_name', null, ['class' => 'form-control']) !!}
+                {!! $errors->first('owner_name', '<p class="text-danger">:message</p>') !!}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Check In Time (*)</label>
+            <div class="col-sm-9">
+                {!! Form::text('check_in_time', null, ['class' => 'form-control']) !!}
+                {!! $errors->first('check_in_time', '<p class="text-danger">:message</p>') !!}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Check Out Time (*)</label>
+            <div class="col-sm-9">
+                {!! Form::text('check_out_time', null, ['class' => 'form-control']) !!}
+                {!! $errors->first('check_out_time', '<p class="text-danger">:message</p>') !!}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Additional Notes</label>
+            <div class="col-sm-9">
+                <label>English : </label>
+                {!! Form::textarea('additional_notes',  null, ['class' => 'form-control']) !!}
+                {!! $errors->first('additional_notes', '<p class="text-danger">:message</p>') !!}
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-3 col-form-label"></label>
             <div class="col-sm-9">
                 <label>Indonesia : </label>
-
-                {!! Form::textarea('inclusion_id', $packageTranslate->inclusion ?? null, ['class' => 'form-control']) !!}
-                {!! $errors->first('inclusion_id', '<p class="text-danger">:message</p>') !!}
+                {!! Form::textarea('additional_notes_id', $packageTranslate->additional_notes ?? null, ['class' => 'form-control']) !!}
+                {!! $errors->first('additional_notes_id', '<p class="text-danger">:message</p>') !!}
             </div>
         </div>
-
-
-
-
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Additional</label>
-            <div class="col-sm-9">
-                <label>English : </label>
-
-                {!! Form::textarea('additional', null, ['class' => 'form-control']) !!}
-                {!! $errors->first('additional', '<p class="text-danger">:message</p>') !!}
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-label"></label>
-            <div class="col-sm-9">
-                <label>Indonesia : </label>
-
-                {!! Form::textarea('additional_id', $packageTranslate->term ?? null, ['class' => 'form-control']) !!}
-                {!! $errors->first('additional_id', '<p class="text-danger">:message</p>') !!}
-            </div>
-        </div>
-
+        
 
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Default Image</label>
@@ -162,16 +167,14 @@
         </div>
 
 
-
-
         <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Status Pay Wish(*)</label>
+            <label class="col-sm-3 col-form-label">Breakfast(*)</label>
             <div class="col-sm-4">
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="is_paywish" value="1" @if (empty($package)) checked=""
+                        <input type="radio" class="form-check-input" name="is_breakfast" value="1" @if (empty($package)) checked=""
                     @else
-                        @if ($package->is_paywish == 1)
+                        @if ($package->is_breakfast == 1)
                             checked="" @endif
                         @endif
                         >
@@ -183,8 +186,8 @@
             <div class="col-sm-5">
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="is_paywish" value="0" @if (!empty($package))
-                        @if ($package->is_paywish == 0)
+                        <input type="radio" class="form-check-input" name="is_breakfast" value="0" @if (!empty($package))
+                        @if ($package->is_breakfast == 0)
                             checked="" @endif
                         @endif
                         >
@@ -194,36 +197,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Status Free(*)</label>
-            <div class="col-sm-4">
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="is_free" value="1" @if (empty($package)) checked=""
-                    @else
-                        @if ($package->is_free == 1)
-                            checked="" @endif
-                        @endif
-                        >
-                        Aktif
-                        <i class="input-helper"></i>
-                    </label>
-                </div>
-            </div>
-            <div class="col-sm-5">
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="is_free" value="0" @if (!empty($package))
-                        @if ($package->is_free == 0)
-                            checked="" @endif
-                        @endif
-                        >
-                        Tidak Aktif
-                        <i class="input-helper"></i>
-                    </label>
-                </div>
-            </div>
-        </div>
+
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Status (*)</label>
             <div class="col-sm-4">
@@ -254,6 +228,7 @@
                 </div>
             </div>
         </div>
+      
         <div class="form-group row">
             <label class="col-sm-3 col-form-label"></label>
             <div class="col-sm-9">

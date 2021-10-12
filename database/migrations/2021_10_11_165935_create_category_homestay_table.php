@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHomestayTable extends Migration
+class CreateCategoryHomestayTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class CreateHomestayTable extends Migration
      */
     public function up()
     {
-        Schema::create('homestay', function (Blueprint $table) {
+        Schema::create('category_homestay', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 50);
+            $table->string('description', 50);
+            $table->boolean('is_active')->default(0);
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateHomestayTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('homestay');
+        Schema::dropIfExists('category_homestay');
     }
 }

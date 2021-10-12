@@ -18,10 +18,13 @@ use App\Helpers\CustomImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
+use App\Models\Homestay;
 use App\Models\OrderEvent;
+use App\Models\OrderHomestay;
 use App\PackageTranslations;
 use App\Models\Tag;
 use App\Services\EventService;
+use App\Services\HomeStayServices;
 use App\Services\Midtrans\CreateSnapTokenService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -189,7 +192,7 @@ class PageController extends Controller
     public function homeStay()
 
     {
-        $data['packages'] = [];
+        $data['packages'] = HomeStayServices::active();
         // dd($data);
         return view('customer/homestay', $data);
     }
@@ -278,6 +281,27 @@ $data['recent'] = EventService::recent();
         return view('customer/detailevent', $data);
     }
 
+    public function detailHomestay($id)
+
+    {
+
+        $data['images'] = Storage::files('homestay/' . $id);
+      
+            $data['packages'] = Homestay::with(['category','translate'])->where('id', $id)
+            ->first();
+        
+        if (!$data['packages']) {
+            return abort(404);
+        }
+
+$data['recent'] = HomeStayServices::recent();
+        // $data['recent'] = Package::select('packages.id', 'packages.name', 'categories.name as cat_name', 'village_details.village_name as vil_name', 'default_img')
+        //                             ->join('users', 'users.id', 'user_id')
+        //                             ->join('village_details', 'users.id', 'village_details.user_id')
+        //                             ->join('categories', 'categories.id', 'category_id')->where('users.is_active', '1')->where('packages.is_active', '1')->orderBy('packages.id', 'desc')->limit(5)->get();
+
+        return view('customer/detailhomestay', $data);
+    }
 
 
     public function faq()
@@ -403,6 +427,51 @@ $data['recent'] = EventService::recent();
         // dd($data);
         return view('customer/payment/midtrans', $data);
     }
+    public function paymentHomestay($id)
+
+    {
+        $order = OrderHomestay::where('id',$id)->first()->toArray();
+        $request = [
+            'transaction_details' => [
+                'order_id' => $order['code'],
+                'gross_amount' => $order['total_payment'],
+            ],
+            'item_details' => [
+                [
+                    'id' => $order['homestay_id'],
+                    'price' => $order['homestay_price'],
+                    'quantity' => $order['pax'],
+                    'name' => $order['homestay_name'],
+                ],
+               
+            ],
+            'customer_details' => [
+                'first_name' => $order['customer_name'],
+                'email' => $order['customer_email'],
+                'phone' => $order['customer_phone'],
+            ]
+        ];
+
+            // Jika snap token masih NULL, buat token snap dan simpan ke database
+            $snapToken = $order['snap_token'];
+            if($snapToken == null){
+                $midtrans = new CreateSnapTokenService($order);
+                $snapToken = $midtrans->getSnapToken($request);
+
+                OrderHomestay::where('id', $id)->update([
+                    'snap_token' => $snapToken
+                ]);
+            }
+            
+            $data['snapToken'] = $snapToken;
+            $data['order'] =  $order;
+            $data['redirectURISuccess'] =  url("reservation-homestay/paid/".$order['customer_email']);
+            $data['redirectURIError'] = url("reservation-homestay/".$order['customer_email']);
+
+            
+        // dd($data);
+        return view('customer/payment/midtrans', $data);
+    }
 
 
 
@@ -494,6 +563,27 @@ $data['recent'] = EventService::recent();
 
         return view('customer/bookformEvents', $data);
     }
+
+    public function bookingHomeStay($id)
+
+    {
+
+        $data['packages'] = Homestay::where('id', $id)
+
+            ->first();
+
+        if (Auth::check()) {
+
+            $userId = Auth::id();
+
+            $data['user'] = User::where('id', $userId)
+
+                ->first();
+        }
+
+        return view('customer/bookformHomeStay', $data);
+    }
+
 
 
 

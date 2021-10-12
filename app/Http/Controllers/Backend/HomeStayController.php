@@ -3,83 +3,118 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Homestay\HomestayCreateRequest;
+use App\Http\Requests\Homestay\HomestayUpdateRequest;
+use App\Models\CategoryHomestay;
+use App\Models\HomestayTranslations;
+use App\Services\CategoryHomeStayService;
+use App\Services\HomeStayServices;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
+use Yajra\DataTables\Html\Builder;
 
 class HomeStayController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, Builder $htmlBuilder)
     {
-        //
+        if (request()->ajax()) {
+            return DataTables::of(HomeStayServices::all())
+            ->addColumn('action', function($package){
+                return view('datatable._action_dinamyc', [
+                    'model'           => $package,
+                    'delete'          => route('homestay.destroy', $package->id),
+                    'url'             => [
+                        'Edit'            => route('homestay.edit', $package->id),
+                    ],
+                    'confirm_message' =>  'Anda yakin untuk menghapus data "' . $package->name . '" ?',
+                    'padding'         => '85px',
+                ]);
+            })
+            ->editColumn('is_active', function($package){
+                if($package->is_active == 0)
+                    return "<label class='badge badge-gradient-danger'>Tidak Aktif</label>";
+                else
+                    return "<label class='badge badge-gradient-success'>Aktif</label>";
+            })->editColumn('created_at', function($admin){
+                return date('Y-m-d', strtotime($admin->created_at));
+            })->rawColumns(['action', 'is_active'])->toJson();
+        }
+
+        $html = $htmlBuilder
+              ->addColumn(['data' => 'action', 'name'=>'action', 'title'=>'', 'orderable'=>false, 'searchable'=>false])
+              ->addColumn(['data' => 'rownum', 'name'=>'rownum', 'title'=>'No','searchable'=>false])
+              ->addColumn(['data' => 'name', 'name' => 'name', 'title' => 'Nama Event' ])
+              ->addColumn(['data' => 'location', 'name' => 'created_at', 'title' => 'Lokasi' ])
+              ->addColumn(['data' => 'price', 'name' => 'created_at', 'title' => 'price' ])
+              ->addColumn(['data' => 'owner_name', 'name' => 'created_at', 'title' => 'owner' ])
+
+              ->addColumn(['data' => 'is_active', 'name' => 'is_active', 'title' => 'Status' ])
+              ->parameters([
+                'scrollX' => true,
+                'order' => [3, 'desc']
+              ]);
+
+        return view('backend.homestay.package.index')->with(compact('html'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $categories = CategoryHomeStayService::pluck()->prepend('Pilih Kategori', '');
+   
+        return view('backend.homestay.package.create')->with(compact(
+            'categories',
+        ));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(HomestayCreateRequest $request)
     {
-        //
+        $result = HomeStayServices::create($request->except('_token'));
+
+        if ($result) 
+            return redirect(route('homestay.index'))->with('status', 'Successfully created');
+        else
+            return redirect(route('homestay.create'))->with('error', 'Failed to create');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $package = HomeStayServices::find($id);
+        $packageTranslate = HomestayTranslations::where('homestay_id', $id)->first();
+
+        $categories = CategoryHomeStayService::pluck();
+        return view('backend.homestay.package.edit')->with(compact(
+            'categories',
+            'package',
+            'packageTranslate'
+        ));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update($id, HomestayUpdateRequest $request)
     {
-        //
+        $result = HomeStayServices::update($id, $request->except('_token'));
+        
+        if ($result) 
+            return redirect(route('homestay.index'))->with('status', 'Successfully updated');
+        else
+            return back()->with('error','Failed to update');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
-    {
-        //
+    {  
+        $result = HomeStayServices::destroy($id);
+
+        if ($result)
+            return redirect(route('homestay.index'))->with('status', 'Successfully deleted');
+        else
+            return redirect(route('homestay.index'))->with('error','Failed to delete');
     }
 }

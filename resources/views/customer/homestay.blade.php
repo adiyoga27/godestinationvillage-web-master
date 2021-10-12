@@ -28,31 +28,60 @@
             <div class="row">
                 @foreach ($packages as $pack)
 
-                    <div class="col-lg-4 col-md-6">
-                        <div class="item-single mb-50">
-                            <div class="image">
-                                <img src="{{ url('storage/packages/' . $pack->default_img) }}" alt="{{ $pack->name }}">
-                            </div>
-                            <div class="content">
-                                <span class="location"><i class='bx bx-map'></i>{{ $pack->vil_name }}</span>
-                                <h3>
-                                    <a href="{{ url('tour-packages/' . $pack->id) }}">{{ $pack->name }}</a>
-                                </h3>
+                <div class="col-lg-4 col-md-6">
+                    <div class="item-single mb-50">
+                        <div class="image">
+                            <img src="{{ url('storage/homestay/' . $pack->default_img) }}" alt="{{ $pack->name }}">
+                        </div>
+                        <div class="content">
+                            <span class="location"><i class='bx bx-map'></i>{{ $pack->location }}</span>
+                            <h3>
+                                <a href="{{ url('homestay/' . $pack->id) }}">{{ $pack->name }}</a>
+                            </h3>
 
-                                <p>
-                                    {{ strip_tags(substr($pack->desc, 0, 100)) }}.
-                                </p>
-                                <hr>
-                                <ul class="list">
-                                    <li><i class='bx bx-time'></i>{{ $pack->cat_name }}</li>
-                                    <li><i class='bx bx-group'></i>10+</li>
-                                    <li>${{ $pack->price }}</li>
-                                </ul>
-                            </div>
+                            <p>
+                                {{ strip_tags(substr($pack->description, 0, 100)) }}.
+                            </p>
+                            <hr>
+                            <ul class="list">
+                                <li><i class='bx bx-time'></i>{{ date('d M Y', strtotime($pack->date_event)) }}</li>
+                                <li><i class='bx bx-group'></i>1 People</li>
+
+                                @if(!$pack->paywish)
+                                <li>{{ $pack->price>0 ? 'Rp '. number_format($pack->price,0) : 'Gratis' }}</li>
+                                @else
+
+                                <li>Pay as you wish
+                                @endif
+                            </ul>
                         </div>
                     </div>
+                </div>
 
-                @endforeach
+            @endforeach
+            <div class="item col-md-12">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="pagination text-center">
+                            @for ($i = 1; $i <= $packages->lastPage(); $i++)
+                                <a href="{{ $packages->url($i) }}" class="page-numbers @if ($packages->currentPage() == $i) current @endif">
+
+                                    {{ $i }}
+                                </a>
+                            @endfor
+                            @if ($packages->lastPage() > 0 && $packages->currentPage() < $packages->lastPage())
+                                <a href="{{ $packages->nextPageUrl() }}" class="page-numbers">Next</a>
+                            @endif
+
+                            {{-- <span class="page-numbers current" aria-current="page">1</span>
+                            <a href="#" class="page-numbers">2</a>
+                            <a href="#" class="page-numbers">3</a>
+                            <a href="#" class="page-numbers">Next</a> --}}
+                        </div>
+                    </div>
+                </div>
+                {{-- {{ $packages->links() }} --}}
+            </div>
 
 
             </div>

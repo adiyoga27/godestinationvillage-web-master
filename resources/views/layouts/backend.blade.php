@@ -192,9 +192,9 @@
             </a>
             <div class="collapse" id="ui-homestay">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/category') }}">Kategori </a></li>
-                    <li class="nav-item">  <a class="nav-link" href="{{ url('administrator/package') }}">Paket Home Stay </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/report/villages') }}">Pemesanan</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/category-homestay') }}">Kategori </a></li>
+                    <li class="nav-item">  <a class="nav-link" href="{{ url('administrator/homestay') }}">Paket Home Stay </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/order-homestay') }}">Pemesanan</a></li>
                     {{-- <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/order') }}">Laporan Home Stay</a></li> --}}
 
 
