@@ -171,6 +171,7 @@ class OrderHomeStayController extends Controller
     {
      
         $data = OrderHomestayService::sendHomeStay($request->except('_token'));
+        dd($data);
         return redirect('payment/homestay/' . $data->id);
     }
 
