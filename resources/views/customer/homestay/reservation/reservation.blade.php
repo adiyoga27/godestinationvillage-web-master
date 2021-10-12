@@ -4,15 +4,15 @@
     <div class="page-title-area ptb-100">
         <div class="container">
             <div class="page-title-content">
-                <h1>Booking Transaction</h1>
+                <h1>Reservation Transaction</h1>
                 <ul>
                     <li class="item"><a href="index.html">Home</a></li>
-                    <li class="item"><a href="blog-style-3.html"><i class='bx bx-chevrons-right'></i>Booking</a></li>
+                    <li class="item"><a href="blog-style-3.html"><i class='bx bx-chevrons-right'></i>Reservation</a></li>
                 </ul>
             </div>
         </div>
         <div class="bg-image">
-            <img src="assets/img/page-title-area/blog-style3.jpg" alt="Demo Image">
+            <img src="{{url('customer/img/page-title-area/blog-style3.jpg')}}" alt="Demo Image">
         </div>
     </div>
     <!-- end page title area -->
@@ -28,8 +28,11 @@
                         <div class="col-md-12">
                                 <div class="item-single mb-30">
                                     <div class="row">
-                                  
-                                        <div class="col-md-8">
+                                        <div class="col-md-4">
+                                                <img style="object-fit: cover !important; max-width:none !important" src="{{ url('storage/homestay/' . $orders->package->default_img) }}"
+                                                    alt="{{ $orders->homestay_name }}">
+                                        </div>
+                                        <div class="col-md-8" style="background-color: white;">
                                             <div class="content">
                                                 <h3>
                                                     <a class="active" style="color: red">{{ $orders->code }} </a>
@@ -49,7 +52,7 @@
                                                         <strong>
                                                             <h6><i class='bx bx-money'></i>&nbsp Price  </b></h6>
                                                         </strong>
-                                                        <div style="margin-left: 23pt;">Rp {{ $orders->total_payment }}
+                                                        <div style="margin-left: 23pt;">Rp {{  number_format($orders->total_payment,0,',','.') }}
                                                         </div>
                                                     </div>
                                                 </div>

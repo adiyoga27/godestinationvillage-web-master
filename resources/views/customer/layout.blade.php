@@ -16,8 +16,6 @@
     <meta property="og:updated_time" content="1440432930" />
 
 
-
-
     <!-- title -->
     <title>{{ $title ?? 'GODEVI - Authentic Village Experiences' }}</title>
     <!-- bootstrap CSS -->
@@ -406,9 +404,15 @@
                                                 aria-labelledby="dropdownMenuButton">
                                                 <div class="profile-nav">
                                                     <br>
+                                                    @if(Auth::user()->avatar == null)
+                                                    <center><img src="{{ url('customer/img/users.png') }}"
+                                                            alt="Avatar">
+                                                    </center>
+                                                    @else
                                                     <center><img src="{{ url('storage/users/' . Auth::user()->avatar) }}"
                                                             alt="Avatar">
                                                     </center>
+                                                    @endif
                                                     <p>{{ Auth::user()->name }}</p>
                                                 </div>
                                                 <hr>
@@ -426,14 +430,13 @@
 
                                                     <a class="dropdown-item"
                                                         href="{{ url('reservation-events/' . Auth::user()->email) }}"><i
-                                                            class="bx bx-calendar-edit"></i>&nbsp &nbsp Events</a>
+                                                            class="bx bx-star"></i>&nbsp &nbsp Events</a>
                                                 </div>
 
                                                 <div class="col-md-12">
 
                                                     <a class="dropdown-item"
-                                                        href="{{ url('reservation-homestay/' . Auth::user()->email) }}"><i
-                                                            class="bx bx-calendar-edit"></i>&nbsp &nbsp Homestay</a>
+                                                        href="{{ url('reservation-homestay/' . Auth::user()->email) }}"><i class='bx bx-building-house'></i>&nbsp &nbsp Homestay</a>
                                                 </div>
                                                 <hr>
                                                 <div class="col-md-12">

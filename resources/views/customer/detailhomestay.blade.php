@@ -156,11 +156,11 @@
                 <aside class="widget-area">
 
                     <div class="widget widget-article mb-30">
-                        <h3 class="sub-title">Recent Events</h3>
+                        <h3 class="sub-title">Recent Homestay</h3>
                         @foreach ($recent as $rec)
                         <article class="article-item">
                             <div class="image">
-                                <img src="{{ url('storage/events/' . $rec->default_img) }}" alt="Demo Image" />
+                                <img src="{{ url('storage/homestay/' . $rec->default_img) }}" alt="Demo Image" />
                             </div>
                             <div class="content">
 
@@ -168,9 +168,8 @@
                                     <a href="{{ url('events/' . $rec->id) }}">{{ $rec->name }}</a>
                                 </h3>
                                 <span class="location"><i class='bx bx-map'></i>{{ $rec->category->name }}</span><br>
-                                <span class="location"><i class='bx bx-map'></i>{{ $rec->location }}dasdasdasdasdas asdasd asdad</span>
-                                <br>
-                                <span class="location"><i class='bx bx-time'></i>{{ date('d-m-Y', strtotime($rec->date_event)) }}</span>
+                               
+                                <span class="location"><i class='bx bx-time'></i>{{ date('d M Y', strtotime($rec->date_event)) }}</span>
                             </div>
                         </article>
                         @endforeach

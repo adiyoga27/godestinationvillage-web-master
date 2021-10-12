@@ -10,15 +10,15 @@
     <div class="page-title-area ptb-100">
         <div class="container">
             <div class="page-title-content">
-                <h1>Book Form</h1>
+                <h1>Reservation Form</h1>
                 <ul>
                     <li class="item"><a href="index.html">Home</a></li>
-                    <li class="item"><a href="#"><i class='bx bx-chevrons-right'></i>Book Form</a></li>
+                    <li class="item"><a href="#"><i class='bx bx-chevrons-right'></i>Reservation Form</a></li>
                 </ul>
             </div>
         </div>
         <div class="bg-image">
-            <img src="customer/img/page-title-area/blog-style3.jpg" alt="Demo Image">
+            <img src="{{url('customer/img/page-title-area/bestoffer.jpg')}}" alt="Demo Image">
         </div>
     </div>
     <!-- end page title area -->
@@ -112,9 +112,8 @@
                                             </div>
 
                                             <div style="margin-top: 120px"></div>
-                                         <div style="display: none !important;">
                                             <div class="col-md-12  ftco-animate">
-                                                <h4>Book Information</h4>
+                                                <h4>Reservation Information</h4>
                                                 <hr>
                                             </div>
                                             <div class="col-md-6  ftco-animate">
@@ -126,30 +125,24 @@
                                             </div>
                                             <div class="col-md-6  ftco-animate">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Price / Pax <b>(Disc 5% For Member)</b></label>
+                                                    <label for="exampleInputEmail1">Price / Pax <b></b></label>
                                                     <div class="input-group">
                                                         <div class="btn btn-primary" style="border-radius:0; padding-top:10px;">Rp</div>
-                                                        @guest
-                                                            <input type="text" name="price" class="form-control price" id="exampleInputEmail1"
+                                                        <input  type="text" class="form-control" id="exampleInputEmail1"
+                                                                aria-describedby="emailHelp" placeholder="" value="{{ number_format($packages->price ,0)}}"
+                                                                readonly> 
+                                                        <input  type="hidden" name="price" class="form-control price" id="exampleInputEmail1"
                                                                 aria-describedby="emailHelp" placeholder="" value="{{ $packages->price }}"
                                                                 readonly>
 
                                                             <input type="hidden" name="totalprice" class="form-control totalprice"
                                                                 id="exampleInputEmail1" aria-describedby="emailHelp" placeholder=""
                                                                 value="{{ $packages->price }}" >
-                                                        @else
-                                                            <input type="text" name="price" class="form-control price" id="exampleInputEmail1"
-                                                                aria-describedby="emailHelp" placeholder=""
-                                                                value="{{ $packages->price - $packages->price * 0.05 }}" readonly>
-                                                            <input type="hidden" name="totalprice" class="form-control totalprice"
-                                                                id="exampleInputEmail1" aria-describedby="emailHelp" placeholder=""
-                                                                value="{{ $packages->price - $packages->price * 0.05 }}" >
-                                                        @endguest
+                                                       
                                                     </div>
                                                 </div>
                                             </div>
                                         
-                                    </div>
                                            
                                             <div class="col-md-12  ftco-animate">
                                                 <div class="form-group">
@@ -161,7 +154,7 @@
                                             </div>
                                             <div class="col-md-8  ftco-animate">
                                             </div>
-                                            @if($packages->paywish)
+                                            @if($packages->is_paywish)
                                             <div class="col-md-12  ftco-animate">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Pay as you wish</b></label>
@@ -179,7 +172,7 @@
                                             </div>
                                             @endif
                                             <div class="col-md-4  ftco-animate">
-                                            @if(!$packages->paywish)
+                                            @if(!$packages->is_paywish)
 
                                                 @guest
                                                     <h3 class="total">Total : Rp {{ number_format($packages->price,0,',','.') }}</h3>
@@ -210,16 +203,36 @@
                                 });
                             });
 
-                            //change
-                            $('.pax').keyup(function() {
-                                $('.totalprice').val($('.pax').val() * $('.price').val())
-                                $('.total').html("Total : Rp" + $('.pax').val() * $('.price').val())
-                            })
+                       //change
+    $('.pax').keyup(function() {
+        $('.totalprice').val($('.pax').val() * $('.price').val())
+        result = formatRupiah(($('.pax').val() * $('.price').val()).toString(), '')
+        $('.total').html("Total : Rp" + result)
+    })
 
-                            $('.pax').change(function() {
-                                $('.totalprice').val($('.pax').val() * $('.price').val())
-                                $('.total').html("Total : Rp" + $('.pax').val() * $('.price').val())
-                            })
+    $('.pax').change(function() {
+        $('.totalprice').val($('.pax').val() * $('.price').val())
+        result = formatRupiah(($('.pax').val() * $('.price').val()).toString(), '')
+        $('.total').html("Total : Rp " + result)
+    })
+
+    /* Fungsi formatRupiah */
+    function formatRupiah(angka, prefix) {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split = number_string.split(','),
+            sisa = split[0].length % 3,
+            rupiah = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+        // tambahkan titik jika yang di input sudah menjadi angka ribuan
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return prefix == undefined ? rupiah : (rupiah ? '' + rupiah : '');
+    }
 
                         </script>
 

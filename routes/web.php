@@ -130,6 +130,7 @@ Route::get('/payment/event/{id}', [PageController::class,'paymentEvent']);
 Route::get('/payment/event/do_cancel/{id}', [PageController::class,'cancelEvent']);
 
 Route::get('/payment/homestay/{id}', [PageController::class,'paymentHomestay']);
+Route::get('/payment/homestay/do_cancel/{id}', [PageController::class,'cancelHomeStay']);
 
 
 Route::get('/payment/{id}', [PageController::class,'payment']);
@@ -203,7 +204,7 @@ Route::group(['prefix' => 'administrator', 'middleware' => ['auth', 'role:admin|
 
 
 
-    // Route::resource('category-events', CategoryEventsController::class);
+    Route::resource('category-events', CategoryEventsController::class);
     Route::resource('events', EventsController::class);
     Route::resource('homestay', HomeStayController::class);
     Route::resource('category-homestay', CategoryHomeStayController::class);
