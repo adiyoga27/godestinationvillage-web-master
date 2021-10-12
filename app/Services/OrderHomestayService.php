@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Mail\SendEmail;
-use App\Models\homestay;
+use App\Models\Homestay;
 use App\Models\OrderHomestay;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -118,7 +118,7 @@ class OrderHomestayService
 
         try {
 
-            $homestay = homestay::where('id', $payload['idhomestay'])->first();
+            $homestay = Homestay::where('id', $payload['idhomestay'])->first();
             $status = 'pending';
             $price = $payload['price'];
             $disc = $homestay->disc;
