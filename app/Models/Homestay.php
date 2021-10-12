@@ -12,10 +12,12 @@ class Homestay extends Model
     use HasFactory;
     use LogsActivity;
     public $table = "homestay";
+    protected $dates = ['deleted_at'];
+
     public $primaryKey = "id";
     public $timestamps = false;
     protected static $logFillable = true;
-    protected static $ignoreChangedAttributes = ['update_at', 'created_at'];
+    protected static $ignoreChangedAttributes = ['update_at', 'created_at','deleted_at'];
     protected static $logName = 'homestay';
     protected static $logOnlyDirty = true;
     public $fillable = [

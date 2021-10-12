@@ -35,7 +35,7 @@
             </div>
             <div class="row">
                 @foreach ($village as $val)
-                    <div class="col-lg-4 col-md-6" onclick="location.href ='{{ url('village/' . $val->id) }}';">
+                    <div class="col-lg-4 col-md-6" onclick="location.href =''">
                         <div class="item-single mb-30">
                             <div class="image">
                                 <img src="{{ url('storage/users/' . $val->avatar) }}"
@@ -48,9 +48,9 @@
                                 <div class="title">
                                     <h3>
                                         <a
-                                            href="{{ url('village/' . $val->id) }}">{{ $val->village_detail->village_name }}</a>
+                                            href="{{ url('village/' . $val->id) }}">{{ $val->village_detail->village_name ?? ''}}</a>
                                     </h3>
-                                    <p>{{ $val->village_detail->village_address }}</p>
+                                    <p>{{ $val->village_detail->village_address ?? '' }} </p>
                                 </div>
 
                                 <div class="review">

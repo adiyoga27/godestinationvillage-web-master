@@ -48,7 +48,7 @@
                                             <a href="{{ url('blog/' . $val->id) }}">{{ $val->post_title }}</a>
                                         </h3>
 
-                                        {{ strip_tags(str_limit($val->post_content, $limit = 150, $end = '...')) }}
+                                        {{ strip_tags(\Illuminate\Support\Str::limit($val->post_content, $limit = 150, $end = '...')) }}
                                         <ul class="list">
                                             <li>
                                                 <div class="author">

@@ -151,7 +151,7 @@ class OrderHomestayService
            $data = array(
             'homestay_id' => $payload['idhomestay'],
             'user_id' => Auth::user()->id ?? null,
-            'code' => 'EVT-' . $code,
+            'code' => 'HST-' . $code,
             'homestay_name' => $payload['homestayname'],
             'customer_name' => $payload['customername'],
             'customer_address' => $payload['address'],

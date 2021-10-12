@@ -22,6 +22,7 @@ use App\Http\Controllers\Front\InvoiceController;
 use App\Http\Controllers\Front\OrderController;
 use App\Http\Controllers\Front\PageController;
 use App\Http\Controllers\Front\ReservationEventController;
+use App\Http\Controllers\Front\ReservationHomeStayController;
 use App\Http\Controllers\Front\SearchController;
 use App\Http\Controllers\MidtransController;
 use App\Http\Controllers\OrderEventsController;
@@ -87,9 +88,9 @@ Route::prefix('reservation-events')->group(function () {
 });
 
 Route::prefix('reservation-homestay')->group(function () {
-    Route::get('/{email}',[ReservationEventController::class, 'reservation']);
-    Route::get('/paid/{email}',[ReservationEventController::class, 'paid']);
-    Route::get('/cancel/{email}',[ReservationEventController::class, 'cancel']);
+    Route::get('/{email}',[ReservationHomeStayController::class, 'reservation']);
+    Route::get('/paid/{email}',[ReservationHomeStayController::class, 'paid']);
+    Route::get('/cancel/{email}',[ReservationHomeStayController::class, 'cancel']);
 });
 
 Route::prefix('booking')->group(function () {
@@ -180,8 +181,7 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::group(['prefix' => 'administrator', 'middleware' => ['auth', 'role:admin|village']], function () {
-
-    Route::resource('bank-account', BankAccountsController::class, ['names' => 'bank_account']);
+     Route::resource('bank-account', BankAccountsController::class, ['names' => 'bank_account']);
     Route::resource('blog', BlogController::class);
     Route::resource('category', CategoriesController::class);
     Route::resource('category-event', CategoryEventsController::class);

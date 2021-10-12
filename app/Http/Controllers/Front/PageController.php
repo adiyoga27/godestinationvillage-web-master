@@ -47,7 +47,6 @@ class PageController extends Controller
         $data['users'] = Storage::files('reviews');
         $data['reviews'] = Review::with('users')->get();
         $data['tag'] = Tag::all();
-        // dd($data['reviews']);
 
         return view('customer.home', $data);
     }

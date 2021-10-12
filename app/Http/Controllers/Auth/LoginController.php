@@ -44,10 +44,9 @@ class LoginController extends Controller
 
     protected function authenticated()
     {
-
         if (Auth::user()->role_id <= 2) {
             if(Auth::user()->is_active){
-                return redirect('/administrator/dashboard');
+                 return redirect('/administrator/dashboard');
             }  else {
                 return redirect('/administrator/login')->withErrors('Login Gagal, Akun tidak aktif!');
             }

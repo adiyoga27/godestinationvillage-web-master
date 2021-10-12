@@ -17,7 +17,7 @@ class HomeStayServices
         return Homestay::query()->select([
             DB::raw('@rownum  := @rownum  + 1 AS rownum'),
             DB::raw('homestay.*')
-        ]);
+        ])->where('homestay.deleted_at', NULL);
 
     }
 
@@ -56,11 +56,11 @@ class HomeStayServices
                     'facilities' => $payload['facilities_id'],
                     'additional_activities' => $payload['additional_activities_id'],
                     'additional_notes' => $payload['additional_notes_id'],
-
             );
 
 
             $result = HomestayTranslations::create($dataTranslate);
+            
             DB::commit();
             return $result;
         } catch (\Throwable $th) {

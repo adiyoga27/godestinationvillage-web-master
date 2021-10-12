@@ -21,11 +21,12 @@
     <!-- start top destination section -->
     <section id="top-destination" class="top-destination-section pt-100 pb-70 bg-light">
         <div class="container">
-            <!-- {{-- <div class="section-title">
-                <h2>Top Destinations</h2>
-                <p>Travel has helped us to understand the meaning of life and it has helped us become better people. Each
-                    time we travel, we see the world with new eyes.</p>
-            </div> --}} -->
+            @if(count($packages) == 0)
+                <div class="section-title">
+                    <h2>COMING SOON</h2>
+                    <p> Stay tuned for more details, <br>Instagram : <a href="https://www.instagram.com/godestinationvillage/">@godestinationvillage</a> <br> Phone : +62 82 236 803301</p>
+                </div>
+            @endif
             <div class="row">
                 @foreach ($packages as $pack)
 
@@ -60,6 +61,8 @@
                     </div>
 
                 @endforeach
+            @if(count($packages) > 0)
+
                 <div class="item col-md-12">
                     <div class="row">
                         <div class="col-lg-12 col-md-12">
@@ -83,6 +86,7 @@
                     </div>
                     {{-- {{ $packages->links() }} --}}
                 </div>
+                @endif
             </div>
         </div>
     </section>
