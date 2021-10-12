@@ -55,6 +55,9 @@
         <div class="text-center mt-4 font-weight-light">
           Don't have an account? <a href="register.html" class="text-primary">Create</a>
         </div> --}}
+        <div class="text-center mt-4 font-weight-light">
+          Don't have an account? <a href="{{url('user/register')}}" class="text-primary">Create</a>
+        </div> 
       </form>
     </div>
   </div>

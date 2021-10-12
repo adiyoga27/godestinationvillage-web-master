@@ -405,7 +405,7 @@ $data['recent'] = HomeStayServices::recent();
     }
     public function register()
     {
-        return view('customer/register');
+        return view('auth/register');
     }
     public function companyprofile()
     {
