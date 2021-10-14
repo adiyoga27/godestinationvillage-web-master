@@ -6,6 +6,7 @@ use App\Mail\SendEmail;
 use App\Models\Homestay;
 use App\Models\OrderHomestay;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
@@ -152,6 +153,7 @@ class OrderHomestayService
             'homestay_id' => $payload['idhomestay'],
             'user_id' => Auth::user()->id ?? null,
             'code' => 'HST-' . $code,
+            'uuid' => Crypt::encrypt($code),
             'homestay_name' => $payload['homestayname'],
             'customer_name' => $payload['customername'],
             'customer_address' => $payload['address'],

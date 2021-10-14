@@ -30,7 +30,7 @@ class OrderHomestay extends Model
     protected static $logOnlyDirty = true;
 
     public $fillable = [
-		'id', 'user_id', 'homestay_id', 'code', 'customer_name', 'customer_address', 'customer_phone', 'customer_email', 'homestay_name', 'homestay_price', 'homestay_discount', 'total_payment', 'payment_type', 'payment_date', 'payment_status', 'pax', 'special_note', 'snap_token',
+		'id', 'user_id', 'homestay_id', 'code', 'customer_name', 'customer_address', 'customer_phone', 'customer_email', 'homestay_name', 'homestay_price', 'homestay_discount', 'total_payment', 'payment_type', 'payment_date', 'payment_status', 'pax', 'special_note', 'snap_token','uuid'
     ];
 
     public function user()
@@ -52,7 +52,9 @@ class OrderHomestay extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->logOnly(['id', 'user_id', 'homestay_id', 'code', 'customer_name', 'customer_address', 'customer_phone', 'customer_email', 'homestay_name', 'homestay_price', 'homestay_discount', 'total_payment', 'payment_type', 'payment_date', 'payment_status', 'pax', 'special_note', 'snap_token']);
+        ->logOnly(['id', 'user_id', 'homestay_id', 'code', 'customer_name', 'customer_address', 'customer_phone', 'customer_email', 'homestay_name', 'homestay_price', 'homestay_discount', 'total_payment', 'payment_type', 'payment_date', 'payment_status', 'pax', 'special_note', 'snap_token',
+        'uuid'
+    ]);
         // Chain fluent methods for configuration options
     }
 }

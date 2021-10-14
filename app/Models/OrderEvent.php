@@ -51,7 +51,9 @@ class OrderEvent extends Model
         'pax',
         'special_note',
         'event_name',
-        'snap_token'
+        'snap_token',
+        'uuid'
+
     ];
 
     public function user()
@@ -94,7 +96,9 @@ class OrderEvent extends Model
         'payment_img',
         'pax',
         'event_name',
-        'special_note',]);
+        'special_note',
+        'uuid'
+    ]);
         // Chain fluent methods for configuration options
     }
 }

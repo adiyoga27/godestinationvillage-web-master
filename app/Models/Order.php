@@ -58,7 +58,8 @@ class Order extends Model
         'payment_img',
         'pax',
         'special_note',
-        'checkin_date'
+        'checkin_date',
+        'uuid'
     ];
 
     public function user()
@@ -109,7 +110,9 @@ class Order extends Model
         'payment_img',
         'pax',
         'special_note',
-        'checkin_date']);
+        'checkin_date',
+        'uuid'
+    ]);
         // Chain fluent methods for configuration options
     }
 }

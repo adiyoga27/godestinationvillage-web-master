@@ -39,6 +39,8 @@ class CreateOrdersTable extends Migration
             $table->integer('pax')->nullable();
             $table->text('special_note')->nullable();
             $table->date('checkin_date')->nullable();
+            $table->string('uuid')->nullable();
+
             $table->timestamps();
             $table->softDeletes();
         });

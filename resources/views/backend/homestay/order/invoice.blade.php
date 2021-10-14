@@ -73,63 +73,74 @@
                     <span><strong>Arrival Date :</strong> {{ date('d/m/Y', strtotime($order->checkin_date))}}</span><br /><br /><br />
                 </div>
                 <div class="col-sm-6">
-                    <h6 class="mb-3">Customer:</h6>
+                    <h6 class="mb-3"><strong>Customer:</strong></h6>
+
                     <div>
-                        <strong>{{$order->customer_name}}</strong>
+                        {{ $order->customer_name }}
                     </div>
-                    <div>{{$order->customer_address}}</div>
-                    <div>Email: {{$order->customer_email}}</div>
-                    <div>Phone : {{$order->customer_phone}}</div>
+                    <div>{{ $order->customer_address }}</div>
+                    <div>Email : {{ $order->customer_email }}</div>
+                    <div>Phone : {{ $order->customer_phone }}</div>
+
                 </div>
 
                 <div class="col-sm-6">
+                    <h6 class="mb-3"><strong>Company :</strong></h6>
                     <div>
-                        <strong>Godevi</strong>
+                        Godestiantion Village
                     </div>
                     <div>Jln Wr Supratman No. 302 Denpasar Timur, Bali</div>
-                    <div>Website: www.godevi.id | Email : hello@godevi.id </div>
+                    <div>Website: {{ env('APP_URL') }} </div>
+                    <div>Email : {{ env('APP_EMAIL') }} </div>
                     <div>Phone : 081938834675</div>
                     <br />
-                    <h6 class="mb-3">Payment:</h6>
+
+                </div>
+                <div class="col-sm-6">
+                    <br />
+                    <h6 class="mb-3"><strong>Special Note</strong></h6> {!! $order->special_note !!}
+                </div>
+                <div class="col-sm-6">
+                    <div style="margin-top: 10px"></div>
+                    <h6 class="mb-3"><strong>Payment:</strong></h6>
                     <div>
                         <strong>{{ str_replace('_', ' ', strtoupper($order->payment_type)) }}</strong> &nbsp;&nbsp;
-                        @if($order->payment_status == 'pending')
-                        <label class='badge badge-gradient-warning'>Pending</label>
+                        @if ($order->payment_status == 'pending')
+                            <label class='badge badge-gradient-warning'>Pending</label>
                         @elseif($order->payment_status == 'success')
-                        <label class='badge badge-gradient-success'>Success</label>
+                            <label class='badge badge-gradient-success'>Success</label>
                         @elseif($order->payment_status == 'cancel')
-                        <label class='badge badge-gradient-danger'>Declined</label>
+                            <label class='badge badge-gradient-danger'>Declined</label>
                         @endif
                     </div>
-                    @if($order->payment_type == 'bank_transfer')
-                    <div><strong>{{$order->bank_account->bank_name}} {{$order->bank_account->bank_acc_no}}</strong> a/n {{ $order->bank_account->bank_acc_name }}</div>
+                    @if ($order->payment_type == 'bank_transfer')
+                        <div><strong>{{ $order->bank_account->bank_name }}
+                                {{ $order->bank_account->bank_acc_no }}</strong> a/n
+                            {{ $order->bank_account->bank_acc_name }}</div>
                     @endif
                 </div>
 
-                <div class="col-sm-12">
-                    <br />
-                    <strong>Special Note</strong> : {!! $order->special_note !!}
-                </div>
+               
             </div>
 
             <div class="table-responsive-sm">
                 <table class="table table-striped">
                 
                     <tr>
-                        <td>Name of Event</td>
-                        <td>{{ $order->event_name }}</td>
+                        <td>Name of Homestay</td>
+                        <td>{{ $order->homestay_name }}</td>
                     </tr>
                     <tr>
                         <td>People(s)</td>
                         <td>{{ $order->pax }} Pax</td>
                     </tr>
                     <tr>
-                        <td>Price of Event</td>
-                        <td>{{ number_format($order->event_price, 2,'.',',') }}</td>
+                        <td>Price of Homestay</td>
+                        <td>{{ number_format($order->homestay_price, 2,'.',',') }}</td>
                     </tr>
                     <tr>
                         <td>Discount</td>
-                        <td> {{ number_format($order->event_discount, 2,'.',',') }}</td>
+                        <td> {{ number_format($order->homestay_discount, 2,'.',',') }}</td>
                     </tr>
                     <tr>
                         <td><strong>Payment Total</strong></td>
@@ -141,7 +152,7 @@
         </div>
     </div>
     <br />
-    @if($order->payment_type == 'bank_transfer')
+    {{-- @if($order->payment_type == 'bank_transfer')
     <div class="card">
         <div class="card-header">
             <strong>Evidence of transfer</strong>
@@ -170,7 +181,7 @@
             </div>
         </div>
     </div>
-    @endif
+    @endif --}}
 
 </div>
 

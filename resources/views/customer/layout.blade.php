@@ -244,6 +244,7 @@
     {{-- <div id="loading">
         <div class="loader"></div>
     </div> --}}
+    
     <!-- end preloader area -->
 
     <!-- start header area -->
@@ -644,6 +645,12 @@
     @yield('js')
     <!-- WhatsHelp.io widget -->
     <script type="text/javascript">
+$( "form" ).submit(function( event ) {
+                                $(".spinner-border").show();
+                                $("#text-book").hide();
+                                $("#pay-button").prop('disabled', true);
+
+                            });
         $(function($) {
             let url = window.location.href;
             $('.nav-link').each(function() {

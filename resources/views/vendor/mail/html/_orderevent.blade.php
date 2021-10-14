@@ -20,23 +20,29 @@ Order No. : <strong>{{ $data->code }}</strong><br />
 			Phone : 081938834675 <br /><br />
 			PAYMENT : <br>
 			<strong>{{ str_replace('_', ' ', strtoupper($data->payment_type)) }}</strong> <br />
-			@if($data->payment_status == 'pending') PENDING @elseif($data->payment_status == 'success') SUCCESS @elseif($data->payment_status == 'cancel') DECLINED @endif <br />
-			@if($data->payment_type == 'bank_transfer')<strong>{{$data->bank_account->bank_name}} {{$data->bank_account->bank_acc_no}}</strong> a/n {{ $data->bank_account->bank_acc_name }}@endif
-		</td>
+			   STATUS :<br>
+			   <strong>
+					@if($data->payment_status == 'pending') PENDING @elseif($data->payment_status == 'success') SUCCESS @elseif($data->payment_status == 'cancel') DECLINED @endif <br />
+		   </td>
 	</tr>
 </table>
 <br>
+
 {!! $data->special_note !!} <br /><br />
 
+
+
+
 @component('mail::table')
-	| Detail Transaksi |
-	| ------------------------- | ------------------------- |
-	|  Name of Event | {{ $data->event_name }} |
-	|  People(s)  | {{ $data->pax }} Pax |
-	|  Price of Event  | Rp {{ number_format($data->event_price, 2,'.',',') }} |
-	|  Discount  | Rp {{ number_format($data->event_discount, 2,'.',',') }} |
-	|  <strong>Payment Total</strong>  | <strong>Rp {{ number_format($data->total_payment, 2,'.',',') }}</strong> |
+	|                      |   Transaction Detail   |                      |
+	|----------------------|------------------------|----------------------|
+	|  Name of Event    |                        | {{ $data->event_name }} |
+	|  People(s)           |                        | {{ $data->pax }} Pax |
+	|  Price of Event   |                        | Rp {{ number_format($data->event_price, 2,'.',',') }} |
+	|  Discount            |                        | Rp {{ number_format($data->event_discount, 2,'.',',') }} |
+	| <strong>Payment Total</strong>  |                        | <strong>Rp {{ number_format($data->total_payment, 2,'.',',') }}</strong> |
 @endcomponent
+
 
 <br /> Click <a href="{{ url('invoice/'.$data->id) }}">this link</a> for download your 
 @if($data->payment_status == 'success')
@@ -44,4 +50,5 @@ Order No. : <strong>{{ $data->code }}</strong><br />
 @else($data->payment_status == 'pending')
 {{'invoice'}}
 @endif
+
 @endcomponent

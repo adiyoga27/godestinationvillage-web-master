@@ -304,7 +304,7 @@
                                 <img src="{{ url('storage/blogs/' . $rec->post_thumbnail) }}"
                                     style="height:100%; width:100%; 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             object-fit: cover; !important"
-                                    alt="Demo Image" />
+                                    alt="{{ $rec->post_title }}" />
                             </div>
                             <div class="content">
                                 <ul class="info-list">
@@ -321,8 +321,8 @@
                                 <ul class="list">
                                     <li>
                                         <div class="author">
-                                            <img src="{{ url('storage/users/' . $rec->user->avatar) }}" alt="Demo Image">
-                                            <span>By - {{ $rec->user->name }}</span>
+                                            <img src="{{ url('storage/users/' . $rec->user->avatar) }}" alt="{{$rec->user->name}}">
+                                            <span> {{ $rec->user->name }}</span>
                                         </div>
                                     </li>
                                     <li>
@@ -364,8 +364,8 @@
                                             <li>
                                                 <div class="author">
                                                     <img src="{{ url('storage/users/' . $rec->user->avatar) }}"
-                                                        alt="Demo Image">
-                                                    <span>By - {{ $rec->user->name }}</span>
+                                                        alt="{{$rec->user->avatar}}">
+                                                    <span>{{ $rec->user->name }}</span>
                                                 </div>
                                             </li>
                                         </ul>

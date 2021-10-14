@@ -28,7 +28,7 @@ class PageController extends Controller
     {
         $data['village'] = User::where('role_id', '2')->where('is_active', '1')->limit(8)->get();
         $data['packages'] = Package::orderBy('desc')->limit(8)->get();
-        $data['recent_blog'] = Blog::where('isPublished', '1')->latest('created_at')->limit(5)->get();
+        $data['recent_blog'] = Blog::with('user')->where('isPublished', '1')->latest('created_at')->limit(5)->get();
         $data['category'] = Category::All();
         $data['users'] = Storage::files('reviews');
         $data['reviews'] = Review::with('users')->get();

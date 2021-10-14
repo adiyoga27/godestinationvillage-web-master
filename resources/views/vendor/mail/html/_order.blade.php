@@ -29,16 +29,16 @@ Order No. : <strong>{{ $data->code }}</strong><br />
 {!! $data->special_note !!} <br /><br />
 
 @component('mail::table')
-	|  Name of Tourism Village  | {{ $data->village_name }} |
-	| ------------------------- | ------------------------- |
-	|  Name of Tour Package  | {{ $data->package_name }} |
-	|  People(s)  | {{ $data->pax }} Pax |
-	|  Price of Tour Package  | Rp {{ number_format($data->package_price, 2,'.',',') }} |
-	|  Discount  | Rp {{ number_format($data->package_discount, 2,'.',',') }} |
+	|  Name of Tourism Village  | {{ $data->village_name }}  |
+	| ------------------------- |: ------------------------- |
+	|  Name of Tour Package     | {{ $data->package_name }}  |
+	|  People(s)                | {{ $data->pax }} Pax       |
+	|  Price of Tour Package    | Rp {{ number_format($data->package_price, 2,'.',',') }} |
+	|  Discount                 | Rp {{ number_format($data->package_discount, 2,'.',',') }} |
 	|  <strong>Payment Total</strong>  | <strong>Rp {{ number_format($data->total_payment, 2,'.',',') }}</strong> |
 @endcomponent
 
-<br /> Click <a href="{{ url('invoice/'.$data->id) }}">this link</a> for download your 
+<br /> Click <a href="{{ url('invoice/'.$data->uuid) }}">this link</a> for download your 
 @if($data->payment_status == 'success')
 {{'voucher'}}
 @else($data->payment_status == 'pending')

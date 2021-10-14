@@ -40,7 +40,7 @@
                     <div class="item-single mb-30">
                         <div class="services-icon mb-3">
                             <a data-toggle="modal" data-target="#perencanaan">
-                                <img src="customer/img/etc/perencanaan.svg" class="resize" alt="">
+                                <img src="{{url('customer/img/etc/perencanaan.svg')}}" class="resize" alt="">
                         </div>
                         <p>@lang('Tourism Planning, Strategy and Revitalization')</p></a>
                     </div>
@@ -49,7 +49,7 @@
                     class="col-lg-4 col-md-6 aos-init aos-animate">
                     <div class="item-single mb-30">
                         <a data-toggle="modal" data-target="#projectmanagement">
-                            <div class="services-icon mb-3"><img src="customer/img/etc/kajian.svg" class="resize" alt="">
+                            <div class="services-icon mb-3"><img src="{{ url('customer/img/etc/kajian.svg')}}" class="resize" alt="">
                             </div>
                             <p class="px-3">@lang('Project Management')</p>
                         </a>
@@ -59,7 +59,7 @@
                     class="col-lg-4 col-md-6 m-auto aos-init aos-animate">
                     <div class="item-single mb-30">
                         <a data-toggle="modal" data-target="#pengembangansdm">
-                            <div class="services-icon mb-3"><img src="customer/img/etc/sdm.svg" class="resize" alt=""></div>
+                            <div class="services-icon mb-3"><img src="{{ url('customer/img/etc/sdm.svg')}}" class="resize" alt=""></div>
                             <p>@lang('Human Resources Development')</p>
                         </a>
                     </div>
@@ -68,7 +68,7 @@
                     class="col-lg-4 col-md-6 m-auto aos-init aos-animate">
                     <div class="item-single mb-30">
                         <a data-toggle="modal" data-target="#branding">
-                            <div class="services-icon mb-3"><img src="customer/img/etc/branding.svg" class="resize" alt="">
+                            <div class="services-icon mb-3"><img src="{{ url('customer/img/etc/branding.svg')}}" class="resize" alt="">
                             </div>
                             <p>@lang('Destination Branding and Digital Marketing')</p>
                         </a>
@@ -78,7 +78,7 @@
                     class="col-lg-4 col-md-6 m-auto aos-init aos-animate">
                     <div class="item-single mb-30">
                         <a data-toggle="modal" data-target="#tren">
-                            <div class="services-icon mb-3"><img src="customer/img/etc/tren.svg" class="resize" alt="">
+                            <div class="services-icon mb-3"><img src="{{ url('customer/img/etc/tren.svg')}}" class="resize" alt="">
                             </div>
                             <p>@lang('Consumer Trend and Tourism Insight')</p>
                         </a>
@@ -88,7 +88,7 @@
                     class="col-lg-4 col-md-6 m-auto aos-init aos-animate">
                     <div class="item-single mb-30">
                         <a data-toggle="modal" data-target="#internship">
-                            <div class="services-icon mb-3"><img src="customer/img/etc/internship.png" class="resize"
+                            <div class="services-icon mb-3"><img src="{{ url('customer/img/etc/internship.png')}}" class="resize"
                                     alt=""></div>
                             <p>@lang('Internship Program')</p>
                         </a>

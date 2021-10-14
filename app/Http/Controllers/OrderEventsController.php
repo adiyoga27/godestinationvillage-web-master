@@ -63,9 +63,9 @@ class OrderEventsController extends Controller
               ->addColumn(['data' => 'customer_phone', 'name' => 'customer_phone', 'title' => 'No. Telp' ])
               ->addColumn(['data' => 'customer_email', 'name' => 'customer_email', 'title' => 'Email' ])
               ->addColumn(['data' => 'event_name', 'name' => 'package_name', 'title' => 'Nama Paket' ])
-              ->addColumn(['data' => 'qty', 'name' => 'package_price', 'title' => 'Harga Paket' ])
-              ->addColumn(['data' => 'event_price', 'name' => 'package_price', 'title' => 'Harga Paket' ])
-              ->addColumn(['data' => 'event_discount', 'name' => 'pax', 'title' => 'Pax' ])
+              ->addColumn(['data' => 'pax', 'name' => 'package_price', 'title' => 'Pax' ])
+              ->addColumn(['data' => 'event_price', 'name' => 'event_price', 'title' => 'Harga Paket' ])
+              ->addColumn(['data' => 'event_discount', 'name' => 'pax', 'title' => 'disc' ])
               ->addColumn(['data' => 'total_payment', 'name' => 'total_payment', 'title' => 'Total' ])
               ->addColumn(['data' => 'payment_type', 'name' => 'payment_type', 'title' => 'Metode Pembayaran' ])
               ->addColumn(['data' => 'payment_status', 'name' => 'payment_status', 'title' => 'Status Pembayaran' ])
@@ -119,7 +119,6 @@ class OrderEventsController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**

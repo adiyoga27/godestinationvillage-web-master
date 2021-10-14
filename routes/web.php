@@ -47,6 +47,7 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 Auth::routes();
 Route::get('/invoice/{id}', [InvoiceController::class , 'index']);
 Route::get('/invoice-event/{id}', [InvoiceController::class , 'event']);
+Route::get('/invoice-homestay/{id}', [InvoiceController::class , 'homestay']);
 
 
 Route::get('locale/{locale}', function ($locale) {
@@ -195,12 +196,12 @@ Route::group(['prefix' => 'administrator', 'middleware' => ['auth', 'role:admin|
     ]);
 
     Route::resource('order-event', OrderEventsController::class, ['names' => 'order-event']);
-    // Route::get('order-event/{id}/change-status/{status}', [
-    //     'as' => 'order-event.change_status',
-    //     'uses' => 'OrderEventsController@change_status'
-    // ]);
+    Route::get('order-event/{id}/change-status/{status}', [
+        'as' => 'order-event.change_status',
+        'uses' => 'OrderEventsController@change_status'
+    ]);
 
-    Route::get('order-event/{id}/change-status/{status}', [OrderEventsController::class, 'change_status']);
+    // Route::get('order-event/{id}/change-status/{status}', [OrderEventsController::class, 'change_status']);
 
 
 

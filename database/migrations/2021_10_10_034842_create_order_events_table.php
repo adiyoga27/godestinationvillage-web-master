@@ -37,6 +37,7 @@ class CreateOrderEventsTable extends Migration
             $table->integer('pax')->nullable();
             $table->text('special_note')->nullable();
             $table->text('snap_token')->nullable();
+            $table->string('uuid')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

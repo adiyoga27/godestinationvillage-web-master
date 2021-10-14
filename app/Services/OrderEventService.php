@@ -6,6 +6,7 @@ use App\Mail\SendEmail;
 use App\Models\Event;
 use App\Models\OrderEvent;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
@@ -152,6 +153,7 @@ class OrderEventService
             'event_id' => $payload['idevent'],
             'user_id' => Auth::user()->id ?? null,
             'code' => 'EVT-' . $code,
+            'uuid' => Crypt::encrypt($code),
             'event_name' => $payload['eventname'],
             'customer_name' => $payload['customername'],
             'customer_address' => $payload['address'],
