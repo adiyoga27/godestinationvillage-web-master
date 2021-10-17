@@ -20,61 +20,6 @@ class OrderController extends Controller
     //
     public function send(Request $request)
     {
-        // $count =  Order::count();
-        // if ($count > 0) {
-        //     $code = Order::latest()->first()->id + 1;
-        // } else {
-        //     $code = 1;
-        // }
-        // $package_id = $request->idtour;
-        // $user_id = $request->customerid;
-        // $village_id = $request->village_id;
-        // $package_name = $request->tourname;
-        // $village_name = $request->village;
-        // $customer_name = $request->customername;
-        // $customer_address = $request->address;
-        // $customer_phone = $request->phone;
-        // $customer_email = $request->email;
-        // $package_price = $request->price;
-        // $package_discount = 0;
-        // $total_payment = $request->totalprice;
-        // $pax = $request->pax;
-        // $pickup = $request->pickup;
-        // $pickupname = $request->pickupname;
-        // $special_note = "Location - " . $pickup . " | Hotel Name - " . $pickupname . " | Special Note - " . $request->special_note;
-        // $checkin_date = $request->checkin_date;
-        // $proses = Order::create(
-        //     [
-        //         'package_id' => $package_id,
-        //         'user_id' => $user_id,
-        //         'village_id' => $village_id,
-        //         'code' => 'INV' . $code,
-        //         'package_name' => $package_name,
-        //         'village_name' => $village_name,
-        //         'customer_name' => $customer_name,
-        //         'customer_address' => $customer_address,
-        //         'customer_phone' => $customer_phone,
-        //         'customer_email' => $customer_email,
-        //         'package_price' => $package_price,
-        //         'package_discount' => $package_discount,
-        //         'total_payment' => $total_payment,
-        //         'pax' => $pax,
-        //         'special_note' => $special_note,
-        //         'checkin_date' => $checkin_date
-        //     ]
-        // );
-        // if ($proses) {
-        //     $order =  Order::latest()->first();
-        //     $subject = 'Godevi - Order ' . $order->id . ' - Confirmation';
-        //     $message = "This is your booking information, please make payment to confirm your reservation as following details(<a href='https://godestinationvillage.com/reservation/" . $customer_email . "'>Details Order</a>) : <br> Note: We will proces your booking after we receive your payment. This can take up to 24 hours to verify your payment. After the verification you will get the e-tour voucher through email";
-
-
-        //     $email = new OrderEmail($subject, $order, $message);
-        //     Mail::to([$order->customer_email, 'transgodevi@gmail.com'])->send($email);
-        //     return redirect('reservation/' . $customer_email);
-        // }
-
-
         $data = OrderService::sendEvent($request->except('_token'));
         return redirect('payment/package/' . $data->uuid);
     }
@@ -85,24 +30,18 @@ class OrderController extends Controller
     {
         $id = $request->input('editid');
         $proses = Order::find($id);
-
         $proses->payment_type = 'paypal';
         $proses->payment_date = date("Y-m-d H:i:s");
         $proses->payment_status = 'success';
-
-
         $proses->save();
         $return = $proses->customer_email;
         if ($proses) {
             $order =  Order::find($id);
             $subject = 'Godevi - Order ' . $order->id . ' - Sukses';
-            $message = "We have received your Order(<a href='https://godevi.id/reservation/" . $customer_email . "'>Details Order</a>) and Payment through paypal, here are your order details:";
-
-
+            $message = "We have received your Order(<a href='https://godevi.id/reservation/" . $proses->customer_email . "'>Details Order</a>) and Payment through paypal, here are your order details:";
             $email = new OrderEmail($subject, $order, $message);
             Mail::to($order->customer_email)->send($email);
             Mail::to('hello@godevi.id')->send($email);
-
             return $return;
         }
     }

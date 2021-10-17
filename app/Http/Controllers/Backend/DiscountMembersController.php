@@ -9,10 +9,10 @@ use App\Http\Requests\DiscountMember\DiscountMemberCreateRequest;
 use App\Http\Requests\DiscountMember\DiscountMemberUpdateRequest;
 
 use Yajra\DataTables\Html\Builder;
-use DataTables;
 
 use Session;
 use Auth;
+use Yajra\DataTables\Facades\DataTables;
 
 class DiscountMembersController extends Controller
 {
