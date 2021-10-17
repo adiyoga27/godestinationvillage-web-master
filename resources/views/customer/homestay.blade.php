@@ -46,7 +46,6 @@
                             </p>
                             <hr>
                             <ul class="list">
-                                <li><i class='bx bx-time'></i>{{ date('d M Y', strtotime($pack->date_event)) }}</li>
                                 <li><i class='bx bx-group'></i>1 People</li>
 
                                 @if(!$pack->paywish)

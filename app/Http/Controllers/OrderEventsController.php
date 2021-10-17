@@ -173,7 +173,7 @@ class OrderEventsController extends Controller
     {
      
         $data = OrderEventService::sendEvent($request->except('_token'));
-        return redirect('payment/event/' . $data->id);
+        return redirect('payment/event/' . $data->uuid);
     }
 
     public function showMidtrans($inv)

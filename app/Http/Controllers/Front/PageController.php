@@ -21,6 +21,7 @@ use App\Services\HomeStayServices;
 use App\Services\Midtrans\CreateSnapTokenService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 class PageController extends Controller
 {
@@ -200,6 +201,7 @@ $data['recent'] = HomeStayServices::recent();
     }
     public function reservation(Request $request)
     {
+
         $data['order'] = Order::where('payment_status', NULL)
             ->where('customer_email', $request->email)
             ->orderBy('id', 'desc')
@@ -213,14 +215,53 @@ $data['recent'] = HomeStayServices::recent();
     }
     public function payment($id)
     {
-        $data['order'] = Order::where('payment_type', NULL)
-            ->where('id', $id)
-            ->first();
-        $data['bank'] =  BankAccount::all();
-        return view('customer/payment/payment', $data);
+        // $data['order'] = Order::where('payment_type', NULL)
+        //     ->where('id', $id)
+        //     ->first();
+        // $data['bank'] =  BankAccount::all();
+        // return view('customer/payment/payment', $data);
+
+        $id = Crypt::decrypt($id);
+        $order = Order::where('id',$id)->first();
+
+        $request = [
+            'transaction_details' => [
+                'order_id' => $order['code'],
+                'gross_amount' => $order['total_payment'],
+            ],
+            'item_details' => [
+                [
+                    'id' => $order['package_id'],
+                    'price' => $order['package_price'],
+                    'quantity' => $order['pax'],
+                    'name' => $order['package_name'],
+                ],
+            ],
+            'customer_details' => [
+                'first_name' => $order['customer_name'],
+                'email' => $order['customer_email'],
+                'phone' => $order['customer_phone'],
+            ]
+        ];
+            // Jika snap token masih NULL, buat token snap dan simpan ke database
+            $snapToken = $order['snap_token'];
+            if($snapToken == null){
+                $midtrans = new CreateSnapTokenService($order);
+                $snapToken = $midtrans->getSnapToken($request);
+                Order::where('id', $id)->update([
+                    'snap_token' => $snapToken
+                ]);
+            }
+            $data['snapToken'] = $snapToken;
+            $data['order'] =  $order;
+            $data['redirectURISuccess'] =  url("reservation/paid/".$order['customer_email']);
+            $data['redirectURIError'] = url("reservation/".$order['customer_email']);
+        // dd($data);
+        return view('customer/payment/midtrans', $data);
     }
     public function paymentEvent($id)
     {
+        $id = Crypt::decrypt($id);
         $order = OrderEvent::where('id',$id)->first()->toArray();
         $request = [
             'transaction_details' => [
@@ -259,6 +300,7 @@ $data['recent'] = HomeStayServices::recent();
     }
     public function paymentHomestay($id)
     {
+        $id = Crypt::decrypt($id);
         $order = OrderHomestay::where('id',$id)->first()->toArray();
         $request = [
             'transaction_details' => [
@@ -313,6 +355,7 @@ $data['recent'] = HomeStayServices::recent();
     }
     public function cancel($id)
     {
+        $id = Crypt::decrypt($id);
         $proses = Order::find($id);
         $proses->payment_status = 'cancel';
         $proses->save();
@@ -322,6 +365,7 @@ $data['recent'] = HomeStayServices::recent();
     }
     public function cancelEvent($id)
     {
+        $id = Crypt::decrypt($id);
         $proses = OrderEvent::find($id);
         $proses->payment_status = 'cancel';
         $proses->save();
@@ -331,6 +375,8 @@ $data['recent'] = HomeStayServices::recent();
     }
     public function cancelHomeStay($id)
     {
+        $id = Crypt::decrypt($id);
+
         $proses = OrderHomestay::find($id);
         $proses->payment_status = 'cancel';
         $proses->save();

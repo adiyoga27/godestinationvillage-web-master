@@ -83,8 +83,8 @@
                                                 @endif
                                                 <hr>
                                                 <div class="float-right">
-                                                    <a href="{{url('payment/homestay/'.$orders->id)}}" class="btn btn-success btn-clear-cart" style="color">Pay Now</a>
-                                                    <a href="{{ url('payment/homestay/do_cancel') . '/' . $orders->id }}" class="btn btn-danger btn-update-cart">Cancel</a>
+                                                    <a href="{{url('payment/homestay/'.$orders->uuid)}}" class="btn btn-success btn-clear-cart" style="color">Pay Now</a>
+                                                    <a href="{{ url('payment/homestay/do_cancel') . '/' . $orders->uuid }}" class="btn btn-danger btn-update-cart">Cancel</a>
                                                 </div>
                                                 <br>
                                                 {{-- <div class="cta-btn">

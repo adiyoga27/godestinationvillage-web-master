@@ -172,7 +172,7 @@ class OrderHomeStayController extends Controller
      
         $data = OrderHomestayService::sendHomeStay($request->except('_token'));
         
-        return redirect('payment/homestay/' . $data->id);
+        return redirect('payment/homestay/' . $data->uuid);
     }
 
     public function showMidtrans($inv)

@@ -2,10 +2,13 @@
 
 namespace App\Services;
 
+use App\Mail\OrderEmail;
 use App\Models\Order;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 // use DB;
 use Illuminate\Support\Facades\DB as DB;
+use Illuminate\Support\Facades\Mail;
 
 class OrderService
 {
@@ -108,6 +111,76 @@ class OrderService
             $order->where(DB::raw('DATE(orders.created_at)'), '<=', date('Y-m-d', strtotime($end_date)));
 
         return $order->where('orders.deleted_at', NULL);
+    }
+
+
+    public static function sendEvent($payload)
+    {
+      
+
+        
+        try {
+            DB::beginTransaction();
+            $count =  Order::count();
+            if ($count > 0) {
+                $code = Order::latest()->first()->id + 1;
+            } else {
+                $code = 1;
+            }
+            $encryptcode = Crypt::encrypt($code);
+
+                $package_id = $payload['idtour'];
+                $user_id = $payload['customerid'];
+                $village_id = $payload['village_id'];
+                $package_name = $payload['tourname'];
+                $village_name = $payload['village'];
+                $customer_name = $payload['customername'];
+                $customer_address = $payload['address'];
+                $customer_phone = $payload['phone'];
+                $customer_email = $payload['email'];
+                $package_price = $payload['price'];
+                $package_discount = 0;
+                $total_payment = $payload['totalprice'];
+                $pax = $payload['pax'];
+                $pickup = $payload['pickup'];
+                $pickupname = $payload['pickupname'];
+                $special_note = "Location - " . $pickup . " | Hotel Name - " . $pickupname . " | Special Note - " . $payload['special_note'];
+                $checkin_date = $payload['checkin_date'];
+                $proses = Order::create(
+                    [
+                        'package_id' => $package_id,
+                        'user_id' => $user_id,
+                        'village_id' => $village_id,
+                        'code' => 'INV-' . $code,
+                        'package_name' => $package_name,
+                        'village_name' => $village_name,
+                        'customer_name' => $customer_name,
+                        'customer_address' => $customer_address,
+                        'customer_phone' => $customer_phone,
+                        'customer_email' => $customer_email,
+                        'package_price' => $package_price,
+                        'package_discount' => $package_discount,
+                        'total_payment' => $total_payment,
+                        'pax' => $pax,
+                        'special_note' => $special_note,
+                        'checkin_date' => $checkin_date,
+                        'uuid' => $encryptcode
+                    ]
+                );
+                    $order =  Order::latest()->first();
+                    $subject = 'Godevi - Order ' . $order->id . ' - Confirmation';
+                    $message = "This is your booking information, please make payment to confirm your reservation as following details(<a href='https://godestinationvillage.com/reservation/" . $customer_email . "'>Details Order</a>) : <br> Note: We will proces your booking after we receive your payment. This can take up to 24 hours to verify your payment. After the verification you will get the e-tour voucher through email";
+
+
+                    $email = new OrderEmail($subject, $order, $message);
+                    Mail::to([$order->customer_email, 'transgodevi@gmail.com'])->send($email);
+                    DB::commit();
+                    return $proses;
+            
+            } catch (\Throwable $th) {
+                DB::rollBack();
+                throw $th;
+            }
     }
 
 }

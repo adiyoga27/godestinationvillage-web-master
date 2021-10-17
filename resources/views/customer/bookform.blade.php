@@ -23,185 +23,217 @@
     </div>
     <!-- end page title area -->
     <section class="booking-section ptb-100 bg-light">
-        <form action="{{ url('booking/send') }}" method="post">
-            <section class="ftco-section ftco-degree-bg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12  ftco-animate">
-                            <h3>Tour Packages Information</h3>
-                            <hr>
-                        </div>
-                        <div class="col-md-6  ftco-animate">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Tour Packages Name</label>
-                                @csrf
-                                <input type="text" name="tourname" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="" value="{{ $packages->name }}" readonly>
-                                <input type="hidden" name="idtour" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="" value="{{ $packages->id }}" readonly>
-                                <input type="hidden" name="village_id" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="" value="{{ $packages->user->id }}" required
-                                    readonly>
-                            </div>
-                        </div>
-                        <div class="col-md-6  ftco-animate">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Type</label>
-                                <input type="text" name="type" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="" value="{{ $packages->category->name }}"
-                                    required readonly>
-                            </div>
-                        </div>
-                        <div class="col-md-6  ftco-animate">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Village</label>
-                                <input type="text" name="village" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder=""
-                                    value="{{ $packages->user->village_detail->village_name }}" required readonly>
-                            </div>
-                        </div>
-                        <div style="margin-top: 120px"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="booking-form">
+                        <form action="{{ url('booking/send') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="idtour" class="form-control" id="exampleInputEmail1"
+                                 placeholder="" value="{{ $packages->id }}" readonly>
+                            <input type="hidden" name="village_id" class="form-control" id="exampleInputEmail1"
+                                 placeholder="" value="{{ $packages->user->id }}" required
+                                readonly>
 
-                        <div class="col-md-12  ftco-animate">
-                            <h4>Customer Information</h4>
-                            <hr>
-                        </div>
-                        <?php ?>
-                        <div class="col-md-6  ftco-animate">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Customer Name</label>
-                                <input type="text" name="customername" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder=""
-                                    value="@isset($user){{ $user->name }}@endisset" required>
-
-                                    <input type="hidden" name="customerid" class="form-control" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp" placeholder=""
-                                        value="@isset($user){{ $user->id }}@endisset" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6  ftco-animate">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Email</label>
-                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1"
-                                            aria-describedby="emailHelp" placeholder=""
-                                            value="@isset($user){{ $user->email }}@endisset" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6  ftco-animate">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Address</label>
-                                            <input type="text" name="address" class="form-control" id="exampleInputEmail1"
-                                                aria-describedby="emailHelp" placeholder=""
-                                                value="@isset($user){{ $user->address }}@endisset" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6  ftco-animate">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Phone</label>
-                                                <input type="text" name="phone" class="form-control" id="exampleInputEmail1"
-                                                    aria-describedby="emailHelp" placeholder=""
-                                                    value="@isset($user){{ $user->phone }}@endisset" required>
+                    
+                                        <div class="content">
+                                            <h3>Tour Packages Information</h3>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Tour Packages Name</label>
+                                                    <input type="text" name="tourname" class="form-control"
+                                                         placeholder=""
+                                                        value="{{ $packages->name }}" readonly>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>Type</label>
+                                                    <input type="text" name="type" class="form-control"
+                                                         placeholder=""
+                                                        value="{{ $packages->category->name }}" required readonly>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>Village</label>
+                                                    <input type="text" name="village" class="form-control"
+                                                         placeholder=""
+                                                        value="{{ $packages->user->village_detail->village_name }}"
+                                                        required readonly>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6  ftco-animate">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Gender</label>
-                                                    <select name="gender" id="" class="form-control">
-                                                        <option value="">Male</option>
-                                                        <option value="">Female</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div style="margin-top: 120px"></div>
-                                            <div class="col-md-12  ftco-animate">
-                                                <h4>Book Information</h4>
+                                            <div style="margin-top: 30px"></div>
+                                            <div class="content">
+                                                <h3>Customer Information</h3>
                                                 <hr>
-                                            </div>
-                                            <div class="col-md-6  ftco-animate">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Pax</label>
-                                                    <input type="number" name="pax" min="1" value="1" class="form-control pax"
-                                                        id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6  ftco-animate">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Price / Pax <b>(Disc 5% For Member)</b></label>
-                                                    <div class="input-group">
-                                                        <div class="btn btn-primary" style="border-radius:0; padding-top:10px;">Rp</div>
-                                                        @guest
-                                                            <input type="text" name="price" class="form-control price" id="exampleInputEmail1"
-                                                                aria-describedby="emailHelp" placeholder="" value="{{ $packages->price }}"
-                                                                readonly>
+                                                <div class="payment-tabs">
+                                                    <div id="tab-credit-card" class="tab-pane active">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <label>Customer Name</label>
 
-                                                            <input type="hidden" name="totalprice" class="form-control totalprice"
-                                                                id="exampleInputEmail1" aria-describedby="emailHelp" placeholder=""
-                                                                value="{{ $packages->price }}" required>
-                                                        @else
-                                                            <input type="text" name="price" class="form-control price" id="exampleInputEmail1"
-                                                                aria-describedby="emailHelp" placeholder=""
-                                                                value="{{ $packages->price - $packages->price * 0.05 }}" readonly>
-                                                            <input type="hidden" name="totalprice" class="form-control totalprice"
-                                                                id="exampleInputEmail1" aria-describedby="emailHelp" placeholder=""
-                                                                value="{{ $packages->price - $packages->price * 0.05 }}" required>
-                                                        @endguest
+                                                                <div class="form-group">
+                                                                    <input type="text" name="customername"
+                                                                        class="form-control" id="exampleInputEmail1"
+                                                                         placeholder=""
+                                                                        value="@isset($user){{ $user->name }}@endisset"
+                                                                            required>
+
+                                                                        <input type="hidden" name="customerid"
+                                                                            class="form-control" id="exampleInputEmail1"
+                                                                             placeholder=""
+                                                                            value="@isset($user){{ $user->id }}@endisset"
+                                                                                required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                            <label>Email</label>
+                                                                        <div class="form-group">
+
+                                                                            <input type="email" name="email" class="form-control"
+                                                                                
+                                                                                placeholder=""
+                                                                                value="@isset($user){{ $user->email }}@endisset"
+                                                                                    required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                                <label>Address</label>
+                                                                            <div class="form-group">
+
+                                                                                <input type="text" name="address" class="form-control"
+                                                                                    
+                                                                                    placeholder=""
+                                                                                    value="@isset($user){{ $user->address }}@endisset"
+                                                                                        required>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                    <label>Phone</label>
+                                                                                <div class="form-group">
+
+                                                                                    <input type="text" name="phone" class="form-control"
+                                                                                        
+                                                                                        placeholder=""
+                                                                                        value="@isset($user){{ $user->phone }}@endisset"
+                                                                                            required>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                        <label>Gender</label>
+                                                                                        <div class="select-box">
+
+                                                                                        <select name="gender" id="" class="form-control">
+                                                                                            <option value="">Male</option>
+                                                                                            <option value="">Female</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            @if ($packages->category->name != 'Virtual Tour')
-                                            <div class="col-md-12  ftco-animate">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Date</label>
-                                                    <input type="datetime-local" name="checkin_date" class="form-control"
-                                                        aria-describedby="emailHelp" placeholder="" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6  ftco-animate">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Pick up location</label>
-                                                    <input type="datetime-local" name="pickup" class="form-control" aria-describedby="emailHelp"
-                                                        placeholder="" required>
-                                                </div>
-                                                <hr>
-                                            </div>
-                                            <div class="col-md-6  ftco-animate">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Hotel/Villa/Guest House Name</label>
-                                                    <input type="text" name="pickupname" class="form-control" id="exampleInputEmail1"
-                                                        aria-describedby="emailHelp" placeholder="" required>
-                                                </div>
-                                                <hr>
-                                            </div>
-                                            @endif
-                                           
-                                            <div class="col-md-12  ftco-animate">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Special Note</label>
-                                                    <input type="text" name="special_note" class="form-control" id="exampleInputEmail1"
-                                                        aria-describedby="emailHelp" placeholder="">
-                                                </div>
-                                                <hr>
-                                            </div>
-                                            <div class="col-md-8  ftco-animate">
-                                            </div>
-                                            <div class="col-md-4  ftco-animate">
-                                                @guest
-                                                    <h3 class="total">Total : Rp {{ number_format($packages->price,0,',','.') }}</h3>
-                                                @else
-                                                    <h3 class="total">Total : Rp {{ number_format($packages->price - $packages->price * 0.05,0,',','.') }} </h3>
-                                                @endguest
-                                                <p>*Please check your form, because the order cannot be changed</p>
-                                                <button class="btn btn-lg btn-warning btn-block">BOOK NOW</button>
-                                            </div>
+
+                                                                                <div style="margin-top: 30px"></div>
+                                                                                <div class="content">
+                                                                                    <h3>Book Information</h3>
+                                                                                    <hr>
+                                                                                    <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                        <label>Pax</label>
+                                                                                    <div class="form-group">
+
+                                                                                        <input type="number" name="pax" min="1" value="1"
+                                                                                            class="form-control pax" id="exampleInputEmail1"
+                                                                                             placeholder=""
+                                                                                            required>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                        <label>Price / Pax <b></b></label>
+                                                                                      
+                                                                                        <div class="input-group mb-3">
+                                                                                            <div class="input-group-prepend">
+                                                                                                <span style="background-color: #fd5056; color:white" class="input-group-text"
+                                                                                                    id="basic-addon1">Rp</span>
+                                                                                            </div>
+                                                                                         
+                                                                                                <input type="text" name="price"
+                                                                                                    class="form-control price"
+                                                                                                    id="exampleInputEmail1"
+                                                                                                     placeholder=""
+                                                                                                    value="{{ $packages->price }}" readonly>
+
+                                                                                                <input type="hidden" name="totalprice"
+                                                                                                    class="form-control totalprice"
+                                                                                                    id="exampleInputEmail1"
+                                                                                                     placeholder=""
+                                                                                                    value="{{ $packages->price }}" required>
+                                                                                           
+                                                                                    </div>
+                                                                                </div>
+                                                                                @if ($packages->category->name != 'Virtual Tour')
+                                                                                    <div class="col-md-12">
+                                                                                            <label>Date</label>
+                                                                                        <div class="form-group">
+
+                                                                                            <input type="datetime-local" name="checkin_date"
+                                                                                                class="form-control"
+                                                                                                 placeholder=""
+                                                                                                required>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                            <label>Pick up location</label>
+                                                                                        <div class="form-group">
+
+                                                                                            <input type="text" name="pickup"
+                                                                                                class="form-control"
+                                                                                                 placeholder=""
+                                                                                                required>
+                                                                                        </div>
+                                                                                        <hr>
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                            <label>Hotel/Villa/Guest House Name</label>
+                                                                                        <div class="form-group">
+
+                                                                                            <input type="text" name="pickupname"
+                                                                                                class="form-control" id="exampleInputEmail1"
+                                                                                                 placeholder=""
+                                                                                                required>
+                                                                                        </div>
+                                                                                        <hr>
+                                                                                    </div>
+                                                                                @endif
+
+                                                                                <div class="col-md-12">
+                                                                                        <label>Special Note</label>
+                                                                                    <div class="form-group">
+
+                                                                                        <textarea placeholder="Input your note transaction" style="height: 100pt" name="special_note" class="form-control"
+                                                        placeholder=""></textarea>
+                                                                                    </div>
+                                                                                    <hr>
+                                                                                </div>
+                                                                                <div class="col-md-8">
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                 
+                                                                                        <h3 class="total">Total : Rp
+                                                                                            {{ number_format($packages->price, 0, ',', '.') }}</h3>
+                                                                                   
+                                                                                    <p>*Please check your form, because the order cannot be
+                                                                                        changed</p>
+                                                                                    <button class="btn btn-lg btn-warning btn-block">BOOK
+                                                                                        NOW</button>
+                                                                                </div>
 
 
 
 
-                                        </div>
-                                    </div>
-                                </section>
-                            </form>
+                                                                            </div>
+                                                                        </div>
+                                                </section>
+                                            </form>
                         </section>
                     @endsection()
 
@@ -212,17 +244,31 @@
                                     dateFormat: 'yy-mm-dd'
                                 });
                             });
-
-                            //change
-                            $('.pax').keyup(function() {
+  //change
+  $('.pax').keyup(function() {
                                 $('.totalprice').val($('.pax').val() * $('.price').val())
-                                $('.total').html("Total : Rp" + $('.pax').val() * $('.price').val())
+                                result = formatRupiah(($('.pax').val() * $('.price').val()).toString(), '')
+                                $('.total').html("Total : Rp" + result)
                             })
-
                             $('.pax').change(function() {
                                 $('.totalprice').val($('.pax').val() * $('.price').val())
-                                $('.total').html("Total : Rp" + $('.pax').val() * $('.price').val())
+                                result = formatRupiah(($('.pax').val() * $('.price').val()).toString(), '')
+                                $('.total').html("Total : Rp " + result)
                             })
-
+                            /* Fungsi formatRupiah */
+                            function formatRupiah(angka, prefix) {
+                                var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                                    split = number_string.split(','),
+                                    sisa = split[0].length % 3,
+                                    rupiah = split[0].substr(0, sisa),
+                                    ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+                                // tambahkan titik jika yang di input sudah menjadi angka ribuan
+                                if (ribuan) {
+                                    separator = sisa ? '.' : '';
+                                    rupiah += separator + ribuan.join('.');
+                                }
+                                rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+                                return prefix == undefined ? rupiah : (rupiah ? '' + rupiah : '');
+                            }
                         </script>
                     @endsection

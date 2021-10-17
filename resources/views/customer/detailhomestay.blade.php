@@ -103,13 +103,13 @@
                                 <div class="col-lg-6 col-md-6">
                                     <div class="content-list">
                                         <i class='bx bx-map-alt'></i>
-                                        <h6><span>Check IN :</span> <br>{{ $packages->check_in_time }} WITA </h6>
+                                        <h6><span>Check IN :</span> <br>{{ $packages->check_in_time }} </h6>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="content-list">
                                         <i class='bx bx-map-alt'></i>
-                                        <h6><span>Check Out :</span> <br>{{ $packages->check_out_time }} WITA </h6>
+                                        <h6><span>Check Out :</span> <br>{{ $packages->check_out_time }} </h6>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">

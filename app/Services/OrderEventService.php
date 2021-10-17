@@ -149,11 +149,12 @@ class OrderEventService
                 $code = 1;
             }
     
+            $encryptcode = Crypt::encrypt($code);
            $data = array(
             'event_id' => $payload['idevent'],
             'user_id' => Auth::user()->id ?? null,
             'code' => 'EVT-' . $code,
-            'uuid' => Crypt::encrypt($code),
+            'uuid' => $encryptcode,
             'event_name' => $payload['eventname'],
             'customer_name' => $payload['customername'],
             'customer_address' => $payload['address'],
@@ -170,12 +171,13 @@ class OrderEventService
             'special_note' => $payload['special_note'],
            );
     
+           $link = url('payment/event/'.$encryptcode);
           
             $proses = OrderEvent::create($data);
             if ($proses) {
                 $order =  OrderEvent::latest()->first();
-                $subject = 'Godevi - Order ' . $order->id . ' - Confirmation';
-                $message = "This is your booking confirmation. Thank you for joining our event. <br><br>Note: The information regarding of the event will be sent through email / phone number registered on this booking. For further information do not hesitate to contact us via <br>Whatsapp : 081933158949 <br>Instagram : <a href='https://www.instagram.com/godestinationvillage/'> @godestinationvillage</a>";
+                $subject = 'Godevi - Order Events ' . $order->code . ' - Confirmation';
+                $message = "This is your booking confirmation. Thank you for joining our event. <br><br> Klik this <a href='$link'>link</a> for payment<br><br><br>Note: The information regarding of the event will be sent through email / phone number registered on this booking. For further information do not hesitate to contact us via <br>Whatsapp : 081933158949 <br>Instagram : <a href='https://www.instagram.com/godestinationvillage/'> @godestinationvillage</a>";
     
     
                 $email = new SendEmail($subject, $message);

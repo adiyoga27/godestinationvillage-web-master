@@ -51,6 +51,7 @@ class LoginController extends Controller
                 return redirect('/administrator/login')->withErrors('Login Gagal, Akun tidak aktif!');
             }
         } 
+        
         return redirect('/');
     }
 }
