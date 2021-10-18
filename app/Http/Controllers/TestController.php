@@ -8,6 +8,7 @@ use App\Mail\OrderHomestayEmail;
 use App\Models\Order;
 use App\Models\OrderEvent;
 use App\Models\OrderHomestay;
+use App\Services\InstagramServices;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
@@ -41,5 +42,9 @@ class TestController extends Controller
 
         $email = new OrderEmail($subject, $order, $message);
         return $email;
+    }
+    public function postinstagram()
+    {
+        return InstagramServices::randomPost();
     }
 }

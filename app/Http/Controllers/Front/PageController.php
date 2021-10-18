@@ -18,6 +18,7 @@ use App\PackageTranslations;
 use App\Models\Tag;
 use App\Services\EventService;
 use App\Services\HomeStayServices;
+use App\Services\InstagramServices;
 use App\Services\Midtrans\CreateSnapTokenService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -136,6 +137,7 @@ class PageController extends Controller
     }
     public function detailtour($id)
     {
+        $data['instagram'] = InstagramServices::randomPost();
         $data['images'] = Storage::files('packages/' . $id);
             $data['packages'] = Package::with(['village', 'category','translate'])->where('id', $id)
             ->first();
@@ -152,6 +154,8 @@ class PageController extends Controller
     }
     public function detailEvent($id)
     {
+        $data['instagram'] = InstagramServices::randomPost();
+
         $data['images'] = Storage::files('events/' . $id);
             $data['packages'] = Event::with(['category','translate'])->where('id', $id)
             ->first();
@@ -167,6 +171,8 @@ $data['recent'] = EventService::recent();
     }
     public function detailHomestay($id)
     {
+        $data['instagram'] = InstagramServices::randomPost();
+
         $data['images'] = Storage::files('homestay/' . $id);
             $data['packages'] = Homestay::with(['category','translate'])->where('id', $id)
             ->first();
