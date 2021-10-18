@@ -53,7 +53,7 @@
                                             <li>
                                                 <div class="author">
                                                     <img src="{{ url('storage/users/' . $val->user->avatar) }}"
-                                                        alt="{{ $val->post_title }}">
+                                                        alt="{{ $val->user->name }}">
                                                     <span>By - {{ $val->user->name }}</span>
                                                 </div>
                                             </li>

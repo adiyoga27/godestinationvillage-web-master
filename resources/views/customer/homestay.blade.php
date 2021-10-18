@@ -38,7 +38,7 @@
                         <div class="content">
                             <span class="location"><i class='bx bx-map'></i>{{ $pack->location }}</span>
                             <h3>
-                                <a href="{{ url('homestay/' . $pack->id) }}">{{ $pack->name }}</a>
+                                <a href="{{ url('homestay/' . $pack->slug) }}">{{ $pack->name }}</a>
                             </h3>
 
                             <p>
