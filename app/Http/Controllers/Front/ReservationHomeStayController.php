@@ -7,8 +7,7 @@ class ReservationHomeStayController extends Controller
 {
     public function reservation(Request $request)
     {
-        $data['order'] = OrderHomestay::where('payment_status', 'pending')
-            ->with('package')
+        $data['order'] = OrderHomestay::with('package')->where('payment_status', 'pending')
             ->where('customer_email', $request->email)
             ->orderBy('id', 'desc')
             ->paginate(10);

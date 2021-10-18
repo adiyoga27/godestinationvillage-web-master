@@ -117,7 +117,6 @@ class OrderEventService
     public static function sendEvent($payload)
     {
         DB::beginTransaction();
-
         try {
 
             $event = Event::where('id', $payload['idevent'])->first();
@@ -128,14 +127,6 @@ class OrderEventService
             $disc = $eventPackage->disc > 0 ? ($eventPackage->price - $eventPackage->disc) : 0;
             $total_payment = ($price - $disc) * $payload['pax'];
 
-            
-            // $price = $payload['price'];
-            // $disc = $event->disc;
-            // $total_payment = $price * $payload['pax'];
-            // if($disc > 0){
-            //     $total_payment = $disc * $payload['pax'];
-            // }
-      
             if($event->is_free){
                 $status = 'success';
                 $price = '0';
@@ -157,28 +148,26 @@ class OrderEventService
                 $code = 1;
             }
     
-           
-
             $encryptcode = (string) Str::uuid();
-           $data = array(
-            'event_id' => $payload['idevent'],
-            'user_id' => Auth::user()->id ?? null,
-            'code' => 'EVT-' . $code,
-            'uuid' => $encryptcode,
-            'event_name' => $payload['eventname'],
-            'customer_name' => $payload['customername'],
-            'customer_address' => $payload['address'],
-            'customer_phone' => $payload['phone'],
-            'customer_email' => $payload['email'],
-            'event_price' => $price,
-            'event_discount' => $disc,
-            'total_payment' => $total_payment,
-            'payment_type' => 'bank_transfer',
-            'payment_status' => $status,
-            'bank_account_id' => 7,
-            'payment_date' => $datenow,
-            'pax' => $payload['pax'],
-            'special_note' => $payload['special_note'],
+            $data = array(
+                'event_id' => $payload['idevent'],
+                'user_id' => Auth::user()->id ?? null,
+                'code' => 'EVT-' . $code,
+                'uuid' => $encryptcode,
+                'event_name' => $payload['eventname'],
+                'customer_name' => $payload['customername'],
+                'customer_address' => $payload['address'],
+                'customer_phone' => $payload['phone'],
+                'customer_email' => $payload['email'],
+                'event_price' => $price,
+                'event_discount' => $disc,
+                'total_payment' => $total_payment,
+                'payment_type' => 'bank_transfer',
+                'payment_status' => $status,
+                'bank_account_id' => 7,
+                'payment_date' => $datenow,
+                'pax' => $payload['pax'],
+                'special_note' => $payload['special_note'],
            );
     
            $link = url('payment/event/'.$encryptcode);

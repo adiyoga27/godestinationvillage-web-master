@@ -254,7 +254,7 @@ $data['recent'] = HomeStayServices::recent();
             if($snapToken == null){
                 $midtrans = new CreateSnapTokenService($order);
                 $snapToken = $midtrans->getSnapToken($request);
-                Order::where('id', $id)->update([
+                Order::where('uuid', $id)->update([
                     'snap_token' => $snapToken
                 ]);
             }
@@ -292,7 +292,7 @@ $data['recent'] = HomeStayServices::recent();
             if($snapToken == null){
                 $midtrans = new CreateSnapTokenService($order);
                 $snapToken = $midtrans->getSnapToken($request);
-                OrderEvent::where('id', $id)->update([
+                OrderEvent::where('uuid', $id)->update([
                     'snap_token' => $snapToken
                 ]);
             }
@@ -330,7 +330,7 @@ $data['recent'] = HomeStayServices::recent();
             if($snapToken == null){
                 $midtrans = new CreateSnapTokenService($order);
                 $snapToken = $midtrans->getSnapToken($request);
-                OrderHomestay::where('id', $id)->update([
+                OrderHomestay::where('uuid', $id)->update([
                     'snap_token' => $snapToken
                 ]);
             }
