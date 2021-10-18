@@ -26,6 +26,7 @@ use App\Http\Controllers\Front\SearchController;
 use App\Http\Controllers\MidtransController;
 use App\Http\Controllers\OrderEventsController;
 use App\Http\Controllers\OrderHomeStayController;
+use App\Http\Controllers\TestController;
 use App\Models\CategoryHomestay;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -42,6 +43,8 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('test', [TestController::class, 'checkEmail']);
+
 Auth::routes();
 Route::get('/invoice/{id}', [InvoiceController::class , 'index']);
 Route::get('/invoice-event/{id}', [InvoiceController::class , 'event']);
@@ -99,7 +102,6 @@ Route::prefix('homestay')->group(function () {
     Route::get('/{id}', [PageController::class,'detailHomestay']);
 });
 Route::get('/category-package/{id}', [PageController::class,'categorypackage']);
-Route::get('test/{inv}', [OrderEventsController::class, 'showMidtrans']);
 
 //check update
 Route::get('/payment/event/{id}', [PageController::class,'paymentEvent']);
