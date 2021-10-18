@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Mail\OrderEmail;
 use App\Models\Order;
+use App\Models\Package;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 // use DB;
@@ -127,6 +128,12 @@ class OrderService
             } else {
                 $code = 1;
             }
+
+            $package = Package::where('id', $payload['idtour'])->first();
+            $price_package = $package->price;
+            $disc_package = $package->disc > 0 ? ($package->price - $package->disc) : 0;
+            $total_package = ($price_package - $disc_package) * $payload['pax'];
+
             $encryptcode = Crypt::encrypt($code);
 
                 $package_id = $payload['idtour'];
@@ -138,9 +145,9 @@ class OrderService
                 $customer_address = $payload['address'];
                 $customer_phone = $payload['phone'];
                 $customer_email = $payload['email'];
-                $package_price = $payload['price'];
-                $package_discount = 0;
-                $total_payment = $payload['totalprice'];
+                // $package_price = $payload['price'];
+                // $package_discount = 0;
+                // $total_payment = $payload['totalprice'];
                 $pax = $payload['pax'];
                 $pickup = $payload['pickup'];
                 $pickupname = $payload['pickupname'];
@@ -158,9 +165,10 @@ class OrderService
                         'customer_address' => $customer_address,
                         'customer_phone' => $customer_phone,
                         'customer_email' => $customer_email,
-                        'package_price' => $package_price,
-                        'package_discount' => $package_discount,
-                        'total_payment' => $total_payment,
+                        'package_price' => $price_package,
+                        'package_discount' => $disc_package,
+                        'total_payment' => $total_package,
+                        'payment_status' => 'pending',
                         'pax' => $pax,
                         'special_note' => $special_note,
                         'checkin_date' => $checkin_date,

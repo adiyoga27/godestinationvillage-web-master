@@ -148,7 +148,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-md-6">
-                                                                                        <label>Price / Pax <b></b></label>
+                                                                                        <label>Price / Pax <b>@if($packages->disc > 0) ( Diskon )@endif</b></label>
                                                                                       
                                                                                         <div class="input-group mb-3">
                                                                                             <div class="input-group-prepend">
@@ -160,13 +160,13 @@
                                                                                                     class="form-control price"
                                                                                                     id="exampleInputEmail1"
                                                                                                      placeholder=""
-                                                                                                    value="{{ $packages->price }}" readonly>
+                                                                                                    value="{{ $packages->disc > 0 ? $packages->disc : $packages->price }}" readonly>
 
                                                                                                 <input type="hidden" name="totalprice"
                                                                                                     class="form-control totalprice"
                                                                                                     id="exampleInputEmail1"
                                                                                                      placeholder=""
-                                                                                                    value="{{ $packages->price }}" required>
+                                                                                                    value="{{ $packages->disc > 0 ? $packages->disc : $packages->price }}" required>
                                                                                            
                                                                                     </div>
                                                                                 </div>
@@ -187,7 +187,7 @@
 
                                                                                             <input type="text" name="pickup"
                                                                                                 class="form-control"
-                                                                                                 placeholder=""
+                                                                                                 placeholder="Input your location pick up"
                                                                                                 required>
                                                                                         </div>
                                                                                         <hr>
@@ -198,7 +198,7 @@
 
                                                                                             <input type="text" name="pickupname"
                                                                                                 class="form-control" id="exampleInputEmail1"
-                                                                                                 placeholder=""
+                                                                                                 placeholder="Input your place name"
                                                                                                 required>
                                                                                         </div>
                                                                                         <hr>
@@ -219,7 +219,7 @@
                                                                                 <div class="col-md-4">
                                                                                  
                                                                                         <h3 class="total">Total : Rp
-                                                                                            {{ number_format($packages->price, 0, ',', '.') }}</h3>
+                                                                                            {{ $packages->disc > 0 ? number_format($packages->disc,0, ',', '.') : number_format($packages->price,0, ',', '.')}}</h3>
                                                                                    
                                                                                     <p>*Please check your form, because the order cannot be
                                                                                         changed</p>

@@ -47,7 +47,7 @@ class Package extends Model
         'term',
         'duration', 'preparation',
         'price',
-        'price_disc',
+        'disc',
         'is_active',
         'default_img'
     ];

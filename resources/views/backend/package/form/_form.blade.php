@@ -60,6 +60,19 @@
         </div>
 
         <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Diskon Paket (*)</label>
+            <div class="col-sm-9">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-danger text-white">IDR</span>
+                    </div>
+                    {!! Form::number('disc', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                </div>
+                {!! $errors->first('disc', '<p class="text-danger">:message</p>') !!}
+            </div>
+        </div>
+
+        <div class="form-group row">
             <label class="col-sm-3 col-form-label">Default Image</label>
             <div class="col-sm-9">
                 <input type="file" name="default_img" class="form-control">

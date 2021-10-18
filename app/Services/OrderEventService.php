@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Mail\OrderEventEmail;
 use App\Mail\SendEmail;
 use App\Models\Event;
 use App\Models\OrderEvent;
@@ -121,12 +122,19 @@ class OrderEventService
 
             $event = Event::where('id', $payload['idevent'])->first();
             $status = 'pending';
-            $price = $payload['price'];
-            $disc = $event->disc;
-            $total_payment = $price * $payload['pax'];
-            if($disc > 0){
-                $total_payment = $disc * $payload['pax'];
-            }
+
+            $eventPackage = Event::where('id', $payload['idevent'])->first();
+            $price = $eventPackage->price;
+            $disc = $eventPackage->disc > 0 ? ($eventPackage->price - $eventPackage->disc) : 0;
+            $total_payment = ($price - $disc) * $payload['pax'];
+
+            
+            // $price = $payload['price'];
+            // $disc = $event->disc;
+            // $total_payment = $price * $payload['pax'];
+            // if($disc > 0){
+            //     $total_payment = $disc * $payload['pax'];
+            // }
       
             if($event->is_free){
                 $status = 'success';
@@ -135,8 +143,8 @@ class OrderEventService
                 $disc = '0';
             }
             if($event->is_paywish){
-                $price = '0';
-                $total_payment = '0';
+                $price = $payload['pax'];
+                $total_payment = $payload['pax'] * $payload['price'];
                 $disc = '0';
             }
     
@@ -149,6 +157,8 @@ class OrderEventService
                 $code = 1;
             }
     
+           
+
             $encryptcode = Crypt::encrypt($code);
            $data = array(
             'event_id' => $payload['idevent'],
@@ -180,7 +190,7 @@ class OrderEventService
                 $message = "This is your booking confirmation. Thank you for joining our event. <br><br> Klik this <a href='$link'>link</a> for payment<br><br><br>Note: The information regarding of the event will be sent through email / phone number registered on this booking. For further information do not hesitate to contact us via <br>Whatsapp : 081933158949 <br>Instagram : <a href='https://www.instagram.com/godestinationvillage/'> @godestinationvillage</a>";
     
     
-                $email = new SendEmail($subject, $message);
+                $email = new OrderEventEmail($subject, $order, $message);
                 Mail::to([$order->customer_email, 'hello@godestinationvillage.com'])->send($email);
                  DB::commit();
 

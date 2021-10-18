@@ -14,13 +14,13 @@ Order No. : <strong>{{ $data->code }}</strong><br />
 			Phone: {{$data->customer_phone}} <br />
 		</td>
 		<td style="width: 50%; padding: 0px; vertical-align: top;">
-			<strong>Godevi</strong><br />
+			<strong>Godestiantion Village</strong><br />
 			Jln Wr Supratman No. 302 Denpasar Timur, Bali <br />
-			Website: www.godevi.id | Email : hello@godevi.id <br />
-			Phone : 081938834675 <br /><br />
-			PAYMENT : <br>
-			<strong>{{ str_replace('_', ' ', strtoupper($data->payment_type)) }}</strong> <br />
-			   STATUS :<br>
+			Website: {{env('APP_URL')}} | Email : {{env('APP_EMAIL')}} <br />
+			Phone : {{env('APP_PHONE')}}  <br /><br />
+			@if ($data->payment_type != null) PAYMENT : <br>
+			 <strong>{{ str_replace('_', ' ', strtoupper($data->payment_type)) }}</strong> <br /> @endif
+			STATUS :<br>
 			   <strong>
 					@if($data->payment_status == 'pending') PENDING @elseif($data->payment_status == 'success') SUCCESS @elseif($data->payment_status == 'cancel') DECLINED @endif <br />
 		   </td>
@@ -44,7 +44,7 @@ Order No. : <strong>{{ $data->code }}</strong><br />
 @endcomponent
 
 
-<br /> Click <a href="{{ url('invoice/'.$data->id) }}">this link</a> for download your 
+<br /> Click <a href="{{ url('invoice-event/'.$data->uuid) }}">this link</a> for download your 
 @if($data->payment_status == 'success')
 {{'voucher'}}
 @else($data->payment_status == 'pending')

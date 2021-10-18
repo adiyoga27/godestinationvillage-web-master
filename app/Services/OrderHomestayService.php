@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Mail\OrderHomestayEmail;
 use App\Mail\SendEmail;
 use App\Models\Homestay;
 use App\Models\OrderHomestay;
@@ -179,7 +180,7 @@ class OrderHomestayService
                 $message = "This is your booking confirmation. Thank you for joining our homestay. <br> Klik this <a href='$link'>link</a> for payment<br><br>Note: The information regarding of the homestay will be sent through email / phone number registered on this booking. For further information do not hesitate to contact us via <br>Whatsapp : 081933158949 <br>Instagram : <a href='https://www.instagram.com/godestinationvillage/'> @godestinationvillage</a>";
     
     
-                $email = new SendEmail($subject, $message);
+                $email = new OrderHomestayEmail($subject, $order, $message);
                 Mail::to([$order->customer_email, 'hello@godestinationvillage.com'])->send($email);
                  DB::commit();
 

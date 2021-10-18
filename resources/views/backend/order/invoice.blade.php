@@ -84,10 +84,10 @@
 
                 <div class="col-sm-6">
                     <div>
-                        <strong>Godevi</strong>
+                        <strong>Godestiantionvillage</strong>
                     </div>
                     <div>Jln Wr Supratman No. 302 Denpasar Timur, Bali</div>
-                    <div>Website: www.godevi.id | Email : hello@godevi.id </div>
+                    <div>Website: {{ env('APP_URL') }}  | Email : {{ env('APP_EMAIL') }} </div>
                     <div>Phone : 081938834675</div>
                     <br />
                     <h6 class="mb-3">Payment:</h6>
@@ -126,17 +126,18 @@
                         <td>People(s)</td>
                         <td>{{ $order->pax }} Pax</td>
                     </tr>
-                    <tr>
-                        <td>Price of Tour Package</td>
-                        <td>{{ number_format($order->package_currency, 2,'.',',') }} {{ number_format($order->package_price, 2,'.',',') }}</td>
-                    </tr>
+                    
                     <tr>
                         <td>Discount</td>
-                        <td>{{ number_format($order->package_currency, 2,'.',',') }} {{ number_format($order->package_discount, 2,'.',',') }}</td>
+                        <td>@if($order->package_disc>0){{ number_format(($order->package_price - $order->package_disc), 2,'.',',')}} @else 0 @endif</td>
+                    </tr>
+                    <tr>
+                        <td>Price of Tour Package</td>
+                        <td>{{ number_format($order->package_price, 2,'.',',') }}</td>
                     </tr>
                     <tr>
                         <td><strong>Payment Total</strong></td>
-                        <td><strong>{{ number_format($order->package_currency, 2,'.',',') }} {{ number_format($order->total_payment, 2,'.',',') }}</strong></td>
+                        <td><strong>{{ number_format($order->total_payment, 2,'.',',') }}</strong></td>
                     </tr>
                 </table>
             </div>
@@ -144,7 +145,7 @@
         </div>
     </div>
     <br />
-    @if($order->payment_type == 'bank_transfer')
+    {{-- @if($order->payment_type == 'bank_transfer')
     <div class="card">
         <div class="card-header">
             <strong>Evidence of transfer</strong>
@@ -173,7 +174,7 @@
             </div>
         </div>
     </div>
-    @endif
+    @endif --}}
 
 </div>
 

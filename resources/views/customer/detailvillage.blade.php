@@ -137,34 +137,33 @@
                                                     <i class='bx bx-group'></i>1 Person
                                                 </span>
                                                 <br>
-                                                {{-- <div class="review">
-                                                    <div class="review">
-                                                        <i class="bx bxs-star"></i>
-                                                        <i class="bx bxs-star"></i>
-                                                        <i class="bx bxs-star"></i>
-                                                        <i class="bx bxs-star"></i>
-                                                        <i class=""></i>
-                                                    </div>
-                                                </div> --}}
+                        
                                                 <p>
                                                     {{ strip_tags(substr($pack->desc, 0, 100)) }}.
                                                 </p>
                                                 
                                                 <hr>
-                        
-                                                    <li style="list-style:none; list-style-type:none; list-style-image:none;">
+                                                <ul class="list">
+                                                    <li>
                                                         Price :
                                                     </li>
                                            
-                                                    <li style="list-style:none; list-style-type:none; list-style-image:none;"> 
+                                                    <li> 
+                                                        @if($pack->disc > 0)
+                                                       
+                                                        <font style="font-size: 13pt; color: red">&nbsp Rp {{ number_format($pack->disc,0,',','.') }}</font>
+/
+
                                                         <a class="coret">
-                                                            <font style="font-size: 12pt">Rp
-                                                                {{ number_format($pack->price + $pack->price * 0.6,0,',','.') }} /
+                                                            <font style="font-size: 10pt; color: rgb(0, 0, 0)">
+                                                                {{ number_format($pack->price,0,',','.') }} 
                                                             </font>
                                                         </a>
-
-                                                        <font style="color: black">&nbsp Rp. {{ number_format($pack->price,0,',','.') }}</font>
+                                                        @else 
+                                                         <font style="font-size: 13pt;color: red">&nbsp Rp {{ number_format($pack->price,0,',','.') }}</font>
+                                                        @endif
                                                     </li>
+                                                </ul>
                                          
                                             </div>
                                             <div class="spacer"></div>

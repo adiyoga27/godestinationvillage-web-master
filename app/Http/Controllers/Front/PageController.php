@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 class PageController extends Controller
 {
     public function index()
@@ -222,8 +223,8 @@ $data['recent'] = HomeStayServices::recent();
         // return view('customer/payment/payment', $data);
 
         $id = Crypt::decrypt($id);
-        $order = Order::where('id',$id)->first();
-
+        $order = Order::where('id',$id)->first()->toArray();
+        $price = ($order['package_price']-$order['package_discount']);
         $request = [
             'transaction_details' => [
                 'order_id' => $order['code'],
@@ -232,9 +233,9 @@ $data['recent'] = HomeStayServices::recent();
             'item_details' => [
                 [
                     'id' => $order['package_id'],
-                    'price' => $order['package_price'],
+                    'price' => $price,
                     'quantity' => $order['pax'],
-                    'name' => $order['package_name'],
+                    'name' => Str::limit($order['package_name'],30),
                 ],
             ],
             'customer_details' => [

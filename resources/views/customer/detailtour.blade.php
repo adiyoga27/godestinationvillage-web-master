@@ -26,57 +26,22 @@
     <!-- start destination details section -->
     <section class="destinations-details-section pt-100 pb-70">
         <div class="container">
-            {{-- <div class="section-title">
-                <h2 style="font-size: 25pt !important">{{ $packages->name }}</h2>
-                <p style="float:left;"><a class="coret">${{ $packages->price + $packages->price * 0.6 }}.00 / Person
-                    </a>&nbsp;
-                <h4 style="float:left;color:#333;"> ${{ $packages->price }} / Person</h4>
-                </p>
-                <div class="review mb-15">
-                    <i class="bx bxs-star"></i>
-                    <i class="bx bxs-star"></i>
-                    <i class="bx bxs-star"></i>
-                    <i class="bx bxs-star"></i>
-                    <i class="bx bxs-star"></i>
-                    <span>25 Review</span>
-                </div>
-
-                <br>
-
-                <br>
-                <hr>
-            </div> --}}
-
             <div class="title">
                 <h2 style="font-size: 25pt !important">{{ $packages->name }}</h2>
             </div>
-            @if ($packages->category->name != 'Virtual Tour')
-                
-       
-            {{-- <div class="review">
-                <i class="bx bxs-star"></i>
-                <i class="bx bxs-star"></i>
-                <i class="bx bxs-star"></i>
-                <i class="bx bxs-star"></i>
-                <i class="bx bxs-star"></i>
-                <span>19 Review</span>
-                <br>
-
-            </div> --}}
-            @endif
+        
             <div class="review">
-                @if ($packages->category->name != 'Virtual Tour')
-                <a class="coret">
-                    <font style="font-size: 12pt">Rp {{ number_format($packages->price + $packages->price * 0.6,0,',','.') }} / Person</font>
-                </a> &nbsp
+                @if($packages->disc > 0)
+               
+                    <font style="font-size: 18pt; color:red">  {{'Rp '.number_format($packages->disc,0,',','.')}} </font>
+                    <a class="coret">
+                        <font style="font-size: 12pt; color:black !important">Rp {{ number_format($packages->price ,0,',','.') }} </font>
+                    </a> &nbsp
+                @else
+                    <font style="font-size: 18pt">  {{  'Rp '.number_format($packages->price,0,',','.') }} </font>
+              
                 @endif
-                @if (!$packages->paywish)
-                <font style="font-size: 18pt">  {{ $packages->price > 0 ? 'Rp '.number_format($packages->price,0,',','.').' / Person' : 'Gratis' }} </font>
-@else
-<font style="font-size: 18pt">  {{ $packages->price > 0 ? 'Rp '.number_format($packages->price,0,',','.').' / Person' : 'Pay as you wish' }} </font>
-
-@endif
-
+                / Person
             </div>
 
             <hr>
@@ -168,23 +133,38 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <div class="content-list">
+                                            <i class='bx bx-group'></i>
+                                            <h6><span>Category :</span> <br>{{ $packages->category->name }} 
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="content-list">
                                             <i class='bx bx-map-alt'></i>
-                                            <h6><span>Durasi :</span> <br>{{ $packages->category->name }} /
-                                                {{ strip_tags($packages->duration) }} </h6>
+                                            <h6><span>Durasi :</span> <br>
+                                                @if($packages->duration ) {{ strip_tags($packages->duration) }} @endif
+                                            
+                                            </h6>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <div class="content-list">
                                             <i class='bx bx-user'></i>
                                             <h6><span>Per Person :</span><br>
-                                                @if ($packages->category->name != 'Virtual Tour')
-                                                <a class="coret">
-                                                    Rp. {{ $packages->price + $packages->price * 0.6 }} /
+                                                @if($packages->disc > 0)
+                                              
+                                                <font style="font-size:13pt ; color: red">Rp.
+                                                    {{ number_format($packages->disc,0,',','.') }}</font>
 
-                                                </a>
+                                                    <a style="color: black !important; font-size:10pt !important" class="coret">
+                                                        Rp. {{ $packages->price }} 
+    
+                                                    </a>
+                                                @else 
+                                                    <font style="important; color: red">Rp.
+                                                        {{ number_format($packages->price,0,',','.') }}</font>
                                                 @endif
-                                                <font style="color: black">Rp.
-                                                    {{ number_format($packages->price,0,',','.') }}</font>
+                                           
                                             </h6>
                                         </div>
                                     </div>

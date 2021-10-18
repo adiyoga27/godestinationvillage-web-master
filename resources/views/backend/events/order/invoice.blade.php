@@ -116,11 +116,11 @@
                                 <label class='badge badge-gradient-danger'>Declined</label>
                             @endif
                         </div>
-                        @if ($order->payment_type == 'bank_transfer')
+                        {{-- @if ($order->payment_type == 'bank_transfer')
                             <div><strong>{{ $order->bank_account->bank_name }}
                                     {{ $order->bank_account->bank_acc_no }}</strong> a/n
                                 {{ $order->bank_account->bank_acc_name }}</div>
-                        @endif
+                        @endif --}}
                     </div>
 
                     <div class="col-sm-12">
@@ -140,13 +140,14 @@
                             <td>People(s)</td>
                             <td>{{ $order->pax }} Pax</td>
                         </tr>
-                        <tr>
-                            <td>Price of Event</td>
-                            <td>{{ number_format($order->event_price, 2, '.', ',') }}</td>
-                        </tr>
+                        
                         <tr>
                             <td>Discount</td>
                             <td> {{ number_format($order->event_discount, 2, '.', ',') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Price of Event</td>
+                            <td>{{ number_format($order->event_price, 2, '.', ',') }}</td>
                         </tr>
                         <tr>
                             <td><strong>Payment Total</strong></td>

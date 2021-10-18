@@ -14,14 +14,16 @@ Order No. : <strong>{{ $data->code }}</strong><br />
 			Phone: {{$data->customer_phone}} <br />
 		</td>
 		<td style="width: 50%; padding: 0px; vertical-align: top;">
-			<strong>Godevi</strong><br />
+			<strong>Godestiantion Village</strong><br />
 			Jln Wr Supratman No. 302 Denpasar Timur, Bali <br />
-			Website: www.godevi.id | Email : hello@godevi.id <br />
-			Phone : 081938834675 <br /><br />
-			PAYMENT : <br>
-			<strong>{{ str_replace('_', ' ', strtoupper($data->payment_type)) }}</strong> <br />
-			@if($data->payment_status == 'pending') PENDING @elseif($data->payment_status == 'success') SUCCESS @elseif($data->payment_status == 'cancel') DECLINED @endif <br />
-			@if($data->payment_type == 'bank_transfer')<strong>{{$data->bank_account->bank_name}} {{$data->bank_account->bank_acc_no}}</strong> a/n {{ $data->bank_account->bank_acc_name }}@endif
+			Website: {{env('APP_URL')}}| Email : {{env('APP_EMAIL')}} <br />
+			Phone : {{env('APP_PHONE')}} <br /><br />
+			@if ($data->payment_type != null) PAYMENT : <br>
+			<strong>{{ str_replace('_', ' ', strtoupper($data->payment_type)) }}</strong> <br /> @endif
+			   STATUS :<br>
+				<strong>
+					@if($data->payment_status == 'pending') PENDING @elseif($data->payment_status == 'success') SUCCESS @elseif($data->payment_status == 'cancel') DECLINED @endif <br />
+				</strong>
 		</td>
 	</tr>
 </table>
@@ -30,7 +32,7 @@ Order No. : <strong>{{ $data->code }}</strong><br />
 
 @component('mail::table')
 	|  Name of Tourism Village  | {{ $data->village_name }}  |
-	| ------------------------- |: ------------------------- |
+	| ------------------------- |--------------------------- |
 	|  Name of Tour Package     | {{ $data->package_name }}  |
 	|  People(s)                | {{ $data->pax }} Pax       |
 	|  Price of Tour Package    | Rp {{ number_format($data->package_price, 2,'.',',') }} |
@@ -41,7 +43,7 @@ Order No. : <strong>{{ $data->code }}</strong><br />
 <br /> Click <a href="{{ url('invoice/'.$data->uuid) }}">this link</a> for download your 
 @if($data->payment_status == 'success')
 {{'voucher'}}
-@else($data->payment_status == 'pending')
+@else
 {{'invoice'}}
 @endif
 @endcomponent
