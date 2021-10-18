@@ -45,7 +45,7 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('test', [TestController::class, 'postinstagram']);
+Route::get('test', [TestController::class, 'loopSlug']);
 Route::get('test-homestay', [TestController::class, 'checkHomeStay']);
 Route::get('test-package', [TestController::class, 'checkPackage']);
 
@@ -69,11 +69,11 @@ Route::get('/user/login', [LoginController::class, 'authenticated']);
 Route::get('/company-profile', [PageController::class, 'companyprofile']);
 Route::prefix('village')->group(function () {
     Route::get('/',[PageController::class, 'village']);
-    Route::get('/{id}',[PageController::class, 'detailVillage']);
+    Route::get('/{slug}',[PageController::class, 'detailVillage']);
 });
 Route::prefix('tour-packages')->group(function () {
     Route::get('/',[PageController::class, 'tourpackages']);
-    Route::get('/{id}',[PageController::class, 'detailtour']);
+    Route::get('/{slug}',[PageController::class, 'detailtour']);
 });
 Route::prefix('reservation')->group(function () {
     Route::get('/{email}',[PageController::class, 'reservation']);
@@ -102,7 +102,7 @@ Route::get('/contact', [PageController::class, 'contact']);
 // Route::get('/homestay', [PageController::class, 'homeStay']);
 Route::prefix('events')->group(function () {
     Route::get('/', [PageController::class,'eventsGodevi']);
-    Route::get('/{id}', [PageController::class,'detailEvent']);
+    Route::get('/{slug}', [PageController::class,'detailEvent']);
 });
 Route::prefix('homestay')->group(function () {
     Route::get('/', [PageController::class,'homeStay']);
@@ -129,7 +129,7 @@ Route::get('/term', [PageController::class,'term']);
 Route::get('/our-team', [PageController::class,'ourteam']);
 Route::get('/our-partner', [PageController::class,'ourpartner']);
 Route::get('/blog', [PageController::class,'blog']);
-Route::get('/blog/{id}', [PageController::class,'detailpost']);
+Route::get('/blog/{slug}', [PageController::class,'detailpost']);
 Route::get('/blog-mobile', [PageController::class,'blog_mobile']);
 Route::get('/blog-mobile/{id}', [PageController::class,'detailpost_mobile']);
 Route::get('/search', [SearchController::class,'searchHome']);
