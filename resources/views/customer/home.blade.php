@@ -313,7 +313,7 @@
                                     <li><i class='bx bx-tag'></i>{{ $rec->post_tags }}</li>
                                 </ul>
                                 <h3>
-                                    <a href="{{ url('blog/' . $rec->id) }}">{{ $rec->post_title }}</a>
+                                    <a href="{{ url('blog/' . $rec->slug) }}">{{ $rec->post_title }}</a>
                                 </h3>
                                 <p>
                                     {!! \Illuminate\Support\Str::words($rec->post_content, 25, '...') !!}
@@ -326,7 +326,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <a href="{{ url('blog/' . $rec->id) }}" class="btn-primary">Read More</a>
+                                        <a href="{{ url('blog/' . $rec->slug) }}" class="btn-primary">Read More</a>
                                     </li>
                                 </ul>
                             </div>
@@ -358,7 +358,7 @@
                                             <li><i class='bx bx-tag'></i>{{ $rec->post_tags }}</li>
                                         </ul>
                                         <h3>
-                                            <a href="{{ url('blog/' . $rec->id) }}">{{ $rec->post_title }}</a>
+                                            <a href="{{ url('blog/' . $rec->slug) }}">{{ $rec->post_title }}</a>
                                         </h3>
                                         <ul class="list">
                                             <li>
