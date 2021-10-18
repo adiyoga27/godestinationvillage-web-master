@@ -129,7 +129,7 @@ class PageController extends Controller
     }
     public function categorypackage($id)
     {
-        $data['packages'] = Package::select('packages.name', 'categories.name as cat_name', 'village_details.village_name as vil_name', 'price', 'packages.desc', 'packages.id', 'default_img')
+        $data['packages'] = Package::select('packages.name', 'categories.name as cat_name', 'village_details.village_name as vil_name', 'price', 'packages.desc', 'packages.id', 'default_img', 'packages.slug')
             ->join('users', 'users.id', 'user_id')
             ->join('village_details', 'users.id', 'village_details.user_id')
             ->join('categories', 'categories.id', 'category_id')

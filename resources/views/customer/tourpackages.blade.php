@@ -37,7 +37,7 @@
                             <div class="content">
                                 <span class="location"><i class='bx bx-map'></i>{{ $pack->vil_name }}</span>
                                 <h3>
-                                    <a href="{{ url('tour-packages/' . $pack->id) }}">{{ $pack->name }}</a>
+                                    <a href="{{ url('tour-packages/' . $pack->slug) }}">{{ $pack->name }}</a>
                                 </h3>
 
                                 <p>

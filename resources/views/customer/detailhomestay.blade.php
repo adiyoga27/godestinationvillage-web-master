@@ -165,7 +165,7 @@
                             <div class="content">
 
                                 <h3>
-                                    <a href="{{ url('events/' . $rec->id) }}">{{ $rec->name }}</a>
+                                    <a href="{{ url('homestay/' . $rec->slug) }}">{{ $rec->name }}</a>
                                 </h3>
                                 <span class="location"><i class='bx bx-map'></i>{{ $rec->category->name }}</span><br>
                                
