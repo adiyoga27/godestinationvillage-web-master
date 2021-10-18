@@ -130,7 +130,7 @@
 
                                                 <h3>
                                                     <a
-                                                        href="{{ url('tour-packages/' . $pack->id) }}">{{ $pack->name }}</a>
+                                                        href="{{ url('tour-packages/' . $pack->slug) }}">{{ $pack->name }}</a>
                                                 </h3>
                                                 <span class="location"><i
                                                         class='bx bx-time'></i>{{ $pack->category->name ?? '' }}&nbsp

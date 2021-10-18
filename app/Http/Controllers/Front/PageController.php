@@ -16,6 +16,7 @@ use App\Models\OrderEvent;
 use App\Models\OrderHomestay;
 use App\PackageTranslations;
 use App\Models\Tag;
+use App\Models\VillageDetail;
 use App\Services\EventService;
 use App\Services\HomeStayServices;
 use App\Services\InstagramServices;
@@ -52,8 +53,10 @@ class PageController extends Controller
         $data['recent'] = Blog::where('isPublished', '1')->latest('created_at')->limit(4)->get();
         return view('customer/blog', $data);
     }
-    public function detailpost($id)
+    public function detailpost($slug)
     {
+        $id = Blog::where('slug', $slug)->first()->id;
+
         $data['blog'] = Blog::where('isPublished', '1')->find($id);
         if (!$data['blog']) {
             return abort(404);
@@ -78,11 +81,13 @@ class PageController extends Controller
     }
     public function village()
     {
-        $data['village'] = User::where('role_id', '2')->where('is_active', '1')->paginate(30);
+        $data['village'] = User::with(['village_detail'])->where('role_id', '2')->where('is_active', '1')->paginate(30);
         return view('customer/village', $data);
     }
-    public function detailVillage($id)
+    public function detailVillage($slug)
     {
+        $id = VillageDetail::where('slug', $slug)->first()->user_id;
+
         $data['village'] = User::where('users.id', $id)
             ->where('is_active', '1')
             ->where('role_id', '2')
@@ -135,8 +140,10 @@ class PageController extends Controller
         // dd($data);
         return view('customer/tourpackages', $data);
     }
-    public function detailtour($id)
+    public function detailtour($slug)
     {
+        $id = Package::where('slug', $slug)->first()->id;
+
         $data['instagram'] = InstagramServices::randomPost();
         $data['images'] = Storage::files('packages/' . $id);
             $data['packages'] = Package::with(['village', 'category','translate'])->where('id', $id)
@@ -152,25 +159,28 @@ class PageController extends Controller
         // var_dump($data['packages']);
         return view('customer/detailtour', $data);
     }
-    public function detailEvent($id)
+    public function detailEvent($slug)
     {
-        $data['instagram'] = InstagramServices::randomPost();
 
+        $id = Event::where('slug', $slug)->first()->id;
+        $data['instagram'] = InstagramServices::randomPost();
         $data['images'] = Storage::files('events/' . $id);
             $data['packages'] = Event::with(['category','translate'])->where('id', $id)
             ->first();
         if (!$data['packages']) {
             return abort(404);
         }
-$data['recent'] = EventService::recent();
+        $data['recent'] = EventService::recent();
         // $data['recent'] = Package::select('packages.id', 'packages.name', 'categories.name as cat_name', 'village_details.village_name as vil_name', 'default_img')
         //                             ->join('users', 'users.id', 'user_id')
         //                             ->join('village_details', 'users.id', 'village_details.user_id')
         //                             ->join('categories', 'categories.id', 'category_id')->where('users.is_active', '1')->where('packages.is_active', '1')->orderBy('packages.id', 'desc')->limit(5)->get();
         return view('customer/detailevent', $data);
     }
-    public function detailHomestay($id)
+    public function detailHomestay($slug)
     {
+        $id = Homestay::where('slug', $slug)->first()->id;
+
         $data['instagram'] = InstagramServices::randomPost();
 
         $data['images'] = Storage::files('homestay/' . $id);

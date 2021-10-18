@@ -8,6 +8,8 @@ use App\Helpers\CustomImage;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+
 
 class BlogService
 {
@@ -28,6 +30,8 @@ class BlogService
 
     public static function create($payload)
     {   
+        $payload['slug'] = Str::slug( $payload['name']);
+
         if (!empty($payload['post_thumbnail'])){
             $upload = CustomImage::storeImage($payload['post_thumbnail'], 'blogs');
             $payload['post_thumbnail'] = $upload['name'];
@@ -44,6 +48,7 @@ class BlogService
     {
         
         $model = Blog::find($id);
+        $payload['slug'] = Str::slug( $payload['name']);
 
         if (!empty($payload['post_thumbnail'])){
             if (!empty($model->post_thumbnail)){

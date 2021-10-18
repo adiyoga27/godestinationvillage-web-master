@@ -4,11 +4,8 @@ namespace App\Services;
 
 use App\Models\User;
 use App\Models\VillageDetail;
-use App\Helpers\CustomImage;
-
-use Illuminate\Support\Facades\Storage;
-use DB;
-use Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class VillageService
 {
@@ -36,12 +33,17 @@ class VillageService
     public static function create($user_id, $payload)
     {
         $payload['user_id'] = $user_id;
+        $payload['slug'] = Str::slug( $payload['village_name']);
+
+
         $model = VillageDetail::create($payload);
         return $model;
     }
 
     public static function update($user_id, $payload)
     {
+        $payload['slug'] = Str::slug( $payload['village_name']);
+
         $model = VillageDetail::where('user_id',$user_id);
         return $model->update($payload);
     }

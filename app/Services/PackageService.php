@@ -8,6 +8,7 @@ use App\Helpers\CustomImage;
 use App\Models\PackageTranslations;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class PackageService
 {
@@ -65,6 +66,8 @@ class PackageService
     {
         try {
             DB::beginTransaction();
+            $payload['slug'] = Str::slug( $payload['name']);
+
             if (!empty($payload['default_img'])) {
                 $upload = CustomImage::storeImage($payload['default_img'], 'packages');
                 $payload['default_img'] = $upload['name'];
@@ -88,7 +91,10 @@ class PackageService
                 'exclusion' => $payload['exclusion_id'],
                 'term' => $payload['term_id'],
                 'duration' => $payload['duration_id'],
-                'preparation' => $payload['preparation_id']
+                'preparation' => $payload['preparation_id'],
+              
+
+                
             );
 
             $result = PackageTranslations::create($dataTranslate);
@@ -106,6 +112,7 @@ class PackageService
     {
         try {
             $model = Package::find($id);
+            $payload['slug'] = Str::slug( $payload['name']);
 
             if (!empty($payload['default_img'])) {
                 if (!empty($model->default_img)) {

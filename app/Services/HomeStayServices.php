@@ -8,6 +8,7 @@ use App\Models\HomestayTranslations;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class HomeStayServices  
 {
@@ -38,6 +39,8 @@ class HomeStayServices
     {
         try {
             DB::beginTransaction();
+            $payload['slug'] = Str::slug( $payload['name']);
+
             if (!empty($payload['default_img'])) {
                 $upload = CustomImage::storeImage($payload['default_img'], 'homestay');
                 $payload['default_img'] = $upload['name'];
@@ -75,6 +78,8 @@ class HomeStayServices
 
         DB::beginTransaction();
         try {
+            $payload['slug'] = Str::slug( $payload['name']);
+
             $model = Homestay::find($id);
 
             if (!empty($payload['default_img'])) {

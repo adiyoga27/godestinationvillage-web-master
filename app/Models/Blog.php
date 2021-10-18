@@ -24,7 +24,7 @@ class Blog extends Model
         'post_thumbnail',
         'post_author',
         'isPublished',
-        'updated_by'
+        'updated_by', 'slug'
     ];
 
 
@@ -42,7 +42,7 @@ class Blog extends Model
         'post_thumbnail',
         'post_author',
         'isPublished',
-        'updated_by']);
+        'updated_by', 'slug']);
         // Chain fluent methods for configuration options
     }
 

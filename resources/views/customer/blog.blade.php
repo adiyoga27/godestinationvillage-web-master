@@ -45,7 +45,7 @@
                                             <li><i class='bx bx-tag'></i>Tour, Tourism, Travel</li>
                                         </ul>
                                         <h3>
-                                            <a href="{{ url('blog/' . $val->id) }}">{{ $val->post_title }}</a>
+                                            <a href="{{ url('blog/' . $val->slug) }}">{{ $val->post_title }}</a>
                                         </h3>
 
                                         {{ strip_tags(\Illuminate\Support\Str::limit($val->post_content, $limit = 150, $end = '...')) }}
@@ -60,18 +60,18 @@
                                             <li>
                                                 <div class="social-link">
                                                     <span class="mr-2">Share :</span>
-                                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ url('blog/' . $val->id) }}"
+                                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ url('blog/' . $val->slug) }}"
                                                         target="_blank"><i class='bx bxl-facebook'></i></a>
-                                                    <a href="https://www.twitter.com/share?url={{ url('blog/' . $val->id) }}"
+                                                    <a href="https://www.twitter.com/share?url={{ url('blog/' . $val->slug) }}"
                                                         target="_blank"><i class='bx bxl-twitter'></i></a>
-                                                    <a href="https://www.linkedin.com/cws/share?url={{ url('blog/' . $val->id) }}"
+                                                    <a href="https://www.linkedin.com/cws/share?url={{ url('blog/' . $val->slug) }}"
                                                         target="_blank"><i class='bx bxl-linkedin'></i></a>
                                                     <a href="https://www.instagram.com/godestinationvillage"
                                                         target="_blank"><i class='bx bxl-instagram'></i></a>
                                                 </div>
                                             </li>
                                             <li>
-                                                <a href="{{ url('blog/' . $val->id) }}" class="btn-primary">Read More</a>
+                                                <a href="{{ url('blog/' . $val->slug) }}" class="btn-primary">Read More</a>
                                             </li>
                                         </ul>
                                     </div>

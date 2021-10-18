@@ -49,7 +49,9 @@ class Package extends Model
         'price',
         'disc',
         'is_active',
-        'default_img'
+        'default_img',
+        'slug'
+
     ];
 
 

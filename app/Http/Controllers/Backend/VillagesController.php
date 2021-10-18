@@ -11,10 +11,10 @@ use App\Http\Requests\Village\VillageCreateRequest;
 use App\Http\Requests\Village\VillageUpdateRequest;
 
 use Yajra\DataTables\Html\Builder;
-use DataTables;
 
 use Session;
 use Auth;
+use Yajra\DataTables\Facades\DataTables;
 
 class VillagesController extends Controller
 {

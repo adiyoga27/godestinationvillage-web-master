@@ -8,6 +8,7 @@ use App\Models\EventTranslations;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class EventService  
 {
@@ -39,9 +40,12 @@ class EventService
        
         try {
             DB::beginTransaction();
+            $payload['slug'] = Str::slug( $payload['name']);
+
             if (!empty($payload['default_img'])) {
                 $upload = CustomImage::storeImage($payload['default_img'], 'events');
                 $payload['default_img'] = $upload['name'];
+
             }
 
             $dataPackage = Arr::except($payload, ['name_id', 'description_id', 'interary_id', 'inclusion_id', 'additional_id']);
@@ -56,6 +60,7 @@ class EventService
                     'interary' => $payload['interary_id'],
                     'inclusion' => $payload['inclusion_id'],
                     'additional' => $payload['additional_id'],
+                    
             );
 
 
@@ -73,6 +78,7 @@ class EventService
         DB::beginTransaction();
         try {
             $model = Event::find($id);
+            $payload['slug'] = Str::slug( $payload['name']);
 
             if (!empty($payload['default_img'])) {
                 if (!empty($model->default_img)) {

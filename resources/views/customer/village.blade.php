@@ -48,7 +48,7 @@
                                 <div class="title">
                                     <h3>
                                         <a
-                                            href="{{ url('village/' . $val->id) }}">{{ $val->village_detail->village_name ?? ''}}</a>
+                                            href="{{ url('village/' . ($val->village_detail->slug ?? '')) }}">{{ $val->village_detail->village_name ?? ''}}</a>
                                     </h3>
                                     <p>{{ $val->village_detail->village_address ?? '' }} </p>
                                 </div>

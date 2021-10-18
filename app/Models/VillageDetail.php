@@ -42,7 +42,8 @@ class VillageDetail extends Model
         'desc',
         'bank_name',
         'bank_acc_name',
-        'bank_acc_no'
+        'bank_acc_no',
+        'slug'
     ];
 
     public function user()
@@ -53,7 +54,7 @@ class VillageDetail extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->logOnly([ 'name', 'email', 'password', 'email_verified_at', 'role_id', 'is_active', 'phone', 'country', 'address', 'avatar',]);
+        ->logOnly([ 'name', 'email', 'password', 'email_verified_at', 'role_id', 'is_active', 'phone', 'country', 'address', 'avatar','slug']);
         // Chain fluent methods for configuration options
     }
 
