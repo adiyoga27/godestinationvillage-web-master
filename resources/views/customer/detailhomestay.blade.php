@@ -1,7 +1,7 @@
 @extends('customer/layout',array(
 'title' => $packages->name,
 'content'=> strip_tags($packages->description),
-'image'=> url('storage/homestay/'.$packages->default_img)
+'image'=>  url('storage/homestay/' . $packages->default_img)
 )
 )
 

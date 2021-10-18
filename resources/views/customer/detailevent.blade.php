@@ -1,7 +1,7 @@
 @extends('customer/layout',array(
 'title' => $packages->name,
 'content'=> strip_tags($packages->description),
-'image'=> url('storage/event/'.$packages->default_img)
+'image'=> url('storage/events/'.$packages->default_img)
 )
 )
 
