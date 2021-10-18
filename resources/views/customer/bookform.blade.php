@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="bg-image">
-            <img src="customer/img/page-title-area/blog-style3.jpg" alt="Demo Image">
+            <img src="{{url('customer/img/page-title-area/account.jpg')}}" alt="Demo Image">
         </div>
     </div>
     <!-- end page title area -->
@@ -29,211 +29,188 @@
                     <div class="booking-form">
                         <form action="{{ url('booking/send') }}" method="post">
                             @csrf
-                            <input type="hidden" name="idtour" class="form-control" id="exampleInputEmail1"
-                                 placeholder="" value="{{ $packages->id }}" readonly>
+                            <input type="hidden" name="idtour" class="form-control" id="exampleInputEmail1" placeholder=""
+                                value="{{ $packages->id }}" readonly>
                             <input type="hidden" name="village_id" class="form-control" id="exampleInputEmail1"
-                                 placeholder="" value="{{ $packages->user->id }}" required
-                                readonly>
+                                placeholder="" value="{{ $packages->user->id }}" required readonly>
 
-                    
-                                        <div class="content">
-                                            <h3>Tour Packages Information</h3>
-                                            <hr>
+
+                            <div class="content">
+                                <h3>Tour Packages Information</h3>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Tour Packages Name</label>
+                                        <input type="text" name="tourname" class="form-control" placeholder=""
+                                            value="{{ $packages->name }}" readonly>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Type</label>
+                                        <input type="text" name="type" class="form-control" placeholder=""
+                                            value="{{ $packages->category->name }}" required readonly>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Village</label>
+                                        <input type="text" name="village" class="form-control" placeholder=""
+                                            value="{{ $packages->user->village_detail->village_name }}" required readonly>
+                                    </div>
+                                </div>
+                                <div style="margin-top: 30px"></div>
+                                <div class="content">
+                                    <h3>Customer Information</h3>
+                                    <hr>
+                                    <div class="payment-tabs">
+                                        <div id="tab-credit-card" class="tab-pane active">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label>Tour Packages Name</label>
-                                                    <input type="text" name="tourname" class="form-control"
-                                                         placeholder=""
-                                                        value="{{ $packages->name }}" readonly>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label>Type</label>
-                                                    <input type="text" name="type" class="form-control"
-                                                         placeholder=""
-                                                        value="{{ $packages->category->name }}" required readonly>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label>Village</label>
-                                                    <input type="text" name="village" class="form-control"
-                                                         placeholder=""
-                                                        value="{{ $packages->user->village_detail->village_name }}"
-                                                        required readonly>
-                                                </div>
-                                            </div>
-                                            <div style="margin-top: 30px"></div>
-                                            <div class="content">
-                                                <h3>Customer Information</h3>
-                                                <hr>
-                                                <div class="payment-tabs">
-                                                    <div id="tab-credit-card" class="tab-pane active">
-                                                        <div class="row">
+                                                    <label>Customer Name</label>
+
+                                                    <div class="form-group">
+                                                        <input type="text" name="customername" class="form-control"
+                                                            id="exampleInputEmail1" placeholder=""
+                                                            value="@isset($user){{ $user->name }}@endisset" required>
+
+                                                            <input type="hidden" name="customerid" class="form-control"
+                                                                id="exampleInputEmail1" placeholder=""
+                                                                value="@isset($user){{ $user->id }}@endisset" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label>Email</label>
+                                                            <div class="form-group">
+
+                                                                <input type="email" name="email" class="form-control"
+                                                                    placeholder=""
+                                                                    value="@isset($user){{ $user->email }}@endisset" required>
+                                                                </div>
+                                                            </div>
                                                             <div class="col-md-6">
-                                                                <label>Customer Name</label>
-
+                                                                <label>Address</label>
                                                                 <div class="form-group">
-                                                                    <input type="text" name="customername"
-                                                                        class="form-control" id="exampleInputEmail1"
-                                                                         placeholder=""
-                                                                        value="@isset($user){{ $user->name }}@endisset"
-                                                                            required>
 
-                                                                        <input type="hidden" name="customerid"
-                                                                            class="form-control" id="exampleInputEmail1"
-                                                                             placeholder=""
-                                                                            value="@isset($user){{ $user->id }}@endisset"
-                                                                                required>
+                                                                    <input type="text" name="address" class="form-control"
+                                                                        placeholder=""
+                                                                        value="@isset($user){{ $user->address }}@endisset" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label>Phone</label>
+                                                                    <div class="form-group">
+
+                                                                        <input type="text" name="phone" class="form-control"
+                                                                            placeholder=""
+                                                                            value="@isset($user){{ $user->phone }}@endisset" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
-                                                                            <label>Email</label>
-                                                                        <div class="form-group">
+                                                                        <label>Gender</label>
+                                                                        <div class="select-box">
 
-                                                                            <input type="email" name="email" class="form-control"
-                                                                                
-                                                                                placeholder=""
-                                                                                value="@isset($user){{ $user->email }}@endisset"
-                                                                                    required>
-                                                                            </div>
+                                                                            <select name="gender" id="" class="form-control">
+                                                                                <option value="">Male</option>
+                                                                                <option value="">Female</option>
+                                                                            </select>
                                                                         </div>
-                                                                        <div class="col-md-6">
-                                                                                <label>Address</label>
-                                                                            <div class="form-group">
-
-                                                                                <input type="text" name="address" class="form-control"
-                                                                                    
-                                                                                    placeholder=""
-                                                                                    value="@isset($user){{ $user->address }}@endisset"
-                                                                                        required>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-6">
-                                                                                    <label>Phone</label>
-                                                                                <div class="form-group">
-
-                                                                                    <input type="text" name="phone" class="form-control"
-                                                                                        
-                                                                                        placeholder=""
-                                                                                        value="@isset($user){{ $user->phone }}@endisset"
-                                                                                            required>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-6">
-                                                                                        <label>Gender</label>
-                                                                                        <div class="select-box">
-
-                                                                                        <select name="gender" id="" class="form-control">
-                                                                                            <option value="">Male</option>
-                                                                                            <option value="">Female</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
 
-                                                                                <div style="margin-top: 30px"></div>
-                                                                                <div class="content">
-                                                                                    <h3>Book Information</h3>
-                                                                                    <hr>
-                                                                                    <div class="row">
-                                                                                <div class="col-md-6">
-                                                                                        <label>Pax</label>
-                                                                                    <div class="form-group">
+                                                    <div style="margin-top: 30px"></div>
+                                                    <div class="content">
+                                                        <h3>Book Information</h3>
+                                                        <hr>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <label>Pax</label>
+                                                                <div class="form-group">
 
-                                                                                        <input type="number" name="pax" min="1" value="1"
-                                                                                            class="form-control pax" id="exampleInputEmail1"
-                                                                                             placeholder=""
-                                                                                            required>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-6">
-                                                                                        <label>Price / Pax <b>@if($packages->disc > 0) ( Diskon )@endif</b></label>
-                                                                                      
-                                                                                        <div class="input-group mb-3">
-                                                                                            <div class="input-group-prepend">
-                                                                                                <span style="background-color: #fd5056; color:white" class="input-group-text"
-                                                                                                    id="basic-addon1">Rp</span>
-                                                                                            </div>
-                                                                                         
-                                                                                                <input type="text" name="price"
-                                                                                                    class="form-control price"
-                                                                                                    id="exampleInputEmail1"
-                                                                                                     placeholder=""
-                                                                                                    value="{{ $packages->disc > 0 ? $packages->disc : $packages->price }}" readonly>
+                                                                    <input type="number" name="pax" min="2" value="2" class="form-control pax"
+                                                                        id="pax" placeholder="" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label>Price / Pax <b>@if ($packages->disc > 0) ( Diskon )@endif</b></label>
 
-                                                                                                <input type="hidden" name="totalprice"
-                                                                                                    class="form-control totalprice"
-                                                                                                    id="exampleInputEmail1"
-                                                                                                     placeholder=""
-                                                                                                    value="{{ $packages->disc > 0 ? $packages->disc : $packages->price }}" required>
-                                                                                           
-                                                                                    </div>
-                                                                                </div>
-                                                                                @if ($packages->category->name != 'Virtual Tour')
-                                                                                    <div class="col-md-12">
-                                                                                            <label>Date</label>
-                                                                                        <div class="form-group">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <span style="background-color: #fd5056; color:white"
+                                                                            class="input-group-text" id="basic-addon1">Rp</span>
+                                                                    </div>
 
-                                                                                            <input type="datetime-local" name="checkin_date"
-                                                                                                class="form-control"
-                                                                                                 placeholder=""
-                                                                                                required>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-md-6">
-                                                                                            <label>Pick up location</label>
-                                                                                        <div class="form-group">
+                                                                    <input type="text" name="price" class="form-control price"
+                                                                        id="exampleInputEmail1" placeholder=""
+                                                                        value="{{ $packages->disc > 0 ? $packages->disc : $packages->price }}"
+                                                                        readonly>
 
-                                                                                            <input type="text" name="pickup"
-                                                                                                class="form-control"
-                                                                                                 placeholder="Input your location pick up"
-                                                                                                required>
-                                                                                        </div>
-                                                                                        <hr>
-                                                                                    </div>
-                                                                                    <div class="col-md-6">
-                                                                                            <label>Hotel/Villa/Guest House Name</label>
-                                                                                        <div class="form-group">
+                                                                    <input type="hidden" name="totalprice" class="form-control totalprice"
+                                                                        id="exampleInputEmail1" placeholder=""
+                                                                        value="{{ $packages->disc > 0 ? $packages->disc : $packages->price }}"
+                                                                        required>
 
-                                                                                            <input type="text" name="pickupname"
-                                                                                                class="form-control" id="exampleInputEmail1"
-                                                                                                 placeholder="Input your place name"
-                                                                                                required>
-                                                                                        </div>
-                                                                                        <hr>
-                                                                                    </div>
-                                                                                @endif
+                                                                </div>
+                                                            </div>
+                                                            @if ($packages->category->name != 'Virtual Tour')
+                                                                <div class="col-md-12">
+                                                                    <label>Date</label>
+                                                                    <div class="form-group">
 
-                                                                                <div class="col-md-12">
-                                                                                        <label>Special Note</label>
-                                                                                    <div class="form-group">
+                                                                        <input type="datetime-local" name="checkin_date" class="form-control"
+                                                                            placeholder="" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label>Pick up location</label>
+                                                                    <div class="form-group">
 
-                                                                                        <textarea placeholder="Input your note transaction" style="height: 100pt" name="special_note" class="form-control"
-                                                        placeholder=""></textarea>
-                                                                                    </div>
-                                                                                    <hr>
-                                                                                </div>
-                                                                                <div class="col-md-8">
-                                                                                </div>
-                                                                                <div class="col-md-4">
-                                                                                 
-                                                                                        <h3 class="total">Total : Rp
-                                                                                            {{ $packages->disc > 0 ? number_format($packages->disc,0, ',', '.') : number_format($packages->price,0, ',', '.')}}</h3>
-                                                                                   
-                                                                                    <p>*Please check your form, because the order cannot be
-                                                                                        changed</p>
-                                                                                    <button class="btn btn-lg btn-warning btn-block">BOOK
-                                                                                        NOW</button>
-                                                                                </div>
+                                                                        <input type="text" name="pickup" class="form-control"
+                                                                            placeholder="Input your location pick up" required>
+                                                                    </div>
+                                                                    <hr>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label>Hotel/Villa/Guest House Name</label>
+                                                                    <div class="form-group">
+
+                                                                        <input type="text" name="pickupname" class="form-control"
+                                                                            id="exampleInputEmail1" placeholder="Input your place name"
+                                                                            required>
+                                                                    </div>
+                                                                    <hr>
+                                                                </div>
+                                                            @endif
+
+                                                            <div class="col-md-12">
+                                                                <label>Special Note</label>
+                                                                <div class="form-group">
+
+                                                                    <textarea placeholder="Input your note transaction" style="height: 100pt"
+                                                                        name="special_note" class="form-control" placeholder=""></textarea>
+                                                                </div>
+                                                                <hr>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                            </div>
+                                                            <div class="col-md-4">
+
+                                                                <h3 class="total">Total : Rp
+                                                                    {{ $packages->disc > 0 ? number_format($packages->disc, 0, ',', '.') : number_format($packages->price, 0, ',', '.') }}
+                                                                </h3>
+
+                                                                <p>*Please check your form, because the order cannot be
+                                                                    changed</p>
+                                                                <button class="btn btn-lg btn-warning btn-block">BOOK
+                                                                    NOW</button>
+                                                            </div>
 
 
 
 
-                                                                            </div>
-                                                                        </div>
-                                                </section>
-                                            </form>
+                                                        </div>
+                                                    </div>
+                        </section>
+                        </form>
                         </section>
                     @endsection()
 
@@ -244,13 +221,30 @@
                                     dateFormat: 'yy-mm-dd'
                                 });
                             });
-  //change
-  $('.pax').keyup(function() {
+                            //change
+                            $('.pax').keyup(function() {
+                                v = parseInt($(this).val());
+                                min = parseInt($(this).attr('min'));
+
+
+                                if (v < min) {
+
+                                    $(this).val(min);
+                                }
+
                                 $('.totalprice').val($('.pax').val() * $('.price').val())
                                 result = formatRupiah(($('.pax').val() * $('.price').val()).toString(), '')
                                 $('.total').html("Total : Rp" + result)
                             })
                             $('.pax').change(function() {
+                                v = parseInt($(this).val());
+                                min = parseInt($(this).attr('min'));
+
+
+                                if (v < min) {
+
+                                    $(this).val(min);
+                                }
                                 $('.totalprice').val($('.pax').val() * $('.price').val())
                                 result = formatRupiah(($('.pax').val() * $('.price').val()).toString(), '')
                                 $('.total').html("Total : Rp " + result)
