@@ -187,7 +187,7 @@ class OrderEventService
             if ($proses) {
                 $order =  OrderEvent::latest()->first();
                 $subject = 'Godevi - Order Events ' . $order->code . ' - Confirmation';
-                $message = "This is your booking confirmation. Thank you for joining our event. <br><br> Klik this <a href='$link'>link</a> for payment<br>";
+                $message = "This is your booking confirmation. Thank you for joining our event. <br><br> Klik this <a href='$link'>link</a> for payment";
     
     
                 $email = new OrderEventEmail($subject, $order, $message);

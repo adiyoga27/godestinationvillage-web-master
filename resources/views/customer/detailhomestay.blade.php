@@ -74,7 +74,7 @@
                     <div class="content mb-20">
                         {!! App::getLocale() == 'id' ? $packages->translate[0]->description : $packages->description !!}
                         @if($packages->location)
-                        <h4><b><i class='bx bx-map-alt'></i>&nbsp location </b></h4>
+                        <h4><b><i class='bx bx-map-alt'></i>&nbsp Location </b></h4>
                         <div style="margin-left: 20pt; margin-bottom:10pt">{!! App::getLocale() == 'id' ? $packages->translate[0]->location : $packages->location !!}</div>
                         @endif
                         @if($packages->facilities)

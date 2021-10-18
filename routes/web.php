@@ -44,6 +44,8 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 |
 */
 Route::get('test', [TestController::class, 'checkEmail']);
+Route::get('test-homestay', [TestController::class, 'checkHomeStay']);
+Route::get('test-package', [TestController::class, 'checkPackage']);
 
 Auth::routes();
 Route::get('/invoice/{id}', [InvoiceController::class , 'index']);
