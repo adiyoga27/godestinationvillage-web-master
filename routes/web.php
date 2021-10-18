@@ -46,6 +46,14 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 |
 */
 Route::get('test', [TestController::class, 'loopSlug']);
+Route::prefix('pay')->group(function () {
+    Route::get('finish', function (){return view('payment.finish');});
+    Route::get('unfinish', function (){return view('payment.unfinish');});
+    Route::get('error', function (){return view('payment.error');});
+});
+
+
+
 Route::get('test-homestay', [TestController::class, 'checkHomeStay']);
 Route::get('test-package', [TestController::class, 'checkPackage']);
 
