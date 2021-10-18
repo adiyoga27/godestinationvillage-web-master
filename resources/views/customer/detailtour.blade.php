@@ -198,7 +198,7 @@
                                     <div class="content">
                                         {{-- <span class="location"><i class='bx bx-map'></i>95 Fleet, London</span> --}}
                                         <h3>
-                                            <a href="{{ url('tour-packages/' . $rec->id) }}">{{ $rec->name }}.</a>
+                                            <a href="{{ url('tour-packages/' . $rec->slug) }}">{{ $rec->name }}.</a>
                                         </h3>
                                         <ul class="list">
                                             <li><i class='bx bx-time' style="color:red"></i>{{ $rec->cat_name }}</li>

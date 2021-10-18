@@ -99,7 +99,7 @@ class PageController extends Controller
                                         ->where('user_id', $id)
                                         ->where('packages.is_active', '1')
                                         ->paginate(8);
-        $data['recent'] = Package::select('packages.id','packages.name', 'categories.name as cat_name', 'village_details.village_name as vil_name', 'default_img')
+        $data['recent'] = Package::select('packages.id','packages.name', 'categories.name as cat_name', 'village_details.village_name as vil_name', 'default_img', 'packages.slug')
                 ->join('users', 'users.id', 'user_id')
                 ->join('village_details', 'users.id', 'village_details.user_id')
                 ->join('categories', 'categories.id', 'category_id')
@@ -151,7 +151,7 @@ class PageController extends Controller
         if (!$data['packages']) {
             return abort(404);
         }
-        $data['recent'] = Package::select('packages.id', 'packages.name', 'categories.name as cat_name', 'village_details.village_name as vil_name', 'default_img')
+        $data['recent'] = Package::select('packages.id', 'packages.name', 'categories.name as cat_name', 'village_details.village_name as vil_name', 'default_img','packages.slug')
                                     ->join('users', 'users.id', 'user_id')
                                     ->join('village_details', 'users.id', 'village_details.user_id')
                                     ->join('categories', 'categories.id', 'category_id')->where('users.is_active', '1')->where('packages.is_active', '1')->orderBy('packages.id', 'desc')->limit(5)->get();

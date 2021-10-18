@@ -75,16 +75,17 @@
                         </div>
                         <div class="widget widget-article mb-30">
                             <h3 class="sub-title">Recent Tour Packages</h3>
+                            <hr>
                             @foreach ($recent as $rec)
                                 <article class="article-item">
                                     <div class="image">
-                                        <img src="{{ url('storage/packages/' . $rec->default_img) }}" alt="Demo Image" />
+                                        <img src="{{ url('storage/packages/' . $rec->default_img) }}" alt="Demo Image" wi/>
                                     </div>
                                     <div class="content">
                                         {{-- <span class="location"><i class='bx bx-map'></i>95 Fleet, London</span> --}}
-                                        <h3>
-                                            <a href="{{ url('tour-packages/' . $rec->id) }}">{{ $rec->name }}.</a>
-                                        </h3>
+                                        <h4>
+                                            <a href="{{ url('tour-packages/' . $rec->slug) }}">{{ $rec->name }}.</a>
+                                        </h4>
                                         <ul class="list">
                                             <li><i class='bx bx-time' style="color:red"></i>{{ $rec->cat_name }}</li>
 

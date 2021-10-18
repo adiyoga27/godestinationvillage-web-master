@@ -43,15 +43,17 @@
                   Keep me signed in
                 </label>
             </div>
+            <div style="align: right">
             @if (Route::has('password.request'))
                 <a class="auth-link text-black" href="{{ route('password.request') }}">
                     {{ __('Forgot Your Password?') }}
                 </a>
             @endif
+            </div>
         </div>
          <div class="mb-2">
          <a href="{{ url('/auth/facebook') }}"> <button type="button" class="btn btn-block btn-facebook auth-form-btn">
-            <i class="mdi mdi-facebook mr-2"></i>Connect using facebook
+            <i class="mdi mdi-facebook mr-2"></i>Connect using Facebook
           </button></a>
         </div>
         <div class="mb-2">

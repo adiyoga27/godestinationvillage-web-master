@@ -30,6 +30,7 @@ use App\Http\Controllers\OrderHomeStayController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 /*
@@ -42,10 +43,16 @@ use Illuminate\Support\Facades\Session;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [PageController::class, 'index']);
+Route::get('/home', [PageController::class, 'index']);
+Route::get('/redirects', function(){
+	return redirect(Redirect::intended()->getTargetUrl());
+	return back();	
+});
+
 Route::get('locale/{locale}', function ($locale) {
     Session::put('locale', $locale);
     App::setLocale($locale);
-    // dd($locale);
     return redirect()->back();
 });
 
@@ -70,7 +77,6 @@ Route::get('/invoice/{id}', [InvoiceController::class , 'index']);
 Route::get('/invoice-event/{id}', [InvoiceController::class , 'event']);
 Route::get('/invoice-homestay/{id}', [InvoiceController::class , 'homestay']);
 
-Route::get('/', [PageController::class, 'index']);
 Route::get('/administrator/login',  [LoginController::class, 'authenticated']);
 Route::get('/user/login', [LoginController::class, 'authenticated']);
 //Customer Page
@@ -123,7 +129,6 @@ Route::prefix('payment')->group(function () {
     Route::get('/homestay/do_cancel/{id}', [PageController::class,'cancelHomeStay']);
     Route::get('/package/{id}', [PageController::class,'payment']);
     Route::get('/package/do_cancel/{id}', [PageController::class,'cancel']);
-
 });
 
 Route::get('/payment-detail/{id}', [PageController::class,'detailPayment']);
@@ -140,6 +145,7 @@ Route::get('/blog-mobile/{id}', [PageController::class,'detailpost_mobile']);
 Route::get('/search', [SearchController::class,'searchHome']);
 Route::get('/pay/{id}', [PaymentController::class, 'vtweb']);
 Route::post('/vt-notif', [PaymentController::class, 'notification']);
+
 Route::group(['middleware' => ['auth']], function () {
     Route::prefix('bookingEvents')->group(function () {
         Route::get('/{id}', [PageController::class, 'bookingEvents']);
@@ -159,6 +165,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/sendEvent',[OrderController::class, 'sendEvent']);
     });
 });
+
+
 
 
 
