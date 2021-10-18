@@ -13,6 +13,11 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'http://localhost:8000/midtrans/callbackPayment',
-        'http://godevi.codingaja.com/midtrans/callbackPayment'
+        'http://godevi.codingaja.com/midtrans/callbackPayment',
+        'https://godevi.codingaja.com/midtrans/callbackPayment',
+        'https://godestinationvillage.com/midtrans/callbackPayment',
+        'http://godestinationvillage.com/midtrans/callbackPayment',
+
+
     ];
 }
