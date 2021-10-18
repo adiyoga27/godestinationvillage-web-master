@@ -25,7 +25,7 @@ class MidtransCallbackServices
         $payment_type = $payload['payment_type'];
         $transaction_time = $payload['transaction_time'];
         $status = $payload['transaction_status'];
-        if ($status == 'capture') {
+        if ($status == 'capture' || $status == 'settlement') {
             //check Order Package
             $result = false;
             $prefix = substr($invoice,0,3);
