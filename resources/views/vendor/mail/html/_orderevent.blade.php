@@ -35,7 +35,7 @@
 
 <strong>Special Note : </strong>
 <br />
-{!! $data->special_note !!} <br />
+{!! $data->special_note !!}    <br />
 <center><strong>Transaction Detail</strong></center>
 @component('mail::table')
 
@@ -57,7 +57,7 @@
 @endif 
 <br />
 
-<strong>Note:</strong> We will proces your booking after we receive your payment. This can take up to 24 hours to verify your payment. After the verification you will get the e-tour voucher through email
+<strong>Note:</strong> The information regarding of the event will be sent through email / phone number registered on this booking. For further information do not hesitate to contact us via <br>Whatsapp : 081933158949 <br>Instagram : <a href='https://www.instagram.com/godestinationvillage/'> @godestinationvillage</a>
 
 @endcomponent
 
