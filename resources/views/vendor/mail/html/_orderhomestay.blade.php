@@ -1,35 +1,42 @@
 @component('mail::message')
 	{!! $message !!} <br /><br />
-	<strong>Order No.</strong> : {{ $data->code }}><br />
-	<span class="float-right"> <strong>Order Date :</strong> {{ date('d/m/Y', strtotime($data->created_at))}}</span><br />
-	<hr />
-	<strong>Arrival Date :</strong> {{ date('d/m/Y', strtotime($data->checkin_date))}}</span><br /><br />
 	<table style="width: 100%;">
-		<tr>
-			<td style="width: 50%; padding: 0px; vertical-align: top;">
-				CUSTOMER : <br />
-				<strong>{{$data->customer_name}}</strong> <br />
-				{{$data->customer_address}} <br />
-				Email: {{$data->customer_email}} <br />
-				Phone: {{$data->customer_phone}} <br />
-			</td>
-			<td style="width: 50%; padding: 0px; vertical-align: top;">
-				<strong>Godestiantion Village</strong><br />
-				Jln Wr Supratman No. 302 Denpasar Timur, Bali <br />
-				Website: {{env('APP_URL')}} | Email : {{env('APP_EMAIL')}} <br />
-				Phone : {{env('APP_PHONE')}} <br /><br />
-				@if ($data->payment_type != null) PAYMENT : <br>
-				<strong>{{ str_replace('_', ' ', strtoupper($data->payment_type)) }}</strong> <br /> @endif
-			   STATUS :<br>
-				<strong>
-					@if($data->payment_status == 'pending') PENDING @elseif($data->payment_status == 'success') SUCCESS @elseif($data->payment_status == 'cancel') DECLINED @endif <br />
-			</td>
-		</tr>
-	</table>
-	<br>
-	{!! $data->special_note !!}<br /><br />
+	<tr>
+		<td style="width: 50%; padding: 0px; vertical-align: top;">
+			<strong>Order Date </strong> {{ date('d M Y', strtotime($data->created_at))}}<br />
+			<strong>Order No   </strong> {{ $data->code }} <br />
+		</td>
+		<td style="width: 50%; padding: 0px; vertical-align: top; text-align:right">
+			<strong>Status Payment   </strong><br />
+		 	{{ strtoupper($data->payment_status)}}<br />
+		</td>
+	</tr>
+</table>
+<hr />
+<table style="width: 100%;">
+	<tr>
+		<td style="width: 50%; padding: 0px; vertical-align: top;text-align:left">
+		<strong>Customer </strong>  <br />
+			{{$data->customer_name}}<br />
+			{{$data->customer_address}} <br />
+			{{$data->customer_email}} <br />
+			{{$data->customer_phone}} <br />
+		</td>
+		<td style="width: 50%; padding: 0px; vertical-align: top;text-align:right">
+		<strong>Company </strong> <br>
+			Godestiantion Village<br>
+			Jln Wr Supratman No. 302 Denpasar Timur, Bali <br>
+		 	{{env('APP_EMAIL')}} <br>
+			{{env('APP_PHONE')}}  <br>
+		
+	
+</table>
+<strong>Special Note : </strong>
+<br />
+{!! $data->special_note !!}    <br />
+<center><strong>Transaction Detail</strong></center>
 	@component('mail::table')
-	|                      |   Transaction Detail   |                      |
+	|                      |      |                      |
 	|----------------------|------------------------|----------------------|
 	|  Name of Homestay    |                        | {{ $data->homestay_name }} |
 	|  People(s)           |                        | {{ $data->pax }} Pax |
@@ -39,12 +46,16 @@
 	@endcomponent
 
 
-	<br /> Click <a href="{{ url('invoice-homestay/'. $data->uuid) }}">this link</a> for download your 
-	@if($data->payment_status == 'success')
-	{{'voucher'}}
-	@else($data->payment_status == 'pending')
-	{{'invoice'}}
-	@endif
-@endcomponent
 
+Click <a href="{{ url('invoice-homestay/'.$data->uuid) }}">this link</a> for download your 
+@if($data->payment_status == 'success')
+{{'voucher'}}
+@else($data->payment_status == 'pending')
+{{'invoice'}}
+@endif 
+<br />
+
+<strong>Note:</strong> The information regarding of the homestay will be sent through email / phone number registered on this booking. For further information do not hesitate to contact us via <br>Whatsapp : 081933158949 <br>Instagram : <a href='https://www.instagram.com/godestinationvillage/'> @godestinationvillage</a>
+
+@endcomponent
 

@@ -21,6 +21,8 @@
                 width: 100% !important;
             }
         }
+        
+   
     </style>
 
     <table class="wrapper" width="100%" cellpadding="0" cellspacing="0">

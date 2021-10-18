@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\Api\Front\VillageControllerApi;
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Backend\AdminsController;
 use App\Http\Controllers\Backend\BankAccountsController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Backend\DiscountMembersController;
 use App\Http\Controllers\Backend\EventsController;
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\HomeStayController;
+use App\Http\Controllers\Backend\InstagramController;
 use App\Http\Controllers\Backend\MembersController;
 use App\Http\Controllers\Backend\OrdersController;
 use App\Http\Controllers\Backend\PackagesController;
@@ -43,10 +45,14 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('test', [TestController::class, 'testEmail']);
-
+Route::get('test', [TestController::class, 'postinstagram']);
+Route::get('test-homestay', [TestController::class, 'checkHomeStay']);
+Route::get('test-package', [TestController::class, 'checkPackage']);
 
 Auth::routes();
+Route::get('auth/{provider}', [AuthController::class, 'redirectToProvider']);
+Route::get('auth/{provider}/callback', [AuthController::class, 'handleProviderCallback']);
+
 Route::get('/invoice/{id}', [InvoiceController::class , 'index']);
 Route::get('/invoice-event/{id}', [InvoiceController::class , 'event']);
 Route::get('/invoice-homestay/{id}', [InvoiceController::class , 'homestay']);
@@ -155,6 +161,8 @@ Route::group(['middleware' => ['auth']], function () {
 Route::group(['prefix' => 'administrator', 'middleware' => ['auth', 'role:admin|village']], function () {
      Route::resource('bank-account', BankAccountsController::class, ['names' => 'bank_account']);
     Route::resource('blog', BlogController::class);
+    Route::resource('instagram', InstagramController::class);
+
     Route::resource('category', CategoriesController::class);
     Route::resource('category-event', CategoryEventsController::class);
     Route::resource('discount-member', DiscountMembersController::class, ['names' => 'discount_member']);

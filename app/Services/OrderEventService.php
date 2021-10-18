@@ -187,7 +187,7 @@ class OrderEventService
             if ($proses) {
                 $order =  OrderEvent::latest()->first();
                 $subject = 'Godevi - Order Events ' . $order->code . ' - Confirmation';
-                $message = "This is your booking confirmation. Thank you for joining our event. <br><br> Klik this <a href='$link'>link</a> for payment<br><br><br>Note: The information regarding of the event will be sent through email / phone number registered on this booking. For further information do not hesitate to contact us via <br>Whatsapp : 081933158949 <br>Instagram : <a href='https://www.instagram.com/godestinationvillage/'> @godestinationvillage</a>";
+                $message = "This is your booking confirmation. Thank you for joining our event. <br><br> Klik this <a href='$link'>link</a> for payment";
     
     
                 $email = new OrderEventEmail($subject, $order, $message);
