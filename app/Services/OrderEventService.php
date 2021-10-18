@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-
+use Illuminate\Support\Str;
 class OrderEventService
 {
 
@@ -43,7 +43,7 @@ class OrderEventService
 
     public static function find($id)
     {
-        return OrderEvent::with(['bank_account'])->find($id);
+        return OrderEvent::with(['bank_account'])->where('uuid',$id);
     }
 
     public static function get_order_by_user($user_id)
@@ -159,7 +159,7 @@ class OrderEventService
     
            
 
-            $encryptcode = Crypt::encrypt($code);
+            $encryptcode = (string) Str::uuid();
            $data = array(
             'event_id' => $payload['idevent'],
             'user_id' => Auth::user()->id ?? null,

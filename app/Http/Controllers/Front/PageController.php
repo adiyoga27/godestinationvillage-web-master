@@ -228,8 +228,7 @@ $data['recent'] = HomeStayServices::recent();
         // $data['bank'] =  BankAccount::all();
         // return view('customer/payment/payment', $data);
 
-        $id = Crypt::decrypt($id);
-        $order = Order::where('id',$id)->first()->toArray();
+        $order = Order::where('uuid',$id)->first()->toArray();
         $price = ($order['package_price']-$order['package_discount']);
         $request = [
             'transaction_details' => [
@@ -268,8 +267,7 @@ $data['recent'] = HomeStayServices::recent();
     }
     public function paymentEvent($id)
     {
-        $id = Crypt::decrypt($id);
-        $order = OrderEvent::where('id',$id)->first()->toArray();
+        $order = OrderEvent::where('uuid',$id)->first()->toArray();
         $request = [
             'transaction_details' => [
                 'order_id' => $order['code'],
@@ -307,8 +305,7 @@ $data['recent'] = HomeStayServices::recent();
     }
     public function paymentHomestay($id)
     {
-        $id = Crypt::decrypt($id);
-        $order = OrderHomestay::where('id',$id)->first()->toArray();
+        $order = OrderHomestay::where('uuid',$id)->first()->toArray();
         $request = [
             'transaction_details' => [
                 'order_id' => $order['code'],
@@ -362,8 +359,7 @@ $data['recent'] = HomeStayServices::recent();
     }
     public function cancel($id)
     {
-        $id = Crypt::decrypt($id);
-        $proses = Order::find($id);
+        $proses = Order::where('uuid',$id);
         $proses->payment_status = 'cancel';
         $proses->save();
         if ($proses) {
@@ -372,8 +368,7 @@ $data['recent'] = HomeStayServices::recent();
     }
     public function cancelEvent($id)
     {
-        $id = Crypt::decrypt($id);
-        $proses = OrderEvent::find($id);
+        $proses = OrderEvent::where('uuid',$id);
         $proses->payment_status = 'cancel';
         $proses->save();
         if ($proses) {
@@ -382,9 +377,8 @@ $data['recent'] = HomeStayServices::recent();
     }
     public function cancelHomeStay($id)
     {
-        $id = Crypt::decrypt($id);
 
-        $proses = OrderHomestay::find($id);
+        $proses = OrderHomestay::where('uuid',$id);
         $proses->payment_status = 'cancel';
         $proses->save();
         if ($proses) {

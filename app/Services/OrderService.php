@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 // use DB;
 use Illuminate\Support\Facades\DB as DB;
 use Illuminate\Support\Facades\Mail;
-
+use Illuminate\Support\Str;
 class OrderService
 {
 
@@ -43,7 +43,7 @@ class OrderService
 
     public static function find($id)
     {
-        return Order::with(['bank_account', 'village'])->find($id);
+        return Order::with(['bank_account', 'village'])->where('uuid',$id);
     }
 
     public static function get_order_by_user($user_id)
@@ -134,7 +134,7 @@ class OrderService
             $disc_package = $package->disc > 0 ? ($package->price - $package->disc) : 0;
             $total_package = ($price_package - $disc_package) * $payload['pax'];
 
-            $encryptcode = Crypt::encrypt($code);
+            $encryptcode = (string) Str::uuid();
 
                 $package_id = $payload['idtour'];
                 $user_id = $payload['customerid'];

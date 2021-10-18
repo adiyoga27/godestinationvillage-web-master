@@ -15,7 +15,6 @@ class InvoiceController extends Controller
 
 	public function index($id)
 	{
-		$id = Crypt::decrypt($id);
 		$order = OrderService::find($id);
 
         return view('backend.order.invoice')->with(compact('order'));
@@ -23,7 +22,6 @@ class InvoiceController extends Controller
 
 	public function event($id)
 	{
-		$id = Crypt::decrypt($id);
 
 		$order = OrderEventService::find($id);
 
@@ -32,7 +30,6 @@ class InvoiceController extends Controller
 
 	public function homestay($id)
 	{
-		$id = Crypt::decrypt($id);
 
 		$order = OrderHomestayService::find($id);
 

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class OrderHomestayService
 {
@@ -43,7 +44,7 @@ class OrderHomestayService
 
     public static function find($id)
     {
-        return OrderHomestay::with(['bank_account'])->find($id);
+        return OrderHomestay::with(['bank_account'])->where('uuid',$id);
     }
 
     public static function get_order_by_user($user_id)
@@ -150,7 +151,7 @@ class OrderHomestayService
                 $code = 1;
             }
             
-            $encryptcode = Crypt::encrypt($code);
+            $encryptcode = (string) Str::uuid();
            $data = array(
             'homestay_id' => $payload['idhomestay'],
             'user_id' => Auth::user()->id ?? null,
