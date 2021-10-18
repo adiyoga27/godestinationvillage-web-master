@@ -1,6 +1,6 @@
 @component('mail::message')
 {!! $message !!} <br /><br />
-Order No. : <strong>{{ $data->code }}</strong><br />
+<strong>Order No. : </strong>{{ $data->code }}<br />
 <span class="float-right"> <strong>Order Date :</strong> {{ date('d/m/Y', strtotime($data->created_at))}}</span><br />
 <hr />
 <strong>Arrival Date :</strong> {{ date('d/m/Y', strtotime($data->checkin_date))}}</span><br /><br />
@@ -14,15 +14,16 @@ Order No. : <strong>{{ $data->code }}</strong><br />
 			Phone: {{$data->customer_phone}} <br />
 		</td>
 		<td style="width: 50%; padding: 0px; vertical-align: top;">
+			Company : <br />
 			<strong>Godestiantion Village</strong><br />
 			Jln Wr Supratman No. 302 Denpasar Timur, Bali <br />
 			Website: {{env('APP_URL')}}| Email : {{env('APP_EMAIL')}} <br />
 			Phone : {{env('APP_PHONE')}} <br /><br />
 			@if ($data->payment_type != null) PAYMENT : <br>
 			<strong>{{ str_replace('_', ' ', strtoupper($data->payment_type)) }}</strong> <br /> @endif
-			   STATUS :<br>
+			   STATUS PAYMENT:<br>
 				<strong>
-					@if($data->payment_status == 'pending') PENDING @elseif($data->payment_status == 'success') SUCCESS @elseif($data->payment_status == 'cancel') DECLINED @endif <br />
+					@if($data->payment_status == 'pending')PENDING @elseif($data->payment_status == 'success')SUCCESS @elseif($data->payment_status == 'cancel')DECLINED @endif <br />
 				</strong>
 		</td>
 	</tr>
