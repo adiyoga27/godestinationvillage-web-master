@@ -25,8 +25,12 @@ class AuthController extends Controller
     public function handleProviderCallback($provider)
     {
 
-        $user = Socialite::driver($provider)->user();
-    
+        try {
+            $user = Socialite::driver($provider)->user();
+
+        } catch (\Exception $e) {
+            return redirect('/login');
+        }
         $authUser = $this->findOrCreateUser($user, $provider);
         Auth::login($authUser, true);
         return redirect('/');
@@ -41,21 +45,16 @@ class AuthController extends Controller
      */
     public function findOrCreateUser($user, $provider)
     {
-        $id = $user->id();
-        $nick = $user-> $user->getNickname();
-        $name = $user->getName();
-        $email = $user->getEmail();
-        $avatar = $user->getAvatar();
-        $authUser = User::where('provider_id', $id)->first();
+        $authUser = User::where('provider_id', $user->id)->first();
         if ($authUser) {
             return $authUser;
         }
         else{
             $data = User::create([
-                'name'     => $name,
-                'email'    => !empty($email)? $email : '' ,
+                'name'     => $user->name,
+                'email'    => !empty($user->email)? $user->email : '' ,
                 'provider' => $provider,
-                'provider_id' => $id
+                'provider_id' => $user->id
             ]);
             return $data;
         }
