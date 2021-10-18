@@ -222,12 +222,6 @@ $data['recent'] = HomeStayServices::recent();
     }
     public function payment($id)
     {
-        // $data['order'] = Order::where('payment_type', NULL)
-        //     ->where('id', $id)
-        //     ->first();
-        // $data['bank'] =  BankAccount::all();
-        // return view('customer/payment/payment', $data);
-
         $order = Order::where('uuid',$id)->first()->toArray();
         $price = ($order['package_price']-$order['package_discount']);
         $request = [
