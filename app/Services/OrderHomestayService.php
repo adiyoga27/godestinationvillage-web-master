@@ -19,7 +19,6 @@ class OrderHomestayService
     {
         DB::statement(DB::raw('set @rownum=0'));
         return OrderHomestay::query()
-            ->leftJoin('bank_accounts', 'order_homestay.bank_account_id', '=', 'bank_accounts.id')
             ->select([
                 DB::raw('@rownum  := @rownum  + 1 AS rownum'),
                 DB::raw('order_homestay.*'),

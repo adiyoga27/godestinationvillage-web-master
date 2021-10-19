@@ -90,9 +90,9 @@ function printDiv(divName) {
                     <label class='badge badge-gradient-danger'>Declined</label>
                 @endif
             </div>
-            @if($order->payment_type == 'bank_transfer')
+            {{-- @if($order->payment_type == 'bank_transfer')
             <div><strong>{{$order->bank_account->bank_name}} {{$order->bank_account->bank_acc_no}}</strong> a/n {{ $order->bank_account->bank_acc_name }}</div>
-            @endif
+            @endif --}}
         </div>
 
         <div class="col-sm-12">
@@ -141,7 +141,7 @@ function printDiv(divName) {
                     <strong>Payment Date :</strong> {{ date('d/m/Y h:i:s', strtotime($order->payment_date))}}<br /><br />
                 </div>
 
-                <div class="col-sm-6">
+                {{-- <div class="col-sm-6">
                     <strong>Sender:</strong>
                     <strong>{{$order->bank_name}} {{$order->bank_acc_no}}</strong> a/n {{ $order->bank_acc_name }}
                 </div>
@@ -149,13 +149,13 @@ function printDiv(divName) {
                 <div class="col-sm-6">
                     <strong>Receiver:</strong>
                     <strong>{{$order->bank_account->bank_name}} {{$order->bank_account->bank_acc_no}}</strong> a/n {{ $order->bank_account->bank_acc_name }}
-                </div>
+                </div> --}}
 
-                <div class="col-sm-12">
+                {{-- <div class="col-sm-12">
                     <br /><br />
                     <strong>Proof of Payment:</strong> <br /><br />
                     <img class="img-responsive" src="{{ asset('storage/orders/'.$order->payment_img) }}">
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

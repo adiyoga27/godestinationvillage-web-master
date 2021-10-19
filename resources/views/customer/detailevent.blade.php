@@ -153,7 +153,7 @@
                                     <a href="{{ url('events/' . $rec->slug) }}">{{ $rec->name }}</a>
                                 </h3>
                                 <span class="location"><i class='bx bx-map'></i>{{ $rec->category->name }}</span><br>
-                                <span class="location"><i class='bx bx-map'></i>{{ $rec->location }}dasdasdasdasdas asdasd asdad</span>
+                                <span class="location"><i class='bx bx-map'></i>{{ $rec->location }}</span>
                                 <br>
                                 <span class="location"><i class='bx bx-time'></i>{{ date('d-m-Y', strtotime($rec->date_event)) }}</span>
                             </div>

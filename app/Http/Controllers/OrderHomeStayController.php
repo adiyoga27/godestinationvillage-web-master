@@ -27,14 +27,13 @@ class OrderHomeStayController extends Controller
     {
         if (request()->ajax()) {
             $query = OrderHomestayService::all();
-            // if(Auth::user()->role_id == 2){
             //     $query->where('orders_homestays.village_id', Auth::user()->id);
             // }
             return DataTables::of($query)
             ->addColumn('action', function($order){
-                return "<a href='". route('order-homestay.show', $order->id) ."' class='btn btn-sm btn-outline-primary'>Show</a>";
-            })->editColumn('package_price', function($order){
-                return number_format($order->package_price);
+                return "<a href='". route('order-homestay.show', $order->uuid) ."' class='btn btn-sm btn-outline-primary'>Show</a>";
+            })->editColumn('homestay_price', function($order){
+                return number_format($order->homestay_price);
             })->editColumn('total_payment', function($order){
                 return 'Rp. '.number_format($order->total_payment, 2,'.',',');
             })->editColumn('payment_type', function($order){
@@ -59,9 +58,9 @@ class OrderHomeStayController extends Controller
               ->addColumn(['data' => 'customer_name', 'name' => 'customer_name', 'title' => 'Nama Customer' ])
               ->addColumn(['data' => 'customer_phone', 'name' => 'customer_phone', 'title' => 'No. Telp' ])
               ->addColumn(['data' => 'customer_email', 'name' => 'customer_email', 'title' => 'Email' ])
-              ->addColumn(['data' => 'homestay_name', 'name' => 'package_name', 'title' => 'Nama Paket' ])
-              ->addColumn(['data' => 'qty', 'name' => 'package_price', 'title' => 'Harga Paket' ])
-              ->addColumn(['data' => 'homestay_price', 'name' => 'package_price', 'title' => 'Harga Paket' ])
+              ->addColumn(['data' => 'homestay_name', 'name' => 'homestay_name', 'title' => 'Nama Paket' ])
+              ->addColumn(['data' => 'pax', 'name' => 'pax', 'title' => 'Harga Paket' ])
+              ->addColumn(['data' => 'homestay_price', 'name' => 'homestay_price', 'title' => 'Harga Paket' ])
               ->addColumn(['data' => 'homestay_discount', 'name' => 'pax', 'title' => 'Pax' ])
               ->addColumn(['data' => 'total_payment', 'name' => 'total_payment', 'title' => 'Total' ])
               ->addColumn(['data' => 'payment_type', 'name' => 'payment_type', 'title' => 'Metode Pembayaran' ])
@@ -71,7 +70,7 @@ class OrderHomeStayController extends Controller
                 'order' => [3, 'desc']
               ]);
 
-        return view('backend.homestays.order.index')->with(compact('html'));
+        return view('backend.homestay.order.index')->with(compact('html'));
     }
 
     /**
@@ -103,9 +102,8 @@ class OrderHomeStayController extends Controller
      */
     public function show($id)
     {
-        $order = OrderHomestayService::find($id);
-
-        return view('backend.homestays.order.show')->with(compact('order'));
+        $order = OrderHomestayService::find($id)->first();
+        return view('backend.homestay.order.show')->with(compact('order'));
     }
 
     /**

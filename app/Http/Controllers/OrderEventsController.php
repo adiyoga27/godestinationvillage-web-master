@@ -35,7 +35,7 @@ class OrderEventsController extends Controller
             // }
             return DataTables::of($query)
             ->addColumn('action', function($order){
-                return "<a href='". route('order-event.show', $order->id) ."' class='btn btn-sm btn-outline-primary'>Show</a>";
+                return "<a href='". route('order-event.show', $order->uuid) ."' class='btn btn-sm btn-outline-primary'>Show</a>";
             })->editColumn('package_price', function($order){
                 return number_format($order->package_price);
             })->editColumn('total_payment', function($order){
@@ -106,7 +106,8 @@ class OrderEventsController extends Controller
      */
     public function show($id)
     {
-        $order = OrderEventService::find($id);
+
+        $order = OrderEventService::find($id)->first();
 
         return view('backend.events.order.show')->with(compact('order'));
     }

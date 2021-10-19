@@ -189,7 +189,12 @@ Route::group(['prefix' => 'administrator', 'middleware' => ['auth', 'role:admin|
         'as' => 'order-event.change_status',
         'uses' => 'OrderEventsController@change_status'
     ]);
-    // Route::get('order-event/{id}/change-status/{status}', [OrderEventsController::class, 'change_status']);
+
+    Route::resource('order-homestay', OrderHomeStayController::class, ['names' => 'order-homestay']);
+    Route::get('order-homestay/{id}/change-status/{status}', [
+        'as' => 'order-homestay.change_status',
+        'uses' => 'OrderHomeStayController@change_status'
+    ]);
     Route::resource('category-events', CategoryEventsController::class);
     Route::resource('events', EventsController::class);
     Route::resource('homestay', HomeStayController::class);

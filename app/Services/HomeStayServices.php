@@ -133,7 +133,7 @@ class HomeStayServices
             }
 
             DB::commit();
-            return $result;
+            return true;
         } catch (\Throwable $th) {
             DB::rollBack();
             return $th;
