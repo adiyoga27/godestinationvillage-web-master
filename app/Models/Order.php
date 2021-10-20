@@ -79,7 +79,8 @@ class Order extends Model
 
     public function village()
     {
-        return $this->belongsTo(User::class, 'village_id');
+        // return $this->belongsTo(User::class, 'village_id');
+        return $this->hasOne(VillageDetail::class, 'id', 'village_id');
     }
 
     public function getActivitylogOptions(): LogOptions

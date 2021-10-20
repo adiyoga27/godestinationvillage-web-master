@@ -41,7 +41,7 @@
                         </tr>
                         <tr>
                             <td>Desa</td>
-                            <td>{{ $package->user->village_detail->village_name }}</td>
+                            <td>{{ $package->detailVillage->village_name }}</td>
                         </tr>
                         <tr>
                             <td>Harga Paket</td>

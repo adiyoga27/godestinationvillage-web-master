@@ -35,21 +35,30 @@ class HomeStayController extends Controller
             }
             return DataTables::of($query)
             ->addColumn('action', function($package){
-                return view('datatable._action_dinamyc', [
-                    'model'           => $package,
-                    'delete'          => route('homestay.destroy', $package->id),
-                    'url'             => [
-                        'Edit'            => route('homestay.edit', $package->id),
-                    ],
-                    'confirm_message' =>  'Anda yakin untuk menghapus data "' . $package->name . '" ?',
-                    'padding'         => '85px',
-                ]);
+                if (Auth::user()->role_id == 2 && !$package->is_active) {  
+                    return view('datatable._action_dinamyc', [
+                        'model'           => $package,
+                        'delete'          => route('homestay.destroy', $package->id),
+                        'url'             => [
+                            'Edit'            => route('homestay.edit', $package->id),
+                        ],
+                        'confirm_message' =>  'Anda yakin untuk menghapus data "' . $package->name . '" ?',
+                        'padding'         => '85px',
+                    ]);
+                }
             })
             ->editColumn('is_active', function($package){
-                if($package->is_active == 0)
-                    return "<label class='badge badge-gradient-danger'>Tidak Aktif</label>";
-                else
-                    return "<label class='badge badge-gradient-success'>Aktif</label>";
+                if (Auth::user()->role_id == 1) {
+                    if ($package->is_active == 0)
+                        return "<label class='badge badge-gradient-danger'>Tidak Aktif</label>";
+                    else
+                        return "<label class='badge badge-gradient-success'>Aktif</label>";
+                }else{
+                    if ($package->is_active == 0)
+                        return "<label class='badge badge-gradient-danger'>Proses Validasi</label>";
+                    else
+                        return "<label class='badge badge-gradient-success'>Aktif</label>";
+                }
             })->editColumn('created_at', function($admin){
                 return date('Y-m-d', strtotime($admin->created_at));
             })->rawColumns(['action', 'is_active'])->toJson();

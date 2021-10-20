@@ -74,6 +74,11 @@ class Package extends Model
     {
         return $this->hasMany(Order::class);
     }
+    public function detailVillage()
+    {
+        return $this->hasOne(VillageDetail::class, 'id', 'village_id');
+    }
+
 
     public function translate()
     {

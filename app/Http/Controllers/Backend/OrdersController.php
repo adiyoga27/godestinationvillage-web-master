@@ -85,7 +85,7 @@ class OrdersController extends Controller
 
     public function show($id)
     {   
-        $order = OrderService::find($id);
+        $order = OrderService::find($id)->first();
 
         return view('backend.order.show')->with(compact('order'));
     }

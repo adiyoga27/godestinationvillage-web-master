@@ -159,7 +159,7 @@
             <a class="nav-link" data-toggle="collapse" href="#ui-wisata" aria-expanded="false" aria-controls="ui-wisata">
               <span class="menu-title">Paket Wisata</span>
               <i class="menu-arrow"></i>
-              <i class="mdi mdi-account-box menu-icon"></i>
+              <i class="mdi mdi-wallet-travel menu-icon"></i>
             </a>
             <div class="collapse" id="ui-wisata">
                 <ul class="nav flex-column sub-menu">
@@ -180,7 +180,7 @@
             <a class="nav-link" data-toggle="collapse" href="#ui-events" aria-expanded="false" aria-controls="ui-events">
               <span class="menu-title">Events</span>
               <i class="menu-arrow"></i>
-              <i class="mdi mdi-account-box menu-icon"></i>
+              <i class="mdi mdi-monitor menu-icon"></i>
             </a>
             <div class="collapse" id="ui-events">
                 <ul class="nav flex-column sub-menu">
@@ -202,7 +202,7 @@
             <a class="nav-link" data-toggle="collapse" href="#ui-homestay" aria-expanded="false" aria-controls="ui-homestay">
               <span class="menu-title">Home Stay</span>
               <i class="menu-arrow"></i>
-              <i class="mdi mdi-account-box menu-icon"></i>
+              <i class="mdi mdi-home-modern menu-icon"></i>
             </a>
             <div class="collapse" id="ui-homestay">
                 <ul class="nav flex-column sub-menu">

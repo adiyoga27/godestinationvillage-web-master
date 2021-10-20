@@ -29,7 +29,7 @@ class PackageService
 
     public static function find_with($id)
     {
-        return Package::with(['category', 'orders', 'user.village_detail'])->find($id);
+        return Package::with(['category', 'orders', 'user.village_detail', 'detailVillage'])->find($id);
     }
 
     public static function find_by_user($user_id)

@@ -38,6 +38,7 @@ class PackagesController extends Controller
      */
     public function index(Request $request, Builder $htmlBuilder)
     {
+        $allowed = true;
         if (request()->ajax()) {
             $query = PackageService::all();
             if (Auth::user()->role_id == 2) {
@@ -45,22 +46,33 @@ class PackagesController extends Controller
             }
             return DataTables::of($query)
                 ->addColumn('action', function ($package) {
-                    return view('datatable._action_dinamyc', [
+                    if (Auth::user()->role_id == 2 && !$package->is_active) {
+                       
+                    return  view('datatable._action_dinamyc',  [
                         'model'           => $package,
                         'delete'          => route('package.destroy', $package->id),
                         'url'             => [
                             'Edit'            => route('package.edit', $package->id),
-                            'Show'            => route('package.show', $package->id),
-                        ],
+                            // 'Show'            => route('package.show', $package->id),
+                        ] ,
                         'confirm_message' =>  'Anda yakin untuk menghapus data "' . $package->name . '" ?',
                         'padding'         => '85px',
                     ]);
+                }
+
                 })
                 ->editColumn('is_active', function ($package) {
-                    if ($package->is_active == 0)
-                        return "<label class='badge badge-gradient-danger'>Tidak Aktif</label>";
-                    else
-                        return "<label class='badge badge-gradient-success'>Aktif</label>";
+                    if (Auth::user()->role_id == 1) {
+                        if ($package->is_active == 0)
+                            return "<label class='badge badge-gradient-danger'>Tidak Aktif</label>";
+                        else
+                            return "<label class='badge badge-gradient-success'>Aktif</label>";
+                    }else{
+                        if ($package->is_active == 0)
+                            return "<label class='badge badge-gradient-danger'>Proses Validasi</label>";
+                        else
+                            return "<label class='badge badge-gradient-success'>Aktif</label>";
+                    }
                 })
                 ->editColumn('price', function ($package) {
                     return 'Rp. ' . number_format($package->price, 2, '.', ',');
