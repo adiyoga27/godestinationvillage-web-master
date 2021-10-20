@@ -46,6 +46,17 @@ class EventsController extends Controller
                         'confirm_message' =>  'Anda yakin untuk menghapus data "' . $package->name . '" ?',
                         'padding'         => '85px',
                     ]);
+                } else{
+                    return  view('datatable._action_dinamyc',  [
+                        'model'           => $package,
+                        'delete'          => route('package.destroy', $package->id),
+                        'url'             => [
+                            'Edit'            => route('package.edit', $package->id),
+                            // 'Show'            => route('package.show', $package->id),
+                        ] ,
+                        'confirm_message' =>  'Anda yakin untuk menghapus data "' . $package->name . '" ?',
+                        'padding'         => '85px',
+                    ]);
                 }
             })
             ->editColumn('is_active', function($package){
