@@ -9,7 +9,9 @@ use App\Models\CategoryHomestay;
 use App\Models\HomestayTranslations;
 use App\Services\CategoryHomeStayService;
 use App\Services\HomeStayServices;
+use App\Services\VillageService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 use Yajra\DataTables\Html\Builder;
 
@@ -27,7 +29,11 @@ class HomeStayController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
         if (request()->ajax()) {
-            return DataTables::of(HomeStayServices::all())
+            $query = HomeStayServices::all();
+            if (Auth::user()->role_id == 2) {
+                $query->where('homestay.village_id', Auth::user()->village_id);
+            }
+            return DataTables::of($query)
             ->addColumn('action', function($package){
                 return view('datatable._action_dinamyc', [
                     'model'           => $package,
@@ -68,10 +74,12 @@ class HomeStayController extends Controller
 
     public function create()
     {
+        $villages = VillageService::pluck()->prepend('Pilih Village', '');
+
         $categories = CategoryHomeStayService::pluck()->prepend('Pilih Kategori', '');
    
         return view('backend.homestay.package.create')->with(compact(
-            'categories',
+            'categories', 'villages'
         ));
     }
 
@@ -89,12 +97,14 @@ class HomeStayController extends Controller
     {
         $package = HomeStayServices::find($id);
         $packageTranslate = HomestayTranslations::where('homestay_id', $id)->first();
+        $villages = VillageService::pluck();
 
         $categories = CategoryHomeStayService::pluck();
         return view('backend.homestay.package.edit')->with(compact(
             'categories',
             'package',
-            'packageTranslate'
+            'packageTranslate', 
+            'villages'
         ));
     }
 

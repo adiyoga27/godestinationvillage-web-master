@@ -49,7 +49,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'email_verified_at', 'role_id', 'is_active', 'phone', 'country', 'address', 'avatar','provider','provider_id'
+        'name', 'email', 'password', 'email_verified_at', 'role_id', 'is_active', 'phone', 'country', 'address', 'avatar','provider','provider_id','village_id'
     ];
 
     /**
@@ -98,7 +98,10 @@ class User extends Authenticatable
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->logOnly([ 'name', 'email', 'password', 'email_verified_at', 'role_id', 'is_active', 'phone', 'country', 'address', 'avatar','provider','provider_id']);
+        ->logOnly([ 'name', 'email', 'password', 'email_verified_at', 'role_id', 'is_active', 'phone', 'country', 'address', 'avatar','provider','provider_id',
+        'village_id'
+    
+    ]);
         // Chain fluent methods for configuration options
     }
 

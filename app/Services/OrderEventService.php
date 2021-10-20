@@ -18,7 +18,8 @@ class OrderEventService
     {
         DB::statement(DB::raw('set @rownum=0'));
         return OrderEvent::query()
-                ->leftJoin('bank_accounts', 'order_events.bank_account_id', '=', 'bank_accounts.id')                            
+                ->leftJoin('bank_accounts', 'order_events.bank_account_id', '=', 'bank_accounts.id')
+                ->leftJoin('events', 'order_events.event_id', '=', 'events.id')                            
                 ->select([
                     DB::raw('@rownum  := @rownum  + 1 AS rownum'),
                     DB::raw('order_events.*'),

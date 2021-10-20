@@ -50,7 +50,8 @@ class Package extends Model
         'disc',
         'is_active',
         'default_img',
-        'slug'
+        'slug',
+        'village_id'
 
     ];
 
@@ -100,7 +101,9 @@ class Package extends Model
         'price',
         'price_disc',
         'is_active',
-        'default_img']);
+        'default_img',
+        'village_id'
+    ]);
         // Chain fluent methods for configuration options
     }
 }

@@ -163,11 +163,15 @@
             </a>
             <div class="collapse" id="ui-wisata">
                 <ul class="nav flex-column sub-menu">
+                  @if(Auth::user()->role_id == 1)
                     <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/category') }}">Kategori </a></li>
-                    <li class="nav-item">  <a class="nav-link" href="{{ url('administrator/package') }}">Paket Wisata</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/package') }}">Paket Wisata</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/order') }}">Pemesanan</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/report/village') }}">Laporan Desa Wisata</a></li>
-
+                  @endif
+                  @if(Auth::user()->role_id == 2)
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/package') }}">Pengajuan</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/order') }}">Laporan Desa Wisata</a></li>
+                  @endif
 
                 </ul>
             </div>
@@ -180,11 +184,15 @@
             </a>
             <div class="collapse" id="ui-events">
                 <ul class="nav flex-column sub-menu">
+                  @if(Auth::user()->role_id == 1)
                     <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/category-events') }}">Kategori </a></li>
                     <li class="nav-item">  <a class="nav-link" href="{{ url('administrator/events') }}">Paket Events </a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/order-event') }}">Pemesanan</a></li>
-                    {{-- <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/report-events') }}">Laporan Events</a></li> --}}
-
+                  @endif
+                  @if(Auth::user()->role_id == 2)
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/events') }}">Pengajuan Event</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/order-event') }}">Laporan Events</a></li>
+                  @endif
 
 
                 </ul>
@@ -198,11 +206,15 @@
             </a>
             <div class="collapse" id="ui-homestay">
                 <ul class="nav flex-column sub-menu">
+                  @if(Auth::user()->role_id == 1)
                     <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/category-homestay') }}">Kategori </a></li>
                     <li class="nav-item">  <a class="nav-link" href="{{ url('administrator/homestay') }}">Paket Home Stay </a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/order-homestay') }}">Pemesanan</a></li>
-                    {{-- <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/order') }}">Laporan Home Stay</a></li> --}}
-
+                  @endif
+                  @if(Auth::user()->role_id == 2)
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/homestay') }}">Pengajuan Homestay</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/order-homestay') }}">Laporan Home Stay</a></li>
+                  @endif
 
                 </ul>
             </div>
@@ -222,13 +234,14 @@
               <i class="mdi mdi-animation menu-icon"></i>
             </a>
           </li> --}}
-   
+          @if(Auth::user()->role_id == 1)
           <li class="nav-item">
             <a class="nav-link" href="{{ url('administrator/blog') }}">
               <span class="menu-title">Blog</span>
               <i class="mdi mdi-chart-areaspline menu-icon"></i>
             </a>
           </li>
+          @endif
           {{-- <li class="nav-item">
             <a class="nav-link" href="{{ url('administrator/report/package') }}">
               <span class="menu-title">Laporan Paket Wisata</span>

@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Backend\AdminsController;
@@ -13,6 +14,8 @@ use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\HomeStayController;
 use App\Http\Controllers\Backend\InstagramController;
 use App\Http\Controllers\Backend\MembersController;
+use App\Http\Controllers\Backend\OrderEventsController;
+use App\Http\Controllers\Backend\OrderHomeStayController;
 use App\Http\Controllers\Backend\OrdersController;
 use App\Http\Controllers\Backend\PackagesController;
 use App\Http\Controllers\Backend\ProfileController;
@@ -25,8 +28,6 @@ use App\Http\Controllers\Front\ReservationEventController;
 use App\Http\Controllers\Front\ReservationHomeStayController;
 use App\Http\Controllers\Front\SearchController;
 use App\Http\Controllers\MidtransController;
-use App\Http\Controllers\OrderEventsController;
-use App\Http\Controllers\OrderHomeStayController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -224,7 +225,7 @@ Route::group(['prefix' => 'administrator', 'middleware' => ['auth', 'role:admin|
             'uses' => 'ReportVillageController@export_xls'
         ]);
         Route::get('/villages/packages', [ReportVillageController::class, 'get_package'])->name('report_village.get_package');
-        Route::get('/event', [ReportVillageController::class, 'index'])->name('report.village');
+        Route::get('/events', [ReportVillageController::class, 'index'])->name('report.village');
     });
     Route::get('user-village/{id}/packages', [
         'as' => 'user_village.packages',

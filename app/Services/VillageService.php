@@ -20,6 +20,11 @@ class VillageService
         return User::with(['village_detail', 'village_orders', 'packages'])->find($id);
     }
 
+    public static function find_id_village($user_id)
+    {
+        return User::where('user_id', $user_id);
+    }
+
     public static function get_by_role($role_id)
     {
         DB::statement(DB::raw('set @rownum=0'));

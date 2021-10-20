@@ -6,6 +6,7 @@ use App\Helpers\CustomImage;
 use App\Models\Homestay;
 use App\Models\HomestayTranslations;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -39,6 +40,14 @@ class HomeStayServices
     {
         try {
             DB::beginTransaction();
+
+            if (Auth::user()->role_id == 2) {
+                $payload['village_id'] = Auth::user()->village_id;
+                $payload['is_active'] = false;
+
+            }
+       
+
             $payload['slug'] = Str::slug( $payload['name']);
 
             if (!empty($payload['default_img'])) {

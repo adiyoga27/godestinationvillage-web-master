@@ -9,7 +9,9 @@ use App\Models\EventTranslations;
 use App\Models\PackageTranslations;
 use App\Services\CategoryEventService;
 use App\Services\EventService;
+use App\Services\VillageService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 use Yajra\DataTables\Html\Builder;
 
@@ -27,7 +29,12 @@ class EventsController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
         if (request()->ajax()) {
-            return DataTables::of(EventService::all())
+            $query = EventService::all();
+            $role = Auth::user()->role_id ;
+            if ($role == 2) {
+                $query->where('events.village_id', Auth::user()->village_id);
+            }
+            return DataTables::of($query)
             ->addColumn('action', function($package){
                 return view('datatable._action_dinamyc', [
                     'model'           => $package,
@@ -48,7 +55,7 @@ class EventsController extends Controller
                 return date('Y-m-d', strtotime($admin->created_at));
             })->rawColumns(['action', 'is_active'])->toJson();
         }
-
+        
         $html = $htmlBuilder
               ->addColumn(['data' => 'action', 'name'=>'action', 'title'=>'', 'orderable'=>false, 'searchable'=>false])
               ->addColumn(['data' => 'rownum', 'name'=>'rownum', 'title'=>'No','searchable'=>false])
@@ -68,10 +75,12 @@ class EventsController extends Controller
 
     public function create()
     {
+        $villages = VillageService::pluck()->prepend('Pilih Village', '');
+
         $categories = CategoryEventService::pluck()->prepend('Pilih Kategori', '');
    
         return view('backend.events.package.create')->with(compact(
-            'categories',
+            'categories', 'villages'
         ));
     }
 
@@ -89,12 +98,14 @@ class EventsController extends Controller
     {
         $package = EventService::find($id);
         $packageTranslate = EventTranslations::where('events_id', $id)->first();
+        $villages = VillageService::pluck();
 
         $categories = CategoryEventService::pluck();
         return view('backend.events.package.edit')->with(compact(
             'categories',
             'package',
-            'packageTranslate'
+            'packageTranslate',
+            'villages'
         ));
     }
 

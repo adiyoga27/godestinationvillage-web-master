@@ -6,6 +6,7 @@ use App\Models\Package;
 use Illuminate\Support\Arr;
 use App\Helpers\CustomImage;
 use App\Models\PackageTranslations;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -53,7 +54,7 @@ class PackageService
         DB::statement(DB::raw('set @rownum=0'));
         return Package::query()
             ->join('categories', 'packages.category_id', '=', 'categories.id')
-            ->join('village_details', 'packages.user_id', '=', 'village_details.user_id')
+            ->leftjoin('village_details', 'packages.village_id', '=', 'village_details.id')
             ->select([
                 DB::raw('@rownum  := @rownum  + 1 AS rownum'),
                 DB::raw('packages.*'),
@@ -67,7 +68,14 @@ class PackageService
         try {
             DB::beginTransaction();
             $payload['slug'] = Str::slug( $payload['name']);
+            if (Auth::user()->role_id == 2) {
+                $payload['village_id'] = Auth::user()->village_id;
+                $payload['is_active'] = false;
 
+            }else{
+                $payload['village_id'] = $payload['user_id'];
+
+            }
             if (!empty($payload['default_img'])) {
                 $upload = CustomImage::storeImage($payload['default_img'], 'packages');
                 $payload['default_img'] = $upload['name'];

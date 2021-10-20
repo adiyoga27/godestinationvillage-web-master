@@ -1,6 +1,15 @@
 <div class="row">
     <div class="col-md-12">
 
+        @if (Auth::user()->role_id == 1) 
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Village (*)</label>
+            <div class="col-sm-9">
+                {!! Form::select('village_id', $villages, null, ['class' => 'selectpicker', 'required' => 'required', 'data-live-search' => 'true']) !!}
+                {!! $errors->first('village_id', '<p class="text-danger">:message</p>') !!}
+            </div>
+        </div>
+    @endif
 
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Kategori Homestay (*)</label>
@@ -197,7 +206,7 @@
                 </div>
             </div>
         </div>
-
+        @if (Auth::user()->role_id == 1) 
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Status (*)</label>
             <div class="col-sm-4">
@@ -228,6 +237,7 @@
                 </div>
             </div>
         </div>
+        @endif
       
         <div class="form-group row">
             <label class="col-sm-3 col-form-label"></label>

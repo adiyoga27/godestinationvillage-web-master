@@ -41,7 +41,7 @@ class PackagesController extends Controller
         if (request()->ajax()) {
             $query = PackageService::all();
             if (Auth::user()->role_id == 2) {
-                $query->where('packages.user_id', Auth::user()->id);
+                $query->where('packages.village_id', Auth::user()->village_id);
             }
             return DataTables::of($query)
                 ->addColumn('action', function ($package) {

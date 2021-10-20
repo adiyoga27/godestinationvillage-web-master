@@ -19,12 +19,12 @@ class Event extends Model
     protected static $logName = 'events';
     protected static $logOnlyDirty = true;
     public $fillable = [
-        'id', 'category_id', 'name', 'description', 'price', 'disc', 'location', 'date_event', 'duration', 'interary', 'inclusion', 'additional','default_img','is_active', 'is_paywish', 'is_free', 'slug'
+        'id', 'category_id', 'name', 'description', 'price', 'disc', 'location', 'date_event', 'duration', 'interary', 'inclusion', 'additional','default_img','is_active', 'is_paywish', 'is_free', 'slug','village_id'
     ];
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->logOnly(['id', 'category_id', 'name', 'description', 'price', 'disc', 'location', 'date_event', 'duration', 'interary', 'inclusion', 'additional','default_img','is_active', 'is_paywish', 'is_free', 'slug']);
+        ->logOnly(['id', 'category_id', 'name', 'description', 'price', 'disc', 'location', 'date_event', 'duration', 'interary', 'inclusion', 'additional','default_img','is_active', 'is_paywish', 'is_free', 'slug','village_id']);
         // Chain fluent methods for configuration options
     }
 

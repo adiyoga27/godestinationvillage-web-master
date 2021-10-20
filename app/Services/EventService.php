@@ -6,6 +6,7 @@ use App\Helpers\CustomImage;
 use App\Models\Event;
 use App\Models\EventTranslations;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -40,12 +41,22 @@ class EventService
        
         try {
             DB::beginTransaction();
-            $payload['slug'] = Str::slug( $payload['name']);
 
+            if (Auth::user()->role_id == 2) {
+                $payload['village_id'] = Auth::user()->village_id;
+                $payload['is_paywish'] = false;
+                $payload['is_free'] = false;
+                $payload['is_active'] = false;
+
+            }
+       
+
+
+
+            $payload['slug'] = Str::slug( $payload['name']);
             if (!empty($payload['default_img'])) {
                 $upload = CustomImage::storeImage($payload['default_img'], 'events');
                 $payload['default_img'] = $upload['name'];
-
             }
 
             $dataPackage = Arr::except($payload, ['name_id', 'description_id', 'interary_id', 'inclusion_id', 'additional_id']);

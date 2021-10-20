@@ -36,11 +36,11 @@ class OrdersController extends Controller
         if (request()->ajax()) {
             $query = OrderService::all();
             if(Auth::user()->role_id == 2){
-                $query->where('orders.village_id', Auth::user()->id);
+                $query->where('orders.village_id', Auth::user()->village_id)->where('payment_status' ,'success');
             }
             return DataTables::of($query)
             ->addColumn('action', function($order){
-                return "<a href='". route('order.show', $order->id) ."' class='btn btn-sm btn-outline-primary'>Show</a>";
+                return "<a href='". route('order.show', $order->uuid) ."' class='btn btn-sm btn-outline-primary'>Show</a>";
             })->editColumn('package_price', function($order){
                 return number_format($order->package_price);
             })->editColumn('total_payment', function($order){

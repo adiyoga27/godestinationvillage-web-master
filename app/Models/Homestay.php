@@ -21,12 +21,12 @@ class Homestay extends Model
     protected static $logName = 'homestay';
     protected static $logOnlyDirty = true;
     public $fillable = [
-        'id', 'category_id', 'name', 'description', 'location', 'price', 'disc', 'facilities', 'is_breakfast', 'additional_activities', 'owner_name', 'check_in_time', 'check_out_time', 'additional_notes', 'is_active','default_img', 'slug'
+        'id', 'category_id', 'name', 'description', 'location', 'price', 'disc', 'facilities', 'is_breakfast', 'additional_activities', 'owner_name', 'check_in_time', 'check_out_time', 'additional_notes', 'is_active','default_img', 'slug','village_id'
     ];
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->logOnly([ 'id', 'category_id', 'name', 'description', 'location', 'price', 'disc', 'facilities', 'is_breakfast', 'additional_activities', 'owner_name', 'check_in_time', 'check_out_time', 'additional_notes', 'is_active','default_img', 'slug']);
+        ->logOnly([ 'id', 'category_id', 'name', 'description', 'location', 'price', 'disc', 'facilities', 'is_breakfast', 'additional_activities', 'owner_name', 'check_in_time', 'check_out_time', 'additional_notes', 'is_active','default_img', 'slug','village_id']);
         // Chain fluent methods for configuration options
     }
 

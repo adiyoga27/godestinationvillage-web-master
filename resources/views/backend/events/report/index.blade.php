@@ -7,12 +7,12 @@
 @section('content-header')
     <div class="page-header">
         <h3 class="page-title">
-          Laporan Desa Wisata
+          Laporan Event
         </h3>
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item">Administrator</li>
-            <li class="breadcrumb-item active" aria-current="page">Laporan Desa Wisata</li>
+            <li class="breadcrumb-item active" aria-current="page">Laporan Event</li>
           </ol>
         </nav>
       </div>

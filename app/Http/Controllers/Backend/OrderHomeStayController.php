@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\Mail\OrderEmail;
-use App\Mail\OrderEventEmail;
-use App\Mail\SendEmail;
-use App\Models\OrderEvent;
+use App\Http\Controllers\Controller;
+use App\Mail\OrderHomestayEmail;
+use App\Models\OrderHomestay;
 use App\Services\Midtrans\CreateSnapTokenService;
-use App\Services\OrderEventService;
+use App\Services\OrderHomestayService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Yajra\DataTables\Facades\DataTables;
 use Yajra\DataTables\Html\Builder;
 
-class OrderEventsController extends Controller
+class OrderHomeStayController extends Controller
 {
     public function __construct()
     {
@@ -29,15 +28,16 @@ class OrderEventsController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
         if (request()->ajax()) {
-            $query = OrderEventService::all();
-            // if(Auth::user()->role_id == 2){
-            //     $query->where('orders_events.village_id', Auth::user()->id);
-            // }
+            $query = OrderHomestayService::all();
+
+            if(Auth::user()->role_id == 2){
+                $query->where('homestay.village_id', Auth::user()->village_id)->where('payment_status' ,'success');
+            }
             return DataTables::of($query)
             ->addColumn('action', function($order){
-                return "<a href='". route('order-event.show', $order->uuid) ."' class='btn btn-sm btn-outline-primary'>Show</a>";
-            })->editColumn('package_price', function($order){
-                return number_format($order->package_price);
+                return "<a href='". route('order-homestay.show', $order->uuid) ."' class='btn btn-sm btn-outline-primary'>Show</a>";
+            })->editColumn('homestay_price', function($order){
+                return number_format($order->homestay_price);
             })->editColumn('total_payment', function($order){
                 return 'Rp. '.number_format($order->total_payment, 2,'.',',');
             })->editColumn('payment_type', function($order){
@@ -62,10 +62,10 @@ class OrderEventsController extends Controller
               ->addColumn(['data' => 'customer_name', 'name' => 'customer_name', 'title' => 'Nama Customer' ])
               ->addColumn(['data' => 'customer_phone', 'name' => 'customer_phone', 'title' => 'No. Telp' ])
               ->addColumn(['data' => 'customer_email', 'name' => 'customer_email', 'title' => 'Email' ])
-              ->addColumn(['data' => 'event_name', 'name' => 'package_name', 'title' => 'Nama Paket' ])
-              ->addColumn(['data' => 'pax', 'name' => 'package_price', 'title' => 'Pax' ])
-              ->addColumn(['data' => 'event_price', 'name' => 'event_price', 'title' => 'Harga Paket' ])
-              ->addColumn(['data' => 'event_discount', 'name' => 'pax', 'title' => 'disc' ])
+              ->addColumn(['data' => 'homestay_name', 'name' => 'homestay_name', 'title' => 'Nama Paket' ])
+              ->addColumn(['data' => 'pax', 'name' => 'pax', 'title' => 'Harga Paket' ])
+              ->addColumn(['data' => 'homestay_price', 'name' => 'homestay_price', 'title' => 'Harga Paket' ])
+              ->addColumn(['data' => 'homestay_discount', 'name' => 'pax', 'title' => 'Pax' ])
               ->addColumn(['data' => 'total_payment', 'name' => 'total_payment', 'title' => 'Total' ])
               ->addColumn(['data' => 'payment_type', 'name' => 'payment_type', 'title' => 'Metode Pembayaran' ])
               ->addColumn(['data' => 'payment_status', 'name' => 'payment_status', 'title' => 'Status Pembayaran' ])
@@ -74,7 +74,7 @@ class OrderEventsController extends Controller
                 'order' => [3, 'desc']
               ]);
 
-        return view('backend.events.order.index')->with(compact('html'));
+        return view('backend.homestay.order.index')->with(compact('html'));
     }
 
     /**
@@ -106,10 +106,8 @@ class OrderEventsController extends Controller
      */
     public function show($id)
     {
-
-        $order = OrderEventService::find($id)->first();
-
-        return view('backend.events.order.show')->with(compact('order'));
+        $order = OrderHomestayService::find($id)->first();
+        return view('backend.homestay.order.show')->with(compact('order'));
     }
 
     /**
@@ -120,6 +118,7 @@ class OrderEventsController extends Controller
      */
     public function edit($id)
     {
+        //
     }
 
     /**
@@ -147,8 +146,8 @@ class OrderEventsController extends Controller
 
     public function change_status($id, $status)
     {
-        $result = OrderEventService::change_status($id, $status);
-        $order =  OrderEventService::find($id); 
+        $result = OrderHomestayService::change_status($id, $status);
+        $order =  OrderHomestayService::find($id); 
 
         if($status == 'success'){
             $subject = 'Godevi - Order '. $order->code .' - Success';
@@ -160,26 +159,27 @@ class OrderEventsController extends Controller
 
         if ($result)
         {
-            $email = new OrderEventEmail($subject, $order, $message);
+            $email = new OrderHomestayEmail($subject, $order, $message);
             Mail::to([$order->customer_email])->send($email);
-            return redirect(route('order-event.show', $id))->with('status', 'Successfully updated');
+            return redirect(route('order-homestay.show', $id))->with('status', 'Successfully updated');
         }
         else
         {
-            return redirect(route('order-event.show', $id))->with('error','Failed to updated');
+            return redirect(route('order-homestay.show', $id))->with('error','Failed to updated');
         }
     }
     
-    public function sendEvent(Request $request)
+    public function sendHomeStay(Request $request)
     {
      
-        $data = OrderEventService::sendEvent($request->except('_token'));
-        return redirect('payment/event/' . $data->uuid);
+        $data = OrderHomestayService::sendHomeStay($request->except('_token'));
+        
+        return redirect('payment/homestay/' . $data->uuid);
     }
 
     public function showMidtrans($inv)
     {
-        $order = OrderEvent::where('code',$inv)->first()->toArray();
+        $order = OrderHomestay::where('code',$inv)->first()->toArray();
         $request = [
             'transaction_details' => [
                 'order_id' => $order['code'],
@@ -187,10 +187,10 @@ class OrderEventsController extends Controller
             ],
             'item_details' => [
                 [
-                    'id' => $order['event_id'],
-                    'price' => $order['event_price'],
+                    'id' => $order['homestay_id'],
+                    'price' => $order['homestay_price'],
                     'quantity' => $order['pax'],
-                    'name' => $order['event_name'],
+                    'name' => $order['homestay_name'],
                 ],
                
             ],
@@ -205,7 +205,8 @@ class OrderEventsController extends Controller
             $midtrans = new CreateSnapTokenService($order);
 
             $snapToken = $midtrans->getSnapToken($request);
+            $type = 'homestay';
 
-        return view('customer.midtrans', compact('order', 'snapToken'));
+        return view('customer.midtrans', compact('order', 'snapToken','type'));
     }
 }
