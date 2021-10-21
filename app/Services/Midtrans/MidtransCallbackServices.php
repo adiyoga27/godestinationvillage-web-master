@@ -43,7 +43,7 @@ class MidtransCallbackServices
                 );
                 if($result){
                     MidtransCallbackServices::sendEmailNotification($invoice, 'package');
-                    BotHelper::sendTelegram("Godevi - Payment Tour Package Success\, \n\nDate: $date \nInvoice : $invoice \nPayment Type : $payment_type.\n");
+                    BotHelper::sendTelegram("Godevi - Payment Tour Package Success, \n\nDate: $date \nInvoice : $invoice \nPayment Type : $payment_type.\n");
 
                 }
             }
@@ -59,7 +59,7 @@ class MidtransCallbackServices
                 );
                 if($result){
                     MidtransCallbackServices::sendEmailNotification($invoice, 'event');
-                    BotHelper::sendTelegram("Godevi - Payment Event Success\, \n\nDate: $date \nInvoice : $invoice \nPayment Type : $payment_type.\n");
+                    BotHelper::sendTelegram("Godevi - Payment Event Success, \n\nDate: $date \nInvoice : $invoice \nPayment Type : $payment_type.\n");
 
                 }
             }
@@ -75,7 +75,7 @@ class MidtransCallbackServices
                  );
                  if($result){
                     MidtransCallbackServices::sendEmailNotification($invoice, 'homestay');
-                    BotHelper::sendTelegram("Godevi - Payment Homestay Success\, \n\nDate: $date \nInvoice : $invoice \nPayment Type : $payment_type.\n");
+                    BotHelper::sendTelegram("Godevi - Payment Homestay Success, \n\nDate: $date \nInvoice : $invoice \nPayment Type : $payment_type.\n");
 
                 }
              }
