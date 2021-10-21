@@ -133,7 +133,7 @@ class EventService
             DB::commit();
             return true;
         } catch (\Throwable $th) {
-            
+            BotHelper::errorBot('Update Event', $th);
             DB::rollBack();
             return $th;
         }

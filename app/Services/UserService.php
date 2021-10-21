@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Helpers\BotHelper;
 use App\Models\User;
 use App\Helpers\CustomImage;
 use App\Http\Resources\Slider\SliderResource;
@@ -129,6 +130,8 @@ class UserService
             ]);
 
         } catch (\Throwable $th) {
+            BotHelper::errorBot('Registration User', $th);
+
            return FALSE;
         }
      
@@ -141,6 +144,8 @@ class UserService
             return new SliderResource(Slider::all());
             
         } catch (\Throwable $th) {
+            BotHelper::errorBot('Error Get Slider', $th);
+
             return $th;
         }
     }

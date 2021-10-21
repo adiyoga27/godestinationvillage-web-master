@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Helpers\BotHelper;
 use App\Mail\OrderEmail;
 use App\Models\Order;
 use App\Models\Package;
@@ -187,6 +188,8 @@ class OrderService
             
             } catch (\Throwable $th) {
                 DB::rollBack();
+                BotHelper::errorBot('Checkout Booking Tour Package', $th);
+
                 throw $th;
             }
     }

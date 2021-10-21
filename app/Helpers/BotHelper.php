@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class BotHelper  
@@ -15,8 +16,11 @@ class BotHelper
     }
     public static function errorBot($activity, $message)
     {
+        $name = Auth::user()->name;
+        $role = Auth::user()->role_id;
+
         $date = date('d M Y H:i')." wita";
-        $messages = "Godevi - Error Website \\nnDate:$date \nActivity : $activity \n\nMessage:$message";
+        $messages = "Godevi - Error Website \\nnDate:$date \nActivity : $activity \nUser : $name \Role : $role \n\nMessage:$message";
         $token = env('TELEGRAM_TOKEN');
         $chatid = env('TELEGRAM_CHATID');
         Http::post("https://api.telegram.org/bot$token/sendmessage?chat_id=$chatid&text=$messages");

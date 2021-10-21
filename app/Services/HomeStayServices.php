@@ -80,7 +80,7 @@ class HomeStayServices
             DB::commit();
             return $result;
         } catch (\Throwable $th) {
-            dd($th);
+            BotHelper::errorBot('Create Homestay', $th);
             DB::rollback();
             return $th;
         }
@@ -149,6 +149,8 @@ class HomeStayServices
             return true;
         } catch (\Throwable $th) {
             DB::rollBack();
+            BotHelper::errorBot('Update Homestay', $th);
+
             return $th;
         }
     }

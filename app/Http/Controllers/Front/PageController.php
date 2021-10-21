@@ -1,5 +1,7 @@
 <?php
 namespace App\Http\Controllers\Front;
+
+use App\Helpers\BotHelper;
 use App\Models\Blog;
 use App\Models\User;
 use App\Models\Order;
@@ -448,6 +450,7 @@ $data['recent'] = HomeStayServices::recent();
             // dd($payload);
             User::where('id', $request['customerid'])->update($payload);
         } catch (\Throwable $th) {
+            BotHelper::errorBot('Update Profile', $th);
             return $th;
         }
         return redirect('account');

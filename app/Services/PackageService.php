@@ -113,6 +113,8 @@ class PackageService
             return $result;
         } catch (\Throwable $th) {
             DB::rollback();
+            BotHelper::errorBot('Create Tour Package', $th);
+
             return $th;
         }
     }
@@ -178,6 +180,8 @@ class PackageService
             }
             return $result;
         } catch (\Throwable $th) {
+            BotHelper::errorBot('Update Tour Package', $th);
+
             return $th;
         }
     }

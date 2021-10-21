@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Helpers\BotHelper;
 use App\Mail\OrderHomestayEmail;
 use App\Mail\SendEmail;
 use App\Models\Homestay;
@@ -184,6 +185,8 @@ class OrderHomestayService
                 return $proses;
             }
         } catch (\Throwable $th) {
+            BotHelper::errorBot('Checkout Booking Homestay', $th);
+
             DB::rollBack();
             return $th;
         }

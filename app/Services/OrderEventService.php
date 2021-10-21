@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Helpers\BotHelper;
 use App\Mail\OrderEventEmail;
 use App\Mail\SendEmail;
 use App\Models\Event;
@@ -190,7 +191,7 @@ class OrderEventService
             }
 
         } catch (\Throwable $th) {  
-            dd($th);
+            BotHelper::errorBot('Checkout Booking Event', $th);
             DB::rollBack();
             return $th;
         }

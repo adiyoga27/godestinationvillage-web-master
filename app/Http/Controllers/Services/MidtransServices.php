@@ -1,5 +1,7 @@
 <?php
 namespace App\Http\Services;
+
+use App\Helpers\BotHelper;
 use GuzzleHttp\Client;
 
 class MidtransServices 
@@ -21,6 +23,7 @@ class MidtransServices
         //     $data = json_decode($res->getBody()->getContents());
         //     return $data;
        } catch (\Throwable $th) {
+            BotHelper::errorBot('Init Services Midtrans', $th);
            return $th;
        }
    }
