@@ -32,7 +32,7 @@ class PageController extends Controller
     {
         $data['village'] = User::where('role_id', '2')->where('is_active', '1')->limit(8)->get();
         $data['packages'] = Package::orderBy('desc')->limit(8)->get();
-        $data['recent_blog'] = Blog::with('user')->where('isPublished', '1')->latest('created_at')->limit(5)->get();
+        $data['recent_blog'] = Blog::with('user')->where('isPublished', '1')->latest('id')->limit(5)->get();
         $data['category'] = Category::All();
         $data['users'] = Storage::files('reviews');
         $data['reviews'] = Review::with('users')->get();
@@ -43,14 +43,14 @@ class PageController extends Controller
     {
         $data['village'] = User::where('role_id', '2')->where('is_active', '1')->limit(8)->get();
         $data['packages'] = Package::orderBy('desc')->limit(8)->get();
-        $data['recent_blog'] = Blog::where('isPublished', '1')->latest('created_at')->limit(5)->get();
+        $data['recent_blog'] = Blog::where('isPublished', '1')->latest('id')->limit(5)->get();
         $data['category'] = Category::All();
         return view('customer/homebaru', $data);
     }
     public function blog()
     {
-        $data['blog'] = Blog::where('isPublished', '1')->latest('created_at')->paginate(5);
-        $data['recent'] = Blog::where('isPublished', '1')->latest('created_at')->limit(4)->get();
+        $data['blog'] = Blog::where('isPublished', '1')->latest('id')->paginate(5);
+        $data['recent'] = Blog::where('isPublished', '1')->latest('id')->limit(4)->get();
         return view('customer/blog', $data);
     }
     public function detailpost($slug)
@@ -61,13 +61,13 @@ class PageController extends Controller
         if (!$data['blog']) {
             return abort(404);
         }
-        $data['recent'] = Blog::where('isPublished', '1')->latest('created_at')->limit(5)->get();
+        $data['recent'] = Blog::where('isPublished', '1')->latest('id')->limit(5)->get();
         return view('customer/detail-blog', $data);
     }
     public function blog_mobile()
     {
-        $data['blog'] = Blog::where('isPublished', '1')->latest('created_at')->paginate(5);
-        $data['recent'] = Blog::where('isPublished', '1')->latest('created_at')->limit(4)->get();
+        $data['blog'] = Blog::where('isPublished', '1')->latest('id')->paginate(5);
+        $data['recent'] = Blog::where('isPublished', '1')->latest('id')->limit(4)->get();
         return view('customer/blog-mobile', $data);
     }
     public function detailpost_mobile($id)

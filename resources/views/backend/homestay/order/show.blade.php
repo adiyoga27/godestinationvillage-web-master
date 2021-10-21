@@ -76,8 +76,8 @@ function printDiv(divName) {
                 <strong>Godevi</strong>
             </div>
             <div>Jln Wr Supratman No. 302 Denpasar Timur, Bali</div>
-            <div>Website: www.godevi.id | Email : hello@godevi.id </div>
-            <div>Phone : 081938834675</div>
+            <div>Website: {{env('APP_URL')}} | Email : {{env('APP_EMAIL')}} </div>
+            <div>Phone : {{env('APP_EMAIL')}}</div>
             <br />
             <h6 class="mb-3">Payment:</h6>
             <div>

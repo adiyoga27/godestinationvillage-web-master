@@ -73,7 +73,7 @@
                             3.1 Ownership of Content
                         </p>
                         <p>
-                            3.1.1 This website, domain names (www.godevi.id), subdomains, features, content and application
+                            3.1.1 This website, domain names (www.godestinationvillage.com), subdomains, features, content and application
                             services (including but not limited to cellular application services) are offered periodically
                             by GODEVI in connection with those owned and operated by GODEVI.
                         </p>
