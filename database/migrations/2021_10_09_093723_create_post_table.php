@@ -19,7 +19,7 @@ class CreatePostTable extends Migration
             $table->longText('post_content');
             $table->text('post_thumbnail');
             $table->integer('post_author');
-            $table->text('post_tags');
+            $table->text('post_tags')->nullable();
             $table->boolean('isPublished');
             $table->integer('updated_by');
             $table->timestamps();

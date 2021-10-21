@@ -30,7 +30,7 @@ class BlogService
 
     public static function create($payload)
     {   
-        $payload['slug'] = Str::slug( $payload['name']);
+        $payload['slug'] = Str::slug( $payload['post_title']);
 
         if (!empty($payload['post_thumbnail'])){
             $upload = CustomImage::storeImage($payload['post_thumbnail'], 'blogs');
@@ -48,7 +48,7 @@ class BlogService
     {
         
         $model = Blog::find($id);
-        $payload['slug'] = Str::slug( $payload['name']);
+        $payload['slug'] = Str::slug( $payload['post_title']);
 
         if (!empty($payload['post_thumbnail'])){
             if (!empty($model->post_thumbnail)){
