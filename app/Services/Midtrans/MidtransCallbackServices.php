@@ -20,7 +20,6 @@ class MidtransCallbackServices
 {
     public static function payment($payload)
     {
-        $date = date('d M Y H:i')." wita";
 
        $dataTransaction =  Transaction::create($payload);
         $status = 'pending';
@@ -29,6 +28,7 @@ class MidtransCallbackServices
         $transaction_time = $payload['transaction_time'];
         $status = $payload['transaction_status'];
         if ($status == 'capture' || $status == 'settlement') {
+            $date = date('d M Y H:i', strtotime($transaction_time))." wita";
             //check Order Package
             $result = false;
             $prefix = substr($invoice,0,3);
@@ -43,7 +43,7 @@ class MidtransCallbackServices
                 );
                 if($result){
                     MidtransCallbackServices::sendEmailNotification($invoice, 'package');
-                    BotHelper::sendTelegram("Godevi - Payment Tour Package Success\, \n\nDate: $date \nInvoice : $transaction_time\n Payment Type : $payment_type.\n");
+                    BotHelper::sendTelegram("Godevi - Payment Tour Package Success\, \n\nDate: $date \nInvoice : $invoice \nPayment Type : $payment_type.\n");
 
                 }
             }
@@ -59,7 +59,7 @@ class MidtransCallbackServices
                 );
                 if($result){
                     MidtransCallbackServices::sendEmailNotification($invoice, 'event');
-                    BotHelper::sendTelegram("Godevi - Payment Event Success\, \n\nDate: $date \nInvoice : $transaction_time\n Payment Type : $payment_type.\n");
+                    BotHelper::sendTelegram("Godevi - Payment Event Success\, \n\nDate: $date \nInvoice : $invoice \nPayment Type : $payment_type.\n");
 
                 }
             }
@@ -75,7 +75,7 @@ class MidtransCallbackServices
                  );
                  if($result){
                     MidtransCallbackServices::sendEmailNotification($invoice, 'homestay');
-                    BotHelper::sendTelegram("Godevi - Payment Homestay Success\, \n\nDate: $date \nInvoice : $transaction_time\n Payment Type : $payment_type.\n");
+                    BotHelper::sendTelegram("Godevi - Payment Homestay Success\, \n\nDate: $date \nInvoice : $invoice \nPayment Type : $payment_type.\n");
 
                 }
              }
