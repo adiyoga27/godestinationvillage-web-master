@@ -86,19 +86,21 @@ class PageController extends Controller
     }
     public function detailVillage($slug)
     {
-        $id = VillageDetail::where('slug', $slug)->first()->user_id;
-
-        $data['village'] = User::where('users.id', $id)
+        $result = VillageDetail::where('slug', $slug)->first();
+        $data['village'] = User::where('users.id', $result->user_id)
             ->where('is_active', '1')
             ->where('role_id', '2')
             ->first();
+
         if (!$data['village']) {
             return abort(404);
         }
         $data['packages'] = Package::with(['category', 'user', 'village'])
-                                        ->where('user_id', $id)
+                                        ->where('village_id', $result->id)
                                         ->where('packages.is_active', '1')
                                         ->paginate(8);
+// dd($data);
+
         $data['recent'] = Package::select('packages.id','packages.name', 'categories.name as cat_name', 'village_details.village_name as vil_name', 'default_img', 'packages.slug')
                 ->join('users', 'users.id', 'user_id')
                 ->join('village_details', 'users.id', 'village_details.user_id')

@@ -85,7 +85,7 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Location (*)</label>
             <div class="col-sm-9">
-                {!! Form::text('location', null, ['class' => 'form-control']) !!}
+                {!! Form::text('location', null, ['class' => 'form-control', 'placeholder'=> 'Input lokasi event example: Badung, Mengwi Denpasar']) !!}
                 {!! $errors->first('location', '<p class="text-danger">:message</p>') !!}
             </div>
         </div>
@@ -93,14 +93,14 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Tanggal (*)</label>
             <div class="col-sm-9">
-                {!! Form::datetime('date_event', null, ['class' => 'form-control']) !!}
+                {!! Form::input('dateTime-local','date_event', null, ['class' => 'form-control']) !!}
                 {!! $errors->first('date_event', '<p class="text-danger">:message</p>') !!}
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Durasi (*)</label>
             <div class="col-sm-9">
-                {!! Form::text('duration', null, ['class' => 'form-control']) !!}
+                {!! Form::text('duration', null, ['class' => 'form-control', 'placeholder'=> 'Input durasi event, example: 5 Hours']) !!}
                 {!! $errors->first('duration', '<p class="text-danger">:message</p>') !!}
             </div>
         </div>

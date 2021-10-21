@@ -222,7 +222,6 @@ class PackagesController extends Controller
     public function edit($id)
     {
         $package = PackageService::find($id);
-        dd($package);   
         $packageTranslate = PackageTranslations::where('package_id', $id)->first();
 
         $categories = CategoryService::pluck();

@@ -53,14 +53,14 @@
                                     <p>{{ $val->village_detail->village_address ?? '' }} </p>
                                 </div>
 
-                                <div class="review">
+                                {{-- <div class="review">
                                     <i class='bx bxs-star'></i>
                                     <i class='bx bxs-star'></i>
                                     <i class='bx bxs-star'></i>
                                     <i class='bx bxs-star'></i>
                                     <i class='bx bxs-star'></i>
                                     <span>39 Review</span>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
