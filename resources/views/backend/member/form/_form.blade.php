@@ -1,5 +1,13 @@
 <div class="row">
   <div class="col-md-12">
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Village (*)</label>
+            <div class="col-sm-9">
+                {!! Form::select('village_id', $villages, null, ['class' => 'selectpicker', 'required' => 'required', 'data-live-search' => 'true']) !!}
+                {!! $errors->first('village_id', '<p class="text-danger">:message</p>') !!}
+            </div>
+        </div>
     <div class="form-group row">
       <label class="col-sm-3 col-form-label">Nama (*)</label>
       <div class="col-sm-9">

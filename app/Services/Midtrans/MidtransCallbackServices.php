@@ -2,6 +2,7 @@
 
 namespace App\Services\Midtrans;
 
+use App\Helpers\BotHelper;
 use App\Mail\OrderEmail;
 use App\Mail\OrderEventEmail;
 use App\Mail\OrderHomestayEmail;
@@ -19,6 +20,8 @@ class MidtransCallbackServices
 {
     public static function payment($payload)
     {
+        $date = date('d M Y H:i')." wita";
+
        $dataTransaction =  Transaction::create($payload);
         $status = 'pending';
         $invoice = $payload['order_id'];
@@ -40,6 +43,8 @@ class MidtransCallbackServices
                 );
                 if($result){
                     MidtransCallbackServices::sendEmailNotification($invoice, 'package');
+                    BotHelper::sendTelegram("Godevi - Payment Tour Package Success\, \n\nDate: $date \nInvoice : $transaction_time\n Payment Type : $payment_type.\n");
+
                 }
             }
 
@@ -54,6 +59,8 @@ class MidtransCallbackServices
                 );
                 if($result){
                     MidtransCallbackServices::sendEmailNotification($invoice, 'event');
+                    BotHelper::sendTelegram("Godevi - Payment Event Success\, \n\nDate: $date \nInvoice : $transaction_time\n Payment Type : $payment_type.\n");
+
                 }
             }
 
@@ -68,6 +75,8 @@ class MidtransCallbackServices
                  );
                  if($result){
                     MidtransCallbackServices::sendEmailNotification($invoice, 'homestay');
+                    BotHelper::sendTelegram("Godevi - Payment Homestay Success\, \n\nDate: $date \nInvoice : $transaction_time\n Payment Type : $payment_type.\n");
+
                 }
              }
 
@@ -78,10 +87,12 @@ class MidtransCallbackServices
     public static function sendEmailNotification($invoice, $type)
     {
 
-        $subject = 'Godevi - Order '. $invoice .' - Success';
-        $message = "We have received your Order and Payment, here are your order details: <br> ";
         if($type == 'package'){
             $order = Order::where('code', $invoice)->first();
+            $customer_name = $order->customer_name;
+            $village_name = $order->village_name;
+            $message = "$customer_name <br>We are pleased to inform you that your payment has been verified and your order has been forwarded to $village_name <br><br> Thank you for supporting tourism villages! Be ready to feel the most authentic village experiences.";
+            $subject = 'Godevi - Order Tour Package '. $invoice .' - Success';
             if($order){
                 $email = new OrderEmail($subject, $order, $message);
                 Mail::to([$order->customer_email])->send($email);
@@ -89,6 +100,10 @@ class MidtransCallbackServices
         }
         if($type == 'event'){
             $order = OrderEvent::where('code', $invoice)->first();
+            $customer_name = $order->customer_name;
+            // $event_name = $order->event_name;
+            $message = "$customer_name <br>We are pleased to inform you that your payment has been verified and your order has been forwarded processed <br><br> Thank you for supporting tourism villages! Be ready to feel the most authentic village experiences.";
+            $subject = 'Godevi - Order Event '. $invoice .' - Success';
             if($order){
                 $email = new OrderEventEmail($subject, $order, $message);
                 Mail::to([$order->customer_email])->send($email);
@@ -96,6 +111,11 @@ class MidtransCallbackServices
         }
         if($type == 'homestay'){
             $order = OrderHomestay::where('code', $invoice)->first();
+
+            $customer_name = $order->customer_name;
+            // $homestay_name = $order->homestay_name;
+            $message = "$customer_name <br>We are pleased to inform you that your payment has been verified and your order has been forwarded processed <br><br> Thank you for supporting tourism villages! Be ready to feel the most authentic village experiences.";
+            $subject = 'Godevi - Order Homestay '. $invoice .' - Success';
             if($order){
                 $email = new OrderHomestayEmail($subject, $order, $message);
                 Mail::to([$order->customer_email])->send($email);

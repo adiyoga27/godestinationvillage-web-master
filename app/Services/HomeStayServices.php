@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Helpers\BotHelper;
 use App\Helpers\CustomImage;
 use App\Models\Homestay;
 use App\Models\HomestayTranslations;
@@ -44,6 +45,9 @@ class HomeStayServices
             if (Auth::user()->role_id == 2) {
                 $payload['village_id'] = Auth::user()->village_id;
                 $payload['is_active'] = false;
+                $name = Auth::user()->name;
+                BotHelper::sendTelegram("Godevi - Pengajuan Home Stay\, \n\nHi, $name \nTelah mengajukan Homestay dengan judul $payload[name]. Silahkan check akun admin anda untuk melakukan validasi pengajuan homestay");
+
 
             }
        

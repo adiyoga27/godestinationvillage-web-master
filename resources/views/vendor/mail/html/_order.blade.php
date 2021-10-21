@@ -57,7 +57,12 @@ Click <a href="{{ url('invoice/'.$data->uuid) }}">this link</a> for download you
 {{'invoice'}}
 @endif 
 <br />
-
-<strong>Note:</strong> The information regarding of the homestay will be sent through email / phone number registered on this booking. For further information do not hesitate to contact us via <br>Whatsapp : 081933158949 <br>Instagram : <a href='https://www.instagram.com/godestinationvillage/'> @godestinationvillage</a>
+<br />
+Warmest Regards, <br />
+<br />
+Godevi
+<br />
+<br />
+<strong>Note:</strong> Please do not reply this email. For more information, do not hesitate to contact us at: hello@godestinationvillage.com</a>
 
 @endcomponent

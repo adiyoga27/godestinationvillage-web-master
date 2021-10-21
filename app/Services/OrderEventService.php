@@ -23,6 +23,7 @@ class OrderEventService
                 ->select([
                     DB::raw('@rownum  := @rownum  + 1 AS rownum'),
                     DB::raw('order_events.*'),
+                    
                 ])->where('order_events.deleted_at', NULL);
     }
 
@@ -177,7 +178,8 @@ class OrderEventService
             if ($proses) {
                 $order =  OrderEvent::latest()->first();
                 $subject = 'Godevi - Order Events ' . $order->code . ' - Confirmation';
-                $message = "This is your booking confirmation. Thank you for joining our event. <br><br> Klik this <a href='$link'>link</a> for payment";
+                $customer_name = $payload['customername'];
+                $message = "Hallo $customer_name.<br><br> We are pleased to inform you that your reservation request has been received <br><br> Please klik <a href='$link'>here</a> to proceed your payment<br><br><br><br>We are pleased to inform you that your reservation request has been received";
     
     
                 $email = new OrderEventEmail($subject, $order, $message);

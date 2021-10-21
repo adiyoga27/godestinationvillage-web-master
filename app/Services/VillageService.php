@@ -61,6 +61,6 @@ class VillageService
 
     public static function pluck()
     {
-        return VillageDetail::pluck('village_name', 'user_id');
+        return VillageDetail::pluck('village_name', 'id');
     }
 }

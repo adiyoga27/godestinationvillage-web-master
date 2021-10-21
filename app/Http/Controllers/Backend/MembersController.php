@@ -8,12 +8,13 @@ use App\Services\UserService;
 use App\Services\OrderService;
 use App\Http\Requests\User\UserCreateRequest;
 use App\Http\Requests\User\UserUpdateRequest;
-
+use App\Services\VillageService;
 use Yajra\DataTables\Html\Builder;
-use DataTables;
+
 
 use Session;
 use Auth;
+use Yajra\DataTables\Facades\DataTables;
 
 class MembersController extends Controller
 {
@@ -66,6 +67,8 @@ class MembersController extends Controller
               ->addColumn(['data' => 'email', 'name' => 'email', 'title' => 'Email' ])
               ->addColumn(['data' => 'phone', 'name' => 'phone', 'title' => 'No. Telp' ])
               ->addColumn(['data' => 'country', 'name' => 'country', 'title' => 'Negara' ])
+              ->addColumn(['data' => 'village_name', 'name' => 'village_name', 'title' => 'Village' ])
+
               ->addColumn(['data' => 'created_at', 'name' => 'created_at', 'title' => 'Tanggal Dibuat' ])
               ->addColumn(['data' => 'is_active', 'name' => 'is_active', 'title' => 'Status' ])
               ->parameters([
@@ -78,7 +81,10 @@ class MembersController extends Controller
 
     public function create()
     {
-        return view('backend.member.create');
+        $villages = VillageService::pluck()->prepend('Pilih Village', '');
+        return view('backend.member.create')->with(compact(
+           'villages'
+        ));
     }
 
     public function store(UserCreateRequest $request)
@@ -148,10 +154,12 @@ class MembersController extends Controller
 
     public function edit($id)
     {
+        $villages = VillageService::pluck();
         $member = UserService::find($id);
 
         return view('backend.member.edit')->with(compact(
-            'member'
+            'member',
+            'villages'
         ));
     }
 

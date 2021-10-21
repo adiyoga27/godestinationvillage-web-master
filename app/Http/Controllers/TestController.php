@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\BotHelper;
 use App\Mail\OrderEmail;
 use App\Mail\OrderEventEmail;
 use App\Mail\OrderHomestayEmail;
@@ -122,5 +123,9 @@ class TestController extends Controller
         }
      
      
+    }
+    public function testBot()
+    {
+        return BotHelper::sendTelegram('sadasd');
     }
 }

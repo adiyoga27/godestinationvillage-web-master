@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Helpers\BotHelper;
 use App\Helpers\CustomImage;
 use App\Models\Event;
 use App\Models\EventTranslations;
@@ -41,28 +42,21 @@ class EventService
        
         try {
             DB::beginTransaction();
-
             if (Auth::user()->role_id == 2) {
+                $name = Auth::user()->name;
+                BotHelper::sendTelegram("Godevi - Pengajuan Event, \n\nHi, $name \nTelah mengajukan Event dengan judul $payload[name]. Silahkan check akun admin anda untuk melakukan validasi pengajuan event");
                 $payload['village_id'] = Auth::user()->village_id;
                 $payload['is_paywish'] = false;
                 $payload['is_free'] = false;
                 $payload['is_active'] = false;
-
             }
-       
-
-
-
             $payload['slug'] = Str::slug( $payload['name']);
             if (!empty($payload['default_img'])) {
                 $upload = CustomImage::storeImage($payload['default_img'], 'events');
                 $payload['default_img'] = $upload['name'];
             }
-
             $dataPackage = Arr::except($payload, ['name_id', 'description_id', 'interary_id', 'inclusion_id', 'additional_id']);
-           
             $model = Event::create($dataPackage);
-
             $dataTranslate = array(
                 'events_id' => $model['id'],
                     'lang' => 'id',
@@ -70,15 +64,15 @@ class EventService
                     'description' => $payload['description_id'],
                     'interary' => $payload['interary_id'],
                     'inclusion' => $payload['inclusion_id'],
-                    'additional' => $payload['additional_id'],
-                    
+                    'additional' => $payload['additional_id'],  
             );
-
 
             $result = EventTranslations::create($dataTranslate);
             DB::commit();
+
             return $result;
         } catch (\Throwable $th) {
+            BotHelper::errorBot('Create Event', $th);
             DB::rollback();
             return $th;
         }

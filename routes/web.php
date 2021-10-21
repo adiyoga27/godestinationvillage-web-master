@@ -44,6 +44,8 @@ use Illuminate\Support\Facades\Session;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('test', [TestController::class, 'testBot']);
+
 Route::get('/', [PageController::class, 'index']);
 Route::get('/home', [PageController::class, 'index']);
 Route::get('/redirects', function(){

@@ -45,9 +45,13 @@ class UserService
     public static function get_by_role($role_id)
     {
         DB::statement(DB::raw('set @rownum=0'));
-        return User::query()->select([
+        return User::query()
+            ->leftjoin('village_details', 'users.village_id' , '=' , 'village_details.id')
+            ->select([
             DB::raw('@rownum  := @rownum  + 1 AS rownum'),
-            DB::raw('users.*')
+            DB::raw('users.*'),
+            DB::raw('village_details.village_name')
+
         ])->where('role_id', $role_id);
     }
 

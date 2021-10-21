@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Helpers\BotHelper;
 use App\Models\Package;
 use Illuminate\Support\Arr;
 use App\Helpers\CustomImage;
@@ -71,6 +72,8 @@ class PackageService
             if (Auth::user()->role_id == 2) {
                 $payload['village_id'] = Auth::user()->village_id;
                 $payload['is_active'] = false;
+                $name = Auth::user()->name;
+                BotHelper::sendTelegram("Godevi - Pengajuan Tour Package, \n\nHi, $name \nTelah mengajukan Paket Wisata dengan judul $payload[name]. Silahkan check akun admin anda untuk melakukan validasi pengajuan paket wisata");
 
             }else{
                 $payload['village_id'] = $payload['user_id'];
