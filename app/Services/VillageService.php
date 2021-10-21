@@ -42,6 +42,14 @@ class VillageService
 
 
         $model = VillageDetail::create($payload);
+
+        $village_id = $model->id;
+
+        User::where('id', $user_id)->update(
+            [
+                'village_id'=> $village_id
+            ]
+        );
         return $model;
     }
 
