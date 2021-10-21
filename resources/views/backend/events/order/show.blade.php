@@ -73,11 +73,12 @@ function printDiv(divName) {
         
         <div class="col-sm-6">
             <div>
-                <strong>Godevi</strong>
+                <strong>{{env('APP_NAME')}}</strong>
             </div>
             <div>Jln Wr Supratman No. 302 Denpasar Timur, Bali</div>
-            <div>Website: {{env('APP_URL')}} | Email : {{env('APP_EMAIL')}} </div>
-            <div>Phone : {{env('APP_EMAIL')}}</div>
+            <div>Website: {{env('APP_URL')}} </div>
+            <div>Email : {{env('APP_EMAIL')}} </div>
+            <div>Phone : {{env('APP_PHONE')}}</div>
             <br />
             <h6 class="mb-3">Payment:</h6>
             <div>
