@@ -91,7 +91,7 @@ class MidtransCallbackServices
             $order = Order::where('code', $invoice)->first();
             $customer_name = $order->customer_name;
             $village_name = $order->village_name;
-            $message = "$customer_name <br>We are pleased to inform you that your payment has been verified and your order has been forwarded to $village_name <br><br> Thank you for supporting tourism villages! Be ready to feel the most authentic village experiences.";
+            $message = "Hi $customer_name <br>We are pleased to inform you that your payment has been verified and your order has been forwarded to $village_name <br><br> Thank you for supporting tourism villages! Be ready to feel the most authentic village experiences.";
             $subject = 'Godevi - Order Tour Package '. $invoice .' - Success';
             if($order){
                 $email = new OrderEmail($subject, $order, $message);
@@ -102,7 +102,7 @@ class MidtransCallbackServices
             $order = OrderEvent::where('code', $invoice)->first();
             $customer_name = $order->customer_name;
             // $event_name = $order->event_name;
-            $message = "$customer_name <br>We are pleased to inform you that your payment has been verified and your order has been forwarded processed <br><br> Thank you for supporting tourism villages! Be ready to feel the most authentic village experiences.";
+            $message = "Hi $customer_name <br>We are pleased to inform you that your payment has been verified and your order has been forwarded processed <br><br> Thank you for supporting tourism villages! Be ready to feel the most authentic village experiences.";
             $subject = 'Godevi - Order Event '. $invoice .' - Success';
             if($order){
                 $email = new OrderEventEmail($subject, $order, $message);
@@ -114,7 +114,7 @@ class MidtransCallbackServices
 
             $customer_name = $order->customer_name;
             // $homestay_name = $order->homestay_name;
-            $message = "$customer_name <br>We are pleased to inform you that your payment has been verified and your order has been forwarded processed <br><br> Thank you for supporting tourism villages! Be ready to feel the most authentic village experiences.";
+            $message = "Hi $customer_name <br>We are pleased to inform you that your payment has been verified and your order has been forwarded processed <br><br> Thank you for supporting tourism villages! Be ready to feel the most authentic village experiences.";
             $subject = 'Godevi - Order Homestay '. $invoice .' - Success';
             if($order){
                 $email = new OrderHomestayEmail($subject, $order, $message);
