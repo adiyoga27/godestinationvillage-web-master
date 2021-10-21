@@ -20,6 +20,7 @@ use App\Http\Controllers\Backend\OrdersController;
 use App\Http\Controllers\Backend\PackagesController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\ReportVillageController;
+use App\Http\Controllers\Backend\ReviewController;
 use App\Http\Controllers\Backend\VillagesController;
 use App\Http\Controllers\Front\InvoiceController;
 use App\Http\Controllers\Front\OrderController;
@@ -178,6 +179,7 @@ Route::group(['prefix' => 'administrator', 'middleware' => ['auth', 'role:admin|
      Route::resource('bank-account', BankAccountsController::class, ['names' => 'bank_account']);
     Route::resource('blog', BlogController::class);
     Route::resource('instagram', InstagramController::class);
+    Route::resource('review', ReviewController::class);
 
     Route::resource('category', CategoriesController::class);
     Route::resource('category-event', CategoryEventsController::class);

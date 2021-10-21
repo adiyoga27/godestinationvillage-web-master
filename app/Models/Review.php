@@ -17,11 +17,7 @@ class Review extends Model
     protected static $logName = 'post';
     protected static $logOnlyDirty = true;
     public $fillable = [
-        'id',
-        'user_id',
-        'package_id',
-        'rating',
-        'comment',
+        'id', 'user_id', 'inv', 'rating', 'job', 'name', 'comment', 'avatar','is_active'
     ];
 
 
@@ -37,11 +33,7 @@ class Review extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->logOnly([  'id',
-        'user_id',
-        'package_id',
-        'rating',
-        'comment',]);
+        ->logOnly([ 'id', 'user_id', 'inv', 'rating', 'job', 'name', 'comment', 'avatar','is_active']);
         // Chain fluent methods for configuration options
     }
     

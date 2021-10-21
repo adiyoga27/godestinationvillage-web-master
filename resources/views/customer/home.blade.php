@@ -396,15 +396,15 @@
 
                             <div class="slider-item">
                                 <div class="client-img">
-                                    <img src="{{ url('storage/users/' . $r->users->avatar) }}" alt="client-1"
+                                    <img src="{{ url('storage/reviews/' . $r->avatar) }}" alt="client-1"
                                         style=" object-fit: cover;
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     width:80px;
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     height:80px;" />
                                 </div>
                                 <div class="content">
                                     <div class="client-info">
-                                        <h3>{{ $r->users->name }}</h3>
-                                        <span>{{ $r->users->country }}</span>
+                                        <h3>{{ $r->name }}</h3>
+                                        <span>{{ $r->job }}</span>
                                     </div>
                                     <div class="quote">
                                         <i class='bx bxs-quote-left'></i>

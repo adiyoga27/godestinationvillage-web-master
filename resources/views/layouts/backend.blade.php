@@ -153,6 +153,12 @@
                 </ul>
             </div>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('administrator/review') }}">
+              <span class="menu-title">Review</span>
+              <i class="mdi mdi-percent menu-icon"></i>
+            </a>
+          </li>
           @endif
 
           <li class="nav-item">
