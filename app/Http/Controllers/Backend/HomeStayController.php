@@ -48,9 +48,9 @@ class HomeStayController extends Controller
                 } else{
                     return  view('datatable._action_dinamyc',  [
                         'model'           => $package,
-                        'delete'          => route('package.destroy', $package->id),
+                        'delete'          => route('homestay.destroy', $package->id),
                         'url'             => [
-                            'Edit'            => route('package.edit', $package->id),
+                            'Edit'            => route('homestay.edit', $package->id),
                             // 'Show'            => route('package.show', $package->id),
                         ] ,
                         'confirm_message' =>  'Anda yakin untuk menghapus data "' . $package->name . '" ?',
