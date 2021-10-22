@@ -175,7 +175,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 //Route Untuk Administrator
-Route::group(['prefix' => 'administrator', 'middleware' => ['auth', 'role:admin|village']], function () {
+Route::group(['prefix' => 'administrator', 'middleware' => ['auth']], function () {
      Route::resource('bank-account', BankAccountsController::class, ['names' => 'bank_account']);
     Route::resource('blog', BlogController::class);
     Route::resource('instagram', InstagramController::class);

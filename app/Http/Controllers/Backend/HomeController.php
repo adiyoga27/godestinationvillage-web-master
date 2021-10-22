@@ -21,6 +21,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+      
     }
 
     /**
@@ -30,6 +31,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->role_id === 3){
+           return redirect('login');
+        }
+
         $count_admin = UserService::count_by_role(1);
         $count_village = UserService::count_by_role(2);
         $count_member = UserService::count_by_role(3);

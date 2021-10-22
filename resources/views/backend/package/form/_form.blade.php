@@ -173,7 +173,7 @@
             </div>
         </div> --}}
 
-        <div class="form-group row">
+        {{-- <div class="form-group row">
             <label class="col-sm-3 col-form-label"></label>
             <div class="col-sm-9">
                 <label>Indonesia : </label>
@@ -181,7 +181,7 @@
                 {!! Form::textarea('exclusion_id', $packageTranslate->exclusion ?? null, ['class' => 'form-control']) !!}
                 {!! $errors->first('exclusion_id', '<p class="text-danger">:message</p>') !!}
             </div>
-        </div>
+        </div> --}}
 
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Term & Condition</label>
