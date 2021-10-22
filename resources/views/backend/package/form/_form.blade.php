@@ -171,7 +171,7 @@
                 {!! Form::textarea('exclusion', null, ['class' => 'form-control']) !!}
                 {!! $errors->first('exclusion', '<p class="text-danger">:message</p>') !!}
             </div>
-        </div> --}}
+        </div>  --}}
 
         {{-- <div class="form-group row">
             <label class="col-sm-3 col-form-label"></label>
@@ -181,7 +181,7 @@
                 {!! Form::textarea('exclusion_id', $packageTranslate->exclusion ?? null, ['class' => 'form-control']) !!}
                 {!! $errors->first('exclusion_id', '<p class="text-danger">:message</p>') !!}
             </div>
-        </div> --}}
+        </div>
 
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Term & Condition</label>

@@ -99,7 +99,7 @@ class PackageService
                 'desc' => $payload['desc_id'],
                 'itenaries' => $payload['itenaries_id'],
                 'inclusion' => $payload['inclusion_id'],
-                'exclusion' => $payload['exclusion_id'],
+                // 'exclusion' => $payload['exclusion_id'],
                 'term' => $payload['term_id'],
                 'duration' => $payload['duration_id'],
                 'preparation' => $payload['preparation_id'],
