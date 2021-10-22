@@ -171,7 +171,7 @@ class OrderEventsController extends Controller
     
     public function sendEvent(Request $request)
     {
-     
+        
         $data = OrderEventService::sendEvent($request->except('_token'));
         return redirect('payment/event/' . $data->uuid);
     }
