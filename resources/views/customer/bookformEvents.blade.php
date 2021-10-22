@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="bg-image">
-            <img src="{{ url('customer/img/page-title-area/bestoffer.jpg') }}" alt="Demo Image">
+            <img src="{{ url('customer/img/page-title-area/header-event.png') }}" alt="Demo Image">
         </div>
     </div>
     <!-- end page title area -->

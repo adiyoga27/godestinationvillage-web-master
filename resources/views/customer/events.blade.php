@@ -15,7 +15,7 @@
                 </ul>
             </div>
         </div>
-        <div class="bg-image"><img src="{{ url('customer/img/page-title-area/bestoffer.jpg') }}" alt="Image"></div>
+        <div class="bg-image"><img src="{{ url('customer/img/page-title-area/header-event.png') }}" alt="Image"></div>
     </div>
     <!-- end page title area -->
     <!-- start top destination section -->
