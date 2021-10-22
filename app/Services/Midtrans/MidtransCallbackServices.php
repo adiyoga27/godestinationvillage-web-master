@@ -43,6 +43,8 @@ class MidtransCallbackServices
                 );
                 if($result){
                     MidtransCallbackServices::sendEmailNotification($invoice, 'package');
+                    MidtransCallbackServices::sendEmailNotificationVillage($invoice, 'package');
+
                     BotHelper::sendTelegram("Godevi - Payment Tour Package Success, \n\nDate: $date \nInvoice : $invoice \nPayment Type : $payment_type.\n");
 
                 }
@@ -59,6 +61,8 @@ class MidtransCallbackServices
                 );
                 if($result){
                     MidtransCallbackServices::sendEmailNotification($invoice, 'event');
+                    MidtransCallbackServices::sendEmailNotificationVillage($invoice, 'event');
+
                     BotHelper::sendTelegram("Godevi - Payment Event Success, \n\nDate: $date \nInvoice : $invoice \nPayment Type : $payment_type.\n");
 
                 }
@@ -75,6 +79,8 @@ class MidtransCallbackServices
                  );
                  if($result){
                     MidtransCallbackServices::sendEmailNotification($invoice, 'homestay');
+                    MidtransCallbackServices::sendEmailNotificationVillage($invoice, 'homestay');
+
                     BotHelper::sendTelegram("Godevi - Payment Homestay Success, \n\nDate: $date \nInvoice : $invoice \nPayment Type : $payment_type.\n");
 
                 }
@@ -131,7 +137,7 @@ class MidtransCallbackServices
             $village_name = $order->village->village_name;
 
 
-            $message = "Dear $village_name <br>village_name<br><br>We are pleased to inform you, that you have a reservation as follows:";
+            $message = "Dear $village_name <br><br>We are pleased to inform you, that you have a reservation as follows:";
             $subject = 'Godevi - Order Tour Package '. $invoice .' - Success';
             if($order){
                 $email = new OrderEmail($subject, $order, $message);
@@ -142,7 +148,7 @@ class MidtransCallbackServices
             $order = OrderEvent::where('code', $invoice)->first();
             $customer_name = $order->customer_name;
             // $event_name = $order->event_name;
-            $message = "Hi $customer_name <br>We are pleased to inform you that your payment has been verified and your order has been forwarded processed <br><br> Thank you for supporting tourism villages! Be ready to feel the most authentic village experiences.";
+            $message = "Dear $village_name <br><br>We are pleased to inform you, that you have a reservation as follows:";
             $subject = 'Godevi - Order Event '. $invoice .' - Success';
             if($order){
                 $email = new OrderEventEmail($subject, $order, $message);
@@ -154,7 +160,7 @@ class MidtransCallbackServices
 
             $customer_name = $order->customer_name;
             // $homestay_name = $order->homestay_name;
-            $message = "Hi $customer_name <br>We are pleased to inform you that your payment has been verified and your order has been forwarded processed <br><br> Thank you for supporting tourism villages! Be ready to feel the most authentic village experiences.";
+            $message = "Dear $village_name <br><br>We are pleased to inform you, that you have a reservation as follows:";
             $subject = 'Godevi - Order Homestay '. $invoice .' - Success';
             if($order){
                 $email = new OrderHomestayEmail($subject, $order, $message);
