@@ -80,15 +80,15 @@
             </div>
         </div>
 
-        <div class="form-group row">
+        {{-- <div class="form-group row">
             <label class="col-sm-3 col-form-label">Other Images</label>
             <div class="col-sm-9">
                 <input type="file" name="other_img[]" class="form-control" multiple="true">
                 {!! $errors->first('other_img', '<p class="text-danger">:message</p>') !!}
             </div>
-        </div>
+        </div> --}}
 
-        <div class="form-group row">
+        {{-- <div class="form-group row">
             <label class="col-sm-3 col-form-label">Review</label>
             <div class="col-sm-9">
                 <div class="starrating risingstar d-flex flex-row-reverse" style="float: left">
@@ -99,7 +99,7 @@
                     {!! Form::radio('review', 1, null, ['id' => 'star1']) !!}<label for="star1" title="1 star"></label>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Deskripsi (*)</label>
@@ -171,7 +171,7 @@
                 {!! Form::textarea('exclusion', null, ['class' => 'form-control']) !!}
                 {!! $errors->first('exclusion', '<p class="text-danger">:message</p>') !!}
             </div>
-        </div>  --}}
+        </div> --}}
 
         {{-- <div class="form-group row">
             <label class="col-sm-3 col-form-label"></label>
@@ -181,7 +181,7 @@
                 {!! Form::textarea('exclusion_id', $packageTranslate->exclusion ?? null, ['class' => 'form-control']) !!}
                 {!! $errors->first('exclusion_id', '<p class="text-danger">:message</p>') !!}
             </div>
-        </div>
+        </div> --}}
 
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Term & Condition</label>

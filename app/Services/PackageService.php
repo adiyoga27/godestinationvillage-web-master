@@ -83,7 +83,7 @@ class PackageService
                 $upload = CustomImage::storeImage($payload['default_img'], 'packages');
                 $payload['default_img'] = $upload['name'];
             }
-            $dataPackage = Arr::except($payload, ['name_id', 'desc_id', 'itenaries_id', 'inclusion_id', 'exclusion_id', 'term_id', 'duration_id', 'preparation_id', 'tag_id']);
+            $dataPackage = Arr::except($payload, ['name_id', 'desc_id', 'itenaries_id', 'inclusion_id', 'exclusion_id', 'term_id', 'duration_id', 'preparation_id', 'tag_id','review','other_img']);
 
             $model = Package::create($dataPackage);
 
@@ -140,7 +140,7 @@ class PackageService
                     $upload_other = CustomImage::storeImage($value, 'packages/' . $model->id);
                 }
             }
-            $dataPackage = Arr::except($payload, ['name_id', 'desc_id', 'itenaries_id', 'inclusion_id', 'exclusion_id', 'term_id', 'duration_id', 'preparation_id']);
+            $dataPackage = Arr::except($payload, ['name_id', 'desc_id', 'itenaries_id', 'inclusion_id', 'exclusion_id', 'term_id', 'duration_id', 'preparation_id','review','other_img']);
 
             $model->update($dataPackage);
 
@@ -154,7 +154,7 @@ class PackageService
                     'desc' => $payload['desc_id'],
                     'itenaries' => $payload['itenaries_id'],
                     'inclusion' => $payload['inclusion_id'],
-                    'exclusion' => $payload['exclusion_id'],
+                    // 'exclusion' => $payload['exclusion_id'],
                     'term' => $payload['term_id'],
                     'duration' => $payload['duration_id'],
                     'preparation' => $payload['preparation_id']

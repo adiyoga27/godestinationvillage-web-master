@@ -240,14 +240,12 @@
               <i class="mdi mdi-animation menu-icon"></i>
             </a>
           </li> --}}
-          @if(Auth::user()->role_id == 1)
           <li class="nav-item">
             <a class="nav-link" href="{{ url('administrator/blog') }}">
               <span class="menu-title">Blog</span>
               <i class="mdi mdi-chart-areaspline menu-icon"></i>
             </a>
           </li>
-          @endif
           {{-- <li class="nav-item">
             <a class="nav-link" href="{{ url('administrator/report/package') }}">
               <span class="menu-title">Laporan Paket Wisata</span>
