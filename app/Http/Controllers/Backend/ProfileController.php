@@ -7,9 +7,8 @@ use Illuminate\Http\Request;
 use App\Services\UserService;
 use App\Services\VillageService;
 use App\Http\Requests\Profile\ProfileUpdateRequest;
-
+use Illuminate\Support\Facades\Auth;
 use Session;
-use Auth;
 
 class ProfileController extends Controller
 {
@@ -34,6 +33,7 @@ class ProfileController extends Controller
     	    $user = UserService::find(Auth::user()->id);
         else
             $user = VillageService::find(Auth::user()->id);
+            
     	return view('backend.profile.index')->with([
             'user'=>$user,
             'village'=>$user

@@ -1,3 +1,11 @@
+@if(!Auth::guest())
+    @if(Auth::user()->role_id <> 3)
+    <script type="text/javascript">
+        window.location = "{{ url('/administrator/dashboard') }}";//here double curly bracket
+    </script>
+    @endif
+@endif
+
 <!DOCTYPE html>
 <html lang="{{ App::getLocale() }}">
 

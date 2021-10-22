@@ -1,4 +1,9 @@
-  <!DOCTYPE html>
+@if(Auth::user()->role_id == 3)
+  <script type="text/javascript">
+    window.location = "{{ url('/') }}";//here double curly bracket
+  </script>
+@endif
+<!DOCTYPE html>
 <html lang="en">
 
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -97,24 +102,23 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item nav-profile">
-            <a href="#" class="nav-link">
               <div class="nav-profile-image">
+                <center>
                 @if(empty(Auth::user()->avatar))
-                    <img src="{{ asset('dist/images/faces/face1.jpg') }}" alt="profile">
+                    <img style=" border-radius: 50%;" width="50%" src="{{ asset('dist/images/faces/face1.jpg') }}" alt="profile">
                 @else
-                    <img src="{{ asset('storage/users/'.Auth::user()->avatar) }}" alt="profile">
+                    <img style=" border-radius: 50%;" width="50%" src="{{ asset('storage/users/'.Auth::user()->avatar) }}" alt="profile">
                 @endif
-                <span class="login-status online"></span> <!--change to offline or busy as needed-->
-              </div>
-              <div class="nav-profile-text d-flex flex-column">
-                <span class="font-weight-bold mb-2">{{ Auth::user()->name }}</span>
-                {{-- <span class="text-secondary text-small">{{ Auth::user()->email }}</span> --}}
-              </div>
-              <i class="mdi mdi-bookmark-check text-danger nav-profile-badge"></i>
-            </a>
-          </li>
+              <div style="margin-top: 10px"></div>
+                <b>Administrator</b>
+                <br> {{Auth::user()->email}}
 
+                </center>
+              </div>
+          </li>
           <li class="nav-item">
+            <hr>
+
             <a class="nav-link" href="{{ url('administrator/dashboard') }}">
               <span class="menu-title">Dashboard</span>
               <i class="mdi mdi-home menu-icon"></i>

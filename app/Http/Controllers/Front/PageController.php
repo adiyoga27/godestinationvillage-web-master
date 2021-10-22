@@ -30,10 +30,10 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 class PageController extends Controller
 {
+
     public function index()
     {
-        
-
+       
         $data['village'] = User::where('role_id', '2')->where('is_active', '1')->limit(8)->get();
         $data['packages'] = Package::orderBy('desc')->limit(8)->get();
         $data['recent_blog'] = Blog::with('user')->where('isPublished', '1')->latest('id')->limit(5)->get();

@@ -15,11 +15,11 @@
     </div>
   </div>
 
-  <div id="map" style="width: 100%; height: 300px;">
-  </div>
+  {{-- <div id="map" style="width: 100%; height: 300px;">
+  </div> --}}
   {!! Form::hidden('lat', $village->village_detail->lat, ['id' => 'lat']) !!}
   {!! Form::hidden('lng', $village->village_detail->lng, ['id' => 'lng']) !!}
-  <br /><br />
+  {{-- <br /><br /> --}}
 
   <div class="form-group row">
     <label class="col-sm-3 col-form-label">Contact Person (*)</label>
