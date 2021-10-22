@@ -12,8 +12,9 @@ class Blog extends Model
     use LogsActivity;
     public $table = "post";
     protected $dates = ['last_update'];
+    protected static $ignoreChangedAttributes = ['update_at', 'created_at'];
     public $primaryKey = "id";
-    public $timestamps = false;
+    public $timestamps = true;
     protected static $logFillable = true;
     protected static $logName = 'post';
     protected static $logOnlyDirty = true;

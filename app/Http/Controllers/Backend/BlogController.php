@@ -7,9 +7,9 @@ use App\Http\Requests\Blog\BlogCreateRequest;
 use App\Http\Requests\blog\BlogPostCreateRequest;
 use App\Http\Requests\blog\BlogPostUpdateRequest;
 use App\Services\BlogService;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Html\Builder;
 use Session;
-use Auth;
 use Yajra\DataTables\Facades\DataTables;
 class BlogController extends Controller
 {
@@ -30,7 +30,12 @@ class BlogController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
         if (request()->ajax()) {
-            return DataTables::of(BlogService::all())
+            $query = BlogService::all();
+            $role = Auth::user()->role_id ;
+            if ($role == 2) {
+                $query->where('post.post_author', Auth::user()->id);
+            }
+            return DataTables::of($query)
             ->addColumn('action', function($post){
                 return view('datatable._action_dinamyc', [
                     'model'           => $post,
@@ -42,6 +47,11 @@ class BlogController extends Controller
                     'padding'         => '85px',
                 ]);
             })
+            ->editColumn('post_content', function($post){
+                    return  \Illuminate\Support\Str::limit(strip_tags($post->post_content), 150, $end='...');
+               
+            }) 
+        
             ->editColumn('isPublished', function($post){
                 if($post->isPublished == 0)
                     return "<label class='badge badge-gradient-danger'>Tidak Aktif</label>";
@@ -54,9 +64,7 @@ class BlogController extends Controller
               ->addColumn(['data' => 'rownum', 'name'=>'rownum', 'title'=>'No','searchable'=>false])
               ->addColumn(['data' => 'post_title', 'name' => 'post_title', 'title' => 'Judul' ])
               ->addColumn(['data' => 'post_content', 'name' => 'post_content', 'title' => 'Isi' ])
-              ->addColumn(['data' => 'post_thumbnail', 'name' => 'post_thumbnail', 'title' => 'thumbnail' ])
-              ->addColumn(['data' => 'post_tags', 'name' => 'post_tags', 'title' => 'tags' ])
-            //   ->addColumn(['data' => 'isPublished', 'name' => 'post_isPublished', 'title' => 'Status' ])
+              ->addColumn(['data' => 'isPublished', 'name' => 'post_isPublished', 'title' => 'Status' ])
               ->parameters([
                 'scrollX' => true,
               ]);
