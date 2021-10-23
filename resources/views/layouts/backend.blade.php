@@ -105,9 +105,15 @@
               <div class="nav-profile-image">
                 <center>
                 @if(empty(Auth::user()->avatar))
-                    <img style=" border-radius: 50%;" width="50%" src="{{ asset('dist/images/faces/face1.jpg') }}" alt="profile">
+                    <img style=" border-radius: 50%;  object-fit: cover;
+                    object-position: center center;
+                    width: 100px;
+                    height: 100px;"  src="{{ asset('dist/images/faces/face1.jpg') }}" alt="profile">
                 @else
-                    <img style=" border-radius: 50%;" width="50%" src="{{ asset('storage/users/'.Auth::user()->avatar) }}" alt="profile">
+                    <img style=" border-radius: 50%;  object-fit: cover;
+                    object-position: center center;
+                    width: 100px;
+                    height: 100px;"src="{{ asset('storage/users/'.Auth::user()->avatar) }}" alt="profile">
                 @endif
               <div style="margin-top: 10px"></div>
                 <b>Administrator</b>
