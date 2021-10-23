@@ -143,7 +143,7 @@ class OrderController extends Controller
 
     public function reservationPaypal(Request $request)
     {
-        $data['order'] = Order::where('payment_type', 'paypal')
+        $data['order'] = Order::with('package')->where('payment_type', 'paypal')
             ->where('customer_email', $request->email)
             ->orderBy('id', 'desc')
             ->paginate(5);

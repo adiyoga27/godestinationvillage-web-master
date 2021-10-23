@@ -225,7 +225,7 @@ $data['recent'] = HomeStayServices::recent();
     public function reservation(Request $request)
     {
 
-        $data['order'] = Order::where('payment_status', NULL)
+        $data['order'] = Order::with('package')->where('payment_status', NULL)
             ->where('customer_email', $request->email)
             ->orderBy('id', 'desc')
             ->paginate(10);
