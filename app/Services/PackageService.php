@@ -191,13 +191,13 @@ class PackageService
     {
         $model = Package::find($id);
 
-        if (!empty($payload['default_img'])) {
-            if (!empty($model->default_img)) {
-                Storage::delete('packages/' . $model->default_img);
-            };
-        }
+        // if (!empty($payload['default_img'])) {
+        //     if (!empty($model->default_img)) {
+        //         Storage::delete('packages/' . $model->default_img);
+        //     };
+        // }
 
-        Storage::deleteDirectory('packages/' . $model->id);
+        // Storage::deleteDirectory('packages/' . $model->id);
 
         return $model->destroy($id);
     }
