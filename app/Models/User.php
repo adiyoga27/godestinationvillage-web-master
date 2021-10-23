@@ -75,11 +75,6 @@ class User extends Authenticatable
         return $this->hasOne(VillageDetail::class, 'user_id', 'id');
     }
 
-    public function village_details()
-    {
-        return $this->hasOne(VillageDetail::class, 'id', 'village_id');
-    }
-
     public function packages()
     {
         return $this->hasMany(Package::class);
