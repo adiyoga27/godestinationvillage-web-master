@@ -397,13 +397,14 @@ $data['recent'] = HomeStayServices::recent();
     }
     public function booking($id)
     {
-        $data['packages'] = Package::where('id', $id)
+        $data['packages'] = Package::with('detailVillage')->where('id', $id)
             ->first();
         if (Auth::check()) {
             $userId = Auth::id();
             $data['user'] = User::where('id', $userId)
                 ->first();
         }
+
         return view('customer/bookform', $data);
     }
     public function bookingEvents($id)

@@ -52,7 +52,7 @@
                                     <div class="col-md-6">
                                         <label>Village</label>
                                         <input type="text" name="village" class="form-control" placeholder=""
-                                            value="{{ $packages->user->village_detail->village_name }}" required readonly>
+                                            value="{{ $packages->detailVillage->village_name }}" required readonly>
                                     </div>
                                 </div>
                                 <div style="margin-top: 30px"></div>
