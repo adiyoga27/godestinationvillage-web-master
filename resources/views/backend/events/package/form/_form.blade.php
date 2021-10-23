@@ -93,8 +93,9 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Tanggal (*)</label>
             <div class="col-sm-9">
-                {!! Form::input('dateTime-local','date_event', null, ['class' => 'form-control']) !!}
+                {!! Form::input('dateTime-local','date_event', null, ['class' => 'form-control', 'required' => 'required']) !!}
                 {!! $errors->first('date_event', '<p class="text-danger">:message</p>') !!}
+                <p style="font-size: 8pt; color:grey">Tekan gambar/icon calendar untuk mempermudah memilih tanggal</p>
             </div>
         </div>
         <div class="form-group row">
@@ -172,7 +173,7 @@
 
 
         @if (Auth::user()->role_id == 1) 
-        <div class="form-group row">
+        {{-- <div class="form-group row">
             <label class="col-sm-3 col-form-label">Status Pay Wish(*)</label>
             <div class="col-sm-4">
                 <div class="form-check">
@@ -201,7 +202,7 @@
                     </label>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Status Free(*)</label>
             <div class="col-sm-4">
