@@ -40,7 +40,7 @@ class OrdersController extends Controller
             }
             return DataTables::of($query)
             ->addColumn('action', function($order){
-                return "<a href='". route('order.show', $order->uuid) ."' class='btn btn-sm btn-outline-primary'>Show</a>";
+                return "<a href='". route('orders.show', $order->uuid) ."' class='btn btn-sm btn-outline-primary'>Show</a>";
             })->editColumn('package_price', function($order){
                 return number_format($order->package_price);
             })->editColumn('total_payment', function($order){
@@ -107,11 +107,11 @@ class OrdersController extends Controller
         {
             $email = new OrderEmail($subject, $order, $message);
             Mail::to([$order->customer_email, $order->village->email])->send($email);
-            return redirect(route('order.show', $id))->with('status', 'Successfully updated');
+            return redirect(route('orders.show', $id))->with('status', 'Successfully updated');
         }
         else
         {
-            return redirect(route('order.show', $id))->with('error','Failed to updated');
+            return redirect(route('orders.show', $id))->with('error','Failed to updated');
         }
     }
 
@@ -120,9 +120,9 @@ class OrdersController extends Controller
         $result = OrderService::destroy($id);
 
         if ($result)
-            return redirect(route('order.show', $id))->with('status', 'Successfully deleted');
+            return redirect(route('orders.show', $id))->with('status', 'Successfully deleted');
         else
-            return redirect(route('order.show', $id))->with('error','Failed to delete');
+            return redirect(route('orders.show', $id))->with('error','Failed to delete');
     }
 
 }

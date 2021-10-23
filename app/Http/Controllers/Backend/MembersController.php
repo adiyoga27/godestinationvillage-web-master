@@ -104,7 +104,7 @@ class MembersController extends Controller
         if (request()->ajax()) {
             return DataTables::of(OrderService::get_order_by_user($id))
             ->addColumn('action', function($order){
-                return "<a href='". route('order.show', $order->id) ."' class='btn btn-sm btn-outline-primary'>Show</a>";
+                return "<a href='". route('orders.show', $order->id) ."' class='btn btn-sm btn-outline-primary'>Show</a>";
             })
             ->editColumn('package_price', function($order){
                 return number_format($order->package_price);

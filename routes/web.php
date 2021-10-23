@@ -184,9 +184,9 @@ Route::group(['prefix' => 'administrator', 'middleware' => ['auth']], function (
     Route::resource('category', CategoriesController::class);
     Route::resource('category-event', CategoryEventsController::class);
     Route::resource('discount-member', DiscountMembersController::class, ['names' => 'discount_member']);
-    Route::resource('order', OrdersController::class, ['names' => 'order']);
-    Route::get('order/{id}/change-status/{status}', [
-        'as' => 'order.change_status',
+    Route::resource('orders', OrdersController::class, ['names' => 'orders']);
+    Route::get('orders/{id}/change-status/{status}', [
+        'as' => 'orders.change_status',
         'uses' => 'OrdersController@change_status'
     ]);
     Route::resource('order-event', OrderEventsController::class, ['names' => 'order-event']);

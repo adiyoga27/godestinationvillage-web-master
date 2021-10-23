@@ -176,11 +176,11 @@
                   @if(Auth::user()->role_id == 1)
                     <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/category') }}">Kategori </a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/package') }}">Paket Wisata</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/order') }}">Pemesanan</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/orders') }}">Pemesanan</a></li>
                   @endif
                   @if(Auth::user()->role_id == 2)
                     <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/package') }}">Pengajuan</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/order') }}">Laporan Desa Wisata</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('administrator/orders') }}">Laporan Desa Wisata</a></li>
                   @endif
 
                 </ul>

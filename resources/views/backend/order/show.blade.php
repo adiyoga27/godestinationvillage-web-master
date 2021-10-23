@@ -44,8 +44,8 @@ function printDiv(divName) {
         <h1>Invoice</h1>
         @if(Auth::user()->role_id == 1 && $order->payment_status == 'pending')
             <br />
-            <a href="{{ route('order.change_status', ['id'=>$order->id, 'status'=>'cancel']) }}" onclick="return confirm('Anda Yakin?')" class="btn btn-lg btn-danger mb-2 float-right"><i class="mdi mdi-close"></i> Cancel</a> 
-            <a href="{{ route('order.change_status', ['id'=>$order->id, 'status'=>'success']) }}" onclick="return confirm('Anda Yakin?')" class="btn btn-lg btn-success mb-2 float-right"><i class="mdi mdi-check"></i> Verifikasi</a> 
+            <a href="{{ route('orders.change_status', ['id'=>$order->id, 'status'=>'cancel']) }}" onclick="return confirm('Anda Yakin?')" class="btn btn-lg btn-danger mb-2 float-right"><i class="mdi mdi-close"></i> Cancel</a> 
+            <a href="{{ route('orders.change_status', ['id'=>$order->id, 'status'=>'success']) }}" onclick="return confirm('Anda Yakin?')" class="btn btn-lg btn-success mb-2 float-right"><i class="mdi mdi-check"></i> Verifikasi</a> 
         @endif
     </div>
 </div>

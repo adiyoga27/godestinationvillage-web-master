@@ -218,9 +218,9 @@ class PaymentController extends Controller
         if ($result) {
             $email = new OrderEmail($subject, $order, $message);
             Mail::to([$order->customer_email, $order->village->email])->send($email);
-            // return redirect(route('order.show', $id))->with('status', 'Successfully updated');
+            // return redirect(route('orders.show', $id))->with('status', 'Successfully updated');
         } else {
-            // return redirect(route('order.show', $id))->with('error','Failed to updated');
+            // return redirect(route('orders.show', $id))->with('error','Failed to updated');
         }
     }
 }

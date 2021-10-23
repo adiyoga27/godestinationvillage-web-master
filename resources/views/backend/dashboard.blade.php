@@ -129,7 +129,7 @@
             <i class="mdi mdi-cart mdi-24px float-right"></i>
           </h4>
           <h2 class="mb-5">{{ number_format($count_order) }}</h2>
-          <a href="{{ url('administrator/order') }}" style="color:#fff"><h6 class="card-text">Menuju ke Halaman ></h6></a>
+          <a href="{{ url('administrator/orders') }}" style="color:#fff"><h6 class="card-text">Menuju ke Halaman ></h6></a>
         </div>
       </div>
     </div>
@@ -140,7 +140,7 @@
             <i class="mdi mdi-cart mdi-24px float-right"></i>
           </h4>
           <h2 class="mb-5">{{ number_format($sum_order) }}</h2>
-          <a href="{{ url('administrator/order') }}" style="color:#fff"><h6 class="card-text">Menuju ke Halaman ></h6></a>
+          <a href="{{ url('administrator/orders') }}" style="color:#fff"><h6 class="card-text">Menuju ke Halaman ></h6></a>
         </div>
       </div>
     </div>
