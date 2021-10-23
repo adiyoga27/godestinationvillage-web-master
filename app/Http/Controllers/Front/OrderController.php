@@ -133,7 +133,7 @@ class OrderController extends Controller
     //non registred
     public function reservationPaid(Request $request)
     {
-        $data['order'] = Order::whereNotNull('payment_type')
+        $data['order'] = Order::with('package')->whereNotNull('payment_type')
             ->where('customer_email', $request->email)
             ->orderBy('id', 'desc')
             ->paginate(5);
