@@ -32,7 +32,7 @@
                             <input type="hidden" name="idtour" class="form-control" id="exampleInputEmail1" placeholder=""
                                 value="{{ $packages->id }}" readonly>
                             <input type="hidden" name="village_id" class="form-control" id="exampleInputEmail1"
-                                placeholder="" value="{{ $packages->user->id }}" required readonly>
+                                placeholder="" value="{{ $packages->village_id }}" required readonly>
 
 
                             <div class="content">
