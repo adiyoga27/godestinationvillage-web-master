@@ -79,7 +79,9 @@
             <i class="checkmark">✓</i>
         </div>
         <h1>Success</h1>
-        <p>We received your purchase request<br /> we'll be in touch shortly!</p>
+      
+        <p>We received your purchase request<br />
+      Thank you for supporting tourism villages! Be ready to feel the most authentic village experiences.</p>
         <br>
         <a href="{{ url('/') }}"><button type="button" class="btn btn-success"><i id="icon"
                     class="fa fa-home fa-fw"></i> <span>Back to Home</span></button></a>

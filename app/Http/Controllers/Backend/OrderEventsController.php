@@ -176,6 +176,11 @@ class OrderEventsController extends Controller
         return redirect('payment/event/' . $data->uuid);
     }
 
+    public function sendEventFree(Request $request)
+    {
+        $data = OrderEventService::sendEventFree($request->except('_token'));
+        return redirect('pay/finish');
+    }
     public function showMidtrans($inv)
     {
         $order = OrderEvent::where('code',$inv)->first()->toArray();

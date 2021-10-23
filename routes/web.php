@@ -154,6 +154,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::prefix('bookingEvents')->group(function () {
         Route::get('/{id}', [PageController::class, 'bookingEvents']);
         Route::post('/sendEvent',[OrderEventsController::class, 'sendEvent']);
+        Route::post('/sendEventFree',[OrderEventsController::class, 'sendEventFree']);
+
     });
     Route::prefix('bookingHomeStay')->group(function () {
         Route::get('/{id}', [PageController::class, 'bookingHomeStay']);
@@ -167,6 +169,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/{id}', [PageController::class, 'booking']);
         Route::post('/send',[OrderController::class, 'send']);
         Route::post('/sendEvent',[OrderController::class, 'sendEvent']);
+
     });
 });
 

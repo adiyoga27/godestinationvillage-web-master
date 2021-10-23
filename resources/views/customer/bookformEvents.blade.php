@@ -26,7 +26,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="booking-form">
-                        <form action="{{ url('bookingEvents/sendEvent') }}" id="formbook" method="post">
+                        <form action="{{ $packages->is_free ? url('bookingEvents/sendEventFree') : url('bookingEvents/sendEvent') }}" id="formbook" method="post">
                             @csrf
                             <input type="hidden" name="idevent" class="form-control" value="{{ $packages->id }}"
                                 readonly>
@@ -134,10 +134,14 @@
                                             <div class="row">
                                                 <div class="col-md-8"> </div>
                                                 <div class="col-md-4">
-                                                    <h3 class="total">Total : Rp
+                                                    @if($packages->is_free)
+                                                    <h3 class="">Total : <font style="color:red">Gratis</font></h3>
+                                                    @else
+                                                        <h3 class="total">Total : Rp
                                                         {{ number_format($packages->price, 0, ',', '.') }}</h3>
-                                                    <p>* Please check your form, because the order cannot be changed</p>
-                                                    
+                                                    @endif
+                                                        <p>* Please check your form, because the order cannot be changed</p>
+
                                           
                                                     <button class="btn btn-lg btn-warning btn-block" id="pay-button"> <span style="display: none" class="spinner-border spinner-border-lg" role="status" aria-hidden="true"></span><span id="text-book">BOOK NOW</span></button>
 
