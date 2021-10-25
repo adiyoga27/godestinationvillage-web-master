@@ -19,7 +19,9 @@
                 </ul>
             </div>
         </div>
-        <div class="bg-image"><img src="{{ url('customer/img/page-title-area/bestoffer.jpg') }}" alt="Image"></div>
+        {{-- <div class="bg-image"><img src="{{ url('customer/img/page-title-area/bestoffer.jpg') }}" alt="Image"></div> --}}
+        <div class="bg-image"><img src="{{ url('storage/packages/' . $packages->default_img) }}" alt="Image"></div>
+
     </div>
     <!-- end page title area -->
 
