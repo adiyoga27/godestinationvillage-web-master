@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Backend\AdminsController;
+use App\Http\Controllers\Backend\AnalyticController;
 use App\Http\Controllers\Backend\BankAccountsController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CategoriesController;
@@ -35,6 +36,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use Spatie\Analytics\Analytics;
+use Spatie\Analytics\Period;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,6 +49,8 @@ use Illuminate\Support\Facades\Session;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('analytic', [AnalyticController::class, 'index']);
 Route::get('test', [TestController::class, 'sendEmailNotification']);
 
 Route::get('/', [PageController::class, 'index']);

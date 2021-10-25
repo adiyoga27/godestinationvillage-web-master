@@ -759,13 +759,13 @@ $( "form" ).submit(function( event ) {
     </script> --}}
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PM3B0DDFWN"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-210470879-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-PM3B0DDFWN');
+  gtag('config', 'UA-210470879-1');
 </script>
 
 
