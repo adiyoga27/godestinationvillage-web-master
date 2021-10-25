@@ -14,12 +14,12 @@
             <h1>{{ $packages->name }}</h1>
             <ul>
                 <li class="item"><a href="index.html">Home</a></li>
-                <li class="item"><a href="#"><i class="bx bx-chevrons-right"></i>Best Event</a>
+                <li class="item"><a href="#"><i class="bx bx-chevrons-right"></i>Best Homestay</a>
                 </li>
             </ul>
         </div>
     </div>
-    <div class="bg-image"><img src="{{ url('customer/img/page-title-area/bestoffer.jpg') }}" alt="Image"></div>
+    <div class="bg-image"><img src="{{ url('customer/img/page-title-area/homestay.jpg') }}" alt="Image"></div>
 </div>
 <!-- end page title area -->
 

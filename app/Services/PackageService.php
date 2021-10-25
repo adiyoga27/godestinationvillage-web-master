@@ -7,6 +7,8 @@ use App\Models\Package;
 use Illuminate\Support\Arr;
 use App\Helpers\CustomImage;
 use App\Models\PackageTranslations;
+use App\Models\User;
+use App\Models\VillageDetail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -60,7 +62,7 @@ class PackageService
                 DB::raw('@rownum  := @rownum  + 1 AS rownum'),
                 DB::raw('packages.*'),
                 DB::raw('categories.name AS category_name'),
-                DB::raw('village_details.village_name')
+                DB::raw('village_details.village_name AS village_name')
             ])->where('packages.deleted_at', NULL);
     }
 
@@ -142,6 +144,10 @@ class PackageService
             }
             $dataPackage = Arr::except($payload, ['name_id', 'desc_id', 'itenaries_id', 'inclusion_id', 'term_id', 'duration_id', 'preparation_id','review','other_img']);
 
+            if($model->village_id == null){
+
+                $dataPackage['village_id'] = User::where('id', $model->user_id)->first()->village_id;
+            }
             $model->update($dataPackage);
 
 
@@ -182,7 +188,7 @@ class PackageService
         } catch (\Throwable $th) {
             BotHelper::errorBot('Update Tour Package', $th);
 
-            return $th;
+            return false;
         }
     }
 

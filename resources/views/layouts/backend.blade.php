@@ -140,7 +140,7 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url('administrator/instagram') }}">
               <span class="menu-title">Instagram</span>
-              <i class="mdi mdi mdi-account-card-details menu-icon"></i>
+              <i class="mdi mdi mdi-instagram menu-icon"></i>
             </a>
           </li>
           <li class="nav-item">

@@ -222,20 +222,20 @@
                                 });
                             });
                             //change
-                            $('.pax').keyup(function() {
-                                v = parseInt($(this).val());
-                                min = parseInt($(this).attr('min'));
+                            // $('.pax').keyup(function() {
+                            //     v = parseInt($(this).val());
+                            //     min = parseInt($(this).attr('min'));
 
 
-                                if (v < min) {
+                            //     if (v < min) {
 
-                                    $(this).val(min);
-                                }
+                            //         $(this).val(min);
+                            //     }
 
-                                $('.totalprice').val($('.pax').val() * $('.price').val())
-                                result = formatRupiah(($('.pax').val() * $('.price').val()).toString(), '')
-                                $('.total').html("Total : Rp" + result)
-                            })
+                            //     $('.totalprice').val($('.pax').val() * $('.price').val())
+                            //     result = formatRupiah(($('.pax').val() * $('.price').val()).toString(), '')
+                            //     $('.total').html("Total : Rp" + result)
+                            // })
                             $('.pax').change(function() {
                                 v = parseInt($(this).val());
                                 min = parseInt($(this).attr('min'));

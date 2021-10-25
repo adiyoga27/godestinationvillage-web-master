@@ -95,7 +95,7 @@ class PackagesController extends Controller
         $html = $htmlBuilder
             ->addColumn(['data' => 'action', 'name' => 'action', 'title' => '', 'orderable' => false, 'searchable' => false])
             ->addColumn(['data' => 'rownum', 'name' => 'rownum', 'title' => 'No', 'searchable' => false])
-            ->addColumn(['data' => 'village_name', 'name' => 'village_name', 'title' => 'Desa Wisata'])
+            ->addColumn(['data' => 'village_name', 'name' => 'village_details.village_name', 'title' => 'Desa Wisata'])
             ->addColumn(['data' => 'category_name', 'name' => 'categories.name', 'title' => 'Kategori'])
             ->addColumn(['data' => 'name', 'name' => 'name', 'title' => 'Nama Paket'])
             ->addColumn(['data' => 'price', 'name' => 'price', 'title' => 'Harga Paket'])
