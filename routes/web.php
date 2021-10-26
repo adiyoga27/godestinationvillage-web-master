@@ -31,6 +31,7 @@ use App\Http\Controllers\Front\ReservationHomeStayController;
 use App\Http\Controllers\Front\SearchController;
 use App\Http\Controllers\MidtransController;
 use App\Http\Controllers\TestController;
+use App\Models\OrderHomestay;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -194,21 +195,26 @@ Route::group(['prefix' => 'administrator', 'middleware' => ['auth']], function (
     Route::resource('category-event', CategoryEventsController::class);
     Route::resource('discount-member', DiscountMembersController::class, ['names' => 'discount_member']);
     Route::resource('orders', OrdersController::class, ['names' => 'orders']);
-    Route::get('orders/{id}/change-status/{status}', [
-        'as' => 'orders.change_status',
-        'uses' => 'OrdersController@change_status'
-    ]);
+    // Route::get('orders/{id}/change-status/{status}', [
+    //     'as' => 'orders.change_status',
+    //     'uses' => 'OrdersController@change_status'
+    // ]);
+    Route::get('orders/{id}/change-status/{status}',  [OrdersController::class, 'change_status'])->name('orders.change_status');
+
     Route::resource('order-event', OrderEventsController::class, ['names' => 'order-event']);
-    Route::get('order-event/{id}/change-status/{status}', [
-        'as' => 'order-event.change_status',
-        'uses' => 'OrderEventsController@change_status'
-    ]);
+    // Route::get('order-event/{id}/change-status/{status}', [
+    //     'as' => 'order-event.change_status',
+    //     'uses' => 'OrderEventsController@change_status'
+    // ]);
+    Route::get('order-event/{id}/change-status/{status}',  [OrderEventsController::class, 'change_status'])->name('order-event.change_status');
 
     Route::resource('order-homestay', OrderHomeStayController::class, ['names' => 'order-homestay']);
-    Route::get('order-homestay/{id}/change-status/{status}', [
-        'as' => 'order-homestay.change_status',
-        'uses' => 'OrderHomeStayController@change_status'
-    ]);
+    // Route::get('order-homestay/{id}/change-status/{status}', [
+    //     'as' => 'order-homestay.change_status',
+    //     'uses' => 'OrderHomeStayController@change_status'
+    // ]);
+    Route::get('order-homestay/{id}/change-status/{status}', [OrderHomeStayController::class, 'change_status'])->name('order-homestay.change_status');
+  
     Route::resource('category-events', CategoryEventsController::class);
     Route::resource('events', EventsController::class);
     Route::resource('homestay', HomeStayController::class);

@@ -93,7 +93,7 @@ class OrdersController extends Controller
     public function change_status($id, $status)
     {
         $result = OrderService::change_status($id, $status);
-        $order =  OrderService::find($id); 
+        $order =  OrderService::find($id)->first(); 
 
         if($status == 'success'){
             $subject = 'Godevi - Order '. $order->code .' - Success';
@@ -106,7 +106,7 @@ class OrdersController extends Controller
         if ($result)
         {
             $email = new OrderEmail($subject, $order, $message);
-            Mail::to([$order->customer_email, $order->village->email])->send($email);
+            Mail::to([$order->customer_email])->send($email);
             return redirect(route('orders.show', $id))->with('status', 'Successfully updated');
         }
         else
