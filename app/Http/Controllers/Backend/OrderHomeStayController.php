@@ -161,7 +161,7 @@ class OrderHomeStayController extends Controller
         if ($result)
         {
             $date = date('d M Y H:i')." wita";
-            BotHelper::sendTelegram("Godevi - Approve Manual Tour Package Success, \n\nDate: $date \nInvoice : $order->code  \nPayment Type : $order->payment_type.\n");
+            BotHelper::sendTelegram("Godevi - Approve Manual Homestay Success, \n\nDate: $date \nInvoice : $order->code  \nPayment Type : $order->payment_type.\n");
 
             $email = new OrderHomestayEmail($subject, $order, $message);
             Mail::to([$order->customer_email])->send($email);
