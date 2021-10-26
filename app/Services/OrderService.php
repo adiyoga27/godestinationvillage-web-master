@@ -44,7 +44,7 @@ class OrderService
 
     public static function find($id)
     {
-        return Order::with(['bank_account', 'village'])->where('uuid',$id)->orWhere('id', $id);
+        return Order::with(['bank_account', 'village'])->where('uuid',$id);
     }
 
     public static function get_order_by_user($user_id)

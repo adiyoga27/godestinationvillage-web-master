@@ -36,7 +36,7 @@ class OrderHomeStayController extends Controller
             }
             return DataTables::of($query)
             ->addColumn('action', function($order){
-                return "<a href='". route('order-homestay.show', $order->uuid) ."' class='btn btn-sm btn-outline-primary'>Show</a>";
+                return "<a href='". route('order-homestay.show', $order->id) ."' class='btn btn-sm btn-outline-primary'>Show</a>";
             })->editColumn('homestay_price', function($order){
                 return number_format($order->homestay_price);
             })->editColumn('total_payment', function($order){
