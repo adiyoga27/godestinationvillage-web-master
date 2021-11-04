@@ -152,6 +152,7 @@
                         </div>
                     </div>
                 </div>
+  
 
                 <div class="col-md-6">
                     <div class="item-single mb-30">
@@ -164,6 +165,31 @@
                             <div class="title">
                                 <h3>
                                     <a href="https://www.unud.ac.id">Universitas Udayana
+                                       </a>
+                                </h3>
+                                <br>
+                                <span></span>
+                            </div>
+                            <!-- <div class="social-link">
+                                <a href="#" target="_blank"><i class='bx bxl-facebook'></i></a>
+                                <a href="#" target="_blank"><i class='bx bxl-twitter'></i></a>
+                                <a href="#" target="_blank"><i class='bx bxl-linkedin'></i></a>
+                                <a href="#" target="_blank"><i class='bx bxl-instagram'></i></a>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="item-single mb-30">
+                        <div class="image">
+                            <center>
+                                <img src="{{ url('frontdata/images/BUHSA.png') }}" width="500px" alt="Demo Image">
+                            </center>
+                        </div>
+                        <div class="content">
+                            <div class="title">
+                                <h3>
+                                    <a href="https://www.instagram.com/buleleng_homestay">Buleleng Homestay Association
                                        </a>
                                 </h3>
                                 <br>
