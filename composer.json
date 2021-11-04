@@ -19,6 +19,7 @@
         "maatwebsite/excel": "^3.1",
         "midtrans/midtrans-php": "^2.5",
         "spatie/laravel-activitylog": "^4.2",
+        "spatie/laravel-analytics": "^4.0",
         "spatie/laravel-permission": "^5.1",
         "yajra/laravel-datatables-buttons": "^4.0",
         "yajra/laravel-datatables-html": "^4.0",

@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
+
+use App\Helpers\BotHelper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -93,7 +95,7 @@ class OrdersController extends Controller
     public function change_status($id, $status)
     {
         $result = OrderService::change_status($id, $status);
-        $order =  OrderService::find($id); 
+        $order =  OrderService::find($id)->first(); 
 
         if($status == 'success'){
             $subject = 'Godevi - Order '. $order->code .' - Success';
@@ -105,8 +107,11 @@ class OrdersController extends Controller
 
         if ($result)
         {
+            $date = date('d M Y H:i')." wita";
+            BotHelper::sendTelegram("Godevi - Approve Manual Tour Package Success, \n\nDate: $date \nInvoice : $order->code  \nPayment Type : $order->payment_type.\n");
+
             $email = new OrderEmail($subject, $order, $message);
-            Mail::to([$order->customer_email, $order->village->email])->send($email);
+            Mail::to([$order->customer_email])->send($email);
             return redirect(route('orders.show', $id))->with('status', 'Successfully updated');
         }
         else

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Helpers\BotHelper;
 use App\Http\Controllers\Controller;
 use App\Mail\OrderHomestayEmail;
 use App\Models\OrderHomestay;
@@ -35,7 +36,7 @@ class OrderHomeStayController extends Controller
             }
             return DataTables::of($query)
             ->addColumn('action', function($order){
-                return "<a href='". route('order-homestay.show', $order->uuid) ."' class='btn btn-sm btn-outline-primary'>Show</a>";
+                return "<a href='". route('order-homestay.show', $order->id) ."' class='btn btn-sm btn-outline-primary'>Show</a>";
             })->editColumn('homestay_price', function($order){
                 return number_format($order->homestay_price);
             })->editColumn('total_payment', function($order){
@@ -159,6 +160,9 @@ class OrderHomeStayController extends Controller
 
         if ($result)
         {
+            $date = date('d M Y H:i')." wita";
+            BotHelper::sendTelegram("Godevi - Approve Manual Homestay Success, \n\nDate: $date \nInvoice : $order->code  \nPayment Type : $order->payment_type.\n");
+
             $email = new OrderHomestayEmail($subject, $order, $message);
             Mail::to([$order->customer_email])->send($email);
             return redirect(route('order-homestay.show', $id))->with('status', 'Successfully updated');
