@@ -185,7 +185,7 @@ class OrderEventService
     
                 $email = new OrderEventEmail($subject, $order, $message);
                 Mail::to([$order->customer_email, 'hello@godestinationvillage.com'])->send($email);
-                 DB::commit();
+                DB::commit();
 
                 return $proses;
             }

@@ -6,7 +6,23 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 class CustomImage 
 {
+	public static function storeFile($file, $path)
+    {
+  
+        $img = 'img-' . time() . uniqid() . '.' . $file->getClientOriginalExtension();
+        $imagePath = $file->storeAs($path, $img, 'public');
 
+        // $output_file = 'public/certification/qr-code/qr-' . $payload['slug'] . '.png';
+        Storage::disk('local')->put($img, $imagePath);
+
+        // Storage::putFile($imagePath, $file);
+
+        return [
+            'name' => $img,
+            'imagePath' => $imagePath,
+        ];
+    }
+    
 	public static function storeImage($file, $path)
     {
   

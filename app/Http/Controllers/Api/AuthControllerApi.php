@@ -21,17 +21,17 @@ class AuthControllerApi extends Controller
     {
         if ($this->authServices->attempt(['email' => $request->email, 'password' => $request->password])) {
             $user =  $this->authServices->user();
-            $success['token'] =  $user->createToken('MyApp')->accessToken;
             $success['email'] =  $user->email;
             $success['name'] =  $user->name;
             $success['phone'] =  $user->phone;
             $success['country'] =  $user->country;
             $success['address'] =  $user->address;
             $success['avatar'] =  $user->avatar;
+            $success['token'] =  $user->createToken($user->email)->plainTextToken;
+
             return $this->responseDataMessage($success);
         } 
 
-            // return $this->createErrorMessage("username atau password salah");
         return $this->errorResponseMessage('Email dan Password Salah');
 
 

@@ -12,6 +12,7 @@ use App\Models\BankAccount;
 use App\Helpers\CustomImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Certification;
 use App\Models\Event;
 use App\Models\Homestay;
 use App\Models\OrderEvent;
@@ -87,6 +88,11 @@ class PageController extends Controller
     {
         $data['village'] = User::with(['village_detail'])->where('role_id', '2')->where('is_active', '1')->paginate(30);
         return view('customer/village', $data);
+    }
+    public function certification($id)
+    {
+        $data['certificate'] = Certification::where('slug', $id)->first();
+        return view('customer/certificate', $data);
     }
     public function detailVillage($slug)
     {

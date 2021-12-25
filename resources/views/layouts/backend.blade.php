@@ -256,12 +256,12 @@
               <i class="mdi mdi-chart-areaspline menu-icon"></i>
             </a>
           </li>
-          {{-- <li class="nav-item">
-            <a class="nav-link" href="{{ url('administrator/report/package') }}">
-              <span class="menu-title">Laporan Paket Wisata</span>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('administrator/surat') }}">
+              <span class="menu-title">Surat</span>
               <i class="mdi mdi-chart-bar menu-icon"></i>
             </a>
-          </li> --}}
+          </li>
 
 
         </ul>

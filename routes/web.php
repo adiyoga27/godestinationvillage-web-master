@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CategoriesController;
 use App\Http\Controllers\Backend\CategoryEventsController;
 use App\Http\Controllers\Backend\CategoryHomeStayController;
+use App\Http\Controllers\Backend\CertificationController;
 use App\Http\Controllers\Backend\DiscountMembersController;
 use App\Http\Controllers\Backend\EventsController;
 use App\Http\Controllers\Backend\HomeController;
@@ -180,7 +181,15 @@ Route::group(['middleware' => ['auth']], function () {
     });
 });
 
+Route::get('/surat/{id}', [PageController::class, 'certification']);
 
+Route::get('qrcode-with-image', function () {
+    $image = \QrCode::format('png')
+                    ->merge('customer/img/qr.png', 0.5, true)
+                    ->size(500)->errorCorrection('H')
+                    ->generate('http://localhost:8000/surat/056GODEVIB2XII');
+ return response($image)->header('Content-type','image/png');
+});
 
 
 
@@ -188,6 +197,8 @@ Route::group(['middleware' => ['auth']], function () {
 Route::group(['prefix' => 'administrator', 'middleware' => ['auth']], function () {
      Route::resource('bank-account', BankAccountsController::class, ['names' => 'bank_account']);
     Route::resource('blog', BlogController::class);
+    Route::resource('surat', CertificationController::class);
+
     Route::resource('instagram', InstagramController::class);
     Route::resource('review', ReviewController::class);
 
