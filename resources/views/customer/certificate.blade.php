@@ -21,15 +21,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-10 m-auto">
                     <div class="about-content">
-                        <div class="row">
-                            <div class="col-12">
-                                
-                                <h6>
-                                    Top Tour Operators and Travel Agency. We offering in total 793 tours and holidays through-out the world. Combined we have received 1532 customer reviews.
-                                </h6>
-                            </div>
-                        </div>
-                        <br>
+                       
                         <div class="col-md-6 m-auto">
                             <div class="row">
                                     <div class="content-list">
