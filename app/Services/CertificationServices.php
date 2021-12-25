@@ -43,7 +43,7 @@ class CertificationServices
             $imageQr = \QrCode::format('png')
                 ->merge('customer/img/qr.png', 0.5, true)
                 ->size(500)->errorCorrection('H')
-                ->generate('http://localhost:8000/surat/'.$payload['slug']);
+                ->generate(url("surat/").$payload['slug']);
             
             $output_file = 'public/certification/qr-code/qr-' . $payload['slug'] . '.png';
             Storage::disk('local')->put($output_file, $imageQr);
@@ -84,7 +84,7 @@ class CertificationServices
             $imageQr = \QrCode::format('png')
             ->merge('customer/img/qr.png', 0.5, true)
             ->size(500)->errorCorrection('H')
-            ->generate('http://localhost:8000/surat/'.$payload['slug']);
+            ->generate(url("surat/").$payload['slug']);
             $output_file = 'public/certification/qr-code/qr-' . $payload['slug'] . '.png';
             Storage::disk('local')->put($output_file, $imageQr);
 
