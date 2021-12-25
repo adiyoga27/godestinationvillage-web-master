@@ -33,7 +33,7 @@ class CertificationServices
         try {
             DB::beginTransaction();
 
-            $payload['slug'] =  str_replace(str_split('\\/:*?"<>|.'), ' ', $payload['reference_number']);
+            $payload['slug'] =  str_replace(str_split('\\/:*?"<>|.'), '', $payload['reference_number']);
             if (!empty($payload['file'])){
 
                 $upload = CustomImage::storeFile($payload['file'], 'certification');

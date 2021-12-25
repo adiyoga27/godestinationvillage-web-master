@@ -27,8 +27,7 @@
                                     <div class="content-list">
                                         <h6>No Surat :</h6>
                                     </div>
-                                <hr>
-                                <p>{{$certificate->reference_number}}</p>
+                                &nbsp &nbsp<p>{{$certificate->reference_number}}</p>
                             </div>
 
                         </div>
@@ -37,8 +36,7 @@
                                     <div class="content-list">
                                         <h6>Tanggal :</h6>
                                     </div>
-                                <hr>
-                                <p>{{$certificate->date_at}}</p>
+                                    &nbsp &nbsp <p>{{$certificate->date_at}}</p>
                             </div>
                         </div>
                      
@@ -48,8 +46,7 @@
                                     <div class="content-list">
                                         <h6>Perihal :</h6>
                                     </div>
-                                <hr>
-                                <p>{{$certificate->regarding}}</p>
+                                    &nbsp &nbsp <p align="left"> {{$certificate->regarding}}</p>
                             </div>
                         </div>                        
                         <div class="col-md-6 m-auto">
@@ -57,8 +54,7 @@
                                     <div class="Ditujukan Kepada">
                                         <h6>Ditunjukan Kepada :</h6>
                                     </div>
-                                <hr>
-                                <p>{{$certificate->addressed_to}}</p>
+                                    &nbsp &nbsp <p >{{$certificate->addressed_to}}</p>
                             </div>
                         </div> 
                         <div class="col-md-6 m-auto">
@@ -66,8 +62,7 @@
                                     <div class="Ditujukan Kepada">
                                         <h6>Penanda Tangan :</h6>
                                     </div>
-                                <hr>
-                                <p>{{$certificate->signer}}</p>
+                                    &nbsp &nbsp <p>{{$certificate->signer}}</p>
                             </div>
                         </div> 
                         <div class="col-md-6 m-auto">
@@ -75,8 +70,7 @@
                                     <div class="Ditujukan Kepada">
                                         <h6>Jabatan  :</h6>
                                     </div>
-                                <hr>
-                                <p>{{$certificate->departemen}}</p>
+                                    &nbsp &nbsp <p >{{$certificate->departemen}}</p>
                             </div>
                         </div>                        
                         <br>
