@@ -92,7 +92,10 @@ class PageController extends Controller
     public function certification($id)
     {
         $data['certificate'] = Certification::where('slug', $id)->first();
-        return view('customer/certificate', $data);
+        if($data['certificate'] != null){
+            return view('customer/certificate', $data);
+        }
+        return view('errors/404');
     }
     public function detailVillage($slug)
     {
