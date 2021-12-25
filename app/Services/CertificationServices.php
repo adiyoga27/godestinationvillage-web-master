@@ -52,6 +52,8 @@ class CertificationServices
             DB::commit();
             return $model;
         } catch (\Throwable $th) {
+            dd($th);
+
             DB::rollback();
             BotHelper::errorBot('Create Certification', $th);
 
