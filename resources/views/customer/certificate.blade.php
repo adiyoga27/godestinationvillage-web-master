@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="bg-image">
-            <img src="{{ url('customer/img/page-title-area/blog-style3.jpg') }}" alt=" Demo Image">
+            <img src="{{ url('customer/img/page-title-area/surat-sertif-header.png') }}" alt=" Demo Image">
         </div>
     </div>
     <!-- start blog details section -->
@@ -21,61 +21,63 @@
             <div class="row align-items-center">
                 <div class="col-lg-10 m-auto">
                     <div class="about-content">
-                       
-                        <div class="col-md-6 m-auto">
-                            <div class="row">
-                                    <div class="content-list">
-                                        <h6>No Surat :</h6>
-                                    </div>
-                                &nbsp &nbsp<p>{{$certificate->reference_number}}</p>
-                            </div>
+                    <div class="col-md-8 m-auto">
 
-                        </div>
-                        <div class="col-md-6 m-auto">
-                            <div class="row">
-                                    <div class="content-list">
-                                        <h6>Tanggal :</h6>
-                                    </div>
-                                    &nbsp &nbsp <p>{{$certificate->date_at}}</p>
-                            </div>
-                        </div>
-                     
+                        <table  style="text-align: left;" align="left">
+                        <tr height="40px">
 
-                        <div class="col-md-6 m-auto">
-                            <div class="row">
-                                    <div class="content-list">
-                                        <h6>Perihal :</h6>
-                                    </div>
-                                    &nbsp &nbsp <p align="left"> {{$certificate->regarding}}</p>
-                            </div>
-                        </div>                        
-                        <div class="col-md-6 m-auto">
-                            <div class="row">
-                                    <div class="Ditujukan Kepada">
-                                        <h6>Ditunjukan Kepada :</h6>
-                                    </div>
-                                    &nbsp &nbsp <p >{{$certificate->addressed_to}}</p>
-                            </div>
-                        </div> 
-                        <div class="col-md-6 m-auto">
-                            <div class="row">
-                                    <div class="Ditujukan Kepada">
-                                        <h6>Penanda Tangan :</h6>
-                                    </div>
-                                    &nbsp &nbsp <p>{{$certificate->signer}}</p>
-                            </div>
-                        </div> 
-                        <div class="col-md-6 m-auto">
-                            <div class="row">
-                                    <div class="Ditujukan Kepada">
-                                        <h6>Jabatan  :</h6>
-                                    </div>
-                                    &nbsp &nbsp <p >{{$certificate->departemen}}</p>
-                            </div>
-                        </div>                        
+                                <td width='35%'><b>No Surat</b></td>
+                                <td width='10%'>:</td>
+                                <td width='60%'>{{$certificate->reference_number}}</td>
+
+                            </tr>
+                            <tr height="40px">
+
+                                <td width='30%'><b>Tanggal</b></td>
+                                <td width='5%'>:</td>
+                                <td width='60%'>{{date('d M y', strtotime($certificate->date_at))}}</td>
+
+                            </tr>
+                            <tr height="40px">
+
+                                <td width='30%'><b>Perihal</b></td>
+                                <td width='10%'>:</td>
+                                <td width='60%'>{{$certificate->regarding}}</td>
+
+                            </tr>
+                            <tr height="40px">
+
+                                <td width='30%'><b>Ditujukan kepada</b></td>
+                                <td width='10%'>:</td>
+                                <td width='60%'>{{$certificate->addressed_to}}</td>
+
+                            </tr>
+                            <tr height="40px">
+
+                                <td width='30%'><b>Penandatangan</b></td>
+                                <td width='10%'>:</td>
+                                <td width='60%'>{{$certificate->signer}}</td>
+
+                            </tr>
+                            <tr height="40px">
+                                <td width='30%'><b>Jabatan</b></td>
+                                <td width='10%'>:</td>
+                                <td width='60%'>{{$certificate->departemen}}</td>
+
+                            </tr>
+                            <tr height="150px">
+                                <td colspan="3">
+                                <center><a href="{{url('storage/certification/'.$certificate->file)}}" class="btn-primary">Download</a>
+                                </center>
+
+                                </td>
+
+                            </tr>
+                        </table>
+                    </div>
+                              
                         <br>
                         <div class="about-btn">
-                            <a href="{{url('storage/certification/'.$certificate->file)}}" class="btn-primary">Download</a>
                         </div>
                     </div>
                 </div>
