@@ -40,7 +40,7 @@ class PageController extends Controller
         $data['recent_blog'] = Blog::with('user')->where('isPublished', '1')->latest('id')->limit(5)->get();
         $data['category'] = Category::All();
         $data['users'] = Storage::files('reviews');
-        $data['reviews'] = Review::with('users')->get();
+        $data['reviews'] = Review::with('users')->where('is_active', 1)->get();
         $data['tag'] = Tag::all();
         return view('customer.home', $data);
     }
@@ -233,9 +233,11 @@ $data['recent'] = HomeStayServices::recent();
     }
     public function reservation(Request $request)
     {
-
-        $data['order'] = Order::with('package')->where('payment_status', NULL)
+        $end_date=date("Y-m-d H:i:s",strtotime("-2 month",strtotime(date("Y-m-01",strtotime("now") ) )));
+        $data['order'] = Order::with('package')->where('payment_status', 'pending')
+            ->whereNotNull('uuid')
             ->where('customer_email', $request->email)
+            ->where('created_at', '>=', $end_date)
             ->orderBy('id', 'desc')
             ->paginate(10);
         $data['isiemail'] = $request->email;

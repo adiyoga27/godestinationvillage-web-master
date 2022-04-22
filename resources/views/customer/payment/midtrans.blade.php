@@ -52,6 +52,10 @@
                 window.location.href = '{{ $redirectURIError }}';
 
                 console.log(result);
+            },
+            onClose: function(){
+                /* You may add your own implementation here */
+                window.location.href = '{{ $redirectURIError }}';
             }
         });
     </script>

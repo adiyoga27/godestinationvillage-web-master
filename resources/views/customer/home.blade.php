@@ -332,10 +332,10 @@
                             </div>
                         </div>
                     </div>
-                @break
+                <!-- @break -->
                 @endforeach
 
-                <div class="col-lg-6">
+                <!-- <div class="col-lg-6">
                     <div class="row">
                         @php
                             $firstStep = true;
@@ -347,7 +347,7 @@
                                     continue;
                                 }
                             @endphp
-                            <div class="col-lg-6 col-md-6">
+                            <div class="col-lg-6">
                                 <div class="item-single mb-30">
                                     <div class="image">
                                         <img src="{{ url('storage/blogs/' . $rec->post_thumbnail) }}" alt="Demo Image" />
@@ -357,9 +357,13 @@
                                             <li><i class='bx bx-calendar'></i> {{ $rec->created_at }}</li>
                                             <li><i class='bx bx-tag'></i>{{ $rec->post_tags }}</li>
                                         </ul>
+                                        
                                         <h3>
                                             <a href="{{ url('blog/' . $rec->slug) }}">{{ $rec->post_title }}</a>
                                         </h3>
+                                        <p>
+                                    {!! \Illuminate\Support\Str::words($rec->post_content, 25, '...') !!}
+                                </p>
                                         <ul class="list">
                                             <li>
                                                 <div class="author">
@@ -375,7 +379,7 @@
                         @endforeach
 
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>

@@ -24,6 +24,8 @@ use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\ReportVillageController;
 use App\Http\Controllers\Backend\ReviewController;
 use App\Http\Controllers\Backend\VillagesController;
+use App\Http\Controllers\Backend\VillageDatatableController;
+
 use App\Http\Controllers\Front\InvoiceController;
 use App\Http\Controllers\Front\OrderController;
 use App\Http\Controllers\Front\PageController;
@@ -257,12 +259,15 @@ Route::group(['prefix' => 'administrator', 'middleware' => ['auth']], function (
         Route::get('/villages/packages', [ReportVillageController::class, 'get_package'])->name('report_village.get_package');
         Route::get('/events', [ReportVillageController::class, 'index'])->name('report.village');
     });
-    Route::get('user-village/{id}/packages', [
-        'as' => 'user_village.packages',
-        'uses' => 'VillageDatatableController@get_packages'
-    ]);
-    Route::get('user-village/{id}/orders', [
-        'as' => 'user_village.orders',
-        'uses' => 'VillageDatatableController@get_orders'
-    ]);
+    Route::get('user-village/{id}/packages', [VillageDatatableController::class, 'get_packages'])->name('user_village.packages');
+    Route::get('user-village/{id}/orders', [VillageDatatableController::class, 'get_orders'])->name('user_village.orders');
+
+    // Route::get('user-village/{id}/packages', [
+    //     'as' => 'user_village.packages',
+    //     'uses' => 'VillageDatatableController@get_packages'
+    // ]);
+    // Route::get('user-village/{id}/orders', [
+    //     'as' => 'user_village.orders',
+    //     'uses' => 'VillageDatatableController@get_orders'
+    // ]);
 });

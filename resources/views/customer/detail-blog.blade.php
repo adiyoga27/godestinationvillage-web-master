@@ -79,7 +79,7 @@
                                     </div>
                                     <div class="content">
                                         <h3>
-                                            <a href="{{ url('blog/' . $rec->id) }}">{{ $rec->post_title }}</a>
+                                            <a href="{{ url('blog/' . $rec->slug) }}">{{ $rec->post_title }}</a>
                                         </h3>
                                         <ul class="list">
                                             <li>

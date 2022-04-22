@@ -33,7 +33,7 @@
                     <p class="card-text">
                         {{ $village->email }} <br />
                         {{ $village->phone }} <br />
-                        {{ $village->address }}
+                        {{ strip_tags($village->address) }}
                     </p>
                     <a href="{{ route('user_village.edit', $village->id) }}" class="btn btn-danger">Edit Data</a>
                 </div>
@@ -82,7 +82,7 @@
                                 </td>
                             </tr>
                         </table>
-                        <div id="map" style="width: 100%; height: 300px;"></div>
+                        <!-- <div id="map" style="width: 100%; height: 300px;"></div> -->
                     </div>
 
                     <div class="tab-pane fade show" id="nav-package" role="tabpanel" aria-labelledby="nav-package-tab">

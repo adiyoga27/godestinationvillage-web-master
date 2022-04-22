@@ -160,25 +160,32 @@
                                                                             placeholder="" required>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-6">
-                                                                    <label>Pick up location</label>
-                                                                    <div class="form-group">
+                                                          
+                                                                <div class="col-md-12">
+                                                                <label for="chkPassport">
+                                                                    <input type="checkbox" id="chkPassport" />
+                                                                    Include Pickup Location ?
+                                                                </label>
+                                                                <hr />
+                                                                 </div>
+                                                                    <div class="col-md-6" id="dvPassport" style="display: none">
+                                                                        <label>Pick up location</label>
 
-                                                                        <input type="text" name="pickup" class="form-control"
-                                                                            placeholder="Input your location pick up" required>
+                                                                            <input type="text" name="pickup" class="form-control" value = " "
+                                                                                placeholder="Input your location pick up" required>
+                                                                        <hr>
                                                                     </div>
-                                                                    <hr>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label>Hotel/Villa/Guest House Name</label>
-                                                                    <div class="form-group">
+                                                                    <div class="col-md-6" id="dvPassport2" style="display: none">
+                                                                        <label>Hotel/Villa/Guest House Name</label>
 
-                                                                        <input type="text" name="pickupname" class="form-control"
-                                                                            id="exampleInputEmail1" placeholder="Input your place name"
-                                                                            required>
-                                                                    </div>
-                                                                    <hr>
+                                                                            <input type="text" name="pickupname" class="form-control" value = " "
+                                                                                placeholder="Input your place name" placeholder=""
+                                                                                required>
+                                                                        <hr>
                                                                 </div>
+
+
+
                                                             @endif
 
                                                             <div class="col-md-12">
@@ -186,7 +193,7 @@
                                                                 <div class="form-group">
 
                                                                     <textarea placeholder="Input your note transaction" style="height: 100pt"
-                                                                        name="special_note" class="form-control" placeholder=""></textarea>
+                                                                        name="special_note" class="form-control" ></textarea>
                                                                 </div>
                                                                 <hr>
                                                             </div>
@@ -216,6 +223,21 @@
 
                     @section('js')
                         <script>
+
+$(function () {
+        $("#chkPassport").click(function () {
+            if ($(this).is(":checked")) {
+                $("#dvPassport").show();
+                $("#dvPassport2").show();
+
+            } else {
+                $("#dvPassport").hide();
+                $("#dvPassport2").hide();
+
+            }
+        });
+    });
+
                             $(function() {
                                 $("#datepicker").datepicker({
                                     dateFormat: 'yy-mm-dd'

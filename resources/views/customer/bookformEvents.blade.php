@@ -74,7 +74,7 @@
                                                         <div class="col-md-6">
                                                             <label>Address</label>
                                                             <div class="form-group">
-                                                                <input type="text" name="address" class="form-control" placeholder=""
+                                                                <input type="text" name="address" class="form-control" placeholder="Input your address"
                                                                     value="@isset($user){{ $user->address }}@endisset" required>
                                                                 </div>
                                                             </div>

@@ -41,7 +41,7 @@
                                     <div class="col-md-6">
                                         <label>Homestay Name</label>
                                         <input type="text" name="homestayname" class="form-control"
-                                            id="exampleInputEmail1" aria-describedby="emailHelp" placeholder=""
+                                            id="exampleInputEmail1" aria-describedby="emailHelp" 
                                             value="{{ $packages->name }}" readonly>
 
                                     </div>
@@ -80,8 +80,7 @@
                                                             <div class="col-md-6">
                                                                 <label>Address</label>
                                                                 <div class="form-group">
-                                                                    <input type="text" name="address" class="form-control"
-                                                                        placeholder=""
+                                                                    <input type="text" name="address" class="form-control" placeholder="Input your address"
                                                                         value="@isset($user){{ $user->address }}@endisset"
                                                                             required>
                                                                     </div>

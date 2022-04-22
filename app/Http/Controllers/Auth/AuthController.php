@@ -33,7 +33,7 @@ class AuthController extends Controller
         }
         $authUser = $this->findOrCreateUser($user, $provider);
         Auth::login($authUser, true);
-        return redirect('/');
+        return redirect()->intended();
     }
 
     /**
