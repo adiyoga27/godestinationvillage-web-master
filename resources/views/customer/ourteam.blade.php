@@ -151,31 +151,31 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-4 col-md-4">
-                    <div class="item-single mb-30">
-                        <div class="image">
-                            <img src="{{ url('frontdata/images/Sukariyanto.jpg') }}" alt="Demo Image">
-                        </div>
-                        <div class="content">
-                            <div class="title">
-                                <h3>
-                                    <a href="team.html">I Gede Made Sukariyanto,<br>
-                                        S.Par.,M.Par.</a>
-                                </h3>
-                                <span>Chief Marketing Officer</span>
-                            </div>
-                            <div class="social-link">
-                                <a href="https://www.facebook.com/Agoezt.Sukariyanto" target="_blank"><i
-                                        class='bx bxl-facebook'></i></a>
-                                <a href="https://twitter.com/gus_ariy" target="_blank"><i class='bx bxl-twitter'></i></a>
-                                <a href="https://id.linkedin.com/in/sukariyanto" target="_blank"><i
-                                        class='bx bxl-linkedin'></i></a>
-                                <a href="https://www.instagram.com/gus.ariy/" target="_blank"><i
-                                        class='bx bxl-instagram'></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!--<div class="col-lg-4 col-sm-4 col-md-4">-->
+                <!--    <div class="item-single mb-30">-->
+                <!--        <div class="image">-->
+                <!--            <img src="{{ url('frontdata/images/Sukariyanto.jpg') }}" alt="Demo Image">-->
+                <!--        </div>-->
+                <!--        <div class="content">-->
+                <!--            <div class="title">-->
+                <!--                <h3>-->
+                <!--                    <a href="team.html">I Gede Made Sukariyanto,<br>-->
+                <!--                        S.Par.,M.Par.</a>-->
+                <!--                </h3>-->
+                <!--                <span>Chief Marketing Officer</span>-->
+                <!--            </div>-->
+                <!--            <div class="social-link">-->
+                <!--                <a href="https://www.facebook.com/Agoezt.Sukariyanto" target="_blank"><i-->
+                <!--                        class='bx bxl-facebook'></i></a>-->
+                <!--                <a href="https://twitter.com/gus_ariy" target="_blank"><i class='bx bxl-twitter'></i></a>-->
+                <!--                <a href="https://id.linkedin.com/in/sukariyanto" target="_blank"><i-->
+                <!--                        class='bx bxl-linkedin'></i></a>-->
+                <!--                <a href="https://www.instagram.com/gus.ariy/" target="_blank"><i-->
+                <!--                        class='bx bxl-instagram'></i></a>-->
+                <!--            </div>-->
+                <!--        </div>-->
+                <!--    </div>-->
+                <!--</div>-->
                 <div class="col-lg-4 col-sm-4 col-md-4">
                     <div class="item-single mb-30">
                         <div class="image">

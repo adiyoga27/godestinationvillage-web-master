@@ -87,7 +87,7 @@
                 <div class="col col-md-12">
                     <div class="tours-slider owl-carousel mb-30">
                         @foreach ($tag as $t)
-                            <div class="slider-item" onclick="location.href ='{{ url('village/' . $t->id) }}';"
+                            <div class="slider-item" onclick="location.href ='{{ url('category-package/' . $t->id) }}';"
                                 style="cursor:pointer">
 
                                 {{-- <div class="image">

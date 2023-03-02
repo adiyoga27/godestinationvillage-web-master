@@ -11,11 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class AuthControllerApi extends Controller
 {
     use JsonResponseTrait;
-    public function __construct(AuthServices $authServices, UserService $userService)
-    {
-        $this->userServices = $userService;
-        $this->authServices = $authServices;
-    }
+
     
     public function login(Request $request)
     {
