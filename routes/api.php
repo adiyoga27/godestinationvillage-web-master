@@ -17,24 +17,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::group(['prefix'=>'auth'], function(){       
+Route::group(['prefix' => 'auth'], function () {
     Route::post('/login', [AuthControllerApi::class, 'login']);
     Route::post('/registration', [AuthControllerApi::class, 'registration']);
 });
 
-Route::group([ 'middleware' => ['api', 'cors']], function(){       
+Route::group(['middleware' => ['api', 'cors']], function () {
     Route::get('/blog', [PageControllerApi::class, 'blog']);
     Route::get('/blog/{id}', [PageControllerApi::class, 'detailBlog']);
     Route::get('/homestay', [PageControllerApi::class, 'homestay']);
     Route::get('/homestay/{id}', [PageControllerApi::class, 'detailHomestay']);
-    Route::get('/event', [PageControllerApi::class, 'homestay']);
+    Route::get('/event', [PageControllerApi::class, 'event']);
     Route::get('/event/{id}', [PageControllerApi::class, 'detailEvent']);
     Route::get('/tour', [PageControllerApi::class, 'tour']);
     Route::get('/tour/{id}', [PageControllerApi::class, 'detailTour']);
     Route::get('/village', [PageControllerApi::class, 'village']);
     Route::get('/village/{id}', [PageControllerApi::class, 'detailVillage']);
-
-   
 });
 
 
@@ -127,5 +125,3 @@ Route::group([ 'middleware' => ['api', 'cors']], function(){
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-
-
