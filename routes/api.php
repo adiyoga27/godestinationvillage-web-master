@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthControllerApi;
 use App\Http\Controllers\Api\PageControllerApi;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
+Route::group(['prefix'=>'auth'], function(){       
+    Route::post('/login', [AuthControllerApi::class, 'login']);
+    Route::post('/registration', [AuthControllerApi::class, 'registration']);
+});
 
 Route::group([ 'middleware' => ['api', 'cors']], function(){       
     Route::get('/blog', [PageControllerApi::class, 'blog']);
@@ -25,6 +29,10 @@ Route::group([ 'middleware' => ['api', 'cors']], function(){
     Route::get('/homestay/{id}', [PageControllerApi::class, 'detailHomestay']);
     Route::get('/event', [PageControllerApi::class, 'homestay']);
     Route::get('/event/{id}', [PageControllerApi::class, 'detailEvent']);
+    Route::get('/tour', [PageControllerApi::class, 'tour']);
+    Route::get('/tour/{id}', [PageControllerApi::class, 'detailTour']);
+    Route::get('/village', [PageControllerApi::class, 'village']);
+    Route::get('/village/{id}', [PageControllerApi::class, 'detailVillage']);
 
    
 });

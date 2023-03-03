@@ -9,9 +9,15 @@ use App\Http\Resources\Events\EventCollection;
 use App\Http\Resources\Events\EventResource;
 use App\Http\Resources\Homestay\HomestayCollection;
 use App\Http\Resources\Homestay\HomestayResource;
+use App\Http\Resources\Packages\PackageCollection;
+use App\Http\Resources\Packages\PackageResource;
+use App\Http\Resources\Village\VillageCollection;
+use App\Http\Resources\Village\VillageDetailCollection;
 use App\Models\Blog;
 use App\Models\Event;
 use App\Models\Homestay;
+use App\Models\Package;
+use App\Models\VillageDetail;
 use Illuminate\Http\Request;
 
 class PageControllerApi extends Controller
@@ -20,7 +26,9 @@ class PageControllerApi extends Controller
     public function __construct(
         public Blog $blog,
         public Homestay $homestay,
-        public Event $event
+        public Event $event,
+        public Package $tour,
+        public VillageDetail $village
     ) {
     }
     public function blog(Request $request)
@@ -102,5 +110,44 @@ class PageControllerApi extends Controller
             'data' => new EventResource($event),
             'status' => TRUE,
             'messages' => 'Success']);
+    }
+
+    public function tour(Request $request)
+    {
+        $tours = $this->tour->where('is_active', 1)->orderBy('id', 'DESC')->paginate($request->per_page);
+        if(!empty($request->keyword)){
+            $tours = $this->tour->orderBy('id', 'DESC')->where('name', 'like', '%'.$request->keyword.'%')->paginate($request->per_page);
+        }
+        return response()->json(new PackageCollection($tours));
+    }
+
+    public function detailTour(Request $request, $id)
+    {
+        $tour = $this->tour->where('id', $id)->first();
+        if(!$tour){
+            return response()->json([
+                'data' => [],
+                'status' => FALSE,
+                'messages' => 'Your data not found'
+            ]);
+        }
+        return response()->json([
+            'data' => new PackageResource($tour),
+            'status' => TRUE,
+            'messages' => 'Success'
+        ]);
+    }
+
+    public function village(Request $request)
+    {
+        $villages = $this->village->where('village_address', '<>' , '-')->whereHas('user',function($q){
+            $q->where('role_id', 2);
+        })->orderBy('id', 'DESC')->paginate($request->per_page);
+        if(!empty($request->keyword)){
+            $villages = $this->village->whereHas('user',function($q){
+                $q->where('role_id', 2);
+            })->orderBy('id', 'DESC')->where('village_address', '<>' , '-')->where('village_name', 'like', '%'.$request->keyword.'%')->paginate($request->per_page);
+        }
+        return response()->json(new VillageCollection($villages));
     }
 }

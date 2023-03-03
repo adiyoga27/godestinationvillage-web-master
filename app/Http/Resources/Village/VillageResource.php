@@ -16,6 +16,7 @@ class VillageResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'village_name' => $this->village_name,
             'village_address' => $this->village_address,
             'lat' => $this->lat,

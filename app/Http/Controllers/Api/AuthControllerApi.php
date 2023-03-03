@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\User\UserResource;
+use App\Models\User;
 use App\Services\AuthServices;
 use App\Services\UserService;
 use App\Traits\JsonResponseTrait;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthControllerApi extends Controller
 {
@@ -15,30 +18,63 @@ class AuthControllerApi extends Controller
     
     public function login(Request $request)
     {
-        if ($this->authServices->attempt(['email' => $request->email, 'password' => $request->password])) {
-            $user =  $this->authServices->user();
-            $success['email'] =  $user->email;
-            $success['name'] =  $user->name;
-            $success['phone'] =  $user->phone;
-            $success['country'] =  $user->country;
-            $success['address'] =  $user->address;
-            $success['avatar'] =  $user->avatar;
-            $success['token'] =  $user->createToken($user->email)->plainTextToken;
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-            return $this->responseDataMessage($success);
-        } 
+        $auth = Auth::attempt(['email' => $request->email, 'password' => $request->password]);
 
-        return $this->errorResponseMessage('Email dan Password Salah');
-
-
+        if($auth) {
+            $user = collect(new UserResource(Auth::user()));
+            $user['token'] = Auth::user()->createToken('token')->plainTextToken;
+            return response()->json([
+                'status' => true,
+                'message' => 'Login Success',
+                'data' => $user
+            ], 200);
+        }
+        return response()->json([
+            'status' => false,
+            'message' => 'Login Failed',
+        ], 401);
     }
 
     public function registration(Request $request)
     {
-        $result = $this->userServices->registration($request);
-        if($result == true){
-            return $this->responseDataMessage($result);
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+            'password_confirmation' => 'required|same:password',
+            'country' => 'required',
+        ]);
+        try {
+       
+    
+            User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'country' => $request->country,
+            ]);
+            $auth = Auth::attempt(['email' => $request->email, 'password' => $request->password]);
+            $user = collect(new UserResource(Auth::user()));
+            $user['token'] = Auth::user()->createToken('token')->plainTextToken;
+            return response()->json([
+                'status' => true,
+                'message' => 'User created successfully',
+                'data' => $user
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
         }
-        return $this->responseErrorDataMessage(['error' => 'Unauthorised'], 'Email Telah Terdaftar.');
+       
+
+       
+        
     }
 }

@@ -13,7 +13,7 @@ class VillageCollection extends ResourceCollection
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    public $collects = UserResource::class;
+    public $collects = VillageResource::class;
     public function toArray($request)
     {
         return  [
