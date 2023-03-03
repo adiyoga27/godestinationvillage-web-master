@@ -257,7 +257,7 @@ Route::group(['prefix' => 'administrator', 'middleware' => ['auth']], function (
             'uses' => 'ReportVillageController@export_xls'
         ]);
         Route::get('/villages/packages', [ReportVillageController::class, 'get_package'])->name('report_village.get_package');
-        Route::get('/events', [ReportVillageController::class, 'index'])->name('report.village');
+        Route::get('/events', [ReportVillageController::class, 'index'])->name('report.events');
     });
     Route::get('user-village/{id}/packages', [VillageDatatableController::class, 'get_packages'])->name('user_village.packages');
     Route::get('user-village/{id}/orders', [VillageDatatableController::class, 'get_orders'])->name('user_village.orders');
