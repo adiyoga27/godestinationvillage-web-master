@@ -27,7 +27,7 @@ Route::group(['middleware' => ['api', 'cors']], function () {
     Route::get('/blog/{id}', [PageControllerApi::class, 'detailBlog']);
     Route::get('/homestay', [PageControllerApi::class, 'homestay']);
     Route::get('/homestay/{id}', [PageControllerApi::class, 'detailHomestay']);
-    Route::get('/event', [PageControllerApi::class, 'event']);
+    Route::get('/event', [PageControllerApi::class, 'events']);
     Route::get('/event/{id}', [PageControllerApi::class, 'detailEvent']);
     Route::get('/tour', [PageControllerApi::class, 'tour']);
     Route::get('/tour/{id}', [PageControllerApi::class, 'detailTour']);
