@@ -59,9 +59,9 @@ Route::get('test', [TestController::class, 'sendEmailNotification']);
 
 Route::get('/', [PageController::class, 'index']);
 Route::get('/home', [PageController::class, 'index']);
-Route::get('/redirects', function(){
-	return redirect(Redirect::intended()->getTargetUrl());
-	return back();	
+Route::get('/redirects', function () {
+    return redirect(Redirect::intended()->getTargetUrl());
+    return back();
 });
 
 Route::get('locale/{locale}', function ($locale) {
@@ -71,9 +71,15 @@ Route::get('locale/{locale}', function ($locale) {
 });
 
 Route::prefix('pay')->group(function () {
-    Route::get('finish', function (){return view('payment.finish');});
-    Route::get('unfinish', function (){return view('payment.unfinish');});
-    Route::get('error', function (){return view('payment.error');});
+    Route::get('finish', function () {
+        return view('payment.finish');
+    });
+    Route::get('unfinish', function () {
+        return view('payment.unfinish');
+    });
+    Route::get('error', function () {
+        return view('payment.error');
+    });
 });
 
 Route::get('/services', [PageController::class, 'services']);
@@ -87,9 +93,9 @@ Route::prefix('auth')->group(function () {
 });
 
 
-Route::get('/invoice/{id}', [InvoiceController::class , 'index']);
-Route::get('/invoice-event/{id}', [InvoiceController::class , 'event']);
-Route::get('/invoice-homestay/{id}', [InvoiceController::class , 'homestay']);
+Route::get('/invoice/{id}', [InvoiceController::class, 'index']);
+Route::get('/invoice-event/{id}', [InvoiceController::class, 'event']);
+Route::get('/invoice-homestay/{id}', [InvoiceController::class, 'homestay']);
 
 Route::get('/administrator/login',  [LoginController::class, 'authenticated']);
 Route::get('/user/login', [LoginController::class, 'authenticated']);
@@ -97,89 +103,87 @@ Route::get('/user/login', [LoginController::class, 'authenticated']);
 Route::get('/company-profile', [PageController::class, 'companyprofile']);
 
 Route::prefix('village')->group(function () {
-    Route::get('/',[PageController::class, 'village']);
-    Route::get('/{slug}',[PageController::class, 'detailVillage']);
+    Route::get('/', [PageController::class, 'village']);
+    Route::get('/{slug}', [PageController::class, 'detailVillage']);
 });
 Route::prefix('tour-packages')->group(function () {
-    Route::get('/',[PageController::class, 'tourpackages']);
-    Route::get('/{slug}',[PageController::class, 'detailtour']);
+    Route::get('/', [PageController::class, 'tourpackages']);
+    Route::get('/{slug}', [PageController::class, 'detailtour']);
 });
 Route::prefix('reservation')->group(function () {
-    Route::get('/{email}',[PageController::class, 'reservation']);
-    Route::get('/paid/{email}',[OrderController::class, 'reservationPaid']);
-    Route::get('/cancel/{email}',[OrderController::class, 'reservationCancel']);
+    Route::get('/{email}', [PageController::class, 'reservation']);
+    Route::get('/paid/{email}', [OrderController::class, 'reservationPaid']);
+    Route::get('/cancel/{email}', [OrderController::class, 'reservationCancel']);
 });
 Route::prefix('reservation-events')->group(function () {
-    Route::get('/{email}',[ReservationEventController::class, 'reservation']);
-    Route::get('/paid/{email}',[ReservationEventController::class, 'paid']);
-    Route::get('/cancel/{email}',[ReservationEventController::class, 'cancel']);
+    Route::get('/{email}', [ReservationEventController::class, 'reservation']);
+    Route::get('/paid/{email}', [ReservationEventController::class, 'paid']);
+    Route::get('/cancel/{email}', [ReservationEventController::class, 'cancel']);
 });
 Route::prefix('reservation-homestay')->group(function () {
-    Route::get('/{email}',[ReservationHomeStayController::class, 'reservation']);
-    Route::get('/paid/{email}',[ReservationHomeStayController::class, 'paid']);
-    Route::get('/cancel/{email}',[ReservationHomeStayController::class, 'cancel']);
+    Route::get('/{email}', [ReservationHomeStayController::class, 'reservation']);
+    Route::get('/paid/{email}', [ReservationHomeStayController::class, 'paid']);
+    Route::get('/cancel/{email}', [ReservationHomeStayController::class, 'cancel']);
 });
 
-Route::prefix('midtrans')->group(function(){
+Route::prefix('midtrans')->group(function () {
     Route::post('/callbackPayment', [MidtransController::class, 'callbackPayment']);
 });
 
 Route::prefix('events')->group(function () {
-    Route::get('/', [PageController::class,'eventsGodevi']);
-    Route::get('/{slug}', [PageController::class,'detailEvent']);
+    Route::get('/', [PageController::class, 'eventsGodevi']);
+    Route::get('/{slug}', [PageController::class, 'detailEvent']);
 });
 Route::prefix('homestay')->group(function () {
-    Route::get('/', [PageController::class,'homeStay']);
-    Route::get('/{id}', [PageController::class,'detailHomestay']);
+    Route::get('/', [PageController::class, 'homeStay']);
+    Route::get('/{id}', [PageController::class, 'detailHomestay']);
 });
-Route::get('/category-package/{id}', [PageController::class,'categorypackage']);
+Route::get('/category-package/{id}', [PageController::class, 'categorypackage']);
 
 //check update
 Route::prefix('payment')->group(function () {
-    Route::get('/{id}', [PageController::class,'payment']);
-    Route::get('/event/{id}', [PageController::class,'paymentEvent']);
-    Route::get('/event/do_cancel/{id}', [PageController::class,'cancelEvent']);
-    Route::get('/homestay/{id}', [PageController::class,'paymentHomestay']);
-    Route::get('/homestay/do_cancel/{id}', [PageController::class,'cancelHomeStay']);
-    Route::get('/package/{id}', [PageController::class,'payment']);
-    Route::get('/package/do_cancel/{id}', [PageController::class,'cancel']);
+    Route::get('/{id}', [PageController::class, 'payment']);
+    Route::get('/event/{id}', [PageController::class, 'paymentEvent']);
+    Route::get('/event/do_cancel/{id}', [PageController::class, 'cancelEvent']);
+    Route::get('/homestay/{id}', [PageController::class, 'paymentHomestay']);
+    Route::get('/homestay/do_cancel/{id}', [PageController::class, 'cancelHomeStay']);
+    Route::get('/package/{id}', [PageController::class, 'payment']);
+    Route::get('/package/do_cancel/{id}', [PageController::class, 'cancel']);
 });
 
-Route::get('/payment-detail/{id}', [PageController::class,'detailPayment']);
-Route::get('/payment-confirm/{id}', [PageController::class,'confirmPayment']);
-Route::get('/do_cancel/{id}', [PageController::class,'cancel']);
+Route::get('/payment-detail/{id}', [PageController::class, 'detailPayment']);
+Route::get('/payment-confirm/{id}', [PageController::class, 'confirmPayment']);
+Route::get('/do_cancel/{id}', [PageController::class, 'cancel']);
 Route::get('user/register', [PageController::class, 'register']);
-Route::get('/term', [PageController::class,'term']);
-Route::get('/our-team', [PageController::class,'ourteam']);
-Route::get('/our-partner', [PageController::class,'ourpartner']);
-Route::get('/blog', [PageController::class,'blog']);
-Route::get('/blog/{slug}', [PageController::class,'detailpost']);
-Route::get('/blog-mobile', [PageController::class,'blog_mobile']);
-Route::get('/blog-mobile/{id}', [PageController::class,'detailpost_mobile']);
-Route::get('/search', [SearchController::class,'searchHome']);
+Route::get('/term', [PageController::class, 'term']);
+Route::get('/our-team', [PageController::class, 'ourteam']);
+Route::get('/our-partner', [PageController::class, 'ourpartner']);
+Route::get('/blog', [PageController::class, 'blog']);
+Route::get('/blog/{slug}', [PageController::class, 'detailpost']);
+Route::get('/blog-mobile', [PageController::class, 'blog_mobile']);
+Route::get('/blog-mobile/{id}', [PageController::class, 'detailpost_mobile']);
+Route::get('/search', [SearchController::class, 'searchHome']);
 Route::get('/pay/{id}', [PaymentController::class, 'vtweb']);
 Route::post('/vt-notif', [PaymentController::class, 'notification']);
 
 Route::group(['middleware' => ['auth']], function () {
     Route::prefix('bookingEvents')->group(function () {
         Route::get('/{id}', [PageController::class, 'bookingEvents']);
-        Route::post('/sendEvent',[OrderEventsController::class, 'sendEvent']);
-        Route::post('/sendEventFree',[OrderEventsController::class, 'sendEventFree']);
-
+        Route::post('/sendEvent', [OrderEventsController::class, 'sendEvent']);
+        Route::post('/sendEventFree', [OrderEventsController::class, 'sendEventFree']);
     });
     Route::prefix('bookingHomeStay')->group(function () {
         Route::get('/{id}', [PageController::class, 'bookingHomeStay']);
-        Route::post('/sendHomeStay',[OrderHomeStayController::class, 'sendHomeStay']);
+        Route::post('/sendHomeStay', [OrderHomeStayController::class, 'sendHomeStay']);
     });
     Route::prefix('account')->group(function () {
-        Route::get('/',[PageController::class, 'account']);
-        Route::post('/{id}',[PageController::class, 'accountUpdate']);
+        Route::get('/', [PageController::class, 'account']);
+        Route::post('/{id}', [PageController::class, 'accountUpdate']);
     });
     Route::prefix('booking')->group(function () {
         Route::get('/{id}', [PageController::class, 'booking']);
-        Route::post('/send',[OrderController::class, 'send']);
-        Route::post('/sendEvent',[OrderController::class, 'sendEvent']);
-
+        Route::post('/send', [OrderController::class, 'send']);
+        Route::post('/sendEvent', [OrderController::class, 'sendEvent']);
     });
 });
 
@@ -187,17 +191,17 @@ Route::get('/surat/{id}', [PageController::class, 'certification']);
 
 Route::get('qrcode-with-image', function () {
     $image = \QrCode::format('png')
-                    ->merge('customer/img/qr.png', 0.5, true)
-                    ->size(500)->errorCorrection('H')
-                    ->generate('http://localhost:8000/surat/056GODEVIB2XII');
- return response($image)->header('Content-type','image/png');
+        ->merge('customer/img/qr.png', 0.5, true)
+        ->size(500)->errorCorrection('H')
+        ->generate('http://localhost:8000/surat/056GODEVIB2XII');
+    return response($image)->header('Content-type', 'image/png');
 });
 
 
 
 //Route Untuk Administrator
 Route::group(['prefix' => 'administrator', 'middleware' => ['auth']], function () {
-     Route::resource('bank-account', BankAccountsController::class, ['names' => 'bank_account']);
+    Route::resource('bank-account', BankAccountsController::class, ['names' => 'bank_account']);
     Route::resource('blog', BlogController::class);
     Route::resource('surat', CertificationController::class);
 
@@ -227,7 +231,7 @@ Route::group(['prefix' => 'administrator', 'middleware' => ['auth']], function (
     //     'uses' => 'OrderHomeStayController@change_status'
     // ]);
     Route::get('order-homestay/{id}/change-status/{status}', [OrderHomeStayController::class, 'change_status'])->name('order-homestay.change_status');
-  
+
     Route::resource('category-events', CategoryEventsController::class);
     Route::resource('events', EventsController::class);
     Route::resource('homestay', HomeStayController::class);
