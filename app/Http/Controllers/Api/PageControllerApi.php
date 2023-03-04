@@ -16,9 +16,11 @@ use App\Http\Resources\Village\VillageDetailCollection;
 use App\Models\Blog;
 use App\Models\Event;
 use App\Models\Homestay;
+use App\Models\Order;
 use App\Models\Package;
 use App\Models\VillageDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PageControllerApi extends Controller
 {
@@ -28,15 +30,17 @@ class PageControllerApi extends Controller
         public Homestay $homestay,
         public Event $event,
         public Package $tour,
-        public VillageDetail $village
+        public VillageDetail $village,
+        public Order $order
     ) {
     }
     public function blog(Request $request)
     {
+
         $blogs = $this->blog->orderBy('id', 'DESC')->paginate($request->per_page);
 
-        if(!empty($request->keyword)){
-            $blogs = $this->blog->orderBy('id', 'DESC')->where('post_title', 'like', '%'.$request->keyword.'%')->paginate($request->per_page);
+        if (!empty($request->keyword)) {
+            $blogs = $this->blog->orderBy('id', 'DESC')->where('post_title', 'like', '%' . $request->keyword . '%')->paginate($request->per_page);
         }
         return response()->json(new BlogCollection($blogs));
     }
@@ -45,7 +49,7 @@ class PageControllerApi extends Controller
     public function detailBlog(Request $request, $id)
     {
         $blog = $this->blog->where('id', $id)->first();
-        if(!$blog){
+        if (!$blog) {
             return response()->json([
                 'data' => [],
                 'status' => FALSE,
@@ -62,17 +66,16 @@ class PageControllerApi extends Controller
     public function homestay(Request $request)
     {
         $homestays = $this->homestay->orderBy('id', 'DESC')->paginate($request->per_page);
-        if(!empty($request->keyword)){
-            $homestays = $this->homestay->orderBy('id', 'DESC')->where('name', 'like', '%'.$request->keyword.'%')->paginate($request->per_page);
+        if (!empty($request->keyword)) {
+            $homestays = $this->homestay->orderBy('id', 'DESC')->where('name', 'like', '%' . $request->keyword . '%')->paginate($request->per_page);
         }
         return response()->json(new HomestayCollection($homestays));
-
     }
 
     public function detailHomestay(Request $request, $id)
     {
         $homestay = $this->homestay->where('id', $id)->first();
-        if(!$homestay){
+        if (!$homestay) {
             return response()->json([
                 'data' => [],
                 'status' => FALSE,
@@ -90,8 +93,8 @@ class PageControllerApi extends Controller
     public function events(Request $request)
     {
         $events = $this->event->orderBy('id', 'DESC')->paginate($request->per_page);
-        if(!empty($request->keyword)){
-            $events = $this->event->orderBy('id', 'DESC')->where('name', 'like', '%'.$request->keyword.'%')->paginate($request->per_page);
+        if (!empty($request->keyword)) {
+            $events = $this->event->orderBy('id', 'DESC')->where('name', 'like', '%' . $request->keyword . '%')->paginate($request->per_page);
         }
         return response()->json(new EventCollection($events));
     }
@@ -99,7 +102,7 @@ class PageControllerApi extends Controller
     public function detailEvent(Request $request, $id)
     {
         $event = $this->event->where('id', $id)->first();
-        if(!$event){
+        if (!$event) {
             return response()->json([
                 'data' => [],
                 'status' => FALSE,
@@ -109,14 +112,27 @@ class PageControllerApi extends Controller
         return response()->json([
             'data' => new EventResource($event),
             'status' => TRUE,
-            'messages' => 'Success']);
+            'messages' => 'Success'
+        ]);
     }
 
     public function tour(Request $request)
     {
-        $tours = $this->tour->where('is_active', 1)->orderBy('id', 'DESC')->paginate($request->per_page);
-        if(!empty($request->keyword)){
-            $tours = $this->tour->orderBy('id', 'DESC')->where('name', 'like', '%'.$request->keyword.'%')->paginate($request->per_page);
+        $category = $request->input('category');
+        if ($category == 'popular') {
+            $orders = DB::table('orders')->select('package_id', DB::raw('count(*) as total'))->groupBy('package_id')->orderBy('total', 'DESC')->pluck('package_id');
+            $tours = $this->tour->whereIn('id', $orders)->where('is_active', 1)->orderBy('id', 'DESC')->paginate($request->per_page);
+        } else if ($category == 'history') {
+            $tours = $this->tour->where('is_active', 1)->orderBy('id', 'DESC')->paginate($request->per_page);
+        } elseif ($category == 'newest') {
+            $tours = $this->tour->where('is_active', 1)->orderBy('id', 'DESC')->paginate($request->per_page);
+        } else {
+            $tours = $this->tour->where('is_active', 1)->orderBy('id', 'DESC')->paginate($request->per_page);
+        }
+
+
+        if (!empty($request->keyword)) {
+            $tours = $this->tour->orderBy('id', 'DESC')->where('name', 'like', '%' . $request->keyword . '%')->paginate($request->per_page);
         }
         return response()->json(new PackageCollection($tours));
     }
@@ -124,7 +140,7 @@ class PageControllerApi extends Controller
     public function detailTour(Request $request, $id)
     {
         $tour = $this->tour->where('id', $id)->first();
-        if(!$tour){
+        if (!$tour) {
             return response()->json([
                 'data' => [],
                 'status' => FALSE,
@@ -140,13 +156,13 @@ class PageControllerApi extends Controller
 
     public function village(Request $request)
     {
-        $villages = $this->village->where('village_address', '<>' , '-')->whereHas('user',function($q){
+        $villages = $this->village->where('village_address', '<>', '-')->whereHas('user', function ($q) {
             $q->where('role_id', 2);
         })->orderBy('id', 'DESC')->paginate($request->per_page);
-        if(!empty($request->keyword)){
-            $villages = $this->village->whereHas('user',function($q){
+        if (!empty($request->keyword)) {
+            $villages = $this->village->whereHas('user', function ($q) {
                 $q->where('role_id', 2);
-            })->orderBy('id', 'DESC')->where('village_address', '<>' , '-')->where('village_name', 'like', '%'.$request->keyword.'%')->paginate($request->per_page);
+            })->orderBy('id', 'DESC')->where('village_address', '<>', '-')->where('village_name', 'like', '%' . $request->keyword . '%')->paginate($request->per_page);
         }
         return response()->json(new VillageCollection($villages));
     }
