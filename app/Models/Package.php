@@ -70,6 +70,12 @@ class Package extends Model
         return $this->belongsTo(VillageDetail::class, 'category_id', 'id');
     }
 
+    public function villageDetail()
+    {
+        return $this->belongsTo(VillageDetail::class, 'village_id', 'id');
+    }
+
+
     public function orders()
     {
         return $this->hasMany(Order::class);
@@ -91,24 +97,25 @@ class Package extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->logOnly(['id',
-        'category_id',
-        'user_id',
-        'tag_id',
-        'name',
-        'desc',
-        'review',
-        'itenaries',
-        'inclusion',
-        'exclusion',
-        'term',
-        'duration', 'preparation',
-        'price',
-        'price_disc',
-        'is_active',
-        'default_img',
-        'village_id'
-    ]);
+            ->logOnly([
+                'id',
+                'category_id',
+                'user_id',
+                'tag_id',
+                'name',
+                'desc',
+                'review',
+                'itenaries',
+                'inclusion',
+                'exclusion',
+                'term',
+                'duration', 'preparation',
+                'price',
+                'price_disc',
+                'is_active',
+                'default_img',
+                'village_id'
+            ]);
         // Chain fluent methods for configuration options
     }
 }
