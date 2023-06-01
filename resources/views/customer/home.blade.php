@@ -275,13 +275,24 @@
                 <p>Travel has helped us to understand the meaning of life and it has helped us become better people. Each
                     time we travel, we see the world with new eyes.</p>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="embed-responsive embed-responsive-21by9">
                     <iframe width="560" height="315"
                         src="https://www.youtube.com/embed/videoseries?list=PLV0qBmInL2URngCAlIX5EERlJO4k7p6Zg"
                         title="YouTube video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
+                </div>
+            </div> -->
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/videoseries?list=YOUR_PLAYLIST_ID" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-group" id="video-list"></ul>
                 </div>
             </div>
         </div>
@@ -446,4 +457,45 @@
 
 
     <!-- end blog section -->
+@endsection()
+
+@section('js')
+
+<script>
+     $(document).ready(function() {
+      // Fetch the video information from the YouTube Data API
+      $.get(
+        "https://www.googleapis.com/youtube/v3/playlistItems", {
+          part: 'snippet',
+          maxResults: 10,
+          playlistId: 'PLV0qBmInL2URngCAlIX5EERlJO4k7p6Zg',
+          key: 'AIzaSyC7kGh6mbXfjYLQMF_dS-WLRF2iscxg7_o'
+        },
+        function(data) {
+          // Loop through the playlist items and create list items for each video
+          for (var i = 0; i < data.items.length; i++) {
+            var videoId = data.items[i].snippet.resourceId.videoId;
+            var videoTitle = data.items[i].snippet.title;
+            var videoThumbnail = data.items[i].snippet.thumbnails.default.url;
+
+            // Create a list item with the video information
+            var listItem = '<li class="list-group-item">' +
+              '<div class="row">' +
+              '<div class="col-md-4">' +
+              '<img src="' + videoThumbnail + '" class="img-fluid">' +
+              '</div>' +
+              '<div class="col-md-8">' +
+              '<h5>' + videoTitle + '</h5>' +
+              '<a href="https://www.youtube.com/watch?v=' + videoId + '" target="_blank" class="btn btn-primary">Watch</a>' +
+              '</div>' +
+              '</div>' +
+              '</li>';
+
+            // Append the list item to the video list
+            $('#video-list').append(listItem);
+          }
+        }
+      );
+    });
+  </script>
 @endsection()
