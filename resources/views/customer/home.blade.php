@@ -1,6 +1,56 @@
 @extends('customer/layout')
 
 @section('content')
+<style>
+    .video-card {
+      width: 200px;
+      margin: 0 10px;
+    }
+
+    .video-thumbnail {
+      width: 100%;
+      height: auto;
+    }
+
+    .video-title {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .iframe-container {
+      position: relative;
+      overflow: hidden;
+      padding-top: 56.25%; /* 16:9 aspect ratio (change if needed) */
+    }
+
+    .iframe-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slider-prev,
+    .slider-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: #333;
+      font-size: 24px;
+    }
+
+    .slider-prev {
+      left: 10px;
+    }
+
+    .slider-next {
+      right: 10px;
+    }
+  </style>
+
     <style>
         .owl-nav {
             display: none !important;
@@ -295,23 +345,21 @@
                     <ul class="list-group" id="video-list"></ul>
                 </div>
             </div> -->
-
-            <div class="container">
-                <h1>YouTube Playlist Videos</h1>
-                <div class="row">
-                <div class="col-md-8">
-                    <div class="embed-responsive embed-responsive-16by9">
-                    <iframe id="youtube-iframe" class="embed-responsive-item" src="https://www.youtube.com/embed/videoseries?list=YOUR_PLAYLIST_ID" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                </div>
-                </div>
-            </div>
-
-            <div class="container mt-5">
-                <h3>Playlist Videos</h3>
-                <div class="row" id="video-list"></div>
-            </div>
+            <div class="row">
+      <div class="col-md-12">
+        <div class="iframe-container">
+          <iframe id="youtube-iframe" src="https://www.youtube.com/embed/videoseries?list=PLV0qBmInL2URngCAlIX5EERlJO4k7p6Zg" frameborder="0" allowfullscreen></iframe>
         </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-12">
+      <h4>Playlist Video Godevi</h4>
+        <div class="video-slider">
+          <!-- Videos will be dynamically populated here -->
+        </div>
+      </div>
+    </div>
     </section>
 
 
@@ -477,46 +525,66 @@
 
 @section('js')
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 <script>
-     $(document).ready(function() {
-      // Fetch the video information from the YouTube Data API
+ $(document).ready(function() {
+      // Fetch playlist videos using YouTube Data API
       $.get(
         "https://www.googleapis.com/youtube/v3/playlistItems", {
-          part: 'snippet',
+          part: "snippet",
           maxResults: 10,
           playlistId: 'PLV0qBmInL2URngCAlIX5EERlJO4k7p6Zg',
           key: 'AIzaSyC7kGh6mbXfjYLQMF_dS-WLRF2iscxg7_o'
         },
         function(data) {
-          // Loop through the playlist items and create list items for each video
-          for (var i = 0; i < data.items.length; i++) {
-            var videoId = data.items[i].snippet.resourceId.videoId;
-            var videoTitle = data.items[i].snippet.title;
-            var videoThumbnail = data.items[i].snippet.thumbnails.default.url;
+          var videoList = "";
+          $.each(data.items, function(index, item) {
+            var videoId = item.snippet.resourceId.videoId;
+            var thumbnail = item.snippet.thumbnails.medium.url;
+            var title = item.snippet.title;
 
-            // Create a list item with the video information
-            var listItem = '<div class="col-md-3">' +
-              '<div class="card">' +
-              '<img src="' + videoThumbnail + '" class="card-img-top">' +
-              '<div class="card-body">' +
-              '<h5 class="card-title">' + videoTitle + '</h5>' +
-              '<button class="btn btn-primary" onclick="changeVideo(\'' + videoId + '\')">Play</button>' +
-              '</div>' +
-              '</div>' +
+            // Append video card HTML to the list
+            videoList += '<div class="video-card">' +
+              '<img class="video-thumbnail" src="' + thumbnail + '" data-video-id="' + videoId + '">' +
+              '<h5 class="video-title">' + title + '</h5>' +
               '</div>';
+          });
 
-            // Append the list item to the video list
-            $('#video-list').append(listItem);
-          }
+          // Add video cards to the slider
+          $('.video-slider').html(videoList);
+
+          // Initialize the video slider
+          $('.video-slider').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            prevArrow: '<button type="button" class="slick-prev">Previous</button>',
+            nextArrow: '<button type="button" class="slick-next">Next</button>',
+            responsive: [
+              {
+                breakpoint: 768,
+                settings: {
+                  slidesToShow: 2
+                }
+              },
+              {
+                breakpoint: 576,
+                settings: {
+                  slidesToShow: 1
+                }
+              }
+            ]
+          });
+
+          // Handle click event on video cards
+          $('.video-card').on('click', function() {
+            var videoId = $(this).find('img').data('video-id');
+            var iframe = document.getElementById('youtube-iframe');
+            iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
+          });
         }
       );
     });
 
-    // Change the video within the embedded iframe
-    function changeVideo(videoId) {
-      var iframe = document.getElementById('youtube-iframe');
-      iframe.src = 'https://www.youtube.com/embed/' + videoId;
-    }
-    
+
   </script>
 @endsection()

@@ -52,6 +52,8 @@
     <link rel="icon" href="{{ url('customer/img/favicon.png') }}" type="image/png" />
     <link rel="stylesheet" href="{{ url('frontdata/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ url('frontdata/css/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
     <style>
         .coret {
 
