@@ -651,6 +651,7 @@
 
     <!-- script JS -->
     <script src="{{ url('customer/js/script.js') }}"></script>
+    <script id="pixel-chaty" async="true" src="https://cdn.chaty.app/pixel.js?id=stx7rWCJ"></script>
 
     @yield('js')
     <!-- WhatsHelp.io widget -->
@@ -712,7 +713,6 @@ $( "form" ).submit(function( event ) {
         //     x.parentNode.insertBefore(s, x);
         // })();
 
-        <script id="pixel-chaty" async="true" src="https://cdn.chaty.app/pixel.js?id=stx7rWCJ"></script>
 
         $('.hides').hide()
         $('.css').hide()
