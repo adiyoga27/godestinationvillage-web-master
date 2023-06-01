@@ -285,7 +285,7 @@
                 </div>
             </div> -->
 
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-md-8">
                     <div class="embed-responsive embed-responsive-16by9">
                     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/videoseries?list=YOUR_PLAYLIST_ID" frameborder="0" allowfullscreen></iframe>
@@ -294,6 +294,22 @@
                 <div class="col-md-4">
                     <ul class="list-group" id="video-list"></ul>
                 </div>
+            </div> -->
+
+            <div class="container">
+                <h1>YouTube Playlist Videos</h1>
+                <div class="row">
+                <div class="col-md-8">
+                    <div class="embed-responsive embed-responsive-16by9">
+                    <iframe id="youtube-iframe" class="embed-responsive-item" src="https://www.youtube.com/embed/videoseries?list=YOUR_PLAYLIST_ID" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="container mt-5">
+                <h3>Playlist Videos</h3>
+                <div class="row" id="video-list"></div>
             </div>
         </div>
     </section>
@@ -479,17 +495,15 @@
             var videoThumbnail = data.items[i].snippet.thumbnails.default.url;
 
             // Create a list item with the video information
-            var listItem = '<li class="list-group-item">' +
-              '<div class="row">' +
-              '<div class="col-md-4">' +
-              '<img src="' + videoThumbnail + '" class="img-fluid">' +
-              '</div>' +
-              '<div class="col-md-8">' +
-              '<h5>' + videoTitle + '</h5>' +
-              '<a href="https://www.youtube.com/watch?v=' + videoId + '" target="_blank" class="btn btn-primary">Watch</a>' +
+            var listItem = '<div class="col-md-3">' +
+              '<div class="card">' +
+              '<img src="' + videoThumbnail + '" class="card-img-top">' +
+              '<div class="card-body">' +
+              '<h5 class="card-title">' + videoTitle + '</h5>' +
+              '<button class="btn btn-primary" onclick="changeVideo(\'' + videoId + '\')">Play</button>' +
               '</div>' +
               '</div>' +
-              '</li>';
+              '</div>';
 
             // Append the list item to the video list
             $('#video-list').append(listItem);
@@ -497,5 +511,12 @@
         }
       );
     });
+
+    // Change the video within the embedded iframe
+    function changeVideo(videoId) {
+      var iframe = document.getElementById('youtube-iframe');
+      iframe.src = 'https://www.youtube.com/embed/' + videoId;
+    }
+    
   </script>
 @endsection()
