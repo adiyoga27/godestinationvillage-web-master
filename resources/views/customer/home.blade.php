@@ -2,7 +2,7 @@
 
 @section('content')
 <style>
-    .video-card {
+        .video-card {
       width: 200px;
       margin: 0 10px;
     }
@@ -31,23 +31,37 @@
       height: 100%;
     }
 
-    .slider-prev,
-    .slider-next {
+    .slick-prev,
+    .slick-next {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: transparent;
+      /* background: transparent; */
       border: none;
-      color: #333;
+      color: black;
       font-size: 24px;
+      z-index: 1;
     }
 
-    .slider-prev {
-      left: 10px;
+    .slick-prev {
+      left: -30px;
     }
 
-    .slider-next {
-      right: 10px;
+    .slick-next {
+      right: -30px;
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+      display: none;
+    }
+
+    .slick-prev:focus,
+    .slick-next:focus,
+    .slick-prev:hover,
+    .slick-next:hover {
+      color: #ff0000;
+      outline: none;
     }
   </style>
 
@@ -318,7 +332,24 @@
     </section>
     <!-- end destination section -->
     <!-- start blog section -->
-    <section id="blog" class="blog-section pt-100 pb-70">
+    <section id="virtualreality" class="blog-section pt-100 pb-70">
+        <div class="container">
+            <div class="section-title">
+                <h2>@lang('Virtual')</h2>
+                <p>Witness the Wonders of the Village through an Immersive Virtual Reality Experience that Transports You to a Fascinating World.</p>
+                <br>
+                    <center><a href="https://www.vrfmipa.com/" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> &nbsp Go Virtual</a></center>
+            </div>
+           
+                <div class="row">
+        <div class="col-md-12">
+            
+        </div>
+        </div>
+    
+    </section>
+
+    <section id="blog" class="blog-section pt-100 pb-70 bg-light">
         <div class="container">
             <div class="section-title">
                 <h2>@lang('Youtube Channel')</h2>
@@ -364,7 +395,7 @@
 
 
     <!-- start blog section -->
-    <section id="blog" class="blog-section pt-100 pb-70 bg-light">
+    <section id="blog" class="blog-section pt-100 pb-70 ">
         <div class="container">
             <div class="section-title">
                 <h2>@lang('News Blogs')</h2>
@@ -460,12 +491,13 @@
     </section>
 
     <!-- start testimonial-section -->
-    <section id="testimonial" class="testimonial-section ptb-100">
+    <section id="testimonial" class="testimonial-section ptb-100 bg-light">
         <div class="container">
             <div class="section-title">
                 <h2>@lang('What Our Clients Say')</h2>
                 <p>Travel has helped us to understand the meaning of life and it has helped us become better people. Each
                     time we travel, we see the world with new eyes.</p>
+                 
             </div>
             <div class="row">
                 <div class="col-lg-8 m-auto">
@@ -538,7 +570,9 @@
         },
         function(data) {
           var videoList = "";
-          $.each(data.items, function(index, item) {
+          var items = data.items.reverse();
+          var x = 0;
+          $.each(items, function(index, item) {
             var videoId = item.snippet.resourceId.videoId;
             var thumbnail = item.snippet.thumbnails.medium.url;
             var title = item.snippet.title;
@@ -548,6 +582,11 @@
               '<img class="video-thumbnail" src="' + thumbnail + '" data-video-id="' + videoId + '">' +
               '<h5 class="video-title">' + title + '</h5>' +
               '</div>';
+                if(x == 0){
+
+                    firstTake(videoId);
+                }
+              x++;
           });
 
           // Add video cards to the slider
@@ -557,8 +596,8 @@
           $('.video-slider').slick({
             slidesToShow: 3,
             slidesToScroll: 1,
-            prevArrow: '<button type="button" class="slick-prev">Previous</button>',
-            nextArrow: '<button type="button" class="slick-next">Next</button>',
+            prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
+            nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>',
             responsive: [
               {
                 breakpoint: 768,
@@ -584,6 +623,11 @@
         }
       );
     });
+
+    function firstTake(videoId) {
+            var iframe = document.getElementById('youtube-iframe');
+            iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
+    }
 
 
   </script>
