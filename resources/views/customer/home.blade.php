@@ -338,7 +338,7 @@
                 <h2>@lang('Virtual')</h2>
                 <p>Witness the Wonders of the Village through an Immersive Virtual Reality Experience that Transports You to a Fascinating World.</p>
                 <br>
-                    <center><a href="https://www.vrfmipa.com/" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> &nbsp Go Virtual</a></center>
+                    <center><a href="https://www.vrfmipa.com/meler" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> &nbsp Go Virtual</a></center>
             </div>
            
                 <div class="row">
