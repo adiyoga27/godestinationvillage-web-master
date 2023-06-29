@@ -337,16 +337,26 @@
             <div class="section-title">
                 <h2>@lang('Virtual')</h2>
                 <p>Witness the Wonders of the Village through an Immersive Virtual Reality Experience that Transports You to a Fascinating World.</p>
+                <center> 
+                    <video width="100%" controls>
+                        <source src="https://godestinationvillage.com/storage/videos/vr-godevi.mp4" type="video/mp4">
+                        <source src="https://godestinationvillage.com/storage/videos/vr-godevi.mp4" type="video/ogg">
+                 
+                     </video>
+                   </center>
                 <br>
                     <center><a href="https://www.vrfmipa.com/meler" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> &nbsp Go Virtual</a></center>
             </div>
-           
+        
                 <div class="row">
+
         <div class="col-md-12">
-            
+               
         </div>
+        
         </div>
-    
+       
+ 
     </section>
 
     <section id="blog" class="blog-section pt-100 pb-70 bg-light">
