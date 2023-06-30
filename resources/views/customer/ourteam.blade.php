@@ -27,207 +27,103 @@
                     time we travel, we see the world with new eyes.</p>
             </div>
             <div class="row">
-                <div class=" col-lg-4 col-sm-4 col-md-4">
-                    <div class="item-single mb-30">
-                        <div class="image">
-                            <img src="{{ url('frontdata/images/gian.jpg') }}" alt="Demo Image">
-                        </div>
-                        <div class="content">
-                            <div class="title">
-                                <h3>
-                                    <a href="team.html">I Gede Gian Saputra,
-                                        <br> S.Par.,M.Par.</a>
-                                </h3>
-                                <span>Founder</span>
+                <div class="py-5 team3">
+              
+                      <div class="row">
+                        @for ($i = 1; $i < 5; $i++)
+                            
+                        <!-- column  -->
+                        <div class="col-lg-4 mb-4">
+                            <!-- Row -->
+                            <div class="item-single ">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/team/t1.jpg" alt="wrapkit" class="img-fluid" />
+                                </div>
+                                <div class="col-md-12">
+                                        <center>
+                                        <h5 class="mt-4 font-weight-medium mb-0">Michael Doe</h5>
+                                        <h6 class="subtitle">Property Specialist</h6>
+                                        </center>
+                                        <div class="ml-4 mr-4">
+                                            <p>Gian is the founder of Godevi. With a strong academic background, Gian serves as a lecturer at Udayana University and has previously taught at Bali Tourism Polytechnic. This combination of academic and practical experience positions Gian as a highly knowledgeable professional in the field of tourism.
+
+                                                Additionally, Gian has hands-on experience in the industry, having successfully developed a travel agency called KK Tour Indonesia. This practical experience provides Gian with valuable insights into the operational aspects of the tourism sector.
+                                                
+                                                As the founder of Godevi, Gian leverages their academic expertise, practical knowledge, and entrepreneurial spirit to provide comprehensive and innovative consulting services to clients in the tourism industry. With a deep understanding of the local context and industry dynamics,
+                                                </p>
+                                        </div>
+                               
+                                        <center><div class="social-link">
+                                            <a href="https://www.facebook.com/gatot.adiprana" target="_blank"><i
+                                                    class='bx bxl-facebook'></i></a>
+                                            <a href="https://twitter.com/gatotadiprana" target="_blank"><i
+                                                    class='bx bxl-twitter'></i></a>
+                                            <a href="https://www.instagram.com/gatotadiprana/" target="_blank"><i
+                                                    class='bx bxl-instagram'></i></a>
+                                        </div>
+                                        </center>
+                                        <br>
+                                </div>
                             </div>
-                            <div class="social-link">
-                                <a href="https://www.facebook.com/gian.movingstraight" target="_blank"><i
-                                        class='bx bxl-facebook'></i></a>
-                                {{-- <a href="#" target="_blank"><i class='bx bxl-twitter'></i></a> --}}
-                                <a href="https://id.linkedin.com/in/i-gede-gian-saputra-5a6830100" target="_blank"><i
-                                        class='bx bxl-linkedin'></i></a>
-                                <a href="https://www.instagram.com/igedegiansaputra/" target="_blank"><i
-                                        class='bx bxl-instagram'></i></a>
+                                
                             </div>
+                            <!-- Row -->
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-4 col-md-4">
-                    <div class="item-single mb-30">
-                        <div class="image">
-                            <img src="{{ url('frontdata/images/gatot.jpg') }}" alt="Demo Image">
-                        </div>
-                        <div class="content">
-                            <div class="title">
-                                <h3>
-                                    <a href="team.html">I Putu Gatot Adiprana,<br>
-                                        S.Par.,M.Par.</a>
-                                </h3>
-                                <span>Co-Founder</span>
-                            </div>
-                            <div class="social-link">
-                                <a href="https://www.facebook.com/gatot.adiprana" target="_blank"><i
-                                        class='bx bxl-facebook'></i></a>
-                                <a href="https://twitter.com/gatotadiprana" target="_blank"><i
-                                        class='bx bxl-twitter'></i></a>
-                                {{-- <a href="#" target="_blank"><i class='bx bxl-linkedin'></i></a> --}}
-                                <a href="https://www.instagram.com/gatotadiprana/" target="_blank"><i
-                                        class='bx bxl-instagram'></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-4 col-md-4">
-                    <div class="item-single mb-30">
-                        <div class="image">
-                            <img src="{{ url('frontdata/images/pegdua.jpg') }}" alt="Demo Image">
-                        </div>
-                        <div class="content">
-                            <div class="title">
-                                <h3>
-                                    <a href="team.html">Ni Kadek Pande Aristiani,<br>
-                                        S.Par.</a>
-                                </h3>
-                                <span>Executive Secretary</span>
-                            </div>
-                            <div class="social-link">
-                                <a href="https://www.facebook.com/pande.aristiani" target="_blank"><i
-                                        class='bx bxl-facebook'></i></a>
-                                <a href="https://twitter.com/aristiani_pande" target="_blank"><i
-                                        class='bx bxl-twitter'></i></a>
-                                {{-- <a href="#" target="_blank"><i class='bx bxl-linkedin'></i></a> --}}
-                                <a href="https://www.instagram.com/pandearistiani/" target="_blank"><i
-                                        class='bx bxl-instagram'></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-4 col-md-4">
-                    <div class="item-single mb-30">
-                        <div class="image">
-                            <img src="{{ url('frontdata/images/pegsatu.jpg') }}" alt="Demo Image">
-                        </div>
-                        <div class="content">
-                            <div class="title">
-                                <h3>
-                                    <a href="team.html">Made Sera Septiani,<br>
-                                        S.Par.</a>
-                                </h3>
-                                <span>Chief Operation Officer</span>
-                            </div>
-                            <div class="social-link">
-                                <a href="https://www.facebook.com/sera.septiani.9" target="_blank"><i
-                                        class='bx bxl-facebook'></i></a>
-                                {{-- <a href="#" target="_blank"><i class='bx bxl-twitter'></i></a> --}}
-                                {{-- <a href="#" target="_blank"><i class='bx bxl-linkedin'></i></a> --}}
-                                <a href="https://www.instagram.com/sera_septiani/" target="_blank"><i
-                                        class='bx bxl-instagram'></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-4 col-md-4">
-                    <div class="item-single mb-30">
-                        <div class="image">
-                            <img src="{{ url('frontdata/images/Sanjiwani.jpg') }}" alt="Demo Image">
-                        </div>
-                        <div class="content">
-                            <div class="title">
-                                <h3>
-                                    <a href="team.html">Ni Made Gandhi Sanjiwani,<br>
-                                        S.Par,M.Sc.</a>
-                                </h3>
-                                <span>Chief Business Officer</span>
-                            </div>
-                            <div class="social-link">
-                                <a href="https://www.facebook.com/gandhy.sanjiwani" target="_blank"><i
-                                        class='bx bxl-facebook'></i></a>
-                                {{-- <a href="#" target="_blank"><i class='bx bxl-twitter'></i></a> --}}
-                                <a href="https://id.linkedin.com/in/gandhi-sanjiwani-7a7567198" target="_blank"><i
-                                        class='bx bxl-linkedin'></i></a>
-                                <a href="https://www.instagram.com/gandhisanjiwani" target="_blank"><i
-                                        class='bx bxl-instagram'></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--<div class="col-lg-4 col-sm-4 col-md-4">-->
-                <!--    <div class="item-single mb-30">-->
-                <!--        <div class="image">-->
-                <!--            <img src="{{ url('frontdata/images/Sukariyanto.jpg') }}" alt="Demo Image">-->
-                <!--        </div>-->
-                <!--        <div class="content">-->
-                <!--            <div class="title">-->
-                <!--                <h3>-->
-                <!--                    <a href="team.html">I Gede Made Sukariyanto,<br>-->
-                <!--                        S.Par.,M.Par.</a>-->
-                <!--                </h3>-->
-                <!--                <span>Chief Marketing Officer</span>-->
-                <!--            </div>-->
-                <!--            <div class="social-link">-->
-                <!--                <a href="https://www.facebook.com/Agoezt.Sukariyanto" target="_blank"><i-->
-                <!--                        class='bx bxl-facebook'></i></a>-->
-                <!--                <a href="https://twitter.com/gus_ariy" target="_blank"><i class='bx bxl-twitter'></i></a>-->
-                <!--                <a href="https://id.linkedin.com/in/sukariyanto" target="_blank"><i-->
-                <!--                        class='bx bxl-linkedin'></i></a>-->
-                <!--                <a href="https://www.instagram.com/gus.ariy/" target="_blank"><i-->
-                <!--                        class='bx bxl-instagram'></i></a>-->
-                <!--            </div>-->
-                <!--        </div>-->
-                <!--    </div>-->
-                <!--</div>-->
-                <div class="col-lg-4 col-sm-4 col-md-4">
-                    <div class="item-single mb-30">
-                        <div class="image">
-                            <img src="{{ url('frontdata/images/adiyoga.jpg') }}" alt="Demo Image">
-                        </div>
-                        <div class="content">
-                            <div class="title">
-                                <h3>
-                                    <a href="team.html">Ida Bagus Ketut Adiyoga<br>
-                                    </a>
-                                </h3>
-                                <span>Chief Technology Officer</span>
-                            </div>
-                            <div class="social-link">
-                                <a href="https://www.facebook.com/adiyoga27" target="_blank"><i
-                                        class='bx bxl-facebook'></i></a>
-                                <a href="https://twitter.com/adiyoga27" target="_blank"><i class='bx bxl-twitter'></i></a>
-                                <a href="https://www.linkedin.com/in/ida-bagus-ketut-adiyoga-55a939133/" target="_blank"><i
-                                        class='bx bxl-linkedin'></i></a>
-                                <a href="https://www.instagram.com/adiyoga27/" target="_blank"><i
-                                        class='bx bxl-instagram'></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-4 col-md-4">
-                    <div class="item-single mb-30">
-                        <div class="image">
-                            <img src="{{ url('frontdata/images/sukmaarida.jpg') }}" alt="Demo Image">
-                        </div>
-                        <div class="content">
-                            <div class="title">
-                                <h3>
-                                    <a href="team.html">Dr. I Nyoman Sukma Arida, <br>
-                                        M.Si.</a>
-                                </h3>
-                                <span>Board Advisor</span>
-                            </div>
-                            <div class="social-link">
-                                <a href="https://www.facebook.com/sukma.arida" target="_blank"><i
-                                        class='bx bxl-facebook'></i></a>
-                                {{-- <a href="#" target="_blank"><i class='bx bxl-twitter'></i></a>
-                                <a href="#" target="_blank"><i class='bx bxl-linkedin'></i></a> --}}
-                                <a href="https://www.instagram.com/sukma_arida/" target="_blank"><i
-                                        class='bx bxl-instagram'></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        @endfor
+                        <!-- column  -->
+                        <!-- column  -->
+                        
+                        <!-- column  -->
+                      </div>
+                  </div>
 
             </div>
         </div>
     </section>
     <!-- end team section -->
 @endsection()
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var paragraphs = document.querySelectorAll("p");
+
+        paragraphs.forEach(function(paragraph) {
+            var text = paragraph.textContent;
+            var truncatedText = text.slice(0, 15);
+            var isFullText = false;
+
+            if (text.length > 15) {
+                paragraph.textContent = truncatedText + "...";
+
+                var readMoreLink = document.createElement("a");
+                readMoreLink.textContent = "Read More";
+                readMoreLink.setAttribute("href", "#");
+                readMoreLink.style.color = "red"; // Set color to red
+
+                readMoreLink.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    if (isFullText) {
+                        paragraph.textContent = truncatedText + "...";
+                        readMoreLink.textContent = "Read More";
+                        isFullText = false;
+                    } else {
+                        paragraphs.forEach(function(p) {
+                            if (p !== paragraph) {
+                                var pText = p.textContent;
+                                if (pText.length > 15) {
+                                    p.textContent = pText.slice(0, 15) + "...";
+                                }
+                            }
+                        });
+                        paragraph.textContent = text;
+                        readMoreLink.textContent = "Hide";
+                        readMoreLink.style.color = "red"; // Set color to red
+                        isFullText = true;
+                    }
+                });
+
+                paragraph.appendChild(readMoreLink);
+            }
+        });
+    });
+</script>

@@ -236,6 +236,9 @@
             </div>
           </li>
 
+       
+
+
 
           {{-- <li class="nav-item">
             <a class="nav-link" href="{{ url('administrator/category') }}">
@@ -262,7 +265,24 @@
               <i class="mdi mdi-chart-bar menu-icon"></i>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-master" aria-expanded="false" aria-controls="ui-master">
+              <span class="menu-title">Data Master</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-home-modern menu-icon"></i>
+            </a>
+            <div class="collapse" id="ui-master">
+                <ul class="nav flex-column sub-menu">
+                  @if(Auth::user()->role_id == 1)
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('founding.index') }}">The Founding </a></li>
+                    <li class="nav-item">  <a class="nav-link" href="{{ route('ourteam.index') }}">Our Team</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('boardexpert.index') }}">Board Expert</a></li>
+                  @endif
+              
 
+                </ul>
+            </div>
+          </li>
 
         </ul>
       </nav>
