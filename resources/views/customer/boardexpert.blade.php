@@ -36,7 +36,7 @@
                                 <div class="item-single ">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <img src="{{ url('storage') }}/founding/{{ $f->avatar }}" alt="wrapkit"
+                                            <img src="{{ url('storage') }}/board/{{ $f->avatar }}" alt="wrapkit"
                                                 class="img-fluid" />
                                         </div>
                                         <div class="col-md-12">
@@ -99,16 +99,19 @@
     <!-- end team section -->
 @endsection()
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+      document.addEventListener("DOMContentLoaded", function() {
         var paragraphs = document.querySelectorAll(".description");
 
         paragraphs.forEach(function(paragraph) {
             var text = paragraph.textContent;
             var truncatedText = text.slice(0, 200);
+            var lastSpaceIndex = truncatedText.lastIndexOf(" ");
+            var lastWordTruncated = truncatedText.slice(lastSpaceIndex);
             var isFullText = false;
 
             if (text.length > 200) {
-                paragraph.textContent = truncatedText + " ...";
+                var truncatedContent = truncatedText.slice(0, lastSpaceIndex) + "...";
+                paragraph.textContent = truncatedContent;
 
                 var readMoreLink = document.createElement("a");
                 readMoreLink.textContent = "Read More";
@@ -118,21 +121,12 @@
                 readMoreLink.addEventListener("click", function(e) {
                     e.preventDefault();
                     if (isFullText) {
-                        paragraph.textContent = truncatedText + " ...";
+                        paragraph.textContent = truncatedContent + " ";
                         readMoreLink.textContent = "Read More";
                         isFullText = false;
                     } else {
-                        paragraphs.forEach(function(p) {
-                            if (p !== paragraph) {
-                                var pText = p.textContent;
-                                if (pText.length > 200) {
-                                    p.textContent = pText.slice(0, 200) + " ...";
-                                }
-                            }
-                        });
                         paragraph.textContent = text;
-                        readMoreLink.textContent = "Hide";
-                        readMoreLink.style.color = "red"; // Set color to red
+                        readMoreLink.textContent = "Hide More";
                         isFullText = true;
                     }
                 });
