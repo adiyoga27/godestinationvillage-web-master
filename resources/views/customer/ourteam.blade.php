@@ -50,10 +50,10 @@
                                         </div>
                                <br>
                                         <center><div class="social-link">
-                                            @if(!empty($f->phone))<a href="{{$f->phone}}" target="_blank"><i
-                                                class='bx bxl-phone'></i></a>
+                                            @if(!empty($f->phone))<a href="tel:{{$f->phone}}" target="_blank"><i
+                                                class='bx bxl-phone-call'></i></a>
                                                 @endif
-                                                @if(!empty($f->whatsapp))<a href="{{$f->whatsapp}}" target="_blank"><i
+                                                @if(!empty($f->whatsapp))<a href="https://wa.me/{{$f->whatsapp}}" target="_blank"><i
                                                     class='bx bxl-whatsapp'></i></a>
                                                     @endif
                                             @if(!empty($f->facebook))<a href="{{$f->facebook}}" target="_blank"><i
