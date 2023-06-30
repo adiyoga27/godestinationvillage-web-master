@@ -91,7 +91,7 @@ class FoundingController extends Controller
 
     public function update($id, EventUpdateRequest $request)
     {
-        $payload =$request->except('_token');
+        $payload =$request->except(['_token','_method']);
 
         if (!empty($payload['avatar'])) {
             $upload = CustomImage::storeImage($payload['avatar'], 'founding');

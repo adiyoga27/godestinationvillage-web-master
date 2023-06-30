@@ -5,10 +5,10 @@
     <div class="page-title-area ptb-100">
         <div class="container">
             <div class="page-title-content">
-                <h1>Our Team</h1>
+                <h1>Board of Expert</h1>
                 <ul>
                     <li class="item"><a href="/">Home</a></li>
-                    <li class="item"><a href="#"><i class='bx bx-chevrons-right'></i>Our Team</a></li>
+                    <li class="item"><a href="#"><i class='bx bx-chevrons-right'></i>Board of Expert</a></li>
                 </ul>
             </div>
         </div>
@@ -30,7 +30,7 @@
                 <div class="team3">
               
                       <div class="row">
-                        @foreach ($ours as $f)
+                        @foreach ($boards as $f)
                             
                         <!-- column  -->
                         <div class="col-lg-4 mb-4">

@@ -12,11 +12,14 @@ use App\Models\BankAccount;
 use App\Helpers\CustomImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\BoardExpert;
 use App\Models\Certification;
 use App\Models\Event;
+use App\Models\Founding;
 use App\Models\Homestay;
 use App\Models\OrderEvent;
 use App\Models\OrderHomestay;
+use App\Models\OurTeam;
 use App\PackageTranslations;
 use App\Models\Tag;
 use App\Models\VillageDetail;
@@ -221,11 +224,23 @@ $data['recent'] = HomeStayServices::recent();
     }
     public function term()
     {
+
         return view('customer/terms');
     }
     public function ourteam()
     {
-        return view('customer/ourteam');
+        $ours = OurTeam::all();
+        return view('customer/ourteam', compact('ours'));
+    }
+    public function founding()
+    {
+        $foundings = Founding::all();
+        return view('customer/founding', compact('foundings'));
+    }
+    public function boardExpert()
+    {
+        $boards = BoardExpert::all();
+        return view('customer/boardexpert', compact('boards'));
     }
     public function ourpartner()
     {

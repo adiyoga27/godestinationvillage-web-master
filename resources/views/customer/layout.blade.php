@@ -567,7 +567,9 @@
                                 <ul class="footer-links" data-v-44716918="">
                                     <li><a href="/faq" class="py-2 d-block">FAQ</a></li>
                                     <li><a href="/term" class="py-2 d-block">TERMS & SERVICE</a></li>
+                                    <li><a href="/v-founding" class="py-2 d-block">THE FOUNDING</a></li>
                                     <li><a href="/our-team" class="py-2 d-block">OUR TEAM</a></li>
+                                    <li><a href="/v-board" class="py-2 d-block">BOARD OF EXPERTS</a></li>
                                     <li><a href="/our-partner" class="py-2 d-block">OUR PARTNER</a></li>
                                 </ul>
                             </div>

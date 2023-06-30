@@ -155,6 +155,8 @@ Route::get('/do_cancel/{id}', [PageController::class,'cancel']);
 Route::get('user/register', [PageController::class, 'register']);
 Route::get('/term', [PageController::class,'term']);
 Route::get('/our-team', [PageController::class,'ourteam']);
+Route::get('/v-founding', [PageController::class,'founding']);
+Route::get('/v-board', [PageController::class,'boardExpert']);
 Route::get('/our-partner', [PageController::class,'ourpartner']);
 Route::get('/blog', [PageController::class,'blog']);
 Route::get('/blog/{slug}', [PageController::class,'detailpost']);
