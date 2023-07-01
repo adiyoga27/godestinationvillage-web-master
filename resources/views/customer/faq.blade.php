@@ -163,7 +163,7 @@
                                 <div id="collapse6" class="panel-collapse collapse" data-parent="#accordion">
                                     <div class="panel-body">
                                         <p>GODEVI is a socially pro-active business dedicated to uplifting impoverished
-                                            communities in the developing village through efforts in tourism isdustrt.
+                                            communities in the developing village through efforts in tourism industry.
                                             Beside also support fair trade, we create a marketplace by empowering the
                                             village communities. GODEVI adheres to a strict policy of promoting Socially
                                             Responsible Village Tourism activities. This can mean different things to

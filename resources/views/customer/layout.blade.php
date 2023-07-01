@@ -18,7 +18,7 @@
     <meta property="og:site_name" content="Godevi">
     <meta property="og:title" content="{{ $title ?? 'GODEVI - Authentic Village Experiences' }}" />
     <meta property="og:description"
-        content="{{ $content ?? 'GODEVI is a socially pro-active business dedicated to uplifting impoverished communities in the developing village through efforts in tourism isdustrt. Beside also support fair trade, we create a marketplace by empowering the village communities. GODEVI adheres to a strict policy of promoting Socially Responsible Village Tourism activities.' }}" />
+        content="{{ $content ?? 'GODEVI is a socially pro-active business dedicated to uplifting local communities in the developing village through efforts in tourism industry. Beside also support fair trade, we create a marketplace by empowering the village communities. GODEVI adheres to a strict policy of promoting Socially Responsible Village Tourism activities.' }}" />
     <meta property="og:image" itemprop="image" content="{{ $image ?? url('frontdata/images/bird.png') }}">
     <meta property="og:type" content="website" />
     <meta property="og:updated_time" content="1440432930" />
