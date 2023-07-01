@@ -12,7 +12,8 @@
             </div>
         </div>
         <div class="bg-image">
-            <img src="customer/img/page-title-area/team.jpg" alt="Demo Image">
+            <img src="customer/img/page-title-area/founding-timenile.jpg" alt="Demo Image" style="background-repeat: no-repeat;
+            background-size: auto;">
         </div>
     </div>
     <!-- end page title area -->
