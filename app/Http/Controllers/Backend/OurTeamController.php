@@ -81,10 +81,10 @@ class OurTeamController extends Controller
 
     public function edit($id)
     {
-        $OurTeam = OurTeam::find($id);
+        $ourteam = OurTeam::find($id);
 
         return view('backend.ourteam.edit')->with(compact(
-            'OurTeam',
+            'ourteam',
         ));
     }
 
