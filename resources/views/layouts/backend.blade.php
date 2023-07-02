@@ -277,6 +277,7 @@
                     <li class="nav-item"> <a class="nav-link" href="{{ route('founding.index') }}">The Founding </a></li>
                     <li class="nav-item">  <a class="nav-link" href="{{ route('ourteam.index') }}">Our Team</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('boardexpert.index') }}">Board Expert</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('portofolio.index') }}">Portofolio</a></li>
                   @endif
               
 

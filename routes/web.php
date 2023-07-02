@@ -23,6 +23,7 @@ use App\Http\Controllers\Backend\OrderHomeStayController;
 use App\Http\Controllers\Backend\OrdersController;
 use App\Http\Controllers\Backend\OurTeamController;
 use App\Http\Controllers\Backend\PackagesController;
+use App\Http\Controllers\Backend\PortofolioController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\ReportVillageController;
 use App\Http\Controllers\Backend\ReviewController;
@@ -37,15 +38,13 @@ use App\Http\Controllers\Front\ReservationHomeStayController;
 use App\Http\Controllers\Front\SearchController;
 use App\Http\Controllers\MidtransController;
 use App\Http\Controllers\TestController;
-use App\Models\BoardExpert;
-use App\Models\OrderHomestay;
+
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
-use Spatie\Analytics\Analytics;
-use Spatie\Analytics\Period;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -239,6 +238,7 @@ Route::group(['prefix' => 'administrator', 'middleware' => ['auth']], function (
     Route::resource('founding', FoundingController::class);
     Route::resource('ourteam', OurTeamController::class);
     Route::resource('boardexpert', BoardExpertController::class);
+    Route::resource('portofolio', PortofolioController::class);
     Route::resource('homestay', HomeStayController::class);
     Route::resource('category-homestay', CategoryHomeStayController::class);
     Route::resource('package', PackagesController::class);
