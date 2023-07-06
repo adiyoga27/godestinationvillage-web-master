@@ -31,6 +31,15 @@
                 {!! $errors->first('attachment', '<p class="text-danger">:message</p>') !!}
             </div>
         </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Thumbnail</label>
+            <div class="col-sm-9">
+                <input type="file" name="portofolio" class="form-control">
+                {!! $errors->first('portofolio', '<p class="text-danger">:message</p>') !!}
+                <p>Upload gambar thumbnail dengan screenshot filenya atau photo yang identik dengan portofolio tersebut ..</p>
+            </div>
+        </div>
+
 
 
         <div class="form-group row">

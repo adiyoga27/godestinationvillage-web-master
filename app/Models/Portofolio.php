@@ -12,6 +12,7 @@ class Portofolio extends Model
         'title',
         'description',
         'dates',
-        'attachment'
+        'attachment',
+        'thumbnail'
     ];
 }

@@ -156,6 +156,8 @@ Route::get('/term', [PageController::class,'term']);
 Route::get('/our-team', [PageController::class,'ourteam']);
 Route::get('/v-founding', [PageController::class,'founding']);
 Route::get('/v-board', [PageController::class,'boardExpert']);
+Route::get('/v-portofolio', [PageController::class,'portofolio']);
+
 Route::get('/our-partner', [PageController::class,'ourpartner']);
 Route::get('/blog', [PageController::class,'blog']);
 Route::get('/blog/{slug}', [PageController::class,'detailpost']);

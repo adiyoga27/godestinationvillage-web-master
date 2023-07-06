@@ -20,6 +20,7 @@ use App\Models\Homestay;
 use App\Models\OrderEvent;
 use App\Models\OrderHomestay;
 use App\Models\OurTeam;
+use App\Models\Portofolio;
 use App\PackageTranslations;
 use App\Models\Tag;
 use App\Models\VillageDetail;
@@ -236,6 +237,11 @@ $data['recent'] = HomeStayServices::recent();
     {
         $foundings = Founding::all();
         return view('customer/founding', compact('foundings'));
+    } 
+    public function portofolio()
+    {
+        $portofolios = Portofolio::all();
+        return view('customer/portofolio', compact('portofolios'));
     }
     public function boardExpert()
     {

@@ -46,6 +46,16 @@
                     </div>
                 </div>
                 <div data-aos="fade-in" data-aos-offset="100" data-aos-duration="500" data-aos-delay="800"
+                class="col-lg-4 col-md-6 aos-init aos-animate">
+                <div class="item-single mb-30">
+                    <a href="{{url('v-portofolio')}}">
+                        <div class="services-icon mb-3"><img src="{{ url('customer/img/etc/portofolio.svg')}}" class="resize" alt="">
+                        </div>
+                        <p class="px-3">@lang('Portofolio')</p>
+                    </a>
+                </div>
+            </div>
+                <div data-aos="fade-in" data-aos-offset="100" data-aos-duration="500" data-aos-delay="800"
                     class="col-lg-4 col-md-6 aos-init aos-animate">
                     <div class="item-single mb-30">
                         <a data-toggle="modal" data-target="#projectmanagement">

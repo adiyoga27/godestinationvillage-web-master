@@ -264,15 +264,16 @@
                                             <a data-toggle="modal" data-target="#projectmanagement" href="#">
                                                 <br>
 
-                                                <img src="{{ url('customer/img/etc/kajian.svg') }}" width="100px" alt="">
+                                                <img src="{{ url('customer/img/etc/portofolio.svg') }}" width="100px" alt="">
                                                 <hr>
 
-                                                <h3>@lang('Project Management')</h3>
+                                                <h3>@lang('Portofolio')</h3>
                                                 <br>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
+                           
 
                                 <div class="carousel-item">
                                     <div class="col-lg-4">

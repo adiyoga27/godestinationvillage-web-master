@@ -71,6 +71,10 @@ class PortofolioController extends Controller
             $upload = CustomImage::storeImage($payload['attachment'], 'portofolio');
             $payload['attachment'] = $upload['name'];
         }
+        if (!empty($payload['thumbnail'])) {
+            $uploadPortofolio = CustomImage::storeImage($payload['thumbnail'], 'portofolio/thumbnail');
+            $payload['thumbnail'] = $uploadPortofolio['name'];
+        }
         $result = Portofolio::create($payload);
 
         if ($result) 
@@ -96,7 +100,10 @@ class PortofolioController extends Controller
             $upload = CustomImage::storeImage($payload['attachment'], 'portofolio');
             $payload['attachment'] = $upload['name'];
         }
-
+        if (!empty($payload['thumbnail'])) {
+            $uploadPortofolio = CustomImage::storeImage($payload['thumbnail'], 'portofolio/thumbnail');
+            $payload['thumbnail'] = $uploadPortofolio['name'];
+        }
         $result = Portofolio::where('id', $id)->update($payload);
         
         if ($result) 
