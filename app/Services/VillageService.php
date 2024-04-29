@@ -28,11 +28,15 @@ class VillageService
     public static function get_by_role($role_id)
     {
         DB::statement(DB::raw('set @rownum=0'));
-        return DB::table('users')->join('village_details', 'users.id', '=', 'village_details.user_id')->select([
+        return DB::table('users')->join('village_details', 'users.id', '=', 'village_details.user_id')
+        ->select([
             DB::raw('@rownum  := @rownum  + 1 AS rownum'),
             DB::raw('users.*'),
             DB::raw('village_details.village_name')
-        ])->where('role_id', $role_id)->where('users.deleted_at', NULL);
+        ])
+        ->where('role_id', $role_id)
+        ->where('users.deleted_at', NULL)
+        ->get();
     }
 
     public static function create($user_id, $payload)

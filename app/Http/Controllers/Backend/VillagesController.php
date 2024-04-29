@@ -55,6 +55,7 @@ class VillagesController extends Controller
                 else
                     return "<label class='badge badge-gradient-success'>Aktif</label>";
             })
+      
             ->editColumn('created_at', function($village){
                 return date('Y-m-d', strtotime($village->created_at));
             })->rawColumns(['action', 'is_active'])->toJson();
@@ -63,7 +64,7 @@ class VillagesController extends Controller
         $html = $htmlBuilder
               ->addColumn(['data' => 'action', 'name'=>'action', 'title'=>'', 'orderable'=>false, 'searchable'=>false])
               ->addColumn(['data' => 'rownum', 'name'=>'rownum', 'title'=>'No','searchable'=>false])
-              ->addColumn(['data' => 'village_name', 'name' => 'village_name', 'title' => 'Nama Desa Wisata' ])
+              ->addColumn(['data' => 'village_name', 'name' => 'village_name', 'title' => 'Nama Desa Wisata'])
               ->addColumn(['data' => 'name', 'name' => 'name', 'title' => 'Nama Pengguna' ])
               ->addColumn(['data' => 'email', 'name' => 'email', 'title' => 'Email' ])
               ->addColumn(['data' => 'phone', 'name' => 'phone', 'title' => 'No. Telp' ])

@@ -103,30 +103,38 @@ class PageController extends Controller
     }
     public function detailVillage($slug)
     {
-        $result = VillageDetail::where('slug', $slug)->first();
-        $data['village'] = User::where('users.id', $result->user_id)
-            ->where('is_active', '1')
-            ->where('role_id', '2')
-            ->first();
-
-        if (!$data['village']) {
+        try {
+            $result = VillageDetail::where('slug', $slug)->first();
+            // dd($result);
+            $data['village'] = User::where('users.id', $result->user_id)
+                ->where('is_active', '1')
+                ->where('role_id', '2')
+                ->first();
+    
+            if (!$data['village']) {
+                return abort(404);
+            }
+            // dd($result->id);
+            $data['packages'] = Package::with(['category', 'user', 'village'])
+                                            ->where('village_id', $result->id)
+                                            ->where('packages.is_active', '1')
+                                            ->paginate(8);
+                                            
+    // dd($data);
+    
+            $data['recent'] = Package::select('packages.id','packages.name', 'categories.name as cat_name', 'village_details.village_name as vil_name', 'default_img', 'packages.slug')
+                    ->join('users', 'users.id', 'user_id')
+                    ->join('village_details', 'users.id', 'village_details.user_id')
+                    ->join('categories', 'categories.id', 'category_id')
+                    ->where('users.is_active', '1')
+                    ->where('packages.is_active', '1')
+                    ->orderBy('packages.id', 'desc')
+                    ->limit(5)->get();
+            return view('customer/detailvillage', $data);
+        } catch (\Throwable $th) {
             return abort(404);
         }
-        $data['packages'] = Package::with(['category', 'user', 'village'])
-                                        ->where('village_id', $result->id)
-                                        ->where('packages.is_active', '1')
-                                        ->paginate(8);
-// dd($data);
-
-        $data['recent'] = Package::select('packages.id','packages.name', 'categories.name as cat_name', 'village_details.village_name as vil_name', 'default_img', 'packages.slug')
-                ->join('users', 'users.id', 'user_id')
-                ->join('village_details', 'users.id', 'village_details.user_id')
-                ->join('categories', 'categories.id', 'category_id')
-                ->where('users.is_active', '1')
-                ->where('packages.is_active', '1')
-                ->orderBy('packages.id', 'desc')
-                ->limit(5)->get();
-        return view('customer/detailvillage', $data);
+      
     }
     public function tourpackages()
     {
@@ -146,15 +154,16 @@ class PageController extends Controller
         $data['packages'] = EventService::active();
         return view('customer/events', $data);
     }
-    public function categorypackage($id)
+    public function categorypackage(Request $request, $id)
     {
         $data['packages'] = Package::select('packages.name', 'categories.name as cat_name', 'village_details.village_name as vil_name', 'price', 'packages.desc', 'packages.id', 'default_img', 'packages.slug')
-            ->join('users', 'users.id', 'user_id')
-            ->join('village_details', 'users.id', 'village_details.user_id')
+            ->leftjoin('users', 'users.id', '=', 'packages.user_id')
+            ->leftjoin('village_details', 'users.id','=', 'village_details.user_id')
             ->join('categories', 'categories.id', 'category_id')
-            ->where('users.is_active', '1')
+            // ->where('users.is_active', '1')
             ->where('packages.is_active', '1')
             ->where('packages.tag_id', $id)
+            ->orderBy('packages.id', 'DESC')
             ->paginate(10);
         // dd($data);
         return view('customer/tourpackages', $data);

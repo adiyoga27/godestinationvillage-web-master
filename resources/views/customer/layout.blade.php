@@ -753,14 +753,24 @@ $( "form" ).submit(function( event ) {
     </script>
 
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F0LL71YS66"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CD6TPM6T4N"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-F0LL71YS66');
+  gtag('config', 'G-CD6TPM6T4N');
 </script>
+
+<!-- Google tag (gtag.js) -->
+<!--<script async src="https://www.googletagmanager.com/gtag/js?id=G-F0LL71YS66"></script>-->
+<!--<script>-->
+<!--  window.dataLayer = window.dataLayer || [];-->
+<!--  function gtag(){dataLayer.push(arguments);}-->
+<!--  gtag('js', new Date());-->
+
+<!--  gtag('config', 'G-F0LL71YS66');-->
+<!--</script>-->
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
 <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-210470879-1"></script>
