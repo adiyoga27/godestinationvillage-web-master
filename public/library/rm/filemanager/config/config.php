@@ -4,7 +4,7 @@ if (session_id() == '') session_start();
 
 mb_internal_encoding('UTF-8');
 mb_http_output('UTF-8');
-mb_http_input();
+mb_http_input('UTF-8');
 mb_language('uni');
 mb_regex_encoding('UTF-8');
 ob_start('mb_output_handler');
@@ -74,7 +74,7 @@ $config = array(
 	| with start and final /
 	|
 	*/
-	'upload_dir' => '/responsive_filemanager/source/',
+	'upload_dir' => '{{url("/library/rm")}}/source/',
 	/*
 	|--------------------------------------------------------------------------
 	| relative path from filemanager folder to upload folder
@@ -83,7 +83,8 @@ $config = array(
 	| with final /
 	|
 	*/
-	'current_path' => '../source/',
+	'current_path' => '{{url("/library/rm")}}/source/',
+	// 'current_path' => '../source/',
 
 	/*
 	|--------------------------------------------------------------------------
