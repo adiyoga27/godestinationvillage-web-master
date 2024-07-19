@@ -74,7 +74,7 @@ $config = array(
 	| with start and final /
 	|
 	*/
-	'upload_dir' => '{{url("/library/rm")}}/source/',
+	'upload_dir' => '/source/',
 	/*
 	|--------------------------------------------------------------------------
 	| relative path from filemanager folder to upload folder
@@ -83,8 +83,7 @@ $config = array(
 	| with final /
 	|
 	*/
-	'current_path' => '{{url("/library/rm")}}/source/',
-	// 'current_path' => '../source/',
+	'current_path' => '../source/',
 
 	/*
 	|--------------------------------------------------------------------------
