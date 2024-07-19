@@ -46,9 +46,9 @@ tinymce.init({
    image_advtab: true ,
    
      
-     external_filemanager_path:"/responsive_filemanager/filemanager/",
+     external_filemanager_path:"/library/rm/filemanager/",
      filemanager_title:"Responsive Filemanager" ,
-     external_plugins: { "filemanager" : "/responsive_filemanager/tinymce/plugins/responsivefilemanager/plugin.min.js"}
+     external_plugins: { "filemanager" : "/library/rm/tinymce/plugins/responsivefilemanager/plugin.min.js"}
    });
     $("#review").rating();
   </script>
