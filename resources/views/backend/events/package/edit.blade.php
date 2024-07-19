@@ -45,9 +45,9 @@
      toolbar2: "| responsivefilemanager | link unlink anchor | image media | forecolor backcolor  | print preview code ",
      image_advtab: true ,
      
-     external_filemanager_path:"{{url('/')}}library/rm///filemanager/",
+     external_filemanager_path:"{{url('/')}}/library/rm/filemanager/",
      filemanager_title:"Responsive Filemanager" ,
-     external_plugins: { "filemanager" : "{{url('/')}}library/rm///tinymce/plugins/responsivefilemanager/plugin.min.js"}
+     external_plugins: { "filemanager" : "{{url('/')}}/library/rm/tinymce/plugins/responsivefilemanager/plugin.min.js"}
    });
   </script>
 @endsection
