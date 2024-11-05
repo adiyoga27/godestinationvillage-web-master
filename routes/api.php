@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\AuthControllerApi;
+use App\Http\Controllers\Api\V2\ArticleController;
+use App\Http\Controllers\Api\V2\AuthController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -57,7 +59,7 @@ Route::group(['prefix'=>'packages'], function(){
     Route::get('/{id}', [PackageControllerApi::class, 'detailPackage']);
 });
 Route::group(['prefix'=>'blogs'], function(){     
-    Route::get('/', [BlogControllerApi::class, 'blogs']);
+Route::get('/', [BlogControllerApi::class, 'blogs']);
     Route::get('/recents', [BlogControllerApi::class, 'recentBlogs']);
     Route::get('/{id}', [BlogControllerApi::class, 'detailBlogs']);
 });
@@ -101,6 +103,24 @@ Route::group([
     });
 
 
+    Route::group(['prefix'=>'v2'], function(){     
+        Route::group([
+            'middleware' => ['api', 'cors'],
+            'prefix'=>'auth'
+            ], function(){       
+                Route::post('/login', [AuthController::class, 'login']);
+                Route::post('/registration', [AuthController::class, 'registration']);
+        });
+
+        Route::group([
+            'middleware' => ['api', 'cors'],
+            'prefix'=>'blogs'
+            ], function(){       
+                Route::get('/', [ArticleController::class, 'index']);
+                Route::get('/{slug}', [ArticleController::class, 'show']);
+        });
+    });
+    
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();

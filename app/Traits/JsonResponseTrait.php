@@ -10,7 +10,7 @@ trait JsonResponseTrait
 
     public function successResponseMessage($message='Success', $status_code=200){
         return response()->json([
-            'messages' => $message,
+            'message' => $message,
             'status' =>True
         ],$status_code);
     }
@@ -18,7 +18,7 @@ trait JsonResponseTrait
 
     public function createSuccessMessage($message='Success'){
         return [
-            'messages' => $message,
+            'message' => $message,
             'status' =>True
         ];
     }
@@ -26,7 +26,7 @@ trait JsonResponseTrait
     
     public function errorResponseMessage($message='Connection Error', $status_code=500){
         return response()->json([
-            'messages' => $message,
+            'message' => $message,
             'status' =>false
         ],$status_code);
     }
@@ -34,7 +34,7 @@ trait JsonResponseTrait
 
     public function createErrorMessage($message){
         return [
-            'messages' => $message,
+            'message' => $message,
             'status' =>false
         ];
     }
@@ -43,7 +43,7 @@ trait JsonResponseTrait
     public function responseDataMessage($data,$message='Success', $status_code=200){
         return response()->json([
             'data' => $data,
-            'messages' => $message,
+            'message' => $message,
             'status' =>True
         ],$status_code);
     }
@@ -51,7 +51,7 @@ trait JsonResponseTrait
     public function responseErrorDataMessage($data,$message='Failed', $status_code=400){
         return response()->json([
             'data' => $data,
-            'messages' => $message,
+            'message' => $message,
             'status' =>false
         ],$status_code);
     }

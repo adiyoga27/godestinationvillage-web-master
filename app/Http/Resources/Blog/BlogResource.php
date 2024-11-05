@@ -20,7 +20,7 @@ class BlogResource extends JsonResource
             "post_content"=>$this->post_content,
             "post_thumbnail"=>url('storage/blogs/')."/".$this->post_thumbnail,
             "post_author"=>$this->post_author,
-            "post_tags"=>$this->post_tags,
+            // "post_tags"=>$this->post_tags,
             // "isPublished"=>$this->isPublished,
             // "last_updated"=>$this->last_updated,
             // "updated_by"=>$this->updated_by,
