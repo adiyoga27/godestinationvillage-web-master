@@ -35,7 +35,7 @@
                                 <div class="item-single ">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <img src="{{ url('storage') }}/portofolio/thumbnail/{{ $f->thumbnail }}" alt="wrapkit"
+                                            <img src="{{ url('storage') }}/portofolio/{{ $f->attachment }}" alt="wrapkit"
                                                 class="img-fluid" />
                                         </div>
                                         <div class="col-md-12">

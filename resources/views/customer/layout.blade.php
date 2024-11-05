@@ -267,7 +267,7 @@
                         <div class="contact-info">
                             <div class="content">
                                 <i class='bx bx-phone'></i>
-                                <a href="tel:+0123456987">+62 82 236 803301</a>
+                                <a href="tel:+6281997674778">+62 819-9767-4778</a>
                             </div>
                             <div class="content">
                                 <i class='bx bx-envelope'></i>
@@ -396,10 +396,10 @@
                                     <a href="{{ url('blog') }}" class="nav-link">@lang('Blog')</a>
                                 </li>
 
-                                <li class="nav-item">
-                                    <a href="https://play.google.com/store/apps/details?id=com.godevi.id.webview"
-                                        class="nav-link">Apps</a>
-                                </li>
+                                <!--<li class="nav-item">-->
+                                <!--    <a href="https://play.google.com/store/apps/details?id=com.godevi.id.webview"-->
+                                <!--        class="nav-link">Apps</a>-->
+                                <!--</li>-->
                                 @auth
                                     <li class="dropdown-nav">
 
@@ -587,12 +587,10 @@
                                 <h5 data-v-44716918="">@lang('Have A Questions')</h5>
                                 <div class="contact-info" data-v-44716918="">
                                     <div class="content" data-v-44716918=""><a href="#" data-v-44716918=""><i
-                                                class="bx bx-map" data-v-44716918=""></i>Jl. WR Supratman No.302,
-                                            Kesiman Kertalangu, Kec. Denpasar Timur, Kota Denpasar, Bali 80237</a>
+                                                class="bx bx-map" data-v-44716918=""></i>Jl Kroya No 1 Denpasar</a>
                                     </div>
-                                    <div class="content" data-v-44716918=""><a href="tel:+6282236803301"
-                                            data-v-44716918=""><i class="bx bx-phone" data-v-44716918=""></i>+62 82 236
-                                            803301</a></div>
+                                    <div class="content" data-v-44716918=""><a href="tel:+6281997674778"
+                                            data-v-44716918=""><i class="bx bx-phone" data-v-44716918=""></i>+62 819-9767-4778</a></div>
                                     <div class="content" data-v-44716918=""><a
                                             href="mailto:hello@godestinationvillage.com" data-v-44716918=""><i
                                                 class="bx bx-envelope"

@@ -249,7 +249,7 @@ $data['recent'] = HomeStayServices::recent();
     } 
     public function portofolio()
     {
-        $portofolios = Portofolio::all();
+        $portofolios = Portofolio::orderby('dates', 'DESC')->get();
         return view('customer/portofolio', compact('portofolios'));
     }
     public function boardExpert()
