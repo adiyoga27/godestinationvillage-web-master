@@ -23,20 +23,23 @@ class TransactionController extends Controller
         $paymentStatus = 'pending';
         if($request->payment_status == 'paid'){
             $paymentStatus = 'success';
+        }else if($request->payment_status == 'unpaid'){
+            $paymentStatus = 'pending';
         }else{
             $paymentStatus = 'cancel';
         }
         if($type == 'event'){
             $data = OrderEvent::where('user_id', Auth::user()->id)
-                    ->where('payment_type', $paymentStatus)
+                    ->where('payment_status', $paymentStatus)
                     ->orderBy('id', 'DESC')->get();
+
             return OrderEventResource::collection($data)->additional([
                 'status' => true,
                 'message' => 'Success'
             ]);
         }else if($type == 'homestay'){
             $data = OrderHomestay::where('user_id', Auth::user()->id)
-            ->where('payment_type', $paymentStatus)
+            ->where('payment_status', $paymentStatus)
             ->orderBy('id', 'DESC')->get();
                 return OrderEventResource::collection($data)->additional([
                     'status' => true,
@@ -44,7 +47,7 @@ class TransactionController extends Controller
                 ]);
         }else{
             $data = Order::where('user_id', Auth::user()->id)
-            ->where('payment_type', $paymentStatus)
+            ->where('payment_status', $paymentStatus)
             ->orderBy('id', 'DESC')->get();
                 return OrderResource::collection($data)->additional([
                     'status' => true,
