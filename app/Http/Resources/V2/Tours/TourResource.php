@@ -29,7 +29,7 @@ class TourResource extends JsonResource
             'preparation' => $this->preparation,
             'price' => $this->price,
             'disc' => $this->disc,
-            'default_img' => url('storage/event')."/".$this->default_img,
+            'default_img' => url('storage/packages')."/".$this->default_img,
             'slug' => $this->slug,
         ];
     }

@@ -113,6 +113,7 @@ Route::group([
     Route::group(['prefix'=>'v2'], function(){    
         Route::get('/embed-comment/{slug}', [PageController::class, 'embedComment']);
 
+        Route::get('/search/{keyword}', [PageController::class, 'search']);
         Route::get('/sliders', [PageController::class, 'sliders']);
         Route::get('/payment/{snap_token}', [TransactionController::class, 'payment']);
 

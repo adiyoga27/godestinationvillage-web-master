@@ -30,7 +30,7 @@ class HomestayResource extends JsonResource
             'check_in_time' => $this->check_in_time,
             'check_out_time' => $this->check_out_time,
             'additional_notes' => $this->additional_notes,
-            'default_img' => url('storage/event')."/".$this->default_img,
+            'default_img' => url('storage/homestay')."/".$this->default_img,
             'check_out_time' => $this->check_out_time,
             'slug' => $this->slug,
             'created_at' => $this->created_at
