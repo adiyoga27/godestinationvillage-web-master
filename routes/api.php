@@ -112,11 +112,13 @@ Route::group([
 
     Route::group(['prefix'=>'v2'], function(){    
         Route::get('/sliders', [PageController::class, 'sliders']);
+        Route::get('/payment/{snap_token}', [TransactionController::class, 'payment']);
 
         Route::group(['middleware' => ['api', 'cors', 'auth:api']], function(){       
                 Route::get('/auth/profile', [ProfileController::class, 'index']);
                 Route::get('/transaction/invoice/{type}', [TransactionController::class, 'status']);
                 Route::get('/invoice/{type}', [TransactionController::class, 'invoice']);
+                Route::post('/checkout/event', [TransactionController::class, 'checkoutEvent']);
         });
         
         Route::group(['middleware' => ['api', 'cors'],'prefix'=>'auth'], function(){       

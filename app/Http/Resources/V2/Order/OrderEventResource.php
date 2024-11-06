@@ -30,7 +30,9 @@ class OrderEventResource extends JsonResource
             'payment_date' => $this->payment_date,
             'payment_status' => $this->payment_status,
             'snap_token' => $this->snap_token,
-            'uuid' => $this->uuid
+            'uuid' => $this->uuid,
+            'link_payment' => url('api/v2/payment')."/".$this->snap_token
+
 
         ];
     }
