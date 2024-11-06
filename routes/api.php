@@ -111,6 +111,8 @@ Route::group([
 
 
     Route::group(['prefix'=>'v2'], function(){    
+        Route::get('/embed-comment/{slug}', [PageController::class, 'embedComment']);
+
         Route::get('/sliders', [PageController::class, 'sliders']);
         Route::get('/payment/{snap_token}', [TransactionController::class, 'payment']);
 
@@ -130,6 +132,13 @@ Route::group([
 
         Route::group(['middleware' => ['api', 'cors'],'prefix'=>'blogs'], function(){       
                 Route::get('/', [ArticleController::class, 'index']);
+                Route::group(['middleware' => ['api', 'cors', 'auth:api']], function(){       
+                    Route::get('/comment/{slug}', [ArticleController::class, 'comment']);
+                    Route::post('/comment/{slug}', [ArticleController::class, 'createComment']);
+                    Route::post('/like/{id}', [ArticleController::class, 'like']);
+                    Route::post('/unlike/{id}', [ArticleController::class, 'unlike']);
+                    Route::post('/replies/{id}', [ArticleController::class, 'replies']);
+                });
                 Route::get('/{slug}', [ArticleController::class, 'show']);
         });
         Route::group(['middleware' => ['api', 'cors'],'prefix'=>'categories'], function(){       

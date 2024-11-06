@@ -28,8 +28,9 @@ class EventResource extends JsonResource
             'interary' => $this->interary,
             'inclusion' => $this->inclusion,
             'additional' => $this->additional,
-            'default_img' => url('storage/event')."/".$this->default_img,
+            'default_img' => url('storage/events')."/".$this->default_img,
             'slug' => $this->slug,
+            'created_at' => $this->created_at
         ];
     }
 }

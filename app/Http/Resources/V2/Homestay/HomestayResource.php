@@ -33,6 +33,7 @@ class HomestayResource extends JsonResource
             'default_img' => url('storage/event')."/".$this->default_img,
             'check_out_time' => $this->check_out_time,
             'slug' => $this->slug,
+            'created_at' => $this->created_at
         ];
     }
 }

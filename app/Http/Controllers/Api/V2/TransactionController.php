@@ -174,6 +174,7 @@ class TransactionController extends Controller
                 'message' => 'Success checkout',
                 'data' => [
                     'invoice' => $data->code,
+                    'snap_token' => $order->snap_token,
                     'link_payment' => url('api/v2/payment')."/".$order->snap_token
                 ]
             ]);
@@ -257,6 +258,7 @@ class TransactionController extends Controller
                 'message' => 'Success checkout',
                 'data' => [
                     'invoice' => $data->code,
+                    'snap_token' => $order->snap_token,
                     'link_payment' => url('api/v2/payment')."/".$order->snap_token
                 ]
             ]);
@@ -342,6 +344,7 @@ class TransactionController extends Controller
                 'message' => 'Success checkout',
                 'data' => [
                     'invoice' => $data->code,
+                    'snap_token' => $order->snap_token,
                     'link_payment' => url('api/v2/payment')."/".$order->snap_token
                 ]
             ]);
