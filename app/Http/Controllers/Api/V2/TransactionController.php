@@ -7,9 +7,11 @@ use App\Http\Resources\V2\Order\OrderEventResource;
 use App\Http\Resources\V2\Order\OrderHomestayResource;
 use App\Http\Resources\V2\Order\OrderResource;
 use App\Models\Event;
+use App\Models\Homestay;
 use App\Models\Order;
 use App\Models\OrderEvent;
 use App\Models\OrderHomestay;
+use App\Models\Package;
 use App\Services\Midtrans\CreateSnapTokenService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -110,7 +112,7 @@ class TransactionController extends Controller
         } else {
             $code = 1;
         }
-        $code = "INV-".$code;
+        $code = "EVT-".$code;
         $uuid = (string) Str::uuid();
         try {
             $event = Event::where('id', $request->event_id)->first();
@@ -162,6 +164,174 @@ class TransactionController extends Controller
                         'snap_token' => $snapToken
                 ]);
                 $order = OrderEvent::where('uuid', $data->uuid)->first();
+               
+                
+            return response()->json([
+                'status' => true,
+                'message' => 'Success checkout',
+                'data' => [
+                    'invoice' => $data->code,
+                    'link_payment' => url('api/v2/payment')."/".$order->snap_token
+                ]
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+    public function checkoutHomestay(Request $request) {
+        $request->validate([
+            'homestay_id' => 'required',
+            'customer_name' => 'required',
+            'customer_address' => 'required',
+            'customer_phone' => 'required',
+            'customer_email' => 'required',
+            'qty' => 'required',
+            'special_note' => 'nullable',
+            'check_in' => 'required'
+        ]);
+        $count =  OrderHomestay::count();
+        if ($count > 0) {
+            $code = OrderHomestay::latest()->first()->id + 1;
+        } else {
+            $code = 1;
+        }
+        $code = "HTY-".$code;
+        $uuid = (string) Str::uuid();
+        try {
+            $homestay = Homestay::where('id', $request->homestay_id)->first();
+        
+            $total = ($homestay->price - $homestay->disc) * $request->qty;
+            $data = OrderHomestay::create([
+                'user_id' => Auth::user()->id,
+                'homestay_id' => $request->homestay_id,
+                'code' => $code,
+                'customer_name' => $request->customer_name,
+                'customer_address' => $request->customer_address,
+                'customer_phone' => $request->customer_phone,
+                'customer_email' => $request->customer_email,
+                'pax' => $request->qty,
+                'homestay_name' => $homestay->name,
+                'homestay_price' => $homestay->price,
+                'homestay_disc' => $homestay->disc,
+                'total_payment' => $total,
+                'payment_status' => 'pending',
+                'payment_type' => 'bank_transfer',
+                'uuid' =>  $uuid
+            ]);
+
+                // Jika snap token masih NULL, buat token snap dan simpan ke database
+
+                $payload = [
+                    'transaction_details' => [
+                        'order_id' => $data->code,
+                        'gross_amount' => $data->total_payment,
+                    ],
+                    'item_details' => [
+                        [
+                            'id' =>  $data->homestay_id,
+                            'price' => $data->homestay_price,
+                            'quantity' => $data->pax,
+                            'name' => Str::limit($data->homestay_name,30),
+                        ],
+                    ],
+                    'customer_details' => [
+                        'first_name' => $data->customer_name,
+                        'email' => $data->customer_email,
+                        'phone' => $data->customer_phone,
+                    ]
+                ];
+
+                $midtrans = new CreateSnapTokenService($data);
+                $snapToken = $midtrans->getSnapToken($payload);
+                OrderHomestay::where('uuid', $data->uuid)->update([
+                        'snap_token' => $snapToken
+                ]);
+                $order = OrderHomestay::where('uuid', $data->uuid)->first();
+               
+                
+            return response()->json([
+                'status' => true,
+                'message' => 'Success checkout',
+                'data' => [
+                    'invoice' => $data->code,
+                    'link_payment' => url('api/v2/payment')."/".$order->snap_token
+                ]
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+    public function checkoutTour(Request $request) {
+        $request->validate([
+            'tour_id' => 'required',
+            'customer_name' => 'required',
+            'customer_address' => 'required',
+            'customer_phone' => 'required',
+            'customer_email' => 'required',
+            'qty' => 'required',
+            'special_note' => 'nullable',
+            'check_in' => 'required'
+        ]);
+        $count =  Order::count();
+        if ($count > 0) {
+            $code = Order::latest()->first()->id + 1;
+        } else {
+            $code = 1;
+        }
+        $code = "INV-".$code;
+        $uuid = (string) Str::uuid();
+        try {
+            $tour = Package::where('id', $request->tour_id)->first();
+        
+            $total = ($tour->price - $tour->disc) * $request->qty;
+            $data = Order::create([
+                'user_id' => Auth::user()->id,
+                'package_id' => $request->tour_id,
+                'code' => $code,
+                'customer_name' => $request->customer_name,
+                'customer_address' => $request->customer_address,
+                'customer_phone' => $request->customer_phone,
+                'customer_email' => $request->customer_email,
+                'pax' => $request->qty,
+                'village_name' => $tour->villageDetail?->village_name,
+                'package_name' => $tour->name,
+                'package_price' => $tour->price,
+                'package_disc' => $tour->disc,
+                'total_payment' => $total,
+                'checkin_date' => $request->check_in,
+                'payment_status' => 'pending',
+                'payment_type' => 'bank_transfer',
+                'uuid' =>  $uuid
+            ]);
+
+                // Jika snap token masih NULL, buat token snap dan simpan ke database
+
+                $payload = [
+                    'transaction_details' => [
+                        'order_id' => $data->code,
+                        'gross_amount' => $data->total_payment,
+                    ],
+                    'item_details' => [
+                        [
+                            'id' =>  $data->package_id,
+                            'price' => $data->package_price,
+                            'quantity' => $data->pax,
+                            'name' => Str::limit($data->package_name,30),
+                        ],
+                    ],
+                    'customer_details' => [
+                        'first_name' => $data->customer_name,
+                        'email' => $data->customer_email,
+                        'phone' => $data->customer_phone,
+                    ]
+                ];
+
+                $midtrans = new CreateSnapTokenService($data);
+                $snapToken = $midtrans->getSnapToken($payload);
+                Order::where('uuid', $data->uuid)->update([
+                        'snap_token' => $snapToken
+                ]);
+                $order = Order::where('uuid', $data->uuid)->first();
                
                 
             return response()->json([

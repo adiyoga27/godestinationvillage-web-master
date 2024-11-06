@@ -119,6 +119,8 @@ Route::group([
                 Route::get('/transaction/invoice/{type}', [TransactionController::class, 'status']);
                 Route::get('/invoice/{type}', [TransactionController::class, 'invoice']);
                 Route::post('/checkout/event', [TransactionController::class, 'checkoutEvent']);
+                Route::post('/checkout/homestay', [TransactionController::class, 'checkoutHomestay']);
+                Route::post('/checkout/tour', [TransactionController::class, 'checkoutTour']);
         });
         
         Route::group(['middleware' => ['api', 'cors'],'prefix'=>'auth'], function(){       
