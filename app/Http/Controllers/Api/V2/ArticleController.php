@@ -38,6 +38,13 @@ class ArticleController extends Controller
             'message' => 'success'
         ]);
     }
+    public function deleteComment(Request $request, $id) {
+        $result = PostComment::where('id', $id)->delete();
+        return response()->json([
+            'status' => true, 
+            'message' => "Success Delete Comment"
+        ]);
+    }
 
     public function createComment(Request $request, $slugs) {
         $request->validate([
@@ -67,6 +74,9 @@ class ArticleController extends Controller
     public function like(Request $request, $id) {
         $check = PostComment::where('id', $id)->first();
         $likes = json_decode($check->likes);
+        if(!$check->likes){
+            $likes = [];
+        }
         if(!in_array(Auth::user()->id, $likes)){
             $likes = array_merge($likes, [Auth::user()->id]);
             $check->update([
@@ -83,6 +93,9 @@ class ArticleController extends Controller
     public function unlike(Request $request, $id) {
         $check = PostComment::where('id', $id)->first();
         $likes = json_decode($check->likes);
+        if(!$check->likes){
+            $likes = [];
+        }
         if(in_array(Auth::user()->id, $likes)){
             $likes = array_diff($likes, [Auth::user()->id]);
             $check->update([

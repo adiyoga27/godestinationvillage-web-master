@@ -133,6 +133,7 @@ Route::group([
         Route::group(['middleware' => ['api', 'cors'],'prefix'=>'blogs'], function(){       
                 Route::get('/', [ArticleController::class, 'index']);
                 Route::group(['middleware' => ['api', 'cors', 'auth:api']], function(){       
+                    Route::delete('/comment/delete/{id}', [ArticleController::class, 'deleteComment']);
                     Route::get('/comment/{slug}', [ArticleController::class, 'comment']);
                     Route::post('/comment/{slug}', [ArticleController::class, 'createComment']);
                     Route::post('/like/{id}', [ArticleController::class, 'like']);

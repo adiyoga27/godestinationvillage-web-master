@@ -23,6 +23,7 @@ class CreatePostCommentsTable extends Migration
             $table->text('comment');
             $table->json('likes')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
