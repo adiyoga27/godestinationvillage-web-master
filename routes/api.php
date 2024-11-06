@@ -5,8 +5,10 @@ use App\Http\Controllers\Api\V2\ArticleController;
 use App\Http\Controllers\Api\V2\AuthController;
 use App\Http\Controllers\Api\V2\EventController;
 use App\Http\Controllers\Api\V2\HomestayController;
+use App\Http\Controllers\Api\V2\PageController;
 use App\Http\Controllers\Api\V2\ProfileController;
 use App\Http\Controllers\Api\V2\TourController;
+use App\Http\Controllers\Api\V2\TransactionController;
 use App\Models\Homestay;
 use Illuminate\Support\Facades\Route;
 
@@ -109,8 +111,12 @@ Route::group([
 
 
     Route::group(['prefix'=>'v2'], function(){    
+        Route::get('/sliders', [PageController::class, 'sliders']);
+
         Route::group(['middleware' => ['api', 'cors', 'auth:api']], function(){       
                 Route::get('/auth/profile', [ProfileController::class, 'index']);
+                Route::get('/transaction/invoice/{type}', [TransactionController::class, 'status']);
+                Route::get('/invoice/{type}', [TransactionController::class, 'invoice']);
         });
         
         Route::group(['middleware' => ['api', 'cors'],'prefix'=>'auth'], function(){       
