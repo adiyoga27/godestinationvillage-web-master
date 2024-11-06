@@ -3,6 +3,11 @@
 use App\Http\Controllers\Api\AuthControllerApi;
 use App\Http\Controllers\Api\V2\ArticleController;
 use App\Http\Controllers\Api\V2\AuthController;
+use App\Http\Controllers\Api\V2\EventController;
+use App\Http\Controllers\Api\V2\HomestayController;
+use App\Http\Controllers\Api\V2\ProfileController;
+use App\Http\Controllers\Api\V2\TourController;
+use App\Models\Homestay;
 use Illuminate\Support\Facades\Route;
 
 
@@ -103,23 +108,38 @@ Route::group([
     });
 
 
-    Route::group(['prefix'=>'v2'], function(){     
-        Route::group([
-            'middleware' => ['api', 'cors'],
-            'prefix'=>'auth'
-            ], function(){       
+    Route::group(['prefix'=>'v2'], function(){    
+        Route::group(['middleware' => ['api', 'cors', 'auth:api']], function(){       
+                Route::get('/auth/profile', [ProfileController::class, 'index']);
+        });
+        
+        Route::group(['middleware' => ['api', 'cors'],'prefix'=>'auth'], function(){       
                 Route::post('/login', [AuthController::class, 'login']);
                 Route::post('/registration', [AuthController::class, 'registration']);
         });
 
-        Route::group([
-            'middleware' => ['api', 'cors'],
-            'prefix'=>'blogs'
-            ], function(){       
+        Route::group(['middleware' => ['api', 'cors'],'prefix'=>'blogs'], function(){       
                 Route::get('/', [ArticleController::class, 'index']);
                 Route::get('/{slug}', [ArticleController::class, 'show']);
         });
-    });
+        Route::group(['middleware' => ['api', 'cors'],'prefix'=>'categories'], function(){       
+                Route::get('/event', [EventController::class, 'categories']);
+                Route::get('/homestay', [HomestayController::class, 'categories']);
+                Route::get('/tour', [TourController::class, 'categories']);
+        });
+        Route::group(['middleware' => ['api', 'cors'],'prefix'=>'events'], function(){       
+                Route::get('/', [EventController::class, 'index']);
+                Route::get('/{slug}', [EventController::class, 'show']);
+        });
+        Route::group(['middleware' => ['api', 'cors'],'prefix'=>'homestay'], function(){       
+            Route::get('/', [EventController::class, 'index']);
+            Route::get('/{slug}', [EventController::class, 'show']);
+        });
+        Route::group(['middleware' => ['api', 'cors'],'prefix'=>'tours'], function(){       
+            Route::get('/', [TourController::class, 'index']);
+            Route::get('/{slug}', [TourController::class, 'show']);
+        });
+});
     
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
