@@ -20,15 +20,15 @@ class ReservationControllerApi extends Controller
         $orderTours = Order::where('payment_status', NULL)
             ->with('package')
             ->where('customer_email', $email)
-            ->orderBy('id', 'desc');
+            ->orderBy('id', 'desc')->get();
         $orderEvents = OrderEvent::where('payment_status', 'pending')
             ->with('package')
             ->where('customer_email', $email)
-            ->orderBy('id', 'desc');
+            ->orderBy('id', 'desc')->get();
         $orderHomestay = OrderHomestay::where('payment_status', 'pending')
             ->with('package')
             ->where('customer_email', $email)
-            ->orderBy('id', 'desc');
+            ->orderBy('id', 'desc')->get();
 
         $data = [
             'orderTours' => $orderTours,
@@ -45,16 +45,15 @@ class ReservationControllerApi extends Controller
       $orderTours = Order::where('payment_status', 'success')
             ->with('package')
             ->where('customer_email', $email)
-            ->orderBy('id', 'desc');
+            ->orderBy('id', 'desc')->get();
         $orderEvents = OrderEvent::where('payment_status', 'success')
             ->with('package')
             ->where('customer_email', $email)
-            ->orderBy('id', 'desc');
+            ->orderBy('id', 'desc')->get();
         $orderHomestay = OrderHomestay::where('payment_status', 'success')
             ->with('package')
             ->where('customer_email', $email)
-            ->orderBy('id', 'desc');
-
+            ->orderBy('id', 'desc')->get();
         $data = [
             'orderTours' => $orderTours,
             'orderEvents' => $orderEvents,
@@ -76,16 +75,15 @@ class ReservationControllerApi extends Controller
           $orderTours = Order::where('payment_status', 'cancel')
             ->with('package')
             ->where('customer_email', $email)
-            ->orderBy('id', 'desc');
+            ->orderBy('id', 'desc')->get();
         $orderEvents = OrderEvent::where('payment_status', 'cancel')
             ->with('package')
             ->where('customer_email', $email)
-            ->orderBy('id', 'desc');
+            ->orderBy('id', 'desc')->get();
         $orderHomestay = OrderHomestay::where('payment_status', 'cancel')
             ->with('package')
             ->where('customer_email', $email)
-            ->orderBy('id', 'desc');
-
+            ->orderBy('id', 'desc')->get();
         $data = [
             'orderTours' => $orderTours,
             'orderEvents' => $orderEvents,
