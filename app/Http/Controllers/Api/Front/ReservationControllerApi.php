@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\Api\Front;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Transaction\EventOrderResource;
+use App\Http\Resources\Transaction\HomestayOrderResource;
+use App\Http\Resources\Transaction\TourOrderResource;
 use App\Http\Resources\Transaction\TransactionCollection;
+use App\Models\Event;
+use App\Models\Homestay;
 use App\Models\Order;
 use App\Models\OrderEvent;
 use App\Models\OrderHomestay;
@@ -31,9 +36,9 @@ class ReservationControllerApi extends Controller
             ->orderBy('id', 'desc')->get();
 
         $data = [
-            'orderTours' => $orderTours,
-            'orderEvents' => $orderEvents,
-            'orderHomestay' => $orderHomestay,
+            'orderTours' => TourOrderResource::collection($orderTours),
+            'orderEvents' => EventOrderResource::collection($orderEvents),
+            'orderHomestay' => HomestayOrderResource::collection($orderHomestay),
         ];
         return $this->responseDataMessage($data);
         
@@ -54,10 +59,10 @@ class ReservationControllerApi extends Controller
             ->with('package')
             ->where('customer_email', $email)
             ->orderBy('id', 'desc')->get();
-        $data = [
-            'orderTours' => $orderTours,
-            'orderEvents' => $orderEvents,
-            'orderHomestay' => $orderHomestay,
+         $data = [
+            'orderTours' => TourOrderResource::collection($orderTours),
+            'orderEvents' => EventOrderResource::collection($orderEvents),
+            'orderHomestay' => HomestayOrderResource::collection($orderHomestay),
         ];
         return $this->responseDataMessage($data);
         // $data['order'] = Order::whereNotNull('payment_type')
@@ -85,9 +90,9 @@ class ReservationControllerApi extends Controller
             ->where('customer_email', $email)
             ->orderBy('id', 'desc')->get();
         $data = [
-            'orderTours' => $orderTours,
-            'orderEvents' => $orderEvents,
-            'orderHomestay' => $orderHomestay,
+            'orderTours' => TourOrderResource::collection($orderTours),
+            'orderEvents' => EventOrderResource::collection($orderEvents),
+            'orderHomestay' => HomestayOrderResource::collection($orderHomestay),
         ];
         return $this->responseDataMessage($data);
     }
