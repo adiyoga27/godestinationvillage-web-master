@@ -42,7 +42,7 @@ class VillageControllerApi extends Controller
     public function tourVillages($slug)
     {
         $data = VillageDetail::where('slug', $slug)->first();
-          $data = Package::where('village_id', $data->id)->orderBy('id', 'DESC')->paginate(5);
+          $data = Package::where('is_active', 1)->where('village_id', $data->id)->orderBy('id', 'DESC')->paginate(5);
         return new TourCollection($data);
       
     }
