@@ -33,7 +33,7 @@ class EventOrderResource extends JsonResource
             'uuid' => $this->uuid,
             'snap_token' => $this->snap_token,
             'village_id' => $this->package->id,
-            'thumbnail' => url('storage/packages')."/".$this->package->default_img,
+            'thumbnail' => url('storage/events')."/".$this->package->default_img,
             
         ];
     }
