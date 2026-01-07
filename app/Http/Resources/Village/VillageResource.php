@@ -16,6 +16,8 @@ class VillageResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
+            'slug' => $this->slug,
             'village_name' => $this->village_name,
             'village_address' => $this->village_address,
             'thumbnail' => $this->user->avatar ? url("storage/users/".$this->user->avatar) : null,

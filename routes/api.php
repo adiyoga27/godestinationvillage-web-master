@@ -171,6 +171,7 @@ Route::group([
    
         
         Route::get('/villages', [VillageControllerApi::class, 'index']);
+        Route::get('/villages/tour/{slug}', [VillageControllerApi::class, 'tourVillages']);
         Route::get('/tours', [TourController::class, 'index']);
         Route::get('/homestay', [HomestayController::class, 'index']);
         Route::get('/articles', [ArticleController::class, 'index']);

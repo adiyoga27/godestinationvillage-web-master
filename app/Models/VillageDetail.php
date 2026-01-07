@@ -51,6 +51,10 @@ class VillageDetail extends Model
         return $this->hasOne(User::class, 'id', 'user_id');
     }
 
+    public function packages()
+    {
+        return $this->hasMany(Package::class, 'village_id', 'id');
+    }
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
