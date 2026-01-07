@@ -45,18 +45,15 @@ class ReservationControllerApi extends Controller
       $orderTours = Order::where('payment_status', 'success')
             ->with('package')
             ->where('customer_email', $email)
-            ->orderBy('id', 'desc')
-            ->paginate(10);
+            ->orderBy('id', 'desc');
         $orderEvents = OrderEvent::where('payment_status', 'success')
             ->with('package')
             ->where('customer_email', $email)
-            ->orderBy('id', 'desc')
-            ->paginate(10);
+            ->orderBy('id', 'desc');
         $orderHomestay = OrderHomestay::where('payment_status', 'success')
             ->with('package')
             ->where('customer_email', $email)
-            ->orderBy('id', 'desc')
-            ->paginate(10);
+            ->orderBy('id', 'desc');
 
         $data = [
             'orderTours' => $orderTours,
@@ -79,18 +76,15 @@ class ReservationControllerApi extends Controller
           $orderTours = Order::where('payment_status', 'cancel')
             ->with('package')
             ->where('customer_email', $email)
-            ->orderBy('id', 'desc')
-            ->paginate(10);
+            ->orderBy('id', 'desc');
         $orderEvents = OrderEvent::where('payment_status', 'cancel')
             ->with('package')
             ->where('customer_email', $email)
-            ->orderBy('id', 'desc')
-            ->paginate(10);
+            ->orderBy('id', 'desc');
         $orderHomestay = OrderHomestay::where('payment_status', 'cancel')
             ->with('package')
             ->where('customer_email', $email)
-            ->orderBy('id', 'desc')
-            ->paginate(10);
+            ->orderBy('id', 'desc');
 
         $data = [
             'orderTours' => $orderTours,
