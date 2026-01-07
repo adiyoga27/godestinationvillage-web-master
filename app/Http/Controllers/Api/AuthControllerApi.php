@@ -26,6 +26,7 @@ class AuthControllerApi extends Controller
             $success['phone'] =  $user->phone;
             $success['country'] =  $user->country;
             $success['address'] =  $user->address;
+            $success['role'] =  $user->role_id;
             $success['avatar'] =  url('storage/users')."/".$user->avatar;
             $success['token'] =  $user->createToken($user->email)->plainTextToken;
 

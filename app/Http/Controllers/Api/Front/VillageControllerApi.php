@@ -17,10 +17,7 @@ class VillageControllerApi extends Controller
     use JsonResponseTrait;
     public function index()
     {
-        $data = User::with('village_detail')
-                    ->where('role_id', '2')
-                    ->where('is_active', '1')
-                    ->paginate(5);
+        $data = VillageDetail::paginate(5);
         $result = new VillageCollection($data);
         return $this->responseCollection($result);
     }

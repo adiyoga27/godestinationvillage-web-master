@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthControllerApi;
+use App\Http\Controllers\Api\Front\VillageControllerApi;
 use App\Http\Controllers\Api\V2\ArticleController;
 use App\Http\Controllers\Api\V2\AuthController;
 use App\Http\Controllers\Api\V2\EventController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Api\V2\PageController;
 use App\Http\Controllers\Api\V2\ProfileController;
 use App\Http\Controllers\Api\V2\TourController;
 use App\Http\Controllers\Api\V2\TransactionController;
+use App\Http\Controllers\Backend\HomeStayController as BackendHomeStayController;
 use App\Models\Homestay;
 use Illuminate\Support\Facades\Route;
 
@@ -111,10 +113,10 @@ Route::group([
 
 
     Route::group(['prefix'=>'v2'], function(){    
+        Route::get('/sliders', [PageController::class, 'sliders']);
         Route::get('/embed-comment/{slug}', [PageController::class, 'embedComment']);
 
         Route::get('/search/{keyword}', [PageController::class, 'search']);
-        Route::get('/sliders', [PageController::class, 'sliders']);
         Route::get('/payment/{snap_token}', [TransactionController::class, 'payment']);
 
         Route::group(['middleware' => ['api', 'cors', 'auth:api']], function(){       
@@ -160,6 +162,13 @@ Route::group([
             Route::get('/', [TourController::class, 'index']);
             Route::get('/{slug}', [TourController::class, 'show']);
         });
+
+        
+        
+        Route::get('/popular-villages', [VillageControllerApi::class, 'index']);
+        Route::get('/best-tours', [TourController::class, 'index']);
+        Route::get('/best-homestay', [HomestayController::class, 'index']);
+       
 });
     
 

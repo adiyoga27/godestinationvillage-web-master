@@ -124,7 +124,7 @@ class UserService
                 'email' =>  $request->email,
                 'password' => Hash::make( $request->password),
                 'country' =>  $request->country,
-                'role_id' =>  $request->role_id,
+                'role_id' =>  3,
                 'phone' =>  $request->phone,
                 'address' =>  $request->address,
                 'avatar' => $request->avatar

@@ -14,6 +14,10 @@ use Illuminate\Http\Request;
 
 class TourController extends Controller
 {
+    public function popularTours() {
+        $data = Package::orderBy('id', 'DESC')->paginate(5);
+        return new TourCollection($data);
+    }
     public function categories(Request $request) {
         $users = User::where('role_id', 2)->pluck('id');
         $data = VillageDetail::whereIn('user_id', $users)->get();
