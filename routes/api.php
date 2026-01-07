@@ -173,6 +173,7 @@ Route::group([
             Route::get('/villages', [VillageControllerApi::class, 'index']);
         Route::get('/tours', [TourController::class, 'index']);
         Route::get('/homestay', [HomestayController::class, 'index']);
+        Route::get('/articles', [ArticleController::class, 'index']);
 });
     
 
