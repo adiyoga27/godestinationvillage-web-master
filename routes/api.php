@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthControllerApi;
+use App\Http\Controllers\Api\Front\ReservationControllerApi;
 use App\Http\Controllers\Api\Front\VillageControllerApi;
 use App\Http\Controllers\Api\V2\ArticleController;
 use App\Http\Controllers\Api\V2\AuthController;
