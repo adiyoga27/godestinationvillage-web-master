@@ -33,30 +33,21 @@
                 /* You may add your own js here, this is just example */
                 // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
                 console.log(result);
-
-                window.location.href = '{{ $redirectURISuccess }}';
             },
             // Optional
             onPending: function(result) {
                 /* You may add your own js here, this is just example */
                 // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-
-                window.location.href = '{{ $redirectURIError }}';
-
                 console.log(result);
             },
             // Optional
             onError: function(result) {
-
                 /* You may add your own js here, this is just example */
                 // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-                window.location.href = '{{ $redirectURIError }}';
-
                 console.log(result);
             },
             onClose: function(){
                 /* You may add your own implementation here */
-                window.location.href = '{{ $redirectURIError }}';
             }
         });
     </script>

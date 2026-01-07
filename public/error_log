@@ -25,3 +25,157 @@
 [17-Dec-2021 00:52:08 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.0.0". You are running 7.4.25. in /home/u9012667/godevi/vendor/composer/platform_check.php on line 24
 [17-Dec-2021 00:52:11 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.0.0". You are running 7.4.25. in /home/u9012667/godevi/vendor/composer/platform_check.php on line 24
 [17-Dec-2021 00:56:39 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.0.0". You are running 7.4.25. in /home/u9012667/godevi/vendor/composer/platform_check.php on line 24
+[25-Nov-2025 15:04:59 Asia/Jakarta] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/autoload_real.php(25): require()
+#1 /home/kktk6246/projects/godestinationvilliage.com/vendor/autoload.php(22): ComposerAutoloaderInitd1aea2c85c9917283d16438e71654857::getLoader()
+#2 /home/kktk6246/projects/godestinationvilliage.com/public/index.php(34): require('/home/kktk6246/...')
+#3 {main}
+  thrown in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php on line 22
+[25-Nov-2025 15:07:30 Asia/Jakarta] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/autoload_real.php(25): require()
+#1 /home/kktk6246/projects/godestinationvilliage.com/vendor/autoload.php(22): ComposerAutoloaderInitd1aea2c85c9917283d16438e71654857::getLoader()
+#2 /home/kktk6246/projects/godestinationvilliage.com/public/index.php(34): require('/home/kktk6246/...')
+#3 {main}
+  thrown in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php on line 22
+[25-Nov-2025 15:08:13 Asia/Jakarta] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/autoload_real.php(25): require()
+#1 /home/kktk6246/projects/godestinationvilliage.com/vendor/autoload.php(22): ComposerAutoloaderInitd1aea2c85c9917283d16438e71654857::getLoader()
+#2 /home/kktk6246/projects/godestinationvilliage.com/public/index.php(34): require('/home/kktk6246/...')
+#3 {main}
+  thrown in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php on line 22
+[25-Nov-2025 15:09:26 Asia/Jakarta] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/autoload_real.php(25): require()
+#1 /home/kktk6246/projects/godestinationvilliage.com/vendor/autoload.php(22): ComposerAutoloaderInitd1aea2c85c9917283d16438e71654857::getLoader()
+#2 /home/kktk6246/projects/godestinationvilliage.com/public/index.php(34): require('/home/kktk6246/...')
+#3 {main}
+  thrown in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php on line 22
+[25-Nov-2025 15:09:27 Asia/Jakarta] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/autoload_real.php(25): require()
+#1 /home/kktk6246/projects/godestinationvilliage.com/vendor/autoload.php(22): ComposerAutoloaderInitd1aea2c85c9917283d16438e71654857::getLoader()
+#2 /home/kktk6246/projects/godestinationvilliage.com/public/index.php(34): require('/home/kktk6246/...')
+#3 {main}
+  thrown in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php on line 22
+[25-Nov-2025 15:09:28 Asia/Jakarta] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/autoload_real.php(25): require()
+#1 /home/kktk6246/projects/godestinationvilliage.com/vendor/autoload.php(22): ComposerAutoloaderInitd1aea2c85c9917283d16438e71654857::getLoader()
+#2 /home/kktk6246/projects/godestinationvilliage.com/public/index.php(34): require('/home/kktk6246/...')
+#3 {main}
+  thrown in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php on line 22
+[25-Nov-2025 15:09:28 Asia/Jakarta] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/autoload_real.php(25): require()
+#1 /home/kktk6246/projects/godestinationvilliage.com/vendor/autoload.php(22): ComposerAutoloaderInitd1aea2c85c9917283d16438e71654857::getLoader()
+#2 /home/kktk6246/projects/godestinationvilliage.com/public/index.php(34): require('/home/kktk6246/...')
+#3 {main}
+  thrown in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php on line 22
+[25-Nov-2025 15:09:29 Asia/Jakarta] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/autoload_real.php(25): require()
+#1 /home/kktk6246/projects/godestinationvilliage.com/vendor/autoload.php(22): ComposerAutoloaderInitd1aea2c85c9917283d16438e71654857::getLoader()
+#2 /home/kktk6246/projects/godestinationvilliage.com/public/index.php(34): require('/home/kktk6246/...')
+#3 {main}
+  thrown in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php on line 22
+[25-Nov-2025 15:09:32 Asia/Jakarta] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/autoload_real.php(25): require()
+#1 /home/kktk6246/projects/godestinationvilliage.com/vendor/autoload.php(22): ComposerAutoloaderInitd1aea2c85c9917283d16438e71654857::getLoader()
+#2 /home/kktk6246/projects/godestinationvilliage.com/public/index.php(34): require('/home/kktk6246/...')
+#3 {main}
+  thrown in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php on line 22
+[25-Nov-2025 15:09:35 Asia/Jakarta] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/autoload_real.php(25): require()
+#1 /home/kktk6246/projects/godestinationvilliage.com/vendor/autoload.php(22): ComposerAutoloaderInitd1aea2c85c9917283d16438e71654857::getLoader()
+#2 /home/kktk6246/projects/godestinationvilliage.com/public/index.php(34): require('/home/kktk6246/...')
+#3 {main}
+  thrown in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php on line 22
+[25-Nov-2025 15:09:37 Asia/Jakarta] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/autoload_real.php(25): require()
+#1 /home/kktk6246/projects/godestinationvilliage.com/vendor/autoload.php(22): ComposerAutoloaderInitd1aea2c85c9917283d16438e71654857::getLoader()
+#2 /home/kktk6246/projects/godestinationvilliage.com/public/index.php(34): require('/home/kktk6246/...')
+#3 {main}
+  thrown in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php on line 22
+[25-Nov-2025 15:09:39 Asia/Jakarta] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/autoload_real.php(25): require()
+#1 /home/kktk6246/projects/godestinationvilliage.com/vendor/autoload.php(22): ComposerAutoloaderInitd1aea2c85c9917283d16438e71654857::getLoader()
+#2 /home/kktk6246/projects/godestinationvilliage.com/public/index.php(34): require('/home/kktk6246/...')
+#3 {main}
+  thrown in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php on line 22
+[25-Nov-2025 15:09:41 Asia/Jakarta] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/autoload_real.php(25): require()
+#1 /home/kktk6246/projects/godestinationvilliage.com/vendor/autoload.php(22): ComposerAutoloaderInitd1aea2c85c9917283d16438e71654857::getLoader()
+#2 /home/kktk6246/projects/godestinationvilliage.com/public/index.php(34): require('/home/kktk6246/...')
+#3 {main}
+  thrown in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php on line 22
+[25-Nov-2025 15:09:44 Asia/Jakarta] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/autoload_real.php(25): require()
+#1 /home/kktk6246/projects/godestinationvilliage.com/vendor/autoload.php(22): ComposerAutoloaderInitd1aea2c85c9917283d16438e71654857::getLoader()
+#2 /home/kktk6246/projects/godestinationvilliage.com/public/index.php(34): require('/home/kktk6246/...')
+#3 {main}
+  thrown in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php on line 22
+[25-Nov-2025 15:09:46 Asia/Jakarta] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/autoload_real.php(25): require()
+#1 /home/kktk6246/projects/godestinationvilliage.com/vendor/autoload.php(22): ComposerAutoloaderInitd1aea2c85c9917283d16438e71654857::getLoader()
+#2 /home/kktk6246/projects/godestinationvilliage.com/public/index.php(34): require('/home/kktk6246/...')
+#3 {main}
+  thrown in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php on line 22
+[25-Nov-2025 15:09:48 Asia/Jakarta] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/autoload_real.php(25): require()
+#1 /home/kktk6246/projects/godestinationvilliage.com/vendor/autoload.php(22): ComposerAutoloaderInitd1aea2c85c9917283d16438e71654857::getLoader()
+#2 /home/kktk6246/projects/godestinationvilliage.com/public/index.php(34): require('/home/kktk6246/...')
+#3 {main}
+  thrown in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php on line 22
+[25-Nov-2025 15:09:50 Asia/Jakarta] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/autoload_real.php(25): require()
+#1 /home/kktk6246/projects/godestinationvilliage.com/vendor/autoload.php(22): ComposerAutoloaderInitd1aea2c85c9917283d16438e71654857::getLoader()
+#2 /home/kktk6246/projects/godestinationvilliage.com/public/index.php(34): require('/home/kktk6246/...')
+#3 {main}
+  thrown in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php on line 22
+[25-Nov-2025 15:09:52 Asia/Jakarta] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/autoload_real.php(25): require()
+#1 /home/kktk6246/projects/godestinationvilliage.com/vendor/autoload.php(22): ComposerAutoloaderInitd1aea2c85c9917283d16438e71654857::getLoader()
+#2 /home/kktk6246/projects/godestinationvilliage.com/public/index.php(34): require('/home/kktk6246/...')
+#3 {main}
+  thrown in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php on line 22
+[25-Nov-2025 15:09:58 Asia/Jakarta] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/autoload_real.php(25): require()
+#1 /home/kktk6246/projects/godestinationvilliage.com/vendor/autoload.php(22): ComposerAutoloaderInitd1aea2c85c9917283d16438e71654857::getLoader()
+#2 /home/kktk6246/projects/godestinationvilliage.com/public/index.php(34): require('/home/kktk6246/...')
+#3 {main}
+  thrown in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php on line 22
+[25-Nov-2025 15:10:00 Asia/Jakarta] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/autoload_real.php(25): require()
+#1 /home/kktk6246/projects/godestinationvilliage.com/vendor/autoload.php(22): ComposerAutoloaderInitd1aea2c85c9917283d16438e71654857::getLoader()
+#2 /home/kktk6246/projects/godestinationvilliage.com/public/index.php(34): require('/home/kktk6246/...')
+#3 {main}
+  thrown in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php on line 22
+[25-Nov-2025 15:10:02 Asia/Jakarta] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/autoload_real.php(25): require()
+#1 /home/kktk6246/projects/godestinationvilliage.com/vendor/autoload.php(22): ComposerAutoloaderInitd1aea2c85c9917283d16438e71654857::getLoader()
+#2 /home/kktk6246/projects/godestinationvilliage.com/public/index.php(34): require('/home/kktk6246/...')
+#3 {main}
+  thrown in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php on line 22
+[25-Nov-2025 15:10:05 Asia/Jakarta] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/autoload_real.php(25): require()
+#1 /home/kktk6246/projects/godestinationvilliage.com/vendor/autoload.php(22): ComposerAutoloaderInitd1aea2c85c9917283d16438e71654857::getLoader()
+#2 /home/kktk6246/projects/godestinationvilliage.com/public/index.php(34): require('/home/kktk6246/...')
+#3 {main}
+  thrown in /home/kktk6246/projects/godestinationvilliage.com/vendor/composer/platform_check.php on line 22

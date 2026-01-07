@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload File dengan Node.js</title>
+</head>
+<body>
+  <h2>Upload File Tanpa PHP</h2>
+
+  <input type="file" id="fileInput" />
+  <button onclick="uploadFile()">Upload</button>
+  <p id="status"></p>
+
+  <script>
+    async function uploadFile() {
+      const file = document.getElementById('fileInput').files[0];
+      const status = document.getElementById('status');
+
+      if (!file) {
+        status.textContent = "Pilih file dulu!";
+        status.style.color = "red";
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const res = await fetch("http://localhost:3000/upload", {
+        method: "POST",
+        body: formData
+      });
+
+      const text = await res.text();
+      status.textContent = text;
+      status.style.color = "green";
+    }
+  </script>
+</body>
+</html>

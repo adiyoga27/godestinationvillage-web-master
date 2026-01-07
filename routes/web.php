@@ -37,6 +37,7 @@ use App\Http\Controllers\Front\ReservationEventController;
 use App\Http\Controllers\Front\ReservationHomeStayController;
 use App\Http\Controllers\Front\SearchController;
 use App\Http\Controllers\MidtransController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TestController;
 
 use Illuminate\Support\Facades\App;
