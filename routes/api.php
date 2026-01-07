@@ -168,7 +168,11 @@ Route::group([
         Route::get('/popular-villages', [VillageControllerApi::class, 'index']);
         Route::get('/best-tours', [TourController::class, 'index']);
         Route::get('/best-homestay', [HomestayController::class, 'index']);
-       
+   
+        
+            Route::get('/villages', [VillageControllerApi::class, 'index']);
+        Route::get('/tours', [TourController::class, 'index']);
+        Route::get('/homestay', [HomestayController::class, 'index']);
 });
     
 
