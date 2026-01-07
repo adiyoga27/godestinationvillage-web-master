@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Services\AuthServices;
 use App\Services\UserService;
 use App\Traits\JsonResponseTrait;
@@ -49,5 +50,21 @@ class AuthControllerApi extends Controller
             return $this->responseDataMessage($result);
         }
         return $this->responseErrorDataMessage(['error' => 'Unauthorised'], 'Email Telah Terdaftar.');
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'password_new' => 'required',
+            'password_confirm' => 'required|same:password_new'
+        ]);
+
+        $user = Auth::user();
+        $result = User::where('id', $user->id)->update([
+            'password' => bcrypt($request->password_new)
+        ]);
+        if($result == true){
+            return $this->successResponseMessage('Password Berhasil Diubah');
+        }
     }
 }

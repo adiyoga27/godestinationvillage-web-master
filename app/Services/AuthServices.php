@@ -20,5 +20,16 @@ class AuthServices
        return $payload->createToken('MyApp')->accessToken;
     }
 
+    public function logout()
+    {
+        return Auth::logout();
+    }
+
+    public function resetPassword($user, $newPassword)
+    {
+        $user->password = bcrypt($newPassword);
+        return $user->save();
+    }
+
 
 }

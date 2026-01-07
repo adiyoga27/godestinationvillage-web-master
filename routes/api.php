@@ -170,10 +170,15 @@ Route::group([
         Route::get('/best-homestay', [HomestayController::class, 'index']);
    
         
-            Route::get('/villages', [VillageControllerApi::class, 'index']);
+        Route::get('/villages', [VillageControllerApi::class, 'index']);
         Route::get('/tours', [TourController::class, 'index']);
         Route::get('/homestay', [HomestayController::class, 'index']);
         Route::get('/articles', [ArticleController::class, 'index']);
+
+        Route::group([
+            'middleware' => ['api', 'cors','auth:api']], function(){       
+            Route::post('/auth/reset-password', [AuthControllerApi::class, 'resetPassword']);
+        });
 });
     
 
