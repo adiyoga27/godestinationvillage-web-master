@@ -19,6 +19,7 @@ class VillageResource extends JsonResource
             'village_name' => $this->village_name,
             'village_address' => $this->village_address,
             'thumbnail' => $this->user->avatar ? url("storage/users/".$this->user->avatar) : null,
+            'defaultImg ' => $this->user->avatar ? url("storage/users/".$this->user->avatar) : null,
             'lat' => $this->lat,
             'lng' => $this->lng,
             'contact_person' => $this->contact_person,
