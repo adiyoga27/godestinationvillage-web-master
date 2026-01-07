@@ -32,6 +32,8 @@ class EventOrderResource extends JsonResource
             'created_at' => $this->created_at,
             'uuid' => $this->uuid,
             'snap_token' => $this->snap_token,
+            'link_payment' => url('api/v2/payment')."/".$this->snap_token,
+
             'village_id' => $this->package->id,
             'thumbnail' => url('storage/events')."/".$this->package->default_img,
             
