@@ -58,6 +58,7 @@ class UserService
 
     public static function create($payload)
     {
+     
         if(!empty($payload['password'])){
             $payload['password'] = bcrypt($payload['password']);
         };

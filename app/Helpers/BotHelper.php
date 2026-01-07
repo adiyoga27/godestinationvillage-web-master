@@ -16,8 +16,8 @@ class BotHelper
     }
     public static function errorBot($activity, $message)
     {
-        $name = Auth::user()->name;
-        $role = Auth::user()->role_id;
+        $name = Auth::user()->name ?? "";
+        $role = Auth::user()->role_id ?? "";
 
         $date = date('d M Y H:i')." wita";
         $messages = "Godevi - Error Website \n\nDate: $date \nActivity : $activity \nUser : $name \nRole : $role \n\nMessage:$message";

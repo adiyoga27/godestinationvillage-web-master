@@ -69,6 +69,10 @@ class Package extends Model
     {
         return $this->belongsTo(VillageDetail::class, 'category_id', 'id');
     }
+    public function villageDetail()
+    {
+        return $this->belongsTo(VillageDetail::class, 'village_id', 'id');
+    }
 
     public function orders()
     {

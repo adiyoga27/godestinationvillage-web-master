@@ -26,19 +26,23 @@ class AuthControllerApi extends Controller
             $success['phone'] =  $user->phone;
             $success['country'] =  $user->country;
             $success['address'] =  $user->address;
-            $success['avatar'] =  $user->avatar;
+            $success['avatar'] =  url('storage/users')."/".$user->avatar;
             $success['token'] =  $user->createToken($user->email)->plainTextToken;
 
             return $this->responseDataMessage($success);
         } 
 
-        return $this->errorResponseMessage('Email dan Password Salah');
+        return $this->errorResponseMessage('Email dan Password Salah', 401);
 
 
     }
 
     public function registration(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
         $result = $this->userServices->registration($request);
         if($result == true){
             return $this->responseDataMessage($result);
