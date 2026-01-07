@@ -22,7 +22,7 @@ class ReservationControllerApi extends Controller
     public function reservationUnpaid($email)
     {
 
-        $orderTours = Order::where('payment_status', NULL)
+        $orderTours = Order::where('payment_status', 'pending')
             ->with('package')
             ->where('customer_email', $email)
             ->orderBy('id', 'desc')->get();
