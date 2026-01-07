@@ -31,6 +31,8 @@ class TourResource extends JsonResource
             'disc' => $this->disc,
             'default_img' => url('storage/packages')."/".$this->default_img,
             'slug' => $this->slug,
+            'lat' => $this->villageDetail->lat,
+            'lng' => $this->villageDetail->lng,
         ];
     }
 }
