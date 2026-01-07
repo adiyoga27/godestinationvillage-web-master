@@ -27,7 +27,7 @@ class TourController extends Controller
         ]);
     }
     public function index(Request $request) {
-        $data = Package::orderBy('id', 'DESC')->paginate($request->per_page);
+        $data = Package::where('price', '>', 0)->orderBy('id', 'DESC')->paginate($request->per_page);
         return new TourCollection($data);
     }
     
