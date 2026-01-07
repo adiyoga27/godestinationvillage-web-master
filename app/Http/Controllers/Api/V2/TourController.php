@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 class TourController extends Controller
 {
     public function popularTours() {
-        $data = Package::orderBy('id', 'DESC')->paginate(5);
+        $data = Package::where('price', '>', 0)->orderBy('id', 'DESC')->paginate(5);
         return new TourCollection($data);
     }
     public function categories(Request $request) {
