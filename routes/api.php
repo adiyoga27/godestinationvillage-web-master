@@ -185,11 +185,12 @@ Route::group([
         Route::get('/homestay/{slug}', [HomestayController::class, 'show']);
         Route::get('/articles', [ArticleController::class, 'index']);
         Route::get('/articles/{slug}', [ArticleController::class, 'show']);
-        Route::post('/articles/like/{slug}', [ArticleController::class, 'likeArticle']);
 
         Route::group([
             'middleware' => ['api', 'cors','auth:api']], function(){       
             Route::post('/auth/reset-password', [AuthControllerApi::class, 'resetPassword']);
+            Route::post('/articles/like/{slug}', [ArticleController::class, 'likeArticle']);
+
         });
 
         Route::get('search/{keyword}', [PageController::class, 'search']);
