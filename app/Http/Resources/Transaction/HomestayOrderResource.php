@@ -35,6 +35,8 @@ class HomestayOrderResource extends JsonResource
             'link_payment' => url('api/v2/payment')."/".$this->snap_token,
             'village_id' => $this->package->id,
             'thumbnail' => url('storage/homestay')."/".$this->package->default_img,
+            'pax' => $this->pax,
+            
             
         ];
     }
