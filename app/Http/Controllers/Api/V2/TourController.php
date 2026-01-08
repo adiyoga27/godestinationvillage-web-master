@@ -39,7 +39,7 @@ class TourController extends Controller
         $data = Package::where('is_active', 1)
             ->where('price', '>', 0)
             ->whereHas('villageDetail', function($q) use($lat, $lng, $radius) {
-                $q->whereRaw("6371 * acos(cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) + sin(radians(?)) * sin(radians(latitude))) <= ?", [$lat, $lng, $lat, $radius]);
+                $q->whereRaw("6371 * acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lng) - radians(?)) + sin(radians(?)) * sin(radians(lat))) <= ?", [$lat, $lng, $lat, $radius]);
             })
             ->orderBy('id', 'DESC')
             ->paginate($request->per_page);
