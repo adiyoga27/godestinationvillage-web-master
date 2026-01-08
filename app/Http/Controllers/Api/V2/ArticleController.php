@@ -22,7 +22,9 @@ class ArticleController extends Controller
         return new BlogCollection($data);
     }
     public function articlesPopular(Request $request) {
-        $data = Blog::orderBy('id', 'DESC')->paginate(5);
+        // $data = Blog::orderBy('id', 'DESC')->paginate(5);
+         $data = Blog::orderByRaw('COALESCE(JSON_LENGTH(liked_by), 0) DESC')
+        ->paginate(5);
         return new BlogCollection($data);
     }
     
