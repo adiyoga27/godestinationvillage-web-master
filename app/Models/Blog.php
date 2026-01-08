@@ -29,6 +29,13 @@ class Blog extends Model
         'updated_by', 'slug','village_id'
     ];
 
+    //buat cast
+
+    protected  $casts = [
+        'liked_by' => 'array',
+    ];
+
+ 
 
     public function user()
     {

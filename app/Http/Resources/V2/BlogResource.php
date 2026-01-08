@@ -22,7 +22,7 @@ class BlogResource extends JsonResource
             'post_author' => $this->post_author,
             'slug' => $this->slug,
             'created_at' => $this->created_at,
-            'liked_by' => json_encode($this->liked_by),
+            'liked_by' => $this->liked_by,
         ];
     }
 }
