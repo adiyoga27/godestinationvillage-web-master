@@ -15,6 +15,10 @@ class ArticleController extends Controller
 {
     public function index(Request $request) {
         $data = Blog::orderBy('id', 'DESC')->paginate($request->per_page);
+        //keyword dari get params
+        if(isset($request->keyword)){
+            $data = Blog::where('post_title', 'like', '%'.$request->keyword.'%')->orderBy('id', 'DESC')->paginate($request->per_page);
+        }
         return new BlogCollection($data);
     }
     public function articlesPopular(Request $request) {
