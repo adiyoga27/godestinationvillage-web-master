@@ -88,6 +88,11 @@ Route::group([
     Route::get('/cancel/{email}', [ReservationControllerApi::class, 'reservationCancel']);
     Route::get('/unpaid/{email}', [ReservationControllerApi::class, 'reservationUnpaid']);
 });
+Route::group([
+    'middleware' => ['api', 'cors'],
+    'prefix'=>'transaction-detail'], function(){       
+    Route::get('/{type}/{uuid}', [ReservationControllerApi::class, 'detailReservation']);
+});
 
 Route::group([
     'middleware' => ['api', 'cors'],

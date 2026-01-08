@@ -44,6 +44,22 @@ class ReservationControllerApi extends Controller
         
     }
 
+    public function detailReservation($type, $uuid)
+    {
+        if ($type == 'tour') {
+            $order = Order::where('uuid', $uuid)->with('package')->first();
+            return $this->responseDataMessage(new TourOrderResource($order));
+        } elseif ($type == 'event') {
+            $order = OrderEvent::where('uuid', $uuid)->with('package')->first();
+            return $this->responseDataMessage(new EventOrderResource($order));
+        } elseif ($type == 'homestay') {
+            $order = OrderHomestay::where('uuid', $uuid)->with('package')->first();
+            return $this->responseDataMessage(new HomestayOrderResource($order));
+        } else {
+            return $this->responseDataMessage('Invalid type');
+        }
+    }
+
     public function reservationPaid($email)
     {
         
