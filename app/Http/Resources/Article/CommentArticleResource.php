@@ -18,10 +18,10 @@ class CommentArticleResource extends JsonResource
             'id' => $this->id,
             'user_id' => $this->users->id,
             'user_name' => $this->users->name,
-            'user_avatar' => $this->users->avatar,
+            'user_avatar' => url('storage/users/')."/".$this->users->avatar,
             'comment' => $this->comment,
-            'likes' => json_decode($this->likes ) ?? [] ,
-            'replies' => CommentArticleResource::collection($this->replies)
+            // 'likes' => json_decode($this->likes ) ?? [] ,
+            // 'replies' => CommentArticleResource::collection($this->replies)
         ];
     }
 }
