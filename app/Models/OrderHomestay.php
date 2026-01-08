@@ -32,7 +32,9 @@ class OrderHomestay extends Model
     public $fillable = [
 		'id', 'user_id', 'homestay_id', 'code', 'customer_name', 'customer_address', 'customer_phone', 'customer_email', 'homestay_name', 'homestay_price', 'homestay_discount', 'total_payment', 'payment_type', 'payment_date', 'payment_status', 'pax', 'special_note', 'snap_token','uuid'
     ];
-
+  protected $casts = [
+        'pax' => 'integer',
+    ];
     public function user()
     {
         return $this->belongsTo(User::class);

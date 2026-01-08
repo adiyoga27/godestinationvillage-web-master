@@ -55,7 +55,9 @@ class OrderEvent extends Model
         'uuid'
 
     ];
-
+  protected $casts = [
+        'pax' => 'integer',
+    ];
     public function user()
     {
         return $this->belongsTo(User::class);
