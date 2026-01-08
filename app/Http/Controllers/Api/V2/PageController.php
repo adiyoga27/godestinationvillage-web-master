@@ -67,4 +67,5 @@ class PageController extends Controller
             'data' => $result
         ]);
     }
+    
 }

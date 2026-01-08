@@ -30,6 +30,29 @@ class TourController extends Controller
         $data = Package::where('is_active', 1)->where('price', '>', 0)->orderBy('id', 'DESC')->paginate($request->per_page);
         return new TourCollection($data);
     }
+
+    public function nearbyTours(Request $request, $lat, $lng) {
+        $radius = 10; // radius in kilometers
+        //harus ambil dari ->villageDetail->lat dan ->villageDetail->lng
+        //menggunakan wherehas package dengan villageDetail
+
+        $data = Package::where('is_active', 1)
+            ->where('price', '>', 0)
+            ->whereHas('villageDetail', function($q) use($lat, $lng, $radius) {
+                $q->whereRaw("6371 * acos(cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) + sin(radians(?)) * sin(radians(latitude))) <= ?", [$lat, $lng, $lat, $radius]);
+            })
+            ->orderBy('id', 'DESC')
+            ->paginate($request->per_page);
+
+        
+        // $data = Package::where('is_active', 1)
+        //     ->where('price', '>', 0)
+        //     ->whereRaw("6371 * acos(cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) + sin(radians(?)) * sin(radians(latitude))) <= ?", [$lat, $lng, $lat, $radius])
+        //     ->orderBy('id', 'DESC')
+        //     ->paginate($request->per_page);
+
+        return new TourCollection($data);
+    }
     public function detailTour(Request $request, $slugs) {
         $data = Package::where('slug', $slugs)->first();
         return new TourResource($data);

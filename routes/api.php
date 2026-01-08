@@ -180,6 +180,7 @@ Route::group([
         Route::get('/villages', [VillageControllerApi::class, 'index']);
         Route::get('/villages/tour/{slug}', [VillageControllerApi::class, 'tourVillages']);
         Route::get('/tours', [TourController::class, 'index']);
+        Route::get('/tours-nearby/lat/{lat}/lng/{lng}', [TourController::class, 'nearbyTours']);
         Route::get('/tours/{slug}', [TourController::class, 'detailTour']);
         Route::get('/homestay', [HomestayController::class, 'index']);
         Route::get('/homestay/{slug}', [HomestayController::class, 'show']);
