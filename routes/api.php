@@ -177,7 +177,7 @@ Route::group([
         Route::get('/tours', [TourController::class, 'index']);
         Route::get('/tours/{slug}', [TourController::class, 'detailTour']);
         Route::get('/homestay', [HomestayController::class, 'index']);
-        Route::get('/homestay/{slug}', [HomestayController::class, 'detailHomestay']);
+        Route::get('/homestay/{slug}', [HomestayController::class, 'show']);
         Route::get('/articles', [ArticleController::class, 'index']);
         Route::get('/articles/{slug}', [ArticleController::class, 'show']);
 
