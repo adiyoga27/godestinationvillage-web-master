@@ -17,6 +17,10 @@ class ArticleController extends Controller
         $data = Blog::orderBy('id', 'DESC')->paginate($request->per_page);
         return new BlogCollection($data);
     }
+    public function articlesPopular(Request $request) {
+        $data = Blog::orderBy('id', 'DESC')->paginate(5);
+        return new BlogCollection($data);
+    }
     
     public function show(Request $request, $slugs) {
         $blog = Blog::where('slug', $slugs)->first();

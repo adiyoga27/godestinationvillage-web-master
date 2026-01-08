@@ -184,6 +184,7 @@ Route::group([
         Route::get('/homestay', [HomestayController::class, 'index']);
         Route::get('/homestay/{slug}', [HomestayController::class, 'show']);
         Route::get('/articles', [ArticleController::class, 'index']);
+        Route::get('/articles-popular', [ArticleController::class, 'articlesPopular']);
         Route::get('/articles/{slug}', [ArticleController::class, 'show']);
 
         Route::group([
