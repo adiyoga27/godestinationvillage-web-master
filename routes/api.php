@@ -175,13 +175,18 @@ Route::group([
         Route::get('/villages', [VillageControllerApi::class, 'index']);
         Route::get('/villages/tour/{slug}', [VillageControllerApi::class, 'tourVillages']);
         Route::get('/tours', [TourController::class, 'index']);
+        Route::get('/tours/{slug}', [TourController::class, 'detailTour']);
         Route::get('/homestay', [HomestayController::class, 'index']);
+        Route::get('/homestay/{slug}', [HomestayController::class, 'detailHomestay']);
         Route::get('/articles', [ArticleController::class, 'index']);
+        Route::get('/articles/{slug}', [ArticleController::class, 'show']);
 
         Route::group([
             'middleware' => ['api', 'cors','auth:api']], function(){       
             Route::post('/auth/reset-password', [AuthControllerApi::class, 'resetPassword']);
         });
+
+        Route::get('search/{keyword}', [PageController::class, 'search']);
 });
     
 

@@ -30,6 +30,10 @@ class TourController extends Controller
         $data = Package::where('is_active', 1)->where('price', '>', 0)->orderBy('id', 'DESC')->paginate($request->per_page);
         return new TourCollection($data);
     }
+    public function detailTour(Request $request, $slugs) {
+        $data = Package::where('slug', $slugs)->first();
+        return new TourResource($data);
+    }
     
     public function show(Request $request, $slugs) {
         $data = Package::where('slug', $slugs)->first();
