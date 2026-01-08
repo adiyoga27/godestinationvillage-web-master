@@ -22,6 +22,7 @@ class AuthControllerApi extends Controller
     {
         if ($this->authServices->attempt(['email' => $request->email, 'password' => $request->password])) {
             $user =  $this->authServices->user();
+            $success['id'] =  $user->id;
             $success['email'] =  $user->email;
             $success['name'] =  $user->name;
             $success['phone'] =  $user->phone;
@@ -91,6 +92,7 @@ class AuthControllerApi extends Controller
                 'provider_id' => $request->provider_id,
             ]);
         }
+            $success['id'] =  $user->id;
 
         $success['email'] =  $user->email;
         $success['name'] =  $user->name;
