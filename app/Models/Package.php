@@ -55,6 +55,9 @@ class Package extends Model
 
     ];
 
+    protected $casts = [
+        'review' => 'decimal:1',
+    ];
 
     public function user()
     {
