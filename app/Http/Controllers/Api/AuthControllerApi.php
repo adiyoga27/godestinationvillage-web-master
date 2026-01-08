@@ -77,18 +77,18 @@ class AuthControllerApi extends Controller
             'email' => 'required|email',
         ]);
 
-        $user = User::where('provider', $request->provider)->where('provider_id', $request->provider_id)->first();
+        $user = User::where('email', $request->email)->first();
         if(!$user){
-            if(User::where('email', $request->email)->first()){
-                return $this->responseErrorDataMessage(['error' => 'Unauthorised'], 'Email Telah Terdaftar. Silahkan Login Menggunakan Email dan Password.');
-            }
+           
             //create user
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'role_id' => 3,
                 'is_active' => 1,
-                'password' => bcrypt('godestinationvillage')
+                'password' => bcrypt('godestinationvillage'),
+                'provider' => $request->provider,
+                'provider_id' => $request->provider_id,
             ]);
         }
 
