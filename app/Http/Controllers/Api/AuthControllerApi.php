@@ -67,4 +67,40 @@ class AuthControllerApi extends Controller
             return $this->successResponseMessage('Password Berhasil Diubah');
         }
     }
+
+    public function loginSosmed(Request $request)
+    {
+        $request->validate([
+            'provider' => 'required',
+            'provider_id' => 'required',
+            'name' => 'required',
+            'email' => 'required|email',
+        ]);
+
+        $user = User::where('provider', $request->provider)->where('provider_id', $request->provider_id)->first();
+        if(!$user){
+            if(User::where('email', $request->email)->first()){
+                return $this->responseErrorDataMessage(['error' => 'Unauthorised'], 'Email Telah Terdaftar. Silahkan Login Menggunakan Email dan Password.');
+            }
+            //create user
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'role_id' => 3,
+                'is_active' => 1,
+                'password' => bcrypt('godestinationvillage')
+            ]);
+        }
+
+        $success['email'] =  $user->email;
+        $success['name'] =  $user->name;
+        $success['phone'] =  $user->phone;
+        $success['country'] =  $user->country;
+        $success['address'] =  $user->address;
+        $success['role'] =  $user->role_id;
+        $success['avatar'] =  url('storage/users')."/".$user->avatar;
+        $success['token'] =  $user->createToken($user->email)->plainTextToken;
+
+        return $this->responseDataMessage($success);
+    }
 }

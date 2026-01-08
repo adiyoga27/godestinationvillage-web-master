@@ -33,6 +33,7 @@ Route::group([
     'prefix'=>'auth'
     ], function(){       
 Route::post('/login', [AuthControllerApi::class, 'login']);
+Route::post('/login-sosmed', [AuthControllerApi::class, 'loginSosmed']);
 Route::post('/registration', [AuthControllerApi::class, 'registration']);
 });
 
