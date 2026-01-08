@@ -25,6 +25,7 @@ class Blog extends Model
         'post_thumbnail',
         'post_author',
         'isPublished',
+        'liked_by',
         'updated_by', 'slug','village_id'
     ];
 

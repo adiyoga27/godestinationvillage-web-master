@@ -137,4 +137,30 @@ class ArticleController extends Controller
             ], 400);
         }
     }
+
+    public function likeArticle(Request $request, $slugs) {
+        $check = Blog::where('slug', $slugs)->first();
+        $likes = json_decode($check->liked_by);
+        if(!$check->liked_by){
+            $likes = [];
+        }
+        if(!in_array(Auth::user()->id, $likes)){
+            $likes = array_merge($likes, [Auth::user()->id]);
+            $check->update([
+                'liked_by' => $likes
+            ]);
+        }else{
+            //hapus user id jadinya unlike
+            $likes = array_diff($likes, [Auth::user()->id]);
+            $check->update([
+                'liked_by' => $likes
+            ]);
+        }
+        
+
+        return response()->json([
+            'status' => true,
+            'message' => "success like article"
+        ]);
+    }
 }
