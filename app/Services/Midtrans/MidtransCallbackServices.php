@@ -27,7 +27,6 @@ class MidtransCallbackServices
         $payment_type = $payload['payment_type'];
         $transaction_time = $payload['transaction_time'];
         $status = $payload['transaction_status'];
-        dd($status);
         if ($status == 'capture' || $status == 'settlement') {
             $date = date('d M Y H:i', strtotime($transaction_time))." wita";
             //check Order Package
