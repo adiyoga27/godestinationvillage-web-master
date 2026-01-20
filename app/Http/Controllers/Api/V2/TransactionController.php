@@ -140,7 +140,7 @@ class TransactionController extends Controller
                 'pax' => $request->qty,
                 'event_name' => $event->name,
                 'event_price' => $event->price,
-                'event_disc' => $event->disc,
+                'event_discount' => $event->disc,
                 'total_payment' => $total,
                 'payment_status' => 'pending',
                 'payment_type' => 'bank_transfer',
@@ -157,7 +157,7 @@ class TransactionController extends Controller
                     'item_details' => [
                         [
                             'id' =>  $data->event_id,
-                            'price' => ($data->event_disc > 0) ?  $data->event_disc : $data->event_price,
+                            'price' => ($data->event_discount > 0) ?  $data->event_discount : $data->event_price,
                             'quantity' => $data->pax,
                             'name' => Str::limit($data->event_name,30),
                         ],
@@ -233,7 +233,7 @@ class TransactionController extends Controller
                 'pax' => $request->qty,
                 'homestay_name' => $homestay->name,
                 'homestay_price' => $homestay->price,
-                'homestay_disc' => $homestay->disc,
+                'homestay_discount' => $homestay->disc,
                 'total_payment' => $total,
                 'payment_status' => 'pending',
                 'payment_type' => 'bank_transfer',
@@ -250,7 +250,7 @@ class TransactionController extends Controller
                     'item_details' => [
                         [
                             'id' =>  $data->homestay_id,
-                            'price' => ($data->homestay_disc > 0) ?  $data->homestay_disc : $data->homestay_price,
+                            'price' => ($data->homestay_discount > 0) ?  $data->homestay_discount : $data->homestay_price,
                             'quantity' => $data->pax,
                             'name' => Str::limit($data->homestay_name,30),
                         ],
@@ -324,7 +324,7 @@ class TransactionController extends Controller
                 'village_name' => $tour->villageDetail?->village_name,
                 'package_name' => $tour->name,
                 'package_price' => $tour->price,
-                'package_disc' => $tour->disc,
+                'package_discount' => $tour->disc,
                 'total_payment' => $total,
                 'checkin_date' => $request->check_in,
                 'payment_status' => 'pending',
@@ -342,7 +342,7 @@ class TransactionController extends Controller
                     'item_details' => [
                         [
                             'id' =>  $data->package_id,
-                            'price' => ($data->package_disc > 0) ?  $data->package_disc : $data->package_price,
+                            'price' => ($data->package_discount > 0) ?  $data->package_discount : $data->package_price,
                             'quantity' => $data->pax,
                             'name' => Str::limit($data->package_name,30),
                         ],
