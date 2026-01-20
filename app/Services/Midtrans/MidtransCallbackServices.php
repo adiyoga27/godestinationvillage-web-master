@@ -175,29 +175,29 @@ class MidtransCallbackServices
 
     public static function sendEmailNotificationVillage($invoice, $type)
     {
-        if($type == 'package'){
-            $order = Order::with(['village'])->where('code', $invoice)->first();
-            $village_name = $order->village->village_name;
+        // if($type == 'package'){
+        //     $order = Order::with(['village'])->where('code', $invoice)->first();
+        //     $village_name = $order->village->village_name;
 
 
-            $message = "Dear $village_name <br><br>We are pleased to inform you, that you have a reservation as follows:";
-            $subject = 'Godevi - Order Tour Package '. $invoice .' - Success';
-            if($order){
-                $email = new OrderEmail($subject, $order, $message);
-                Mail::to([$order->customer_email])->send($email);
-            }
-        }
-        if($type == 'event'){
-            $order = OrderEvent::where('code', $invoice)->first();
-            $customer_name = $order->customer_name;
-            // $event_name = $order->event_name;
-            $message = "Dear $village_name <br><br>We are pleased to inform you, that you have a reservation as follows:";
-            $subject = 'Godevi - Order Event '. $invoice .' - Success';
-            if($order){
-                $email = new OrderEventEmail($subject, $order, $message);
-                Mail::to([$order->customer_email])->send($email);
-            }
-        }
+        //     $message = "Dear $village_name <br><br>We are pleased to inform you, that you have a reservation as follows:";
+        //     $subject = 'Godevi - Order Tour Package '. $invoice .' - Success';
+        //     if($order){
+        //         $email = new OrderEmail($subject, $order, $message);
+        //         Mail::to([$order->customer_email])->send($email);
+        //     }
+        // }
+        // if($type == 'event'){
+        //     $order = OrderEvent::where('code', $invoice)->first();
+        //     $customer_name = $order->customer_name;
+        //     // $event_name = $order->event_name;
+        //     $message = "Dear $village_name <br><br>We are pleased to inform you, that you have a reservation as follows:";
+        //     $subject = 'Godevi - Order Event '. $invoice .' - Success';
+        //     if($order){
+        //         $email = new OrderEventEmail($subject, $order, $message);
+        //         Mail::to([$order->customer_email])->send($email);
+        //     }
+        // }
         // if($type == 'homestay'){
         //     $order = OrderHomestay::where('code', $invoice)->first();
 
