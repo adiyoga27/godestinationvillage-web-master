@@ -198,18 +198,18 @@ class MidtransCallbackServices
                 Mail::to([$order->customer_email])->send($email);
             }
         }
-        if($type == 'homestay'){
-            $order = OrderHomestay::where('code', $invoice)->first();
+        // if($type == 'homestay'){
+        //     $order = OrderHomestay::where('code', $invoice)->first();
 
-            $customer_name = $order->customer_name;
-            // $homestay_name = $order->homestay_name;
-            $message = "Dear $village_name <br><br>We are pleased to inform you, that you have a reservation as follows:";
-            $subject = 'Godevi - Order Homestay '. $invoice .' - Success';
-            if($order){
-                $email = new OrderHomestayEmail($subject, $order, $message);
-                Mail::to([$order->customer_email])->send($email);
-            }
-        }
+        //     $customer_name = $order->customer_name;
+        //     // $homestay_name = $order->homestay_name;
+        //     $message = "Dear $village_name <br><br>We are pleased to inform you, that you have a reservation as follows:";
+        //     $subject = 'Godevi - Order Homestay '. $invoice .' - Success';
+        //     if($order){
+        //         $email = new OrderHomestayEmail($subject, $order, $message);
+        //         Mail::to([$order->customer_email])->send($email);
+        //     }
+        // }
      
 
     }
