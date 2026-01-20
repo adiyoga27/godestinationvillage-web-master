@@ -69,6 +69,7 @@ class EventService
 
             $result = EventTranslations::create($dataTranslate);
             DB::commit();
+            BotHelper::sendTelegram('Create Event', "Hi, Telah menambahkan Event dengan judul $payload[name]. Silahkan check akun admin anda untuk melakukan validasi pengajuan event");
 
             return $result;
         } catch (\Throwable $th) {
