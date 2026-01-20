@@ -23,6 +23,7 @@ use App\Models\OurTeam;
 use App\Models\Portofolio;
 use App\PackageTranslations;
 use App\Models\Tag;
+use App\Models\PostComment;
 use App\Models\VillageDetail;
 use App\Services\EventService;
 use App\Services\HomeStayServices;
@@ -71,6 +72,9 @@ class PageController extends Controller
             return abort(404);
         }
         $data['recent'] = Blog::where('isPublished', '1')->latest('id')->limit(5)->get();
+        $data['comments'] = PostComment::with('users')->whereHas('blog', function($q) use($slug){
+             $q->where('slug', $slug);
+        })->where('parent_id', 0)->orderBy('id', 'desc')->get();
         return view('customer/detail-blog', $data);
     }
     public function blog_mobile()
@@ -514,5 +518,27 @@ $data['recent'] = HomeStayServices::recent();
     public function companyprofile()
     {
         return view('customer/companyprofile');
+    }
+
+    
+    public function postComment(Request $request, $slug)
+    {
+        if(!Auth::check()){
+            return redirect()->back()->with('error', 'Please login first');
+        }
+        $request->validate([
+            'comment' => 'required'
+        ]);
+
+        $blog = Blog::where('slug', $slug)->firstOrFail();
+        
+        PostComment::create([
+            'post_id' => $blog->id,
+            'user_id' => Auth::user()->id,
+            'parent_id' => 0,
+            'comment' => $request->comment
+        ]);
+
+        return redirect()->back()->with('success', 'Comment posted successfully');
     }
 }

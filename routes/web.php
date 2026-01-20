@@ -166,6 +166,7 @@ Route::get('/blog', [PageController::class,'blog']);
 Route::get('/blog/{slug}', [PageController::class,'detailpost']);
 Route::get('/blog-mobile', [PageController::class,'blog_mobile']);
 Route::get('/blog-mobile/{id}', [PageController::class,'detailpost_mobile']);
+Route::post('/blog/comment/{slug}', [PageController::class, 'postComment'])->middleware('auth');
 Route::get('/search', [SearchController::class,'searchHome']);
 Route::get('/pay/{id}', [PaymentController::class, 'vtweb']);
 Route::post('/vt-notif', [PaymentController::class, 'notification']);

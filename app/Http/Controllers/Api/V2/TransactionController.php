@@ -120,7 +120,15 @@ class TransactionController extends Controller
         try {
             $event = Event::where('id', $request->event_id)->first();
         
-            $total = ($event->price - $event->disc) * $request->qty;
+            // $total = ($event->price - $event->disc) * $request->qty;
+
+               if($event->disc >0 ){
+
+                $total = ( $event->disc) * $request->qty;
+            }else{
+                $total = ( $event->price) * $request->qty;
+
+            }
             $data = OrderEvent::create([
                 'user_id' => Auth::user()->id,
                 'event_id' => $request->event_id,
@@ -204,7 +212,16 @@ class TransactionController extends Controller
         try {
             $homestay = Homestay::where('id', $request->homestay_id)->first();
         
-            $total = ($homestay->price - $homestay->disc) * $request->qty;
+            // $total = ($homestay->price - $homestay->disc) * $request->qty;
+
+             if($homestay->disc >0 ){
+
+                $total = ( $homestay->disc) * $request->qty;
+            }else{
+                $total = ( $homestay->price) * $request->qty;
+
+            }
+
             $data = OrderHomestay::create([
                 'user_id' => Auth::user()->id,
                 'homestay_id' => $request->homestay_id,
@@ -288,7 +305,13 @@ class TransactionController extends Controller
         try {
             $tour = Package::where('id', $request->tour_id)->first();
         
-            $total = ($tour->price - $tour->disc) * $request->qty;
+            if($tour->disc >0 ){
+
+                $total = ( $tour->disc) * $request->qty;
+            }else{
+                $total = ( $tour->price) * $request->qty;
+
+            }
             $data = Order::create([
                 'user_id' => Auth::user()->id,
                 'package_id' => $request->tour_id,
