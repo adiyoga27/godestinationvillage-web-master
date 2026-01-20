@@ -154,6 +154,8 @@ Route::get('/payment-confirm/{id}', [PageController::class,'confirmPayment']);
 Route::get('/do_cancel/{id}', [PageController::class,'cancel']);
 Route::get('user/register', [PageController::class, 'register']);
 Route::get('/term', [PageController::class,'term']);
+
+Route::get('/delete-account', [PageController::class,'deleteAccount']);
 Route::get('/our-team', [PageController::class,'ourteam']);
 Route::get('/v-founding', [PageController::class,'founding']);
 Route::get('/v-board', [PageController::class,'boardExpert']);

@@ -237,6 +237,10 @@ $data['recent'] = HomeStayServices::recent();
 
         return view('customer/terms');
     }
+    
+    public function deleteAccount(){
+        return view('customer/delete-account');
+    }
     public function ourteam()
     {
         $ours = OurTeam::all();
