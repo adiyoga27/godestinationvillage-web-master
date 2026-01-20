@@ -129,6 +129,7 @@ Route::group([
 
         Route::group(['middleware' => ['api', 'cors', 'auth:api']], function(){       
                 Route::get('/auth/profile', [ProfileController::class, 'index']);
+                Route::post('/auth/profile/update', [ProfileController::class, 'update']);
                 Route::get('/transaction/invoice/{type}', [TransactionController::class, 'status']);
                 Route::get('/invoice/{type}', [TransactionController::class, 'invoice']);
                 Route::post('/checkout/event', [TransactionController::class, 'checkoutEvent']);
