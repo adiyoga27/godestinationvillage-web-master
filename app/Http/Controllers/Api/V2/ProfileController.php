@@ -54,7 +54,7 @@ class ProfileController extends Controller
                 $request->avatar->move(public_path('storage/users'), $imageName);
                 
                 // Construct path for database
-                $user->avatar = 'users/' . $imageName;
+                $user->avatar =  $imageName;
             }
 
             $user->save();
