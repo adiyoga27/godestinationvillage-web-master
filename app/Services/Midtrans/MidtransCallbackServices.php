@@ -44,6 +44,7 @@ class MidtransCallbackServices
                 if($result){
                     MidtransCallbackServices::sendEmailNotification($invoice, 'package');
                     MidtransCallbackServices::sendEmailNotificationVillage($invoice, 'package');
+                    MidtransCallbackServices::sendFirebaseNotification($invoice, 'package');
 
                     BotHelper::sendTelegram("Godevi - Payment Tour Package Success, \n\nDate: $date \nInvoice : $invoice \nPayment Type : $payment_type.\n");
 
@@ -62,6 +63,7 @@ class MidtransCallbackServices
                 if($result){
                     MidtransCallbackServices::sendEmailNotification($invoice, 'event');
                     MidtransCallbackServices::sendEmailNotificationVillage($invoice, 'event');
+                    MidtransCallbackServices::sendFirebaseNotification($invoice, 'event');
 
                     BotHelper::sendTelegram("Godevi - Payment Event Success, \n\nDate: $date \nInvoice : $invoice \nPayment Type : $payment_type.\n");
 
@@ -77,9 +79,10 @@ class MidtransCallbackServices
                          'payment_date' => $transaction_time
                      ]
                  );
-                 if($result){
+                if($result){
                     MidtransCallbackServices::sendEmailNotification($invoice, 'homestay');
                     MidtransCallbackServices::sendEmailNotificationVillage($invoice, 'homestay');
+                    MidtransCallbackServices::sendFirebaseNotification($invoice, 'homestay');
 
                     BotHelper::sendTelegram("Godevi - Payment Homestay Success, \n\nDate: $date \nInvoice : $invoice \nPayment Type : $payment_type.\n");
 
@@ -90,6 +93,46 @@ class MidtransCallbackServices
         }
         return $dataTransaction;
     }
+
+    public static function sendFirebaseNotification($invoice, $type)
+    {
+        try {
+            $order = null;
+            $reference = '';
+            
+            if ($type == 'package') {
+                $order = Order::where('code', $invoice)->first();
+                $reference = '/transaction-detail/tour/' . $order->uuid;
+            } else if ($type == 'event') {
+                $order = OrderEvent::where('code', $invoice)->first();
+                $reference = '/transaction-detail/event/' . $order->uuid;
+            } else if ($type == 'homestay') {
+                $order = OrderHomestay::where('code', $invoice)->first();
+                $reference = '/transaction-detail/homestay/' . $order->uuid;
+            }
+
+            if ($order) {
+                $firebase = new \App\Services\FirebaseService();
+                $notifData = [
+                    'created_at' => new \DateTime(),
+                    'deleted_by' => [],
+                    'owner_by' => [(int)$order->user_id],
+                    'read_by' => [],
+                    'reference' => $reference,
+                    'subtitle' => 'Pembayaran dengan nomor invoice "' . $invoice . '" telah berhasil',
+                    'title' => 'Payment Paid',
+                    'type' => 'transaction'
+                ];
+                
+                $firebase->saveNotification($notifData);
+                $firebase->sendFCM((string)$order->user_id, 'Payment Paid', 'Pembayaran dengan nomor invoice "' . $invoice . '" telah berhasil');
+            }
+
+        } catch (\Throwable $e) {
+            \Illuminate\Support\Facades\Log::error("Firebase Payment Notification Error: " . $e->getMessage());
+        }
+    }
+
     public static function sendEmailNotification($invoice, $type)
     {
         if($type == 'package'){
