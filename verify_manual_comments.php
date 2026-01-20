@@ -38,8 +38,9 @@ try {
     $response = $controller->postComment($request, $blog->slug);
     
     if ($response->isRedirect()) {
-        echo "VERIFICATION SUCCESS: Controller returned redirect (Success case).\n";
-        echo "Session Success Message: " . session('success') . "\n";
+        echo "VERIFICATION SUCCESS: Controller returned redirect.\n";
+        if (session('success')) echo "Session Success: " . session('success') . "\n";
+        if (session('error')) echo "Session Error: " . session('error') . "\n";
     } else {
         echo "VERIFICATION FAILURE: Controller did not redirect.\n";
     }

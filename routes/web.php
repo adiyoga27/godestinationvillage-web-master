@@ -95,8 +95,8 @@ Route::get('/invoice/{id}', [InvoiceController::class , 'index']);
 Route::get('/invoice-event/{id}', [InvoiceController::class , 'event']);
 Route::get('/invoice-homestay/{id}', [InvoiceController::class , 'homestay']);
 
-Route::get('/administrator/login',  [LoginController::class, 'authenticated']);
-Route::get('/user/login', [LoginController::class, 'authenticated']);
+Route::get('/administrator/login',  [LoginController::class, 'showLoginForm']);
+Route::get('/user/login', [PageController::class, 'login']);
 //Customer Page
 Route::get('/company-profile', [PageController::class, 'companyprofile']);
 

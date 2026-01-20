@@ -1,0 +1,4 @@
+Array
+(
+    [comment] => Manual comment test from script.
+)
