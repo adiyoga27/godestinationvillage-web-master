@@ -87,6 +87,7 @@ Route::group([
     Route::get('/bank/{email}', [ReservationControllerApi::class, 'reservationBank']);
     Route::get('/cancel/{email}', [ReservationControllerApi::class, 'reservationCancel']);
     Route::get('/unpaid/{email}', [ReservationControllerApi::class, 'reservationUnpaid']);
+    Route::delete('/delete/{code}',[ReservationControllerApi::class, 'deleteReservation']);
 });
 Route::group([
     'middleware' => ['api', 'cors'],

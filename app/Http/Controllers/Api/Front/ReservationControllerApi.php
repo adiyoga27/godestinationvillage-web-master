@@ -133,6 +133,26 @@ class ReservationControllerApi extends Controller
         return $this->responseDataMessage($data);
     }
 
-   
+   public function deleteReservation($code) {
+    //check disemua order invoicenya
+    $order = Order::where('code', $code)->first();
+    if ($order) {
+        $order->delete();
+        return $this->responseDataMessage('Order deleted successfully');
+    }
+
+    $orderEvent = OrderEvent::where('code', $code)->first();
+    if ($orderEvent) {
+        $orderEvent->delete();
+        return $this->responseDataMessage('Order deleted successfully');
+    }
+
+    $orderHomestay = OrderHomestay::where('code', $code)->first();
+    if ($orderHomestay) {
+        $orderHomestay->delete();
+        return $this->responseDataMessage('Order deleted successfully');
+    }
+    return $this->errorResponseMessage('Order not found');
+   }
 
 }
