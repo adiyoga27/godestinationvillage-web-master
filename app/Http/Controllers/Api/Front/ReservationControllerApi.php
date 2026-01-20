@@ -137,20 +137,26 @@ class ReservationControllerApi extends Controller
     //check disemua order invoicenya
     $order = Order::where('code', $code)->first();
     if ($order) {
+        $order->payment_status = 'cancel';
+        $order->save();
         $order->delete();
-        return $this->responseDataMessage('Order deleted successfully');
+        return $this->successResponseMessage('Order deleted successfully');
     }
 
     $orderEvent = OrderEvent::where('code', $code)->first();
     if ($orderEvent) {
+         $orderEvent->payment_status = 'cancel';
+        $orderEvent->save();
         $orderEvent->delete();
-        return $this->responseDataMessage('Order deleted successfully');
+        return $this->successResponseMessage('Order deleted successfully');
     }
 
     $orderHomestay = OrderHomestay::where('code', $code)->first();
     if ($orderHomestay) {
+         $orderHomestay->payment_status = 'cancel';
+        $orderHomestay->save();
         $orderHomestay->delete();
-        return $this->responseDataMessage('Order deleted successfully');
+        return $this->successResponseMessage('Order deleted successfully');
     }
     return $this->errorResponseMessage('Order not found');
    }
