@@ -16,6 +16,7 @@ use App\Services\Midtrans\CreateSnapTokenService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use App\Services\FirebaseService;
 
 class TransactionController extends Controller
 {
@@ -175,8 +176,26 @@ class TransactionController extends Controller
                         'snap_token' => $snapToken
                 ]);
                 $order = OrderEvent::where('uuid', $data->uuid)->first();
-               
                 
+                // Firebase Notification
+                try {
+                    $firebase = new FirebaseService();
+                    $notifData = [
+                        'created_at' => new \DateTime(),
+                        'deleted_by' => [],
+                        'owner_by' => [Auth::user()->id],
+                        'read_by' => [(string)Auth::user()->id],
+                        'reference' => '/transaction-detail/event/' . $data->uuid,
+                        'subtitle' => 'Segera selesaikan pembayaran anda dengan nomor invoice "' . $data->code . '"',
+                        'title' => 'Payment Unpaid',
+                        'type' => 'transaction'
+                    ];
+                    $firebase->saveNotification($notifData);
+                    $firebase->sendFCM((string)Auth::user()->id, 'Payment Unpaid', 'Segera selesaikan pembayaran anda dengan nomor invoice "' . $data->code . '"');
+                } catch (\Throwable $e) {
+                    \Illuminate\Support\Facades\Log::error("Firebase Error: " . $e->getMessage());
+                }
+
             return response()->json([
                 'status' => true,
                 'message' => 'Success checkout',
@@ -269,6 +288,24 @@ class TransactionController extends Controller
                 ]);
                 $order = OrderHomestay::where('uuid', $data->uuid)->first();
                
+                // Firebase Notification
+                try {
+                    $firebase = new FirebaseService();
+                    $notifData = [
+                        'created_at' => new \DateTime(),
+                        'deleted_by' => [],
+                        'owner_by' => [Auth::user()->id],
+                        'read_by' => [(string)Auth::user()->id],
+                        'reference' => '/transaction-detail/homestay/' . $data->uuid,
+                        'subtitle' => 'Segera selesaikan pembayaran anda dengan nomor invoice "' . $data->code . '"',
+                        'title' => 'Payment Unpaid',
+                        'type' => 'transaction'
+                    ];
+                    $firebase->saveNotification($notifData);
+                    $firebase->sendFCM((string)Auth::user()->id, 'Payment Unpaid', 'Segera selesaikan pembayaran anda dengan nomor invoice "' . $data->code . '"');
+                } catch (\Throwable $e) {
+                    \Illuminate\Support\Facades\Log::error("Firebase Error: " . $e->getMessage());
+                }
                 
             return response()->json([
                 'status' => true,
@@ -360,7 +397,25 @@ class TransactionController extends Controller
                         'snap_token' => $snapToken
                 ]);
                 $order = Order::where('uuid', $data->uuid)->first();
-               
+                
+                // Firebase Notification
+                try {
+                    $firebase = new FirebaseService();
+                    $notifData = [
+                        'created_at' => new \DateTime(),
+                        'deleted_by' => [],
+                        'owner_by' => [Auth::user()->id],
+                        'read_by' => [(string)Auth::user()->id],
+                        'reference' => '/transaction-detail/tour/' . $data->uuid,
+                        'subtitle' => 'Segera selesaikan pembayaran anda dengan nomor invoice "' . $data->code . '"',
+                        'title' => 'Payment Unpaid',
+                        'type' => 'transaction'
+                    ];
+                    $firebase->saveNotification($notifData);
+                    $firebase->sendFCM((string)Auth::user()->id, 'Payment Unpaid', 'Segera selesaikan pembayaran anda dengan nomor invoice "' . $data->code . '"');
+                } catch (\Throwable $e) {
+                    \Illuminate\Support\Facades\Log::error("Firebase Error: " . $e->getMessage());
+                }
                 
             return response()->json([
                 'status' => true,
