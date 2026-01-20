@@ -201,7 +201,10 @@ Route::group([
         Route::get('search/{keyword}', [PageController::class, 'search']);
 
         Route::get('testing-bot', function(){
-                    BotHelper::sendTelegram("Godevi - Payment Tour Package Success");
+
+                BotHelper::sendTelegram("Godevi - Payment Tour Package Success");
+                echo "success";
+           
         });
 });
     

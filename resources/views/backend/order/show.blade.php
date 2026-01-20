@@ -91,7 +91,7 @@ function printDiv(divName) {
                     <label class='badge badge-gradient-danger'>Declined</label>
                 @endif
             </div>
-            @if($order->payment_type == 'bank_transfer')
+            @if($order->payment_type == 'bank_transfer' && $order->bank_account)
             <div><strong>{{$order->bank_account->bank_name}} {{$order->bank_account->bank_acc_no}}</strong> a/n {{ $order->bank_account->bank_acc_name }}</div>
             @endif
         </div>
@@ -152,7 +152,11 @@ function printDiv(divName) {
 
                 <div class="col-sm-6">
                     <strong>Receiver:</strong>
+                    @if($order->bank_account)
                     <strong>{{$order->bank_account->bank_name}} {{$order->bank_account->bank_acc_no}}</strong> a/n {{ $order->bank_account->bank_acc_name }}
+                    @else
+                    <strong>-</strong>
+                    @endif
                 </div>
 
                 <div class="col-sm-12">

@@ -11,6 +11,7 @@ class BotHelper
     {
         $token = env('TELEGRAM_TOKEN');
         $chatid = env('TELEGRAM_CHATID');
+        dd("https://api.telegram.org/bot$token/sendmessage?chat_id=$chatid&text=$message");
         Http::post("https://api.telegram.org/bot$token/sendmessage?chat_id=$chatid&text=$message");
         return true;
     }

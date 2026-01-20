@@ -9,8 +9,8 @@ class BotHelper
 {
     public static function sendTelegram($message)
     {
-        $token = env('TELEGRAM_TOKEN');
-        $chatid = env('TELEGRAM_CHATID');
+        $token = config('telegram.token');
+        $chatid = config('telegram.chat_id');
         Http::post("https://api.telegram.org/bot$token/sendmessage?chat_id=$chatid&text=$message");
         return true;
     }
@@ -21,8 +21,8 @@ class BotHelper
 
         $date = date('d M Y H:i')." wita";
         $messages = "Godevi - Error Website \n\nDate: $date \nActivity : $activity \nUser : $name \nRole : $role \n\nMessage:$message";
-        $token = env('TELEGRAM_TOKEN');
-        $chatid = env('TELEGRAM_CHATID');
+        $token = config('telegram.token');
+        $chatid = config('telegram.chat_id');
         Http::post("https://api.telegram.org/bot$token/sendmessage?chat_id=$chatid&text=$messages");
         return true;
     }
