@@ -93,5 +93,65 @@
                                 @endauth
                             </div>
                         </div>
-    <!-- end blog details section -->
+                        </div>
+                    </div>
+                
+
+                <div class="col-lg-4 col-md-12">
+                    <aside class="widget-area">
+
+                        <div class="widget widget-search mb-30">
+                            <form class="search-form search-top">
+                                <input type="search" class="form-control" placeholder="Search..." />
+                                <button type="submit" class="btn-text-only">
+                                    <i class='bx bx-search-alt'></i>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="widget widget-video mb-30">
+                            <div class="video-image">
+                                <img src="https://img.youtube.com/vi/kIFVo2qgI-g/sddefault.jpg" width="900px" width="600px"
+                                    alt="video" />
+                            </div>
+                            <a href="https://www.youtube.com/watch?v=kIFVo2qgI-g" class="youtube-popup video-btn">
+                                <i class='bx bx-right-arrow'></i>
+                            </a>
+                        </div>
+                        <div class="widget widget-article mb-30">
+                            <h3 class="sub-title">Popular Blog</h3>
+                            @foreach ($recent as $rec)
+
+                                <article class="article-item">
+                                    <div class="image">
+                                        <img src="{{ url('storage/blogs/' . $rec->post_thumbnail) }}" alt="Demo Image" />
+                                    </div>
+                                    <div class="content">
+                                        <h3>
+                                            <a href="{{ url('blog/' . $rec->slug) }}">{{ $rec->post_title }}</a>
+                                        </h3>
+                                        <ul class="list">
+                                            <li>
+                                                <div class="author">
+                                                    <img src="{{ url('storage/users/' . $rec->user->avatar) }}"
+                                                        alt="Demo Image">
+                                                    <span>By - {{ $rec->user->name }}</span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </article>
+                            @endforeach
+                        </div>
+
+
+                        <div class="widget widget-gallery mb-30">
+                            <h3 class="sub-title">Instagram Post</h3>
+                             <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/godestinationvillage/" data-instgrm-version="13"></blockquote>
+                            <script async src="//www.instagram.com/embed.js"></script>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection

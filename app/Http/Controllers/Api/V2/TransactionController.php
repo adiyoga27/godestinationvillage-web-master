@@ -157,7 +157,7 @@ class TransactionController extends Controller
                     'item_details' => [
                         [
                             'id' =>  $data->event_id,
-                            'price' => $data->event_price,
+                            'price' => ($data->event_disc > 0) ?  $data->event_disc : $data->event_price,
                             'quantity' => $data->pax,
                             'name' => Str::limit($data->event_name,30),
                         ],
@@ -250,7 +250,7 @@ class TransactionController extends Controller
                     'item_details' => [
                         [
                             'id' =>  $data->homestay_id,
-                            'price' => $data->homestay_price,
+                            'price' => ($data->homestay_disc > 0) ?  $data->homestay_disc : $data->homestay_price,
                             'quantity' => $data->pax,
                             'name' => Str::limit($data->homestay_name,30),
                         ],
@@ -342,7 +342,7 @@ class TransactionController extends Controller
                     'item_details' => [
                         [
                             'id' =>  $data->package_id,
-                            'price' => $data->package_price,
+                            'price' => ($data->package_disc > 0) ?  $data->package_disc : $data->package_price,
                             'quantity' => $data->pax,
                             'name' => Str::limit($data->package_name,30),
                         ],
