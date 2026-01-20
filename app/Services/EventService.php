@@ -73,6 +73,7 @@ class EventService
             return $result;
         } catch (\Throwable $th) {
             BotHelper::errorBot('Create Event', $th);
+            file_put_contents('debug_event_service_error.txt', $th->getMessage() . PHP_EOL . $th->getTraceAsString());
             DB::rollback();
             return $th;
         }

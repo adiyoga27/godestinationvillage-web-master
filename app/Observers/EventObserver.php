@@ -35,6 +35,7 @@ class EventObserver
             
         } catch (\Throwable $e) {
             Log::error("Firebase Error in EventObserver: " . $e->getMessage());
+            file_put_contents('debug_firebase_error.txt', $e->getMessage() . PHP_EOL . $e->getTraceAsString());
         }
     }
 }
